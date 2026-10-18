@@ -91,7 +91,7 @@ def test_set18_loads_and_reports_provenance(set18):
     report = set18.provenance_report()
     assert "verified" not in report  # nothing is verified yet; this must stay honest
     assert "shop_odds" in report["third_party_unverified"]
-    assert "base_income" in report["unknown"]
+    assert "riftbeast_shop" in report["unknown"]
     assert "xp_to_next_level" in report["third_party_unverified"]
     assert set18.unreviewed_patches == ["18.2", "18.3", "18.4"]
 

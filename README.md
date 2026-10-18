@@ -70,7 +70,7 @@ Aşağıdaki değerler veride var ama internetten veya oyuncu anlatımından gel
 1. Shop olasılıkları. **Seviye 7'de iki kaynak çelişiyor:** 16/30/43/10/1 ile 19/30/40/10/1. Şimdilik ikincisi kullanılıyor.
 2. Level başına gereken XP. 8'den 9'a ve 9'dan 10'a ikisinin de 68 olması kontrol edilmeli.
 3. Tur başına 2 pasif XP ve normalde ulaşılan en yüksek level (10).
-4. Seri altını (2-4 seride +1, 5'te +2, 6 ve üstünde +3) ve PvP galibiyet altını (+1).
+4. Seri altını (kazanma ve kaybetme serisinde aynı: 2-4 seride +1, 5'te +2, 6 ve üstünde +3), PvP galibiyet altını (+1) ve temel gelir (1-2 ve 1-3: 2, 1-4: 3, 2-1: 4, sonra 5).
 5. Wisp'li shop'ta 4 şampiyon olması. Varsayılan olarak açık, `--no-wisp` ile kapatılır.
 
-Hâlâ bilinmeyenler: tur başına temel gelir, maliyet başına havuz boyutları (üçüncü taraf kaynaktan), satış değerleri.
+Hâlâ bilinmeyenler: maliyet başına havuz boyutları (üçüncü taraf kaynaktan), satış değerleri.

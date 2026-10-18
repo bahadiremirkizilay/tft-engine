@@ -158,9 +158,18 @@
       "note": "shop_odds lists level 11; it may only be reachable with an augment."
     },
     "base_income": {
-      "value": null,
-      "status": "unknown",
-      "source": "per-round base gold by stage; to be read in-game"
+      "value": {
+        "default": 5,
+        "by_stage": {
+          "1-2": 2,
+          "1-3": 2,
+          "1-4": 3,
+          "2-1": 4
+        }
+      },
+      "status": "third_party_unverified",
+      "source": "https://op.gg/tft/game-guide/gold-xp (via the player's search, 2026-10-18)",
+      "note": "Gold paid at the start of each round, before interest, streak and win gold. 5 from 2-2 on."
     },
     "interest_per_10_gold": {
       "value": 1,

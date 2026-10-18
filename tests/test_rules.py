@@ -32,8 +32,8 @@ def test_round_income_and_streak_update(synthetic):
     r = Rules(synthetic)
     s = state(gold=34, streak=3)
     after = r.end_round(s, won=True, next_stage="3-3")
-    # base 5 + interest 3 + streak(3) 1 + win 1
-    assert after.gold == 34 + 10
+    # base 5 + interest 3 + streak(4, after this win) 2 + win 1
+    assert after.gold == 34 + 11
     assert after.streak == 4
     lost = r.end_round(after, won=False, next_stage="3-5")
     assert lost.streak == -1
@@ -78,11 +78,10 @@ def test_gold_never_negative_after_round(gold, won, streak):
 
 
 def test_unknown_parameter_raises_and_override_is_tracked(set18):
-    r = Rules(set18)
     with pytest.raises(UnknownMechanicError):
-        r.base_income("3-2")
-    r2 = Rules(set18, overrides={"base_income": {"default": 5}})
-    assert r2.base_income("3-2") == 5
+        set18.shop_rules["bad_luck_protection"].get()
+    r2 = Rules(set18, overrides={"base_income": {"default": 4}})
+    assert r2.base_income("3-2") == 4
     assert r2.used["base_income"] == "assumption"
     assert r2.streak_bonus(5) == 2
     assert r2.used["streak_gold"] == "third_party_unverified"
@@ -96,3 +95,14 @@ def test_set18_xp_table_levels_up(set18):
     assert r.add_xp(2, 0, 2) == (3, 0)
     assert r.add_xp(6, 30, 6) == (7, 0)  # 6 -> 7 needs 36
     assert r.add_xp(9, 0, 500) == (10, 0)  # capped at 10
+
+
+def test_set18_round_income_win_and_loss_streaks(set18):
+    r = Rules(set18)
+    assert r.base_income("1-3") == 2 and r.base_income("2-1") == 4 and r.base_income("4-2") == 5
+    # 34 gold, 4-round win streak, wins again: base 5 + interest 3 + streak(5) 2 + win 1
+    won = r.end_round(state(gold=34, streak=4), won=True, next_stage="4-2")
+    assert (won.gold, won.streak) == (45, 5)
+    # same gold on a 4-round loss streak, loses again: base 5 + interest 3 + streak(5) 2
+    lost = r.end_round(state(gold=34, streak=-4), won=False, next_stage="4-2")
+    assert (lost.gold, lost.streak) == (44, -5)

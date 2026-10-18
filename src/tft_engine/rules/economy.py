@@ -52,21 +52,29 @@ class Rules:
         table = self.param("base_income")
         return table.get("by_stage", {}).get(stage, table["default"])
 
-    def round_income(self, state: GameState, won: bool) -> int:
-        """Gold gained at the end of a player-combat round."""
-        income = self.base_income(state.stage) + self.interest(state.gold)
-        income += self.streak_bonus(state.streak)
+    @staticmethod
+    def next_streak(streak: int, won: bool) -> int:
+        if won:
+            return streak + 1 if streak > 0 else 1
+        return streak - 1 if streak < 0 else -1
+
+    def round_income(self, state: GameState, won: bool, next_stage: str) -> int:
+        """Gold gained after a player-combat round.
+
+        Timing assumption (not verified): the streak bonus uses the streak after this
+        round's result, base income uses the stage that starts next, and interest uses
+        the gold held after combat. Win and loss streaks pay the same bonus.
+        """
+        income = self.base_income(next_stage) + self.interest(state.gold)
+        income += self.streak_bonus(self.next_streak(state.streak, won))
         if won:
             income += self.param("pvp_win_gold")
         return income
 
     def end_round(self, state: GameState, won: bool, next_stage: str) -> GameState:
         """Apply income, passive XP and streak update for one combat round."""
-        gold = state.gold + self.round_income(state, won)
-        if won:
-            streak = state.streak + 1 if state.streak > 0 else 1
-        else:
-            streak = state.streak - 1 if state.streak < 0 else -1
+        gold = state.gold + self.round_income(state, won, next_stage)
+        streak = self.next_streak(state.streak, won)
         level, xp = self.add_xp(state.level, state.xp, self.param("passive_xp_per_round"))
         return replace(state, gold=gold, streak=streak, level=level, xp=xp, stage=next_stage)
 
