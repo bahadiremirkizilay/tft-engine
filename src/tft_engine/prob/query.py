@@ -1,0 +1,47 @@
+"""The roll-down question and the buying policy both solvers share."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class Target:
+    unit_id: str
+    copies_needed: int
+
+    def __post_init__(self) -> None:
+        if self.copies_needed < 0:
+            raise ValueError("copies_needed must be >= 0")
+
+
+@dataclass(frozen=True)
+class RollQuery:
+    """Roll at a fixed level until every target is bought or gold runs low.
+
+    Policy (identical in the exact solver and the sampler):
+      1. Look at the shop. The first shop is free if ``first_shop_free``
+         (it is already on screen); every later shop costs ``roll_cost``.
+      2. Buy target copies that appear, in the order of ``targets``, while
+         copies are still needed and gold covers the unit cost.
+      3. If every target is complete, stop: success.
+      4. Otherwise roll again only if gold after paying ``roll_cost`` stays
+         at or above ``gold_floor``; else stop: failure.
+    """
+
+    level: int
+    gold: int
+    targets: tuple[Target, ...]
+    roll_cost: int
+    gold_floor: int = 0
+    first_shop_free: bool = True
+    max_shops: int = 200  # safety cap; never reached with sane inputs
+
+    def __post_init__(self) -> None:
+        if self.gold < 0 or self.roll_cost <= 0 or self.gold_floor < 0:
+            raise ValueError("gold and gold_floor must be >= 0, roll_cost > 0")
+        if not self.targets:
+            raise ValueError("at least one target is required")
+        ids = [t.unit_id for t in self.targets]
+        if len(set(ids)) != len(ids):
+            raise ValueError("targets must be distinct units")

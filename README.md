@@ -45,3 +45,30 @@ tft-engine replay runs/runs.jsonl
 - Deney karşılaştırmalarında zaman damgası, çalıştırma kimliği ve ortam bilgisi karşılaştırılmaz; ad, config, seed, veri sürümü ve metrikler karşılaştırılır.
 
 Bağımlılık politikası: [docs/DEPENDENCIES.md](docs/DEPENDENCIES.md).
+
+## Olasılık sorgusu (M1a)
+
+Örnek: level 8, 50 altın, 4 maliyetli `Ahri`'den 2 kopya lazım, masada (sende veya rakiplerde) 3 kopyası görünüyor:
+
+```powershell
+tft-engine odds --set set18 --patch 18.4 --level 8 --gold 50 --target Ahri:4:2 --taken Ahri:3
+```
+
+- `--target birim:maliyet:kopya` birden fazla verilebilir. Sırayla satın alınır.
+- `--floor 20` altın 20'nin altına inecekse roll'u durdurur.
+- `--wisp` her iki shop'ta bir Wisp'in bir şampiyon yerini kapladığını varsayar (doğrulanmadı).
+- Çıktı, hesabın dayandığı varsayımları ve gözden geçirilmemiş yamaları her zaman yazar.
+
+## Yama verisi
+
+Her set için `data/sets/<set>/base.json` ve her yama için `data/sets/<set>/patches/<yama>.json` vardır. Yama dosyası sadece değişiklikleri (buff, nerf vb.) kaynağıyla birlikte içerir. Dosyası olmayan bir yama yüklenmez.
+
+## Oyun içinde doğrulanması gerekenler (Set 18)
+
+Şu değerler üçüncü taraf kaynaktan alındı veya bilinmiyor. Tooltip ya da ekran görüntüsüyle doğrulanmaları gerekir:
+
+1. Level başına shop olasılıkları (shop'taki olasılık tooltip'i, level 1-11)
+2. Maliyet başına havuz boyutu ve şampiyon sayısı
+3. Level başına gereken XP ve tur başına pasif XP
+4. Temel gelir, seri altını, PvP galibiyet altını
+5. Wisp bir şampiyon yerini kaplıyor mu, yoksa ek bir yer mi

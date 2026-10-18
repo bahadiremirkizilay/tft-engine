@@ -1,0 +1,24 @@
+{
+  "set": "synthetic",
+  "name": "Synthetic test set (NOT TFT)",
+  "valid_from_patch": "1.1",
+  "notes": "Made-up values for tests only. Nothing here describes the real game.",
+  "params": {
+    "shop_odds": {"value": {"1": [100, 0, 0, 0, 0], "2": [50, 50, 0, 0, 0], "3": [20, 30, 30, 15, 5]}, "status": "synthetic", "source": "test fixture"},
+    "copies_per_champion": {"value": {"1": 10, "2": 8, "3": 6, "4": 4, "5": 2}, "status": "synthetic", "source": "test fixture"},
+    "champions_per_cost": {"value": {"1": 3, "2": 3, "3": 3, "4": 2, "5": 2}, "status": "synthetic", "source": "test fixture"},
+    "shop_slots": {"value": 5, "status": "synthetic", "source": "test fixture"},
+    "reroll_cost": {"value": 2, "status": "synthetic", "source": "test fixture"},
+    "xp_purchase": {"value": {"gold": 4, "xp": 4}, "status": "synthetic", "source": "test fixture"},
+    "passive_xp_per_round": {"value": 2, "status": "synthetic", "source": "test fixture"},
+    "xp_to_next_level": {"value": {"1": 2, "2": 4, "3": 8, "4": 16}, "status": "synthetic", "source": "test fixture"},
+    "max_level": {"value": 5, "status": "synthetic", "source": "test fixture"},
+    "base_income": {"value": {"default": 5, "by_stage": {"1-2": 2}}, "status": "synthetic", "source": "test fixture"},
+    "interest_per_10_gold": {"value": 1, "status": "synthetic", "source": "test fixture"},
+    "interest_cap": {"value": 5, "status": "synthetic", "source": "test fixture"},
+    "streak_gold": {"value": [[2, 1], [4, 2], [6, 3]], "status": "synthetic", "source": "test fixture"},
+    "pvp_win_gold": {"value": 1, "status": "synthetic", "source": "test fixture"},
+    "mystery": {"value": null, "status": "unknown", "source": "test fixture: deliberately unknown"}
+  },
+  "shop_rules": {}
+}

@@ -1,0 +1,10 @@
+{
+  "patch": "1.2",
+  "status": "reviewed",
+  "changes": [
+    {"param": "params.reroll_cost", "kind": "nerf", "source": "test fixture",
+     "new": {"value": 3, "status": "synthetic", "source": "test fixture 1.2"}},
+    {"param": "params.mystery", "kind": "new", "source": "test fixture",
+     "new": {"value": 7, "status": "synthetic", "source": "test fixture 1.2"}}
+  ]
+}

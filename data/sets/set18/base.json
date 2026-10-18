@@ -1,0 +1,116 @@
+{
+  "set": "set18",
+  "name": "Enchanted Wilds",
+  "valid_from_patch": "18.1",
+  "notes": "Set-level parameters as of 18.1. Nothing here is 'verified' yet: odds and pool sizes come from a third-party site and must be checked against the in-game tooltip before they count as verified.",
+  "params": {
+    "shop_odds": {
+      "value": {
+        "1": [100, 0, 0, 0, 0],
+        "2": [100, 0, 0, 0, 0],
+        "3": [75, 25, 0, 0, 0],
+        "4": [55, 30, 15, 0, 0],
+        "5": [45, 33, 20, 2, 0],
+        "6": [30, 40, 25, 5, 0],
+        "7": [19, 30, 40, 10, 1],
+        "8": [15, 20, 32, 30, 3],
+        "9": [10, 17, 25, 33, 15],
+        "10": [5, 10, 20, 40, 25],
+        "11": [1, 2, 12, 50, 35]
+      },
+      "status": "third_party_unverified",
+      "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)",
+      "note": "Percent per cost tier 1..5 by player level. Check against the in-game shop odds tooltip."
+    },
+    "copies_per_champion": {
+      "value": {"1": 30, "2": 25, "3": 18, "4": 10, "5": 9},
+      "status": "third_party_unverified",
+      "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)"
+    },
+    "champions_per_cost": {
+      "value": {"1": 14, "2": 13, "3": 14, "4": 14, "5": 10},
+      "status": "third_party_unverified",
+      "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)",
+      "note": "Should be cross-checked against the champion list once it is added."
+    },
+    "shop_slots": {
+      "value": 5,
+      "status": "unverified",
+      "source": "long-standing TFT shop size; not checked for Set 18",
+      "note": "Champion slots in a shop without a Wisp. See shop_rules.wisp_slot."
+    },
+    "reroll_cost": {
+      "value": 2,
+      "status": "unverified",
+      "source": "long-standing TFT value; not checked for Set 18"
+    },
+    "xp_purchase": {
+      "value": {"gold": 4, "xp": 4},
+      "status": "unverified",
+      "source": "long-standing TFT value; not checked for Set 18"
+    },
+    "passive_xp_per_round": {
+      "value": null,
+      "status": "unknown",
+      "source": "to be read from the in-game tooltip or patch notes"
+    },
+    "xp_to_next_level": {
+      "value": null,
+      "status": "unknown",
+      "source": "to be read from the in-game XP bar for each level"
+    },
+    "max_level": {
+      "value": null,
+      "status": "unknown",
+      "source": "shop_odds lists levels up to 11, but the normal cap without augments is not confirmed"
+    },
+    "base_income": {
+      "value": null,
+      "status": "unknown",
+      "source": "per-round base gold by stage; to be read in-game"
+    },
+    "interest_per_10_gold": {
+      "value": 1,
+      "status": "unverified",
+      "source": "long-standing TFT value; not checked for Set 18"
+    },
+    "interest_cap": {
+      "value": 5,
+      "status": "unverified",
+      "source": "long-standing TFT value; not checked for Set 18"
+    },
+    "streak_gold": {
+      "value": null,
+      "status": "unknown",
+      "source": "bonus gold by win/loss streak length; to be read in-game"
+    },
+    "pvp_win_gold": {
+      "value": null,
+      "status": "unknown",
+      "source": "gold for winning a player combat; to be read in-game"
+    }
+  },
+  "shop_rules": {
+    "wisp_slot": {
+      "value": {"every_other_shop": true, "position": "rightmost", "occupies_champion_slot": null},
+      "status": "unverified",
+      "source": "Riot patch 18.1 notes ('Wisps appear in every other shop') https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-1 ; rightmost slot: https://wiki.leagueoflegends.com/en-us/TFT:Enchanted_Wilds",
+      "note": "Whether the Wisp replaces one of the 5 champion slots is not confirmed. Off by default; run as a scenario variant."
+    },
+    "inferno_upgrade": {
+      "value": null,
+      "status": "unknown",
+      "source": "Inferno trait: shop slots roll one cost tier higher (esports.gg Set 18 overview); exact rule unknown"
+    },
+    "riftbeast_shop": {
+      "value": null,
+      "status": "unknown",
+      "source": "Riftbeast (5): next shop overrun with Riftbeasts every few combats (esports.gg Set 18 overview); exact rule unknown"
+    },
+    "bad_luck_protection": {
+      "value": null,
+      "status": "unknown",
+      "source": "parameter block seen in Set 11 game files (ACIK_KAYNAK_INCELEME.md 2.5); Set 18 status unknown"
+    }
+  }
+}
