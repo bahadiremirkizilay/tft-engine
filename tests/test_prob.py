@@ -134,7 +134,7 @@ def test_sampler_is_reproducible():
 
 
 CP18, CC18 = pool_params(S18)
-MODEL18 = IndependentShopModel.from_gamedata(S18)
+MODEL18 = IndependentShopModel.from_gamedata(S18, wisp_takes_slot=False)
 
 
 @settings(max_examples=40, deadline=None)
@@ -194,3 +194,8 @@ def test_never_buys_more_copies_than_exist():
     assert sum(r.gold_left.values()) == pytest.approx(1.0)
     mc = roll_down_sample(q, PoolBelief.certain(pool), model, n=2000, seed=1)
     assert mc.p_success == 0.0
+
+
+def test_set18_follows_wisp_rule_by_default():
+    assert IndependentShopModel.from_gamedata(S18).wisp_takes_slot is True
+    assert IndependentShopModel.from_gamedata(SYN).wisp_takes_slot is False

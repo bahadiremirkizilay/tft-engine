@@ -65,10 +65,12 @@ Her set için `data/sets/<set>/base.json` ve her yama için `data/sets/<set>/pat
 
 ## Oyun içinde doğrulanması gerekenler (Set 18)
 
-Şu değerler üçüncü taraf kaynaktan alındı veya bilinmiyor. Tooltip ya da ekran görüntüsüyle doğrulanmaları gerekir:
+Aşağıdaki değerler veride var ama internetten veya oyuncu anlatımından geliyor. Oyunda kontrol edilince durumları `verified` yapılır:
 
-1. Level başına shop olasılıkları (shop'taki olasılık tooltip'i, level 1-11)
-2. Maliyet başına havuz boyutu ve şampiyon sayısı
-3. Level başına gereken XP ve tur başına pasif XP
-4. Temel gelir, seri altını, PvP galibiyet altını
-5. Wisp bir şampiyon yerini kaplıyor mu, yoksa ek bir yer mi
+1. Shop olasılıkları. **Seviye 7'de iki kaynak çelişiyor:** 16/30/43/10/1 ile 19/30/40/10/1. Şimdilik ikincisi kullanılıyor.
+2. Level başına gereken XP. 8'den 9'a ve 9'dan 10'a ikisinin de 68 olması kontrol edilmeli.
+3. Tur başına 2 pasif XP ve normalde ulaşılan en yüksek level (10).
+4. Seri altını (2-4 seride +1, 5'te +2, 6 ve üstünde +3) ve PvP galibiyet altını (+1).
+5. Wisp'li shop'ta 4 şampiyon olması. Varsayılan olarak açık, `--no-wisp` ile kapatılır.
+
+Hâlâ bilinmeyenler: tur başına temel gelir, maliyet başına havuz boyutları (üçüncü taraf kaynaktan), satış değerleri.

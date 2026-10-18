@@ -105,7 +105,12 @@ def main(argv: list[str] | None = None) -> int:
     p_odds.add_argument("--target", action="append", required=True, help="unit:cost:copies")
     p_odds.add_argument("--taken", action="append", default=[], help="unit:copies held by anyone")
     p_odds.add_argument("--floor", type=int, default=0, help="stop rolling below this gold")
-    p_odds.add_argument("--wisp", action="store_true", help="assume a Wisp takes a slot")
+    p_odds.add_argument(
+        "--wisp",
+        action=argparse.BooleanOptionalAction,
+        default=None,
+        help="force whether a Wisp takes a champion slot (default: follow the set data)",
+    )
     p_odds.set_defaults(func=_cmd_odds)
 
     args = parser.parse_args(argv)

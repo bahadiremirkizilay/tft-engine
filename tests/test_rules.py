@@ -80,9 +80,19 @@ def test_gold_never_negative_after_round(gold, won, streak):
 def test_unknown_parameter_raises_and_override_is_tracked(set18):
     r = Rules(set18)
     with pytest.raises(UnknownMechanicError):
-        r.streak_bonus(3)
-    r2 = Rules(set18, overrides={"streak_gold": [[3, 1]]})
-    assert r2.streak_bonus(3) == 1
-    assert r2.used["streak_gold"] == "assumption"
+        r.base_income("3-2")
+    r2 = Rules(set18, overrides={"base_income": {"default": 5}})
+    assert r2.base_income("3-2") == 5
+    assert r2.used["base_income"] == "assumption"
+    assert r2.streak_bonus(5) == 2
+    assert r2.used["streak_gold"] == "third_party_unverified"
     r2.interest(20)
     assert r2.used["interest_cap"] == "unverified"
+
+
+def test_set18_xp_table_levels_up(set18):
+    r = Rules(set18)
+    assert r.add_xp(1, 0, 0) == (2, 0)  # 1 -> 2 is automatic
+    assert r.add_xp(2, 0, 2) == (3, 0)
+    assert r.add_xp(6, 30, 6) == (7, 0)  # 6 -> 7 needs 36
+    assert r.add_xp(9, 0, 500) == (10, 0)  # capped at 10

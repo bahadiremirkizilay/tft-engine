@@ -6,29 +6,107 @@
   "params": {
     "shop_odds": {
       "value": {
-        "1": [100, 0, 0, 0, 0],
-        "2": [100, 0, 0, 0, 0],
-        "3": [75, 25, 0, 0, 0],
-        "4": [55, 30, 15, 0, 0],
-        "5": [45, 33, 20, 2, 0],
-        "6": [30, 40, 25, 5, 0],
-        "7": [19, 30, 40, 10, 1],
-        "8": [15, 20, 32, 30, 3],
-        "9": [10, 17, 25, 33, 15],
-        "10": [5, 10, 20, 40, 25],
-        "11": [1, 2, 12, 50, 35]
+        "1": [
+          100,
+          0,
+          0,
+          0,
+          0
+        ],
+        "2": [
+          100,
+          0,
+          0,
+          0,
+          0
+        ],
+        "3": [
+          75,
+          25,
+          0,
+          0,
+          0
+        ],
+        "4": [
+          55,
+          30,
+          15,
+          0,
+          0
+        ],
+        "5": [
+          45,
+          33,
+          20,
+          2,
+          0
+        ],
+        "6": [
+          30,
+          40,
+          25,
+          5,
+          0
+        ],
+        "7": [
+          19,
+          30,
+          40,
+          10,
+          1
+        ],
+        "8": [
+          15,
+          20,
+          32,
+          30,
+          3
+        ],
+        "9": [
+          10,
+          17,
+          25,
+          33,
+          15
+        ],
+        "10": [
+          5,
+          10,
+          20,
+          40,
+          25
+        ],
+        "11": [
+          1,
+          2,
+          12,
+          50,
+          35
+        ]
       },
       "status": "third_party_unverified",
       "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)",
-      "note": "Percent per cost tier 1..5 by player level. Check against the in-game shop odds tooltip."
+      "note": "Percent per cost tier 1..5 by player level. CONFLICT at level 7: the table the player sent on 2026-10-18 gives [16,30,43,10,1]; seemeta gives [19,30,40,10,1]. Kept seemeta until the in-game tooltip decides. All other levels agree."
     },
     "copies_per_champion": {
-      "value": {"1": 30, "2": 25, "3": 18, "4": 10, "5": 9},
+      "value": {
+        "1": 30,
+        "2": 25,
+        "3": 18,
+        "4": 10,
+        "5": 9
+      },
       "status": "third_party_unverified",
       "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)"
     },
     "champions_per_cost": {
-      "value": {"1": 14, "2": 13, "3": 14, "4": 14, "5": 10},
+      "value": {
+        "1": 14,
+        "2": 13,
+        "3": 14,
+        "4": 14,
+        "5": 10
+      },
       "status": "third_party_unverified",
       "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)",
       "note": "Should be cross-checked against the champion list once it is added."
@@ -45,24 +123,39 @@
       "source": "long-standing TFT value; not checked for Set 18"
     },
     "xp_purchase": {
-      "value": {"gold": 4, "xp": 4},
+      "value": {
+        "gold": 4,
+        "xp": 4
+      },
       "status": "unverified",
       "source": "long-standing TFT value; not checked for Set 18"
     },
     "passive_xp_per_round": {
-      "value": null,
-      "status": "unknown",
-      "source": "to be read from the in-game tooltip or patch notes"
+      "value": 2,
+      "status": "unverified",
+      "source": "player report (Bahadir, 2026-10-18): the game gives 2 XP every round"
     },
     "xp_to_next_level": {
-      "value": null,
-      "status": "unknown",
-      "source": "to be read from the in-game XP bar for each level"
+      "value": {
+        "1": 0,
+        "2": 2,
+        "3": 6,
+        "4": 10,
+        "5": 20,
+        "6": 36,
+        "7": 56,
+        "8": 68,
+        "9": 68
+      },
+      "status": "third_party_unverified",
+      "source": "player report (Bahadir, 2026-10-18), table copied from an internet source; to be checked in-game",
+      "note": "Key = current level, value = XP needed to reach the next level. 1->2 is automatic. Level 8 was said to be lowered to 56 by a patch (patch not named). 9->10 and 8->9 both 68 looks odd; check."
     },
     "max_level": {
-      "value": null,
-      "status": "unknown",
-      "source": "shop_odds lists levels up to 11, but the normal cap without augments is not confirmed"
+      "value": 10,
+      "status": "unverified",
+      "source": "player report (Bahadir, 2026-10-18): never saw above 10",
+      "note": "shop_odds lists level 11; it may only be reachable with an augment."
     },
     "base_income": {
       "value": null,
@@ -80,22 +173,41 @@
       "source": "long-standing TFT value; not checked for Set 18"
     },
     "streak_gold": {
-      "value": null,
-      "status": "unknown",
-      "source": "bonus gold by win/loss streak length; to be read in-game"
+      "value": [
+        [
+          2,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "status": "third_party_unverified",
+      "source": "https://tft.ninja/guides/game-mechanics/economy (via the player's search, 2026-10-18; not set-specific)",
+      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks."
     },
     "pvp_win_gold": {
-      "value": null,
-      "status": "unknown",
-      "source": "gold for winning a player combat; to be read in-game"
+      "value": 1,
+      "status": "third_party_unverified",
+      "source": "https://tft.ninja/guides/game-mechanics/economy (via the player's search, 2026-10-18)",
+      "note": "Paid when the player combat is won, before interest is computed."
     }
   },
   "shop_rules": {
     "wisp_slot": {
-      "value": {"every_other_shop": true, "position": "rightmost", "occupies_champion_slot": null},
-      "status": "unverified",
-      "source": "Riot patch 18.1 notes ('Wisps appear in every other shop') https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-1 ; rightmost slot: https://wiki.leagueoflegends.com/en-us/TFT:Enchanted_Wilds",
-      "note": "Whether the Wisp replaces one of the 5 champion slots is not confirmed. Off by default; run as a scenario variant."
+      "value": {
+        "every_other_shop": true,
+        "position": "rightmost",
+        "occupies_champion_slot": true
+      },
+      "status": "third_party_unverified",
+      "source": "Riot patch 18.1 notes ('Wisps appear in every other shop') https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-1 ; rightmost slot: https://wiki.leagueoflegends.com/en-us/TFT:Enchanted_Wilds ; 4 champions + Wisp: https://noxutft.com/guide/wisps , https://blitz.gg/tr/tft/articles/tft-set-18-wisps-guide",
+      "note": "When a Wisp is shown, the shop has 4 champions. Claim (unverified): a 5th champion is hidden behind the Wisp and appears if the Wisp is bought or when the round starts. For roll-downs the slot is treated as lost. On by default for Set 18."
     },
     "inferno_upgrade": {
       "value": null,

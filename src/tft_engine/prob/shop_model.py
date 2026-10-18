@@ -57,7 +57,7 @@ class IndependentShopModel:
             "more copies than exist; purchases are capped at the copies left (to check in M1b)",
         ]
         if self.wisp_takes_slot:
-            a.append("a Wisp takes one champion slot in every other shop (unverified)")
+            a.append("a Wisp takes one champion slot in every other shop (not checked in-game)")
         return tuple(a)
 
     @property
@@ -77,7 +77,15 @@ class IndependentShopModel:
         return tuple(x / 100 for x in row)  # type: ignore[return-value]
 
     @classmethod
-    def from_gamedata(cls, data: GameData, wisp_takes_slot: bool = False) -> IndependentShopModel:
+    def from_gamedata(
+        cls, data: GameData, wisp_takes_slot: bool | None = None
+    ) -> IndependentShopModel:
+        """wisp_takes_slot=None follows the set's `wisp_slot` rule when it has one."""
+        if wisp_takes_slot is None:
+            wisp_takes_slot = False
+            rule = data.shop_rules.get("wisp_slot")
+            if rule is not None and rule.value is not None:
+                wisp_takes_slot = bool(rule.value.get("occupies_champion_slot"))
         odds = {int(k): tuple(v) for k, v in data.get("shop_odds").items()}
         name = "independent+wisp_slot" if wisp_takes_slot else "independent"
         return cls(odds, data.get("shop_slots"), wisp_takes_slot, name)
