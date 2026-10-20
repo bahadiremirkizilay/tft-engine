@@ -187,7 +187,7 @@
       "retrieved_at": "2026-10-20",
       "collected_by": "manual",
       "site_patch": "18.4",
-      "note": "Screenshot of the shop bar at level 7: odds 16% / 30% / 43% / 10% / 1%, XP 20/56, Buy XP 4 gold. Owner's notes from the game: level 8 odds 15/20/32/30/3, level 9 10/17/25/33/15, reroll 2 gold, Buy XP gives 4 XP, 2 XP every round, 7->8 56 XP, 8->9 and 9->10 68 XP. Round income at stage 4-7 (owner's notes): 0 gold with a 4 win streak -> +6, 0 gold with a 5 win streak -> +7, 20 gold with a 6 win streak -> +10; 30 gold, 6 win streak broken by a loss -> +8 (no streak bonus). The owner then said the win-streak totals include the +1 win gold, and that a won round pays +1 gold."
+      "note": "Screenshot of the shop bar at level 7: odds 16% / 30% / 43% / 10% / 1%, XP 20/56, Buy XP 4 gold. Owner's notes from the game: level 8 odds 15/20/32/30/3, level 9 10/17/25/33/15, reroll 2 gold, Buy XP gives 4 XP, 2 XP every round, 7->8 56 XP, 8->9 and 9->10 68 XP. Round income at stage 4-7 (owner's notes): 0 gold with a 4 win streak -> +6, 0 gold with a 5 win streak -> +7, 20 gold with a 6 win streak -> +10; 30 gold, 6 win streak broken by a loss -> +8 (no streak bonus). The owner then said the win-streak totals include the +1 win gold, and that a won round pays +1 gold. Step-by-step round: 5 wins before, 14 gold before combat, 15 after the win, sold a unit to 20, 30 at the next round start."
     },
     {
       "id": "tactics-tools-units",
