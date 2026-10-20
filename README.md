@@ -94,7 +94,7 @@ Liste ve form: [templates/oyun_ici_kontrol.md](templates/oyun_ici_kontrol.md). K
 
 1. Shop olasılıkları ve havuz boyutları oyun dosyasından okunuyor. Seviye 7 oyun içi tooltip'ten (16/30/43/10/1, 2026-10-20); oyun dosyası ve 17.1 notu 19/30/40/10/1 diyor (çelişki kaydı).
 2. XP tablosu resmi 18.2 notlarıyla tutarlı (7→8 = 56, 8→9 ve 9→10 = 68). XP alım oranı (4 altın = 4 XP), tur başına 2 XP ve en yüksek level (10) kontrol edilmeli.
-3. Reroll maliyeti (2), seri altını (2-4: +1, 5: +2, 6+: +3), PvP galibiyeti (+1), faiz ve temel gelir: üçüncü taraf kaynaklı.
+3. Oyunda kontrol edildi (18.4b): reroll 2, faiz, temel gelir 5, PvP galibiyeti +1, seri altını (3-4: +1, 5: +2, 6+: +3; 2'lik seri altın vermiyor, kayıp serisi aynı).
 4. Satış değerleri (wiki kuralından türetildi, wiki kendi örneğiyle çelişiyor) ve oyuncu hasarı.
 5. Wisp'li shop'ta 4 şampiyon olması. Varsayılan olarak açık, `--no-wisp` ile kapatılır.
 
