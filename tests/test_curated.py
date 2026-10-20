@@ -85,6 +85,11 @@ def test_set18_curated_layers():
     assert kb.items["DA_Artifact_StatikkShiv"]["stats"]["ap"] == 25  # 18.3 change applied
     assert kb.items["DA_SpiritVisage"]["stats"]["durability_pct"] == 10  # 18.4 change applied
     assert kb.augments["DA_LevelUp"]["effects"]["InstantXP"] == 10  # 18.4 note over game file
+    # trait breakpoint values are addressed by list index (18.4 Lunar, 18.3 Hunter)
+    lunar = [b["values"]["AbilityPower"] for b in kb.traits["DA_18_Lunar"]["breakpoints"]]
+    assert lunar == [0.07, 0.12, 0.16, 0.2]
+    assert kb.traits["DA_18_Hunter"]["breakpoints"][2]["values"]["HunterAD"] == 0.4
+    assert kb.champions["DA_18_Hecarim"]["stats"]["initialMana"] == 50
     assert kb.augments["DA_18_SolarTraitAugment"]["tier"]["value"] == "silver"  # 18.4 tier move
     tiers = {}
     for a in kb.augments.values():

@@ -2,7 +2,7 @@
   "set": "set18",
   "patch": "18.4",
   "kind": "overrides",
-  "note": "Values the official 18.4 notes (main patch 2026-10-06 and B-patch 2026-10-07) changed but the game-file export (CommunityDragon 16.20) still shows at the old value. Additions in the same notes (Min-Max and Pandora's Items II 4 gold, Small Furry Friend 45%, Omega Riftbeast bonuses) are already in the export. Each record checks the old value before replacing it.",
+  "note": "Values the official 18.4 notes (main patch 2026-10-06 and B-patch 2026-10-07), and one 18.3 trait value, changed but the game-file export (CommunityDragon 16.20) still shows at the old value. Champion and trait values checked against the 18.2, 18.3 and 18.4 notes on 2026-10-20: every other base stat and trait value change is already in the export. Additions in the same notes (Min-Max and Pandora's Items II 4 gold, Small Furry Friend 45%, Omega Riftbeast bonuses) are already in the export. Each record checks the old value before replacing it.",
   "records": [
     {"kind": "augments", "id": "DA_ChallengersGrace", "field": "effects.BuffDuration", "old": 3, "new": 4, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Buff Duration 3s => 4s"},
     {"kind": "augments", "id": "DA_EarlyLearnings", "field": "effects.InitialStacks", "old": 5, "new": 3, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Baseline AD/AP 5% => 3% (assumed to be InitialStacks, one stack = 1%)"},
@@ -39,9 +39,21 @@
     {"kind": "wisps", "id": "DA_ManaRichSoil18_Upgrade", "field": "effects.MaxManaMultiplierUpgrade", "old": 0.25, "new": 0.2, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Mana Reduction 25/18% => 20/15% (Blossom upgrade)"},
     {"kind": "champions", "id": "DA_18_Varus", "field": "stats.initialMana", "old": 30, "new": 20, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Varus Mana 30/120 => 20/110"},
     {"kind": "champions", "id": "DA_18_Varus", "field": "stats.mana", "old": 120, "new": 110, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Varus Mana 30/120 => 20/110"},
-    {"kind": "champions", "id": "DA_CrimsonRaptor18", "field": "stats.damage", "old": 55, "new": 60, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Mama Beak Base AD 55 => 60"}
+    {"kind": "champions", "id": "DA_CrimsonRaptor18", "field": "stats.damage", "old": 55, "new": 60, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Mama Beak Base AD 55 => 60"},
+    {"kind": "champions", "id": "DA_18_Hecarim", "field": "stats.initialMana", "old": 30, "new": 50, "source_ids": ["riot-notes-18.4"], "note": "Hecarim Mana: 30/110 => 50/110"},
+    {"kind": "champions", "id": "DA_18_Varus", "field": "stats.attackSpeed", "old": 0.7, "new": 0.75, "source_ids": ["riot-notes-18.4"], "note": "Varus Attack Speed: .7 => .75"},
+    {"kind": "traits", "id": "DA_18_Lunar", "field": "breakpoints.1.values.AbilityPower", "old": 0.1, "new": 0.12, "source_ids": ["riot-notes-18.4"], "note": "Lunar Ability Power: 7/10/14/18% => 7/12/16/20% (3 Lunar)"},
+    {"kind": "traits", "id": "DA_18_Lunar", "field": "breakpoints.2.values.AbilityPower", "old": 0.14, "new": 0.16, "source_ids": ["riot-notes-18.4"], "note": "Lunar Ability Power: 7/10/14/18% => 7/12/16/20% (4 Lunar)"},
+    {"kind": "traits", "id": "DA_18_Lunar", "field": "breakpoints.3.values.AbilityPower", "old": 0.18, "new": 0.2, "source_ids": ["riot-notes-18.4"], "note": "Lunar Ability Power: 7/10/14/18% => 7/12/16/20% (5 Lunar)"},
+    {"kind": "traits", "id": "DA_18_Sprykin", "field": "breakpoints.2.values.HealthIncrease", "old": 0.45, "new": 0.55, "source_ids": ["riot-notes-18.4"], "note": "Sprykin (7) Stats: 45% HP + 45% AS => 55% HP + 55% AS"},
+    {"kind": "traits", "id": "DA_18_Sprykin", "field": "breakpoints.2.values.AttackSpeedIncrease", "old": 0.45, "new": 0.55, "source_ids": ["riot-notes-18.4"], "note": "Sprykin (7) Stats: 45% HP + 45% AS => 55% HP + 55% AS"},
+    {"kind": "traits", "id": "DA_Juggernaut18", "field": "breakpoints.1.values.JuggernautDurability", "old": 0.33, "new": 0.3, "source_ids": ["riot-notes-18.4"], "note": "Juggernaut Durability: 20/33/45% => 20/30/42% (the export already has 20 and 42)"},
+    {"kind": "traits", "id": "DA_18_Hunter", "field": "breakpoints.2.values.HunterAD", "old": 0.45, "new": 0.4, "source_ids": ["riot-notes-18.3"], "note": "18.3: Hunter Bonus AD: 20/30/45/65% => 20/30/40/60% (the export already has 20/30/60)"}
   ],
   "pending": [
+    "Elderwood (7) Deepwood Protector Mana 20/70 => 20/60, Resists 65 => 70; (9) plant star-up Health multiplier 155% => 140%: plant units and that multiplier are not in the export",
+    "Gromp AD form Mana 20/80 => 0/70 (18.4): no AD form record in the export",
+    "Coven 130 Essence cashout changes (18.4): cashouts are not in the export",
     "Gromp AD form Base AD 45 => 50, AS 0.7 => 0.75 (B-patch): the export has only the AP form record (DA_Gromp18_AP, 30 AD, 0.7 AS), no AD form stats",
     "B-patch ability changes (Camille, Alistar, Gromp AP splash, Murkwolf, Warwick): Set 18 ability values are missing from the export, nothing to override",
     "Killing Frenzy: AS on Kill 115% => 130% (upgrade 140% => 160%); the export stores 0.15 / 0.4, meaning unclear",

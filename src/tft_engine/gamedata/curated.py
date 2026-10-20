@@ -53,21 +53,31 @@ def _check_record(r: dict[str, Any], where: str) -> None:
         raise SchemaError(f"{where}: bad status {r.get('status')!r}")
 
 
+def _step(cur: Any, part: str, path: str) -> Any:
+    """One path step: a dict key, or a list index written as a number."""
+    if isinstance(cur, dict) and part in cur:
+        return cur[part]
+    if isinstance(cur, list) and part.isdigit() and int(part) < len(cur):
+        return cur[int(part)]
+    raise KeyError(path)
+
+
 def _get_path(rec: dict[str, Any], path: str) -> Any:
     cur: Any = rec
     for part in path.split("."):
-        if not isinstance(cur, dict) or part not in cur:
-            raise KeyError(path)
-        cur = cur[part]
+        cur = _step(cur, part, path)
     return cur
 
 
 def _set_path(rec: dict[str, Any], path: str, value: Any) -> None:
     parts = path.split(".")
-    cur = rec
+    cur: Any = rec
     for part in parts[:-1]:
-        cur = cur[part]
-    cur[parts[-1]] = value
+        cur = _step(cur, part, path)
+    if isinstance(cur, list):
+        cur[int(parts[-1])] = value
+    else:
+        cur[parts[-1]] = value
 
 
 def apply_curated(
