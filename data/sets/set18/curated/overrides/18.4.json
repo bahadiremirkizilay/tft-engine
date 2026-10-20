@@ -36,9 +36,14 @@
     {"kind": "wisps", "id": "DA_Stealthy18_Upgrade", "field": "effects.UntargetableDurationUpgrade", "old": 10, "new": 12, "source_ids": ["riot-notes-18.4"], "note": "Blossom Upgrade Duration 10s => 12s"},
     {"kind": "wisps", "id": "DA_Combust18", "field": "effects.maxHealthExplosionDamage", "old": 0.12, "new": 0.15, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Explosion Damage 12% => 15%"},
     {"kind": "wisps", "id": "DA_ManaRichSoil18", "field": "effects.MaxManaMultiplier", "old": 0.18, "new": 0.15, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Mana Reduction 25/18% => 20/15% (base)"},
-    {"kind": "wisps", "id": "DA_ManaRichSoil18_Upgrade", "field": "effects.MaxManaMultiplierUpgrade", "old": 0.25, "new": 0.2, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Mana Reduction 25/18% => 20/15% (Blossom upgrade)"}
+    {"kind": "wisps", "id": "DA_ManaRichSoil18_Upgrade", "field": "effects.MaxManaMultiplierUpgrade", "old": 0.25, "new": 0.2, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Mana Reduction 25/18% => 20/15% (Blossom upgrade)"},
+    {"kind": "champions", "id": "DA_18_Varus", "field": "stats.initialMana", "old": 30, "new": 20, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Varus Mana 30/120 => 20/110"},
+    {"kind": "champions", "id": "DA_18_Varus", "field": "stats.mana", "old": 120, "new": 110, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Varus Mana 30/120 => 20/110"},
+    {"kind": "champions", "id": "DA_CrimsonRaptor18", "field": "stats.damage", "old": 55, "new": 60, "source_ids": ["riot-notes-18.4"], "note": "B-patch: Mama Beak Base AD 55 => 60"}
   ],
   "pending": [
+    "Gromp AD form Base AD 45 => 50, AS 0.7 => 0.75 (B-patch): the export has only the AP form record (DA_Gromp18_AP, 30 AD, 0.7 AS), no AD form stats",
+    "B-patch ability changes (Camille, Alistar, Gromp AP splash, Murkwolf, Warwick): Set 18 ability values are missing from the export, nothing to override",
     "Killing Frenzy: AS on Kill 115% => 130% (upgrade 140% => 160%); the export stores 0.15 / 0.4, meaning unclear",
     "Forest Guide cost 5 => 6 (upgrade 4 => 5), Improved Reach cost 2 => 1, Search Party cost 3/1 => 1/0, Three Me cost 9 => 10: Wisp costs are not in the export",
     "Mana Potion: mana restored and starting mana changes: no values in the export",
