@@ -173,11 +173,11 @@
     {
       "id": "owner-screenshots-2026-10-20",
       "type": "player_report",
-      "title": "Item tooltip screenshots sent by the owner (three Radiant items; all 21 Set 18 emblems)",
+      "title": "Item tooltip screenshots sent by the owner (three Radiant items, all 21 Set 18 emblems, all 36 craftable items)",
       "url": "https://github.com/bahadiremirkizilay/tft-engine",
       "retrieved_at": "2026-10-20",
       "collected_by": "manual",
-      "note": "Where the screenshots were taken (game client or a site) is not yet confirmed. The emblem numbers predate 18.3 (Hunter 18% AD, Invoker 3 Mana Regen, Juggernaut 15 Mana, Brawler 2%) and 18.4 (Elderwood 35 resists), so they likely come from a site with old data; the note changes are applied on top."
+      "note": "Taken from a stats site, not the game client: one tooltip has a Recommended Holders panel, some show unfilled placeholders (Ally Healing: 0, increased to 0), Crownguard still shows the pre-18.4 25% AP. The site leaves stats out: no Damage Amp on any item, no Health on Gargoyle Stoneplate, Steadfast Heart, Evenshroud, Sunfire Cape, Nashor's Tooth, and no stat line at all on 9 items, while the older game-file copies have them. Its numbers predate 18.3 (emblems: Hunter 18% AD, Invoker 3 Mana Regen, Juggernaut 15 Mana, Brawler 2%) and 18.4 (Elderwood 35 resists, Crownguard). Used as support where it agrees and as conflicts where it differs."
     },
     {
       "id": "owner-ingame-2026-10-20",

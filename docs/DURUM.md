@@ -50,6 +50,7 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Item istatistikleri:** 103 item (36 temel, 36 Radiant, 31 Artifact) `curated/item_stats/18.4.json` içinde.
   - Kaynak: tactics.tools, elle aktarım. Sayfa 18.2 durumunda; 18.3 ve 18.4 değişiklikleri resmi notlardan işlendi.
   - 84 item eski oyun dosyası kopyasıyla birebir aynı. 17 farkı inceleme sayfası gösteriyor.
+  - Sahibin 36 temel item görüntüsü (2026-10-20) bir istatistik sitesinden. 17'si aynı. 19'unda site bazı istatistikleri göstermiyor (Damage Amp hiç yok, bazılarında can yok, 9'unda istatistik satırı yok); eski oyun dosyası kopyaları sayfa değerlerini tutuyor, görüntü değerleri çelişki kaydı. Aynı sebeple 3 Radiant düzeltmesi geri alındı (sayfa değerleri geçerli, görüntü çelişki kaydı).
 - **Augment tier'ları:** 245 ad `curated/augment_tiers/18.4.json` içinde (Chosen of the Sun 18.4'te Silver'a indi). "Nesting Dolls" oyun dosyasında yok.
 - **Resmi not düzeltmeleri:** 33 augment ve Wisp değeri `curated/overrides/18.4.json` içinde. Oyun dosyası 18.4 sayı değişikliklerini içermiyordu. Alanı dosyada olmayan değişiklikler (Wisp maliyetleri, Trait Ladder ödülleri vb.) "pending" listesinde.
 - `load_knowledge` bu üç katmanı otomatik uyguluyor. Düzeltmenin beklediği eski değer dosyada yoksa yükleme hata veriyor.

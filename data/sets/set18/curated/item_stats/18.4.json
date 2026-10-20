@@ -297,6 +297,15 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_AdaptiveHelm",
         "diffs": []
@@ -329,7 +338,8 @@
       "effect": "Combat start and every 5s in combat: +20 AP.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_ArchangelsStaff",
@@ -916,6 +926,15 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_Bloodthirster",
         "diffs": [
@@ -927,35 +946,31 @@
     {
       "id": "DA_BloodthirsterRadiant",
       "name": "Radiant Bloodthirster",
-      "stats": {},
+      "stats": {
+        "ad_pct": 40,
+        "ap": 40,
+        "mr": 40,
+        "omnivamp_pct": 40
+      },
       "effect": "Once per combat at 50% Health: shield of 60% max Health for up to 5s.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20",
-        "owner-screenshots-2026-10-20"
+        "tactics-tools-items-2026-10-20"
       ],
-      "note": "owner's screenshot (sent twice) shows the effect and no stat line; the page transcription had 40% AD, 40 AP, 40 MR, 40% Omnivamp (kept as a conflict)",
       "conflicts": [
         {
-          "stats": {
-            "ad_pct": 40,
-            "ap": 40,
-            "mr": 40,
-            "omnivamp_pct": 40
-          },
+          "stats": {},
           "source_ids": [
-            "tactics-tools-items-2026-10-20"
+            "owner-screenshots-2026-10-20"
           ],
-          "note": "page transcription; the owner's screenshot shows no stat line"
+          "note": "owner's screenshot (same stats site) shows only these stats; that site also leaves Health out of the base items, so the page values stay"
         }
       ],
       "older_copy_check": {
         "older_copy": "TFT5_Item_BloodthirsterRadiant",
         "diffs": [
-          "ad_pct: None here, 30 in TFT5_Item_BloodthirsterRadiant",
-          "ap: None here, 30 in TFT5_Item_BloodthirsterRadiant",
-          "mr: None here, 40 in TFT5_Item_BloodthirsterRadiant",
-          "omnivamp_pct: None here, 40 in TFT5_Item_BloodthirsterRadiant"
+          "ad_pct: 40 here, 30 in TFT5_Item_BloodthirsterRadiant",
+          "ap: 40 here, 30 in TFT5_Item_BloodthirsterRadiant"
         ]
       }
     },
@@ -970,7 +985,8 @@
       "effect": "+10% additional AD and AP from all sources.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFTTutorial_Item_BlueBuff",
@@ -1006,6 +1022,15 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_BrambleVest",
         "diffs": []
@@ -1039,9 +1064,10 @@
       "status": "third_party_unverified",
       "source_ids": [
         "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20",
         "riot-notes-18.4"
       ],
-      "note": "18.4: AP on shield expire 25 => 20",
+      "note": "18.4: AP on shield expire 25 => 20; the screenshot still shows the pre-18.4 25% AP on expire",
       "older_copy_check": {
         "older_copy": "TFT_Item_Crownguard",
         "diffs": []
@@ -1078,6 +1104,17 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "ad_pct": 55
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_Deathblade",
         "diffs": []
@@ -1109,7 +1146,8 @@
       "effect": "+6% max Health; every 2s heal 2.5% max Health.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_DragonsClaw",
@@ -1144,7 +1182,8 @@
       "effect": "At 40% Health: briefly untargetable, shed negative effects, heal 15% missing Health.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_GuardianAngel",
@@ -1182,6 +1221,17 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "mr": 20
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_SpectralGauntlet",
         "diffs": []
@@ -1217,6 +1267,18 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "armor": 25,
+            "mr": 25
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_GargoyleStoneplate",
         "diffs": []
@@ -1226,33 +1288,31 @@
       "id": "DA_GargoyleStoneplate_Radiant",
       "name": "Radiant Gargoyle Stoneplate",
       "stats": {
+        "hp": 400,
         "armor": 50,
         "mr": 50
       },
       "effect": "+20 Armor and MR for each enemy targeting the holder.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20",
-        "owner-screenshots-2026-10-20"
+        "tactics-tools-items-2026-10-20"
       ],
-      "note": "owner's screenshot shows +50 Armor, +50 MR and no Health; the page transcription had 400 HP (wrong)",
       "conflicts": [
         {
           "stats": {
-            "hp": 400,
             "armor": 50,
             "mr": 50
           },
           "source_ids": [
-            "tactics-tools-items-2026-10-20"
+            "owner-screenshots-2026-10-20"
           ],
-          "note": "page transcription; the owner's screenshot shows no Health"
+          "note": "owner's screenshot (same stats site) shows only these stats; that site also leaves Health out of the base items, so the page values stay"
         }
       ],
       "older_copy_check": {
         "older_copy": "TFT5_Item_GargoyleStoneplateRadiant",
         "diffs": [
-          "hp: None here, 300 in TFT5_Item_GargoyleStoneplateRadiant"
+          "hp: 400 here, 300 in TFT5_Item_GargoyleStoneplateRadiant"
         ]
       }
     },
@@ -1269,6 +1329,19 @@
       "status": "third_party_unverified",
       "source_ids": [
         "tactics-tools-items-2026-10-20"
+      ],
+      "conflicts": [
+        {
+          "stats": {
+            "ad_pct": 15,
+            "ap": 15,
+            "as_pct": 15
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_MadredsBloodrazor",
@@ -1306,6 +1379,15 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT11_Encounter_ChoiceItem_GiveRageblade",
         "diffs": []
@@ -1339,6 +1421,15 @@
       "status": "third_party_unverified",
       "source_ids": [
         "tactics-tools-items-2026-10-20"
+      ],
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
       ],
       "older_copy_check": {
         "older_copy": "TFT11_Encounter_ChoiceItem_GiveHoJ",
@@ -1376,6 +1467,15 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT11_Encounter_ChoiceItem_GiveGunblade",
         "diffs": []
@@ -1410,7 +1510,8 @@
       "effect": "Precision: abilities can crit; extra Precision adds 10% Crit Damage.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_InfinityEdge",
@@ -1445,7 +1546,8 @@
       "effect": "30% Shred to enemies within 2 hexes; enemy casts take magic damage equal to 150% of the Mana spent.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_IonicSpark",
@@ -1498,7 +1600,8 @@
       "effect": "Precision: abilities can crit; extra Precision adds 10% Crit Damage.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_JeweledGauntlet",
@@ -1533,7 +1636,8 @@
       "effect": "Attacks grant 3.5% stacking AD (up to 15 attacks), then +15% Attack Speed.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_RunaansHurricane",
@@ -1569,7 +1673,8 @@
       "effect": "Attacks and abilities Sunder 30% for 3s (does not stack).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_LastWhisper",
@@ -1606,6 +1711,15 @@
       "status": "third_party_unverified",
       "source_ids": [
         "tactics-tools-items-2026-10-20"
+      ],
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_Morellonomicon",
@@ -1644,6 +1758,17 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "crit_pct": 20
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_Leviathan",
         "diffs": []
@@ -1679,7 +1804,8 @@
       "effect": "Combat start: 20 Mana. At 40% Health: 15 Mana and a shield of 20% max Health.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_FrozenHeart",
@@ -1715,7 +1841,8 @@
       "effect": "Combat start: Unstoppable for 18s; +3% stacking Attack Speed per second.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_Quicksilver",
@@ -1752,6 +1879,17 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "ap": 55
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_RabadonsDeathcap",
         "diffs": []
@@ -1786,6 +1924,17 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "as_pct": 45
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_RapidFireCannon",
         "diffs": []
@@ -1819,7 +1968,8 @@
       "effect": "Attacks grant 5 bonus Mana.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_SpearOfShojin",
@@ -1859,6 +2009,15 @@
         "riot-notes-18.4"
       ],
       "note": "18.4: Durability 8% => 10% (the page called it damage reduction)",
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT11_Encounter_ChoiceItem_GiveRedemption",
         "diffs": []
@@ -1897,6 +2056,18 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "armor": 20,
+            "crit_pct": 20
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT11_Encounter_ChoiceItem_GiveSteadfast",
         "diffs": []
@@ -1906,33 +2077,31 @@
       "id": "DA_SteadfastHeartRadiant",
       "name": "Radiant Steadfast Heart",
       "stats": {
+        "hp": 500,
         "armor": 40,
         "crit_pct": 40
       },
       "effect": "10% Durability (30% above 50% Health).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20",
-        "owner-screenshots-2026-10-20"
+        "tactics-tools-items-2026-10-20"
       ],
-      "note": "owner's screenshot shows +40 Armor, +40% Crit and no Health; the page transcription had 500 HP (wrong)",
       "conflicts": [
         {
           "stats": {
-            "hp": 500,
             "armor": 40,
             "crit_pct": 40
           },
           "source_ids": [
-            "tactics-tools-items-2026-10-20"
+            "owner-screenshots-2026-10-20"
           ],
-          "note": "page transcription; the owner's screenshot shows no Health"
+          "note": "owner's screenshot (same stats site) shows only these stats; that site also leaves Health out of the base items, so the page values stay"
         }
       ],
       "older_copy_check": {
         "older_copy": "TFT5_Item_NightHarvesterRadiant",
         "diffs": [
-          "hp: None here, 600 in TFT5_Item_NightHarvesterRadiant"
+          "hp: 500 here, 600 in TFT5_Item_NightHarvesterRadiant"
         ]
       }
     },
@@ -1947,6 +2116,15 @@
       "status": "third_party_unverified",
       "source_ids": [
         "tactics-tools-items-2026-10-20"
+      ],
+      "conflicts": [
+        {
+          "stats": {},
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_SteraksGage",
@@ -1984,6 +2162,19 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "hp": 150,
+            "as_pct": 10,
+            "crit_pct": 20
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT_Item_PowerGauntlet",
         "diffs": []
@@ -2020,6 +2211,17 @@
       "source_ids": [
         "tactics-tools-items-2026-10-20"
       ],
+      "conflicts": [
+        {
+          "stats": {
+            "armor": 20
+          },
+          "source_ids": [
+            "owner-screenshots-2026-10-20"
+          ],
+          "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT11_Encounter_ChoiceItem_GiveSunfire",
         "diffs": []
@@ -2052,7 +2254,8 @@
       "effect": "Each round: equip 2 random items (uses all 3 slots).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_ThiefsGloves",
@@ -2086,7 +2289,8 @@
       "effect": "+2% AD and AP per attack or damage taken (up to 25 stacks); at full: 10% Damage Amp and Unstoppable.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_TitansResolve",
@@ -2121,7 +2325,8 @@
       "effect": "Attacks and abilities Shred 30% for 5s (does not stack).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT_Item_StatikkShiv",
@@ -2155,7 +2360,8 @@
       "effect": "+18% max Health.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
       "older_copy_check": {
         "older_copy": "TFT11_Encounter_ChoiceItem_GiveWarmogs",

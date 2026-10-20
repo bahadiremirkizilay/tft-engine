@@ -32,47 +32,47 @@ PAGE = "tactics-tools-items-2026-10-20"
 # name | stats | effect | extra sources (comma separated) | note
 CRAFTABLE = """
 Adaptive Helm | 20 MR, 3 Mana Regen | +15% Mana gain. Tanks and Fighters gain 30 Armor and MR; other roles gain 10% AD and AP. | |
-Archangel's Staff | 30 AP, 1 Mana Regen | Combat start and every 5s in combat: +20 AP. | |
+Archangel's Staff | 30 AP, 1 Mana Regen | Combat start and every 5s in combat: +20 AP. | SHOTS |
 Bloodthirster | 18% AD, 18 AP, 20 MR, 20% Omnivamp | Once per combat at 50% Health: shield of 30% max Health for up to 5s. | |
-Blue Buff | 15% AD, 15 AP, 5 Mana Regen | +10% additional AD and AP from all sources. | |
+Blue Buff | 15% AD, 15 AP, 5 Mana Regen | +10% additional AD and AP from all sources. | SHOTS |
 Bramble Vest | 50 Armor | +6% max Health; 5% less damage from attacks; when struck, 100 magic damage to adjacent enemies (2s cooldown). | |
-Crownguard | 100 HP, 20 AP, 20 Armor | Combat start: shield of 25% max Health for 8s; when it expires, +20 AP. | riot-notes-18.4 | 18.4: AP on shield expire 25 => 20
+Crownguard | 100 HP, 20 AP, 20 Armor | Combat start: shield of 25% max Health for 8s; when it expires, +20 AP. | SHOTS, riot-notes-18.4 | 18.4: AP on shield expire 25 => 20; the screenshot still shows the pre-18.4 25% AP on expire
 Deathblade | 55% AD, 10% Damage Amp | Stacking bonus with more copies (page text was a placeholder). | |
-Dragon's Claw | 60 MR | +6% max Health; every 2s heal 2.5% max Health. | |
-Edge of Night | 10% AD, 10 AP, 20 Armor, 15% AS | At 40% Health: briefly untargetable, shed negative effects, heal 15% missing Health. | |
+Dragon's Claw | 60 MR | +6% max Health; every 2s heal 2.5% max Health. | SHOTS |
+Edge of Night | 10% AD, 10 AP, 20 Armor, 15% AS | At 40% Health: briefly untargetable, shed negative effects, heal 15% missing Health. | SHOTS |
 Evenshroud | 20 MR, 250 HP | 30% Sunder to enemies within 2 hexes; first 15s of combat: +15 Armor and MR. | |
 Gargoyle Stoneplate | 100 HP, 25 Armor, 25 MR | +10 Armor and MR for each enemy targeting the holder. | |
 Giant Slayer | 15% AD, 15 AP, 15% AS, 15% Damage Amp | +15% additional Damage Amp against Tanks. | |
 Guinsoo's Rageblade | 10 AP, 10% AS | +7% stacking Attack Speed every second. | |
 Hand of Justice | 20% Crit, 1 Mana Regen | 18% AD and AP and 15% Omnivamp; AD/AP doubled above 50% Health, Omnivamp doubled below 50% Health. | |
 Hextech Gunblade | 20% AD, 20 AP, 15% Omnivamp, 1 Mana Regen | Heals the lowest-Health ally for 20% of damage dealt. | |
-Infinity Edge | 35% AD, 35% Crit | Precision: abilities can crit; extra Precision adds 10% Crit Damage. | |
-Ionic Spark | 250 HP, 15 AP, 35 MR | 30% Shred to enemies within 2 hexes; enemy casts take magic damage equal to 150% of the Mana spent. | |
-Jeweled Gauntlet | 35 AP, 35% Crit | Precision: abilities can crit; extra Precision adds 10% Crit Damage. | |
-Kraken's Fury | 10% AD, 20 MR, 10% AS | Attacks grant 3.5% stacking AD (up to 15 attacks), then +15% Attack Speed. | |
-Last Whisper | 15% AD, 20% AS, 20% Crit | Attacks and abilities Sunder 30% for 3s (does not stack). | |
+Infinity Edge | 35% AD, 35% Crit | Precision: abilities can crit; extra Precision adds 10% Crit Damage. | SHOTS |
+Ionic Spark | 250 HP, 15 AP, 35 MR | 30% Shred to enemies within 2 hexes; enemy casts take magic damage equal to 150% of the Mana spent. | SHOTS |
+Jeweled Gauntlet | 35 AP, 35% Crit | Precision: abilities can crit; extra Precision adds 10% Crit Damage. | SHOTS |
+Kraken's Fury | 10% AD, 20 MR, 10% AS | Attacks grant 3.5% stacking AD (up to 15 attacks), then +15% Attack Speed. | SHOTS |
+Last Whisper | 15% AD, 20% AS, 20% Crit | Attacks and abilities Sunder 30% for 3s (does not stack). | SHOTS |
 Morellonomicon | 150 HP, 20 AP, 1 Mana Regen | Attacks and abilities apply 1% Burn and 33% Wound for 10s. | |
 Nashor's Tooth | 150 HP, 15 AP, 10% AS, 20% Crit | Attacks grant 2 bonus Mana (2 more on crit). | |
-Protector's Vow | 25 Armor, 25 MR, 1 Mana Regen | Combat start: 20 Mana. At 40% Health: 15 Mana and a shield of 20% max Health. | |
-Quicksilver | 20 MR, 15% AS, 20% Crit | Combat start: Unstoppable for 18s; +3% stacking Attack Speed per second. | |
+Protector's Vow | 25 Armor, 25 MR, 1 Mana Regen | Combat start: 20 Mana. At 40% Health: 15 Mana and a shield of 20% max Health. | SHOTS |
+Quicksilver | 20 MR, 15% AS, 20% Crit | Combat start: Unstoppable for 18s; +3% stacking Attack Speed per second. | SHOTS |
 Rabadon's Deathcap | 55 AP, 15% Damage Amp | Stacking bonus with more copies (page text was a placeholder). | |
 Red Buff | 45% AS, 3% Damage Amp | Attacks and abilities apply 1% Burn and 33% Wound for 5s. | |
-Spear of Shojin | 15% AD, 15 AP, 1 Mana Regen | Attacks grant 5 bonus Mana. | |
+Spear of Shojin | 15% AD, 15 AP, 1 Mana Regen | Attacks grant 5 bonus Mana. | SHOTS |
 Spirit Visage | 300 HP, 10% Durability, 2 Mana Regen | Regenerate 2% of missing Health per second. | riot-notes-18.4 | 18.4: Durability 8% => 10% (the page called it damage reduction)
 Steadfast Heart | 250 HP, 20 Armor, 20% Crit | 5% Durability (15% above 50% Health). | |
 Sterak's Gage | 300 HP, 45% AD | At 60% Health: shield of 40% max Health, decaying over 4s. | |
 Striker's Flail | 150 HP, 10% AS, 20% Crit, 10% Damage Amp | Crits grant 5% Damage Amp for 5s, up to 4 stacks. | |
 Sunfire Cape | 150 HP, 20 Armor | +8% max Health; every 2s, 1% Burn and 33% Wound to a nearby enemy for 10s. | |
-Thief's Gloves | 150 HP, 20% Crit | Each round: equip 2 random items (uses all 3 slots). | |
-Titan's Resolve | 20 Armor, 10% AS | +2% AD and AP per attack or damage taken (up to 25 stacks); at full: 10% Damage Amp and Unstoppable. | |
-Void Staff | 35 AP, 15% AS, 1 Mana Regen | Attacks and abilities Shred 30% for 5s (does not stack). | |
-Warmog's Armor | 500 HP | +18% max Health. | |
+Thief's Gloves | 150 HP, 20% Crit | Each round: equip 2 random items (uses all 3 slots). | SHOTS |
+Titan's Resolve | 20 Armor, 10% AS | +2% AD and AP per attack or damage taken (up to 25 stacks); at full: 10% Damage Amp and Unstoppable. | SHOTS |
+Void Staff | 35 AP, 15% AS, 1 Mana Regen | Attacks and abilities Shred 30% for 5s (does not stack). | SHOTS |
+Warmog's Armor | 500 HP | +18% max Health. | SHOTS |
 """
 
 RADIANT = """
 Radiant Adaptive Helm | 40 MR, 7 Mana Regen | +30% Mana gain. Tanks and Fighters gain 80 Armor and MR; others gain 40% AD and AP. | |
 Radiant Archangel's Staff | 60 AP, 2 Mana Regen | Combat start and every 5s: +40 AP. | |
-Radiant Bloodthirster |  | Once per combat at 50% Health: shield of 60% max Health for up to 5s. | owner-screenshots-2026-10-20 | owner's screenshot (sent twice) shows the effect and no stat line; the page transcription had 40% AD, 40 AP, 40 MR, 40% Omnivamp (kept as a conflict)
+Radiant Bloodthirster | 40% AD, 40 AP, 40 MR, 40% Omnivamp | Once per combat at 50% Health: shield of 60% max Health for up to 5s. | |
 Radiant Blue Buff | 30% AD, 30 AP, 10 Mana Regen | +20% additional AD and AP. | |
 Radiant Bramble Vest | 100 Armor | +12% max Health; 10% less damage from attacks; when struck, 200 magic damage to adjacent enemies (2s cooldown). | |
 Radiant Crownguard | 200 HP, 40 AP, 40 Armor | Combat start: shield of 50% max Health for 8s; when it expires, +50 AP. | | 18.4 changed base Crownguard's AP on expire; the notes list no Radiant change
@@ -80,7 +80,7 @@ Radiant Deathblade | 100% AD, 20% Damage Amp | Stacking bonus (page text was a p
 Radiant Dragon's Claw | 120 MR | +28% max Health; every 2s heal 5% max Health. | |
 Radiant Edge of Night | 30% AD, 30 AP, 40 Armor, 30% AS | At 40% Health: untargetable, shed negative effects, heal all missing Health. | |
 Radiant Evenshroud | 500 HP, 40 MR | 30% Sunder within 3 hexes; first 20s: +50 Armor and MR. | |
-Radiant Gargoyle Stoneplate | 50 Armor, 50 MR | +20 Armor and MR for each enemy targeting the holder. | owner-screenshots-2026-10-20 | owner's screenshot shows +50 Armor, +50 MR and no Health; the page transcription had 400 HP (wrong)
+Radiant Gargoyle Stoneplate | 400 HP, 50 Armor, 50 MR | +20 Armor and MR for each enemy targeting the holder. | |
 Radiant Giant Slayer | 30% AD, 30 AP, 30% AS, 30% Damage Amp | +30% additional Damage Amp against Tanks. | |
 Radiant Guinsoo's Rageblade | 20 AP, 25% AS | +16% stacking Attack Speed per second. | |
 Radiant Hand of Justice | 40% Crit, 2 Mana Regen | 35% AD and AP and 30% Omnivamp; same doubling rule as the base item. | |
@@ -98,7 +98,7 @@ Radiant Rabadon's Deathcap | 100 AP, 30% Damage Amp | Stacking bonus (page text 
 Radiant Red Buff | 80% AS, 6% Damage Amp | 2% Burn and 33% Wound for 5s. | |
 Radiant Spear of Shojin | 30% AD, 30 AP, 2 Mana Regen | Attacks grant 10 bonus Mana. | |
 Radiant Spirit Visage | 700 HP, 18% Durability, 4 Mana Regen | Regenerate 4% of missing Health per second. | riot-notes-18.4 | 18.4: Radiant Durability 15% => 18% (the page called it damage reduction)
-Radiant Steadfast Heart | 40 Armor, 40% Crit | 10% Durability (30% above 50% Health). | owner-screenshots-2026-10-20 | owner's screenshot shows +40 Armor, +40% Crit and no Health; the page transcription had 500 HP (wrong)
+Radiant Steadfast Heart | 500 HP, 40 Armor, 40% Crit | 10% Durability (30% above 50% Health). | |
 Radiant Sterak's Gage | 600 HP, 90% AD | At 60% Health: shield of 80% max Health, decaying over 6s. | |
 Radiant Striker's Flail | 300 HP, 20% AS, 40% Crit, 20% Damage Amp | Crits grant 10% Damage Amp for 5s, up to 4 stacks. | |
 Radiant Sunfire Cape | 300 HP, 40 Armor | +16% max Health; every 2s, 2% Burn and 33% Wound to a nearby enemy. | |
@@ -142,26 +142,62 @@ Wit's End | 300 HP, 20 Armor, 20 MR, 25% AS | Attacks deal 25/45/65/85/100 bonus
 Zhonya's Paradox | 25 AP, 25 Armor, 25 MR | Once per combat at 40% Health: invulnerable and untargetable for 3s. Unique. | |
 """
 
-# Values another source gave that lost to a better source; never dropped silently.
-CONFLICTS = {
-    "Radiant Bloodthirster": {
-        "stats": {"ad_pct": 40, "ap": 40, "mr": 40, "omnivamp_pct": 40},
-        "source_ids": [PAGE],
-        "note": "page transcription; the owner's screenshot shows no stat line",
-    },
-    "Radiant Gargoyle Stoneplate": {
-        "stats": {"hp": 400, "armor": 50, "mr": 50},
-        "source_ids": [PAGE],
-        "note": "page transcription; the owner's screenshot shows no Health",
-    },
-    "Radiant Steadfast Heart": {
-        "stats": {"hp": 500, "armor": 40, "crit_pct": 40},
-        "source_ids": [PAGE],
-        "note": "page transcription; the owner's screenshot shows no Health",
-    },
-}
-
 SHOTS = "owner-screenshots-2026-10-20"
+
+# The owner's screenshots come from a site whose tooltips leave out some stats
+# (Health on Gargoyle Stoneplate, Steadfast Heart, Sunfire Cape ...; every Damage
+# Amp line; the whole stat line on Bloodthirster, Guinsoo's Rageblade ...). For all
+# 19 craftable items where it differs, the older game-file copy has exactly the
+# page values, so the page values stay and the screenshot values are kept here.
+# Values another source gave that lost to a better source; never dropped silently.
+SHOT_NOTE = (
+    "owner's screenshot (stats site) shows only these stats; the older game-file copy "
+    "matches the page values, so the site likely leaves stats out"
+)
+RADIANT_SHOT_NOTE = (
+    "owner's screenshot (same stats site) shows only these stats; that site also leaves "
+    "Health out of the base items, so the page values stay"
+)
+CONFLICTS: dict[str, list[dict]] = {
+    "Gargoyle Stoneplate": [
+        {"stats": {"armor": 25, "mr": 25}, "source_ids": [SHOTS], "note": SHOT_NOTE}
+    ],
+    "Rabadon's Deathcap": [{"stats": {"ap": 55}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Deathblade": [{"stats": {"ad_pct": 55}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Adaptive Helm": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Giant Slayer": [
+        {"stats": {"ad_pct": 15, "ap": 15, "as_pct": 15}, "source_ids": [SHOTS], "note": SHOT_NOTE}
+    ],
+    "Striker's Flail": [
+        {
+            "stats": {"hp": 150, "as_pct": 10, "crit_pct": 20},
+            "source_ids": [SHOTS],
+            "note": SHOT_NOTE,
+        }
+    ],
+    "Morellonomicon": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Red Buff": [{"stats": {"as_pct": 45}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Bloodthirster": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Spirit Visage": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Steadfast Heart": [
+        {"stats": {"armor": 20, "crit_pct": 20}, "source_ids": [SHOTS], "note": SHOT_NOTE}
+    ],
+    "Guinsoo's Rageblade": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Hand of Justice": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Evenshroud": [{"stats": {"mr": 20}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Bramble Vest": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Hextech Gunblade": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Sterak's Gage": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Sunfire Cape": [{"stats": {"armor": 20}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Nashor's Tooth": [{"stats": {"crit_pct": 20}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Radiant Bloodthirster": [{"stats": {}, "source_ids": [SHOTS], "note": RADIANT_SHOT_NOTE}],
+    "Radiant Gargoyle Stoneplate": [
+        {"stats": {"armor": 50, "mr": 50}, "source_ids": [SHOTS], "note": RADIANT_SHOT_NOTE}
+    ],
+    "Radiant Steadfast Heart": [
+        {"stats": {"armor": 40, "crit_pct": 40}, "source_ids": [SHOTS], "note": RADIANT_SHOT_NOTE}
+    ],
+}
 
 # Emblems: transcribed from the owner's tooltip screenshots (2026-10-20). Their numbers
 # predate 18.3 (e.g. Hunter 18% AD), so 18.3/18.4 note changes are applied on top.
@@ -314,7 +350,7 @@ def build(set_id: str, patch: str) -> dict:
             if note:
                 rec["note"] = note
             if name in CONFLICTS:
-                rec["conflicts"] = [CONFLICTS[name]]
+                rec["conflicts"] = CONFLICTS[name]
             # Emblems of the same name in older sets are different items; no comparison.
             check = (
                 None
