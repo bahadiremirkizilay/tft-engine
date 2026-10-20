@@ -180,6 +180,16 @@
       "note": "Where the screenshots were taken (game client or a site) is not yet confirmed. The emblem numbers predate 18.3 (Hunter 18% AD, Invoker 3 Mana Regen, Juggernaut 15 Mana, Brawler 2%) and 18.4 (Elderwood 35 resists), so they likely come from a site with old data; the note changes are applied on top."
     },
     {
+      "id": "owner-ingame-2026-10-20",
+      "type": "observation",
+      "title": "Owner's in-game check, patch 18.4b (screenshot and notes)",
+      "url": "https://github.com/bahadiremirkizilay/tft-engine",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.4",
+      "note": "Screenshot of the shop bar at level 7: odds 16% / 30% / 43% / 10% / 1%, XP 20/56, Buy XP 4 gold. Owner's notes from the game: level 8 odds 15/20/32/30/3, level 9 10/17/25/33/15, reroll 2 gold, Buy XP gives 4 XP, 2 XP every round, 7->8 56 XP, 8->9 and 9->10 68 XP."
+    },
+    {
       "id": "tactics-tools-units",
       "type": "stats_site",
       "title": "tactics.tools Set 18 unit list",

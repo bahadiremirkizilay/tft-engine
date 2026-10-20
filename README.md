@@ -92,7 +92,7 @@ Her set için `data/sets/<set>/base.json` ve her yama için `data/sets/<set>/pat
 
 Liste ve form: [templates/oyun_ici_kontrol.md](templates/oyun_ici_kontrol.md). Kısaca:
 
-1. Shop olasılıkları ve havuz boyutları oyun dosyasından okunuyor (seviye 7 = 19/30/40/10/1, 17.1 notuyla aynı). Tooltip ile son kontrol.
+1. Shop olasılıkları ve havuz boyutları oyun dosyasından okunuyor. Seviye 7 oyun içi tooltip'ten (16/30/43/10/1, 2026-10-20); oyun dosyası ve 17.1 notu 19/30/40/10/1 diyor (çelişki kaydı).
 2. XP tablosu resmi 18.2 notlarıyla tutarlı (7→8 = 56, 8→9 ve 9→10 = 68). XP alım oranı (4 altın = 4 XP), tur başına 2 XP ve en yüksek level (10) kontrol edilmeli.
 3. Reroll maliyeti (2), seri altını (2-4: +1, 5: +2, 6+: +3), PvP galibiyeti (+1), faiz ve temel gelir: üçüncü taraf kaynaklı.
 4. Satış değerleri (wiki kuralından türetildi, wiki kendi örneğiyle çelişiyor) ve oyuncu hasarı.

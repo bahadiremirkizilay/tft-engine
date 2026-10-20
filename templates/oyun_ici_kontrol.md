@@ -12,7 +12,7 @@ Shop'taki level/olasılık göstergesinin üzerine gel. Oyun dosyasındaki değe
 
 | Level | Oyun dosyası (1/2/3/4/5 maliyet %) | Oyunda gördüğün |
 |---|---|---|
-| 7 | 19 / 30 / 40 / 10 / 1 | |
+| 7 | 19 / 30 / 40 / 10 / 1 | 16 / 30 / 43 / 10 / 1 (2026-10-20, 18.4b) |
 | 8 | 15 / 20 / 32 / 30 / 3 | |
 | 9 | 10 / 17 / 25 / 33 / 15 | |
 

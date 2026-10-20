@@ -33,7 +33,8 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **16.20 = 18.4 eşlemesi doğrulanmadı.** Kanıt: 16.20 klasörü 7 Ekim'de, 18.4 notlarından bir gün sonra oluşturulmuş.
 ## B2 sonucu
 
-- **Shop olasılıkları ve havuz boyutları oyun dosyasından** (map22.bin.json, 16.20): seviye 7 = 19/30/40/10/1, kopya sayısı 30/25/18/10/9, havuzda 14/13/14/14/10 şampiyon (Lux tek kayıt). Durum `community_extracted`. Eski 16/30/43 tablosu çelişki kaydı olarak duruyor (17.1 notu değiştirmiş).
+- **Shop olasılıkları ve havuz boyutları oyun dosyasından** (map22.bin.json, 16.20): kopya sayısı 30/25/18/10/9, havuzda 14/13/14/14/10 şampiyon (Lux tek kayıt). Durum `community_extracted`. **Seviye 7 oyun içi tooltip'ten: 16/30/43/10/1** (sahibin ekran görüntüsü, 18.4b). Oyun dosyası ve 17.1 notu 19/30/40/10/1 diyor; bu değer çelişki kaydı olarak duruyor.
+- **Oyunda doğrulananlar (2026-10-20, 18.4b):** reroll 2 altın, XP alımı 4 altın = 4 XP, tur başına 2 XP (`verified`). Seviye 8/9 olasılıkları ve XP 56/68/68 oyunda da aynı.
 - **Yama kayıtları:** 18.2 (XP 7→8 60→56, 8→9 ve 9→10 68→64), 18.2b (14 Eylül, 8→9 ve 9→10 tekrar 68), 18.3 ve 18.4 (temel ekonomi değişikliği yok). Hepsi resmi notlardan okundu, `reviewed`.
 - **Düzeltme:** `base.json` 18.1 itibarıyla 18.2'nin XP değerini içeriyordu; 18.1 değeri (60) geri kondu, değişiklik yama kaydına taşındı.
 - **Yeni parametreler:** `sell_value` (satış değeri tablosu) ve `player_damage` (aşama hasarı + hayatta kalan birim başına 1). İkisi de üçüncü taraf, çelişkiler notta.
@@ -55,7 +56,7 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 
 ## Araştırmanın önemli sonuçları (ayrıntı: KAYNAKLAR.md)
 
-- **Seviye 7 shop olasılığı:** Oyun dosyası 19/30/40/10/1 diyor, repodaki değerle aynı. 16/30/43 veren siteler 17.1 öncesi eski tabloyu kopyalıyor.
+- **Seviye 7 shop olasılığı:** Oyun içi tooltip 16/30/43/10/1 gösteriyor, repo bunu kullanıyor. Oyun dosyası (map22) ve resmi 17.1 notu 19/30/40/10/1 diyor; çelişki kaydı. Gerçek roll'ların hangisine uyduğu ancak çok sayıda shop sayılarak kanıtlanabilir.
 - **XP tablosu:** 2/2/6/10/20/36/56/68/68 resmi 18.2 notlarıyla tutarlı. 8→9 ve 9→10'un ikisinin de 68 olması doğru (ara yamada geri alındı).
 - **CommunityDragon:** Şampiyon, trait, item, augment ve Wisp verisini sağlıyor. Ama Set 18 yetenek sayıları boş; trait değişken adları ve augment tier'ları hash'li.
 - **Riot API'de augment yok** (2024 sonundan beri).

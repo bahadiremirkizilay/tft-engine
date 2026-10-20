@@ -89,7 +89,8 @@ def test_change_without_source_rejected(tmp_path):
 
 def test_set18_loads_and_reports_provenance(set18):
     report = set18.provenance_report()
-    assert "verified" not in report  # nothing is verified yet; this must stay honest
+    # only what the owner saw in game on 18.4b is verified; this must stay honest
+    assert sorted(report["verified"]) == ["passive_xp_per_round", "reroll_cost", "xp_purchase"]
     assert "shop_odds" in report["community_extracted"]  # read from the game files
     assert "copies_per_champion" in report["community_extracted"]
     assert "riftbeast_shop" in report["unknown"]
@@ -105,11 +106,12 @@ def test_set18_xp_table_follows_the_official_patch_history():
     assert load_gamedata("set18", "18.4").get("xp_to_next_level") == xp["18.2b"]
 
 
-def test_set18_level7_odds_keep_the_stale_table_as_a_conflict(set18):
+def test_set18_level7_odds_follow_the_in_game_tooltip_and_keep_the_game_file_as_conflict(set18):
     p = set18.param("shop_odds")
-    assert p.value["7"] == [19, 30, 40, 10, 1]
-    assert p.conflicts[0]["value"]["7"] == [16, 30, 43, 10, 1]
-    assert "riot-notes-17.1" in p.source_ids
+    assert p.value["7"] == [16, 30, 43, 10, 1]
+    assert "owner-ingame-2026-10-20" in p.source_ids
+    assert p.conflicts[0]["value"]["7"] == [19, 30, 40, 10, 1]
+    assert "riot-notes-17.1" in p.conflicts[0]["source_ids"]
 
 
 def test_superseded_value_is_caught(tmp_path):

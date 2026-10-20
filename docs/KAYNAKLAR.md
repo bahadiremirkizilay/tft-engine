@@ -148,12 +148,13 @@ Alıntılar:
 
 | Konu | Değer | Kaynak | Tür | Repo ile |
 |---|---|---|---|---|
-| Shop olasılıkları | yukarıdaki tablo | map22.bin; resmi 17.1 notu (2026-04-14) seviye 7'yi 19/30/40/10/1 yaptı | oyun dosyası + resmi geçmiş | aynı |
-| Seviye 7, alternatif değer | 16/30/43/10/1 | esportstales, tftflow (18.2), noxutft, mobalytics. Bu, 17.1 öncesindeki tablo | topluluk, eski | çelişki, eski kopya olduğu düşünülüyor |
+| Shop olasılıkları | yukarıdaki tablo; seviye 7 hariç | map22.bin | oyun dosyası | aynı |
+| Seviye 7 | 16/30/43/10/1 | **oyun içi tooltip** (sahibin ekran görüntüsü, 18.4b, 2026-10-20); siteler de (esportstales, tftflow, noxutft, mobalytics) | oyun içi gözlem | repo bunu kullanıyor |
+| Seviye 7, çelişen değer | 19/30/40/10/1 | map22.bin (dosyadaki tek shop tablosu) ve resmi 17.1 notu (2026-04-14). 18.1 notu olasılıklardan söz etmiyor | oyun dosyası + resmi geçmiş | çelişki kaydı. Gerçek roll'ların hangisine uyduğu kanıtlanmadı |
 | Havuz | 30/25/18/10/9 kopya | seemeta (PBE sayfası "istemciden" diyor), tftflow, metabot | topluluk | aynı |
 | Şampiyon sayısı | 14/13/14/14/10 = 65 (Lux'un 9 formu ayrı) | https://tactics.tools/info/units | topluluk | aynı |
 | XP tablosu | 2/2/6/10/20/36/56/68/68 | resmi 18.2 farkları + tftflow | resmi + topluluk | aynı |
-| XP alımı, pasif XP | 4 altın = 4 XP; tur başına 2 XP | noxutft | topluluk | aynı (resmi kaynak yok) |
+| XP alımı, pasif XP, reroll | 4 altın = 4 XP; tur başına 2 XP; reroll 2 altın | noxutft; sahibin oyun içi kontrolü (18.4b) | oyun içi gözlem | aynı, `verified` |
 | Max level | 10 (11 sadece augment'le?) | kaynak yok | — | bilinmiyor |
 | Temel gelir | 2/2/3/4 (1-2…2-1), sonra 5 | op.gg, wiki TFT:Gold | topluluk | aynı |
 | Faiz | 10 altın başına 1, en fazla 5 | op.gg, wiki | topluluk | aynı |

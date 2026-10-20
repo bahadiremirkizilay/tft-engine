@@ -12,21 +12,21 @@
         "4": [55, 30, 15, 0, 0],
         "5": [45, 33, 20, 2, 0],
         "6": [30, 40, 25, 5, 0],
-        "7": [19, 30, 40, 10, 1],
+        "7": [16, 30, 43, 10, 1],
         "8": [15, 20, 32, 30, 3],
         "9": [10, 17, 25, 33, 15],
         "10": [5, 10, 20, 40, 25],
         "11": [1, 2, 12, 50, 35]
       },
       "status": "community_extracted",
-      "source": "game file map22.bin.json (CommunityDragon 16.20), TFTSet18 DropRateTables.Shop; matches seemeta; level 7 row as set by the official 17.1 notes",
-      "source_ids": ["cdragon-16.20-map22", "riot-notes-17.1", "seemeta-set18-odds"],
-      "note": "Percent per cost tier 1..5 by player level. Game file stores fractions (0.19 ...). Not in any 18.x patch note, so assumed unchanged since 18.1.",
+      "source": "game file map22.bin.json (CommunityDragon 16.20), TFTSet18 DropRateTables.Shop, matches seemeta; level 7 row from the in-game shop tooltip (owner screenshot, 18.4b); levels 8 and 9 also seen in game",
+      "source_ids": ["cdragon-16.20-map22", "owner-ingame-2026-10-20", "seemeta-set18-odds"],
+      "note": "Percent per cost tier 1..5 by player level. Game file stores fractions (0.19 ...). Not in any 18.x patch note, so assumed unchanged since 18.1. Level 7: the in-game tooltip shows 16/30/43/10/1, while the game file and the official 17.1 notes say 19/30/40/10/1. The tooltip is what the live game shows, so it is used; whether actual rolls follow it is not proven (it would take a large shop count).",
       "conflicts": [
         {
-          "value": {"7": [16, 30, 43, 10, 1]},
-          "source_ids": ["player-report-2026-10-18", "tftflow-set18-tables"],
-          "note": "Pre-17.1 level 7 row (riot-notes-17.1 changed it to 19/30/40/10/1). Stale copy."
+          "value": {"7": [19, 30, 40, 10, 1]},
+          "source_ids": ["cdragon-16.20-map22", "riot-notes-17.1"],
+          "note": "Game file (only shop table in map22, no 16/30/43 table present) and the 17.1 notes ('Level 7: 16/30/43/10/1% => 19/30/40/10/1%'). The 18.1 Set 18 launch notes mention no odds. The in-game tooltip on 18.4b disagrees."
         }
       ]
     },
@@ -51,19 +51,21 @@
     },
     "reroll_cost": {
       "value": 2,
-      "status": "unverified",
-      "source": "long-standing TFT value; not in the game files' shop actions; not checked for Set 18"
+      "status": "verified",
+      "source": "seen in game by the owner on 18.4b",
+      "source_ids": ["owner-ingame-2026-10-20"]
     },
     "xp_purchase": {
       "value": {"gold": 4, "xp": 4},
-      "status": "unverified",
-      "source": "long-standing TFT value; not checked for Set 18"
+      "status": "verified",
+      "source": "in game on 18.4b: Buy XP button costs 4 gold (owner screenshot) and gives 4 XP (owner)",
+      "source_ids": ["owner-ingame-2026-10-20"]
     },
     "passive_xp_per_round": {
       "value": 2,
-      "status": "unverified",
-      "source": "player report (Bahadir, 2026-10-18): the game gives 2 XP every round",
-      "source_ids": ["player-report-2026-10-18"]
+      "status": "verified",
+      "source": "seen in game by the owner: 2 XP every round (reported 2026-10-18, checked again on 18.4b 2026-10-20)",
+      "source_ids": ["player-report-2026-10-18", "owner-ingame-2026-10-20"]
     },
     "xp_to_next_level": {
       "value": {"1": 0, "2": 2, "3": 6, "4": 10, "5": 20, "6": 36, "7": 60, "8": 68, "9": 68},
