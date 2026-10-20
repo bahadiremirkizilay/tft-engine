@@ -21,6 +21,12 @@ def next_stage(stage: str) -> str:
     return f"{major + 1}-1" if minor >= 7 else f"{major}-{minor + 1}"
 
 
+def loss_damage(rules: Rules, major: int, a: AssumptionSet) -> float:
+    """HP lost in a lost round: the set's damage rule with an assumed survivor count."""
+    survivors = a.by_stage("surviving_units_on_loss_by_stage", major)
+    return rules.player_damage(major, survivors) * a["damage_scale"]
+
+
 @dataclass(frozen=True)
 class HorizonResult:
     p_win_first: float
@@ -72,7 +78,7 @@ def simulate(
         me = strength(s)
         acc["ratio"] += p * me / opponent_strength_prior(major, a)
         pw = lobby_win_prob(me, observed, alive, major, a)
-        acc["future"] += p * (1 - pw) * a.by_stage("damage_by_stage", major) * a["damage_scale"]
+        acc["future"] += p * (1 - pw) * loss_damage(rules, major, a)
 
     def step(s: GameState, p: float, r: int, hp_lost: int) -> None:
         if r == rounds:
@@ -85,7 +91,7 @@ def simulate(
         nxt = next_stage(s.stage)
         won = rules.end_round(s, True, nxt)
         step(replace(won, gold=won.gold + extra_income), p * pw, r + 1, hp_lost)
-        dmg = round(a.by_stage("damage_by_stage", major) * a["damage_scale"])
+        dmg = round(loss_damage(rules, major, a))
         hp = s.hp - dmg
         if hp <= 0:
             finish(s, p * (1 - pw), hp_lost + s.hp, True)

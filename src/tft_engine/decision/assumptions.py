@@ -52,9 +52,10 @@ DEFAULTS: dict[str, Assumption] = {
         6, 3, 10, "rounds after the horizon in which the final board still decides fights"
     ),
     # --- tables, not varied one by one ------------------------------------
-    "damage_by_stage": Assumption(
-        {1: 0, 2: 4, 3: 7, 4: 10, 5: 13, 6: 16, 7: 19},
-        description="HP lost per lost round by stage (Set 18 values unknown)",
+    "surviving_units_on_loss_by_stage": Assumption(
+        {1: 0, 2: 2, 3: 2, 4: 2, 5: 3, 6: 4, 7: 4},
+        description="enemy units left alive when a round is lost, by stage (damage = the "
+        "set's stage damage + 1 per unit, from the game data)",
     ),
     "opp_level_by_stage": Assumption(
         {1: 3, 2: 4, 3: 6, 4: 7, 5: 8, 6: 8, 7: 9},
