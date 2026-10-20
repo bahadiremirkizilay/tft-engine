@@ -161,6 +161,48 @@ CONFLICTS = {
     },
 }
 
+SHOTS = "owner-screenshots-2026-10-20"
+
+# Emblems: transcribed from the owner's tooltip screenshots (2026-10-20). Their numbers
+# predate 18.3 (e.g. Hunter 18% AD), so 18.3/18.4 note changes are applied on top.
+EMBLEM = """
+Blackthorn Emblem | 15% AD, 15 AP, 250 HP | The holder gains the Blackthorn trait. | SHOTS |
+Blossom Emblem | 250 HP | The holder gains the Blossom trait. | SHOTS |
+Brawler Emblem | 150 HP | The holder gains the Brawler trait. Attacks deal 2.5% of the holder's max Health as magic damage. | SHOTS, riot-notes-18.3 | 18.3: damage 2% => 2.5% max Health (screenshot showed 2%)
+Coven Emblem | 150 HP | The holder gains the Coven trait. | SHOTS | not craftable (no recipe)
+Defender Emblem | 30 Armor, 30 MR | The holder gains the Defender trait. Combat start: gain 6% Attack Speed for every ally that starts in the front row. | SHOTS | not craftable (no recipe)
+Elderwood Emblem | 25 Armor, 25% AS, 25 MR | The holder gains the Elderwood trait. | SHOTS, riot-notes-18.4 | 18.4: resists 35 => 25 (screenshot showed 35)
+Executioner Emblem | 20% Crit | The holder gains the Executioner trait. Damage executes enemies below 8% of their max Health. | SHOTS |
+Fae Emblem | 200 HP | The holder gains the Fae trait. | SHOTS |
+Hunter Emblem | 25% AD | The holder gains the Hunter trait. Takedowns grant 15% Attack Damage. | SHOTS, riot-notes-18.3 | 18.3: AD per takedown 18% => 15% (screenshot showed 18%)
+Inferno Emblem | 40% AS | The holder gains the Inferno trait. | SHOTS |
+Invoker Emblem | 2 Mana Regen | The holder gains the Invoker trait. On cast, gain Ability Power equal to 8% of Mana spent. | SHOTS, riot-notes-18.3 | 18.3: Mana Regen 3 => 2 (screenshot showed 3)
+Juggernaut Emblem | 250 HP | The holder gains the Juggernaut trait. Gain 10 Mana whenever a Juggernaut dies. | SHOTS, riot-notes-18.3 | 18.3: Mana restore on death 15 => 10 (screenshot showed 15); not craftable (no recipe)
+Lunar Emblem | 20% AS, 3 Mana Regen | The holder gains the Lunar trait. | SHOTS |
+Primal Emblem | 35% AS, 20% Crit, 250 HP | The holder gains the Primal trait. | SHOTS |
+Rapidfire Emblem | 20% AS | The holder gains the Rapidfire trait. Attacks deal 1% of the target's max Health as true damage. | SHOTS |
+Ravager Emblem | 20% AD, 20 AP, 20 Armor, 20 MR | The holder gains the Ravager trait. Gain 3% Damage Amp per 300 Health restored. | SHOTS |
+Spellweaver Emblem | 25 AP | The holder gains the Spellweaver trait. Gain 2 Mana whenever an ally casts their Ability. | SHOTS |
+Sprykin Emblem | 15 Armor, 15 MR | The holder gains the Sprykin trait. If the holder is riding the BFF, it gains more (tooltip text broken: 'an additional 20% 15 15'). | SHOTS |
+Vanguard Emblem | 25 Armor, 25 MR | The holder gains the Vanguard trait. If the holder survives 22 seconds in player combat, gain 1 player Health. | SHOTS |
+"""
+
+# Records that share a display name: name -> explicit id per screenshot.
+FLORA = [
+    (
+        "DA_18_EmblemFloraFatalis",
+        "250 HP, 2 Mana Regen",
+        "The holder gains the Flora Fatalis trait.",
+        "plain emblem (first screenshot); the owner marked the second screenshot as the right one, see the Augment record",
+    ),
+    (
+        "DA_18_EmblemFloraFatalisAugment",
+        "250 HP, 2 Mana Regen",
+        "The holder gains the Flora Fatalis trait. They gain 50% increased benefits from Flora Fatalis.",
+        "second screenshot; the Consuming Flora augment grants a Flora Fatalis emblem with +50% benefits, which matches this text",
+    ),
+]
+
 STAT_PATTERNS = [
     (r"^(\d+(?:\.\d+)?) HP$", "hp"),
     (r"^(\d+(?:\.\d+)?)% AD$", "ad_pct"),
@@ -246,12 +288,14 @@ def build(set_id: str, patch: str) -> dict:
     by_name: dict[str, list[str]] = {}
     other: dict[str, list[str]] = {}  # same kinds, older families (used only if no DA match)
     for i in kb.items.values():
-        if i["kind"] in ("completed", "radiant", "artifact"):
+        if i["kind"] in ("completed", "radiant", "artifact", "emblem"):
             target = by_name if i["family"] == "DA" else other
             target.setdefault(i["name"].lower(), []).append(i["id"])
     records, missing = [], []
-    for block in (CRAFTABLE, RADIANT, ARTIFACT):
+    blocks = ((CRAFTABLE, [PAGE]), (RADIANT, [PAGE]), (ARTIFACT, [PAGE]), (EMBLEM, []))
+    for block, base_sources in blocks:
         for name, stats, effect, extra, note in rows(block):
+            extra = [SHOTS if s.strip() == "SHOTS" else s.strip() for s in extra]
             ids = by_name.get(name.lower(), [])
             if not ids and len(other.get(name.lower(), [])) == 1:
                 ids = other[name.lower()]
@@ -265,16 +309,36 @@ def build(set_id: str, patch: str) -> dict:
                 "stats": parse_stats(stats),
                 "effect": effect,
                 "status": "third_party_unverified",
-                "source_ids": [PAGE] + [s.strip() for s in extra],
+                "source_ids": base_sources + extra,
             }
             if note:
                 rec["note"] = note
             if name in CONFLICTS:
                 rec["conflicts"] = [CONFLICTS[name]]
-            check = compare_with_copy(rec["stats"], copies.get(name.lower(), []))
+            # Emblems of the same name in older sets are different items; no comparison.
+            check = (
+                None
+                if block is EMBLEM
+                else compare_with_copy(rec["stats"], copies.get(name.lower(), []))
+            )
             if check is not None:
                 rec["older_copy_check"] = check
             records.append(rec)
+    for item_id, stats, effect, note in FLORA:
+        if item_id not in kb.items:
+            missing.append(f"{item_id}: not in the generated data")
+            continue
+        records.append(
+            {
+                "id": item_id,
+                "name": kb.items[item_id]["name"],
+                "stats": parse_stats(stats),
+                "effect": effect,
+                "status": "third_party_unverified",
+                "source_ids": [SHOTS],
+                "note": note,
+            }
+        )
     if missing:
         raise SystemExit("unmatched names:\n  " + "\n  ".join(missing))
     return {
@@ -282,7 +346,8 @@ def build(set_id: str, patch: str) -> dict:
         "patch": patch,
         "kind": "item_stats",
         "note": (
-            "Hand transcription of tactics.tools/info/items (read 2026-10-20; numbers match 18.2). "
+            "Hand transcription of tactics.tools/info/items (read 2026-10-20; numbers match 18.2) "
+            "and of the owner's emblem tooltip screenshots (numbers predate 18.3). "
             "Items changed in 18.3/18.4 carry the official values and the notes as a source. "
             "Effect texts are short paraphrases, not Riot's wording. AP is stored as a number. "
             "older_copy_check compares with the older-set entry of the same item in the game-file "

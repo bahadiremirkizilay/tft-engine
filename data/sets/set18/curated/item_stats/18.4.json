@@ -2,8 +2,289 @@
   "set": "set18",
   "patch": "18.4",
   "kind": "item_stats",
-  "note": "Hand transcription of tactics.tools/info/items (read 2026-10-20; numbers match 18.2). Items changed in 18.3/18.4 carry the official values and the notes as a source. Effect texts are short paraphrases, not Riot's wording. AP is stored as a number. older_copy_check compares with the older-set entry of the same item in the game-file export (values there can be outdated): equal stats support the transcription, differences need a look.",
+  "note": "Hand transcription of tactics.tools/info/items (read 2026-10-20; numbers match 18.2) and of the owner's emblem tooltip screenshots (numbers predate 18.3). Items changed in 18.3/18.4 carry the official values and the notes as a source. Effect texts are short paraphrases, not Riot's wording. AP is stored as a number. older_copy_check compares with the older-set entry of the same item in the game-file export (values there can be outdated): equal stats support the transcription, differences need a look.",
   "records": [
+    {
+      "id": "DA_18_EmblemBlackthorn",
+      "name": "Blackthorn Emblem",
+      "stats": {
+        "ad_pct": 15,
+        "ap": 15,
+        "hp": 250
+      },
+      "effect": "The holder gains the Blackthorn trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemBlossom",
+      "name": "Blossom Emblem",
+      "stats": {
+        "hp": 250
+      },
+      "effect": "The holder gains the Blossom trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemBrawler",
+      "name": "Brawler Emblem",
+      "stats": {
+        "hp": 150
+      },
+      "effect": "The holder gains the Brawler trait. Attacks deal 2.5% of the holder's max Health as magic damage.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20",
+        "riot-notes-18.3"
+      ],
+      "note": "18.3: damage 2% => 2.5% max Health (screenshot showed 2%)"
+    },
+    {
+      "id": "DA_18_EmblemCoven",
+      "name": "Coven Emblem",
+      "stats": {
+        "hp": 150
+      },
+      "effect": "The holder gains the Coven trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ],
+      "note": "not craftable (no recipe)"
+    },
+    {
+      "id": "DA_18_EmblemDefender",
+      "name": "Defender Emblem",
+      "stats": {
+        "armor": 30,
+        "mr": 30
+      },
+      "effect": "The holder gains the Defender trait. Combat start: gain 6% Attack Speed for every ally that starts in the front row.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ],
+      "note": "not craftable (no recipe)"
+    },
+    {
+      "id": "DA_18_EmblemElderwood",
+      "name": "Elderwood Emblem",
+      "stats": {
+        "armor": 25,
+        "as_pct": 25,
+        "mr": 25
+      },
+      "effect": "The holder gains the Elderwood trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20",
+        "riot-notes-18.4"
+      ],
+      "note": "18.4: resists 35 => 25 (screenshot showed 35)"
+    },
+    {
+      "id": "DA_18_EmblemExecutioner",
+      "name": "Executioner Emblem",
+      "stats": {
+        "crit_pct": 20
+      },
+      "effect": "The holder gains the Executioner trait. Damage executes enemies below 8% of their max Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemFae",
+      "name": "Fae Emblem",
+      "stats": {
+        "hp": 200
+      },
+      "effect": "The holder gains the Fae trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemFloraFatalis",
+      "name": "Flora Fatalis Emblem",
+      "stats": {
+        "hp": 250,
+        "mana_regen": 2
+      },
+      "effect": "The holder gains the Flora Fatalis trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ],
+      "note": "plain emblem (first screenshot); the owner marked the second screenshot as the right one, see the Augment record"
+    },
+    {
+      "id": "DA_18_EmblemFloraFatalisAugment",
+      "name": "Flora Fatalis Emblem",
+      "stats": {
+        "hp": 250,
+        "mana_regen": 2
+      },
+      "effect": "The holder gains the Flora Fatalis trait. They gain 50% increased benefits from Flora Fatalis.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ],
+      "note": "second screenshot; the Consuming Flora augment grants a Flora Fatalis emblem with +50% benefits, which matches this text"
+    },
+    {
+      "id": "DA_18_EmblemHunter",
+      "name": "Hunter Emblem",
+      "stats": {
+        "ad_pct": 25
+      },
+      "effect": "The holder gains the Hunter trait. Takedowns grant 15% Attack Damage.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20",
+        "riot-notes-18.3"
+      ],
+      "note": "18.3: AD per takedown 18% => 15% (screenshot showed 18%)"
+    },
+    {
+      "id": "DA_18_EmblemInferno",
+      "name": "Inferno Emblem",
+      "stats": {
+        "as_pct": 40
+      },
+      "effect": "The holder gains the Inferno trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemInvoker",
+      "name": "Invoker Emblem",
+      "stats": {
+        "mana_regen": 2
+      },
+      "effect": "The holder gains the Invoker trait. On cast, gain Ability Power equal to 8% of Mana spent.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20",
+        "riot-notes-18.3"
+      ],
+      "note": "18.3: Mana Regen 3 => 2 (screenshot showed 3)"
+    },
+    {
+      "id": "DA_18_EmblemJuggernaut",
+      "name": "Juggernaut Emblem",
+      "stats": {
+        "hp": 250
+      },
+      "effect": "The holder gains the Juggernaut trait. Gain 10 Mana whenever a Juggernaut dies.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20",
+        "riot-notes-18.3"
+      ],
+      "note": "18.3: Mana restore on death 15 => 10 (screenshot showed 15); not craftable (no recipe)"
+    },
+    {
+      "id": "DA_18_EmblemLunar",
+      "name": "Lunar Emblem",
+      "stats": {
+        "as_pct": 20,
+        "mana_regen": 3
+      },
+      "effect": "The holder gains the Lunar trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemPrimal",
+      "name": "Primal Emblem",
+      "stats": {
+        "as_pct": 35,
+        "crit_pct": 20,
+        "hp": 250
+      },
+      "effect": "The holder gains the Primal trait.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemRapidfire",
+      "name": "Rapidfire Emblem",
+      "stats": {
+        "as_pct": 20
+      },
+      "effect": "The holder gains the Rapidfire trait. Attacks deal 1% of the target's max Health as true damage.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemSlayer",
+      "name": "Ravager Emblem",
+      "stats": {
+        "ad_pct": 20,
+        "ap": 20,
+        "armor": 20,
+        "mr": 20
+      },
+      "effect": "The holder gains the Ravager trait. Gain 3% Damage Amp per 300 Health restored.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemSpellweaver",
+      "name": "Spellweaver Emblem",
+      "stats": {
+        "ap": 25
+      },
+      "effect": "The holder gains the Spellweaver trait. Gain 2 Mana whenever an ally casts their Ability.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemSprykin",
+      "name": "Sprykin Emblem",
+      "stats": {
+        "armor": 15,
+        "mr": 15
+      },
+      "effect": "The holder gains the Sprykin trait. If the holder is riding the BFF, it gains more (tooltip text broken: 'an additional 20% 15 15').",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
+    {
+      "id": "DA_18_EmblemVanguard",
+      "name": "Vanguard Emblem",
+      "stats": {
+        "armor": 25,
+        "mr": 25
+      },
+      "effect": "The holder gains the Vanguard trait. If the holder survives 22 seconds in player combat, gain 1 player Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "owner-screenshots-2026-10-20"
+      ]
+    },
     {
       "id": "DA_AdaptiveHelm",
       "name": "Adaptive Helm",
