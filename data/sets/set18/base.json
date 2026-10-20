@@ -161,11 +161,11 @@
       "note": "Not yet checked in game: whether it applies only to the first shop after combat or also to rerolls, how a slot already at 5-cost behaves, and whether a slot 'without an Inferno champion' is judged before or after the upgrade."
     },
     "riftbeast_shop": {
-      "value": null,
-      "status": "unknown",
-      "source": "Riftbeast trait text (CommunityDragon 16.20, DA_Riftbeast18 OverrunCombats 3): '(5) Every 3 combats, your next shop is overrun with Riftbeasts'; owner (2026-10-21) remembers the same, unsure of the details",
+      "value": {"min_trait_level": 5, "every_combats": 3, "slots": "all 5", "cost_odds": "the normal odds of the player's level", "rerolls": null},
+      "status": "unverified",
+      "source": "Riftbeast trait text (CommunityDragon 16.20, DA_Riftbeast18 OverrunCombats 3): '(5) Every 3 combats, your next shop is overrun with Riftbeasts'; owner (2026-10-21): all 5 slots are Riftbeasts, at the normal cost odds of the player's level",
       "source_ids": ["cdragon-16.20", "owner-ingame-2026-10-20"],
-      "note": "Unknown: whether all 5 slots become Riftbeasts, which costs they come at, whether they are drawn from the shared pool, and whether a Wisp can appear. Other levels: (3) Alpha Mark gives one Riftbeast its unique buff, (7) Riftbeasts grow every 5 s, (10) +2 team size."
+      "note": "Unknown: whether rerolls of that shop also show only Riftbeasts (rerolls = null), whether they are drawn from the shared pool, whether a Wisp can appear. Other levels: (3) Alpha Mark gives one Riftbeast its unique buff and can be moved at any time (owner), (7) Riftbeasts grow every 5 s, (10) +2 team size."
     },
     "bad_luck_protection": {
       "value": false,

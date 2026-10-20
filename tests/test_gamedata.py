@@ -98,7 +98,7 @@ def test_set18_loads_and_reports_provenance(set18):
     ]
     assert "shop_odds" in report["community_extracted"]  # read from the game files
     assert "copies_per_champion" in report["community_extracted"]
-    assert "riftbeast_shop" in report["unknown"]
+    assert "unknown" not in report  # every Set 18 rule has at least a sourced value now
     assert "xp_to_next_level" in report["third_party_unverified"]
     assert set18.unreviewed_patches == []
 
