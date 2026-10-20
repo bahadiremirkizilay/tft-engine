@@ -72,7 +72,7 @@ Warmog's Armor | 500 HP | +18% max Health. | |
 RADIANT = """
 Radiant Adaptive Helm | 40 MR, 7 Mana Regen | +30% Mana gain. Tanks and Fighters gain 80 Armor and MR; others gain 40% AD and AP. | |
 Radiant Archangel's Staff | 60 AP, 2 Mana Regen | Combat start and every 5s: +40 AP. | |
-Radiant Bloodthirster | 40% AD, 40 AP, 40 MR, 40% Omnivamp | Once per combat at 50% Health: shield of 60% max Health for up to 5s. | owner-screenshots-2026-10-20 | effect text matches the owner's screenshot; the screenshot shows no stat line, so stats are still the page's
+Radiant Bloodthirster |  | Once per combat at 50% Health: shield of 60% max Health for up to 5s. | owner-screenshots-2026-10-20 | owner's screenshot (sent twice) shows the effect and no stat line; the page transcription had 40% AD, 40 AP, 40 MR, 40% Omnivamp (kept as a conflict)
 Radiant Blue Buff | 30% AD, 30 AP, 10 Mana Regen | +20% additional AD and AP. | |
 Radiant Bramble Vest | 100 Armor | +12% max Health; 10% less damage from attacks; when struck, 200 magic damage to adjacent enemies (2s cooldown). | |
 Radiant Crownguard | 200 HP, 40 AP, 40 Armor | Combat start: shield of 50% max Health for 8s; when it expires, +50 AP. | | 18.4 changed base Crownguard's AP on expire; the notes list no Radiant change
@@ -141,6 +141,25 @@ Void Gauntlet | 300 HP, 10% Damage Reduction | Combat start: stores 30% max Heal
 Wit's End | 300 HP, 20 Armor, 20 MR, 25% AS | Attacks deal 25/45/65/85/100 bonus magic damage (by stage); heal 25% of magic damage dealt. | |
 Zhonya's Paradox | 25 AP, 25 Armor, 25 MR | Once per combat at 40% Health: invulnerable and untargetable for 3s. Unique. | |
 """
+
+# Values another source gave that lost to a better source; never dropped silently.
+CONFLICTS = {
+    "Radiant Bloodthirster": {
+        "stats": {"ad_pct": 40, "ap": 40, "mr": 40, "omnivamp_pct": 40},
+        "source_ids": [PAGE],
+        "note": "page transcription; the owner's screenshot shows no stat line",
+    },
+    "Radiant Gargoyle Stoneplate": {
+        "stats": {"hp": 400, "armor": 50, "mr": 50},
+        "source_ids": [PAGE],
+        "note": "page transcription; the owner's screenshot shows no Health",
+    },
+    "Radiant Steadfast Heart": {
+        "stats": {"hp": 500, "armor": 40, "crit_pct": 40},
+        "source_ids": [PAGE],
+        "note": "page transcription; the owner's screenshot shows no Health",
+    },
+}
 
 STAT_PATTERNS = [
     (r"^(\d+(?:\.\d+)?) HP$", "hp"),
@@ -250,6 +269,8 @@ def build(set_id: str, patch: str) -> dict:
             }
             if note:
                 rec["note"] = note
+            if name in CONFLICTS:
+                rec["conflicts"] = [CONFLICTS[name]]
             check = compare_with_copy(rec["stats"], copies.get(name.lower(), []))
             if check is not None:
                 rec["older_copy_check"] = check

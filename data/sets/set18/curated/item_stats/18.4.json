@@ -646,24 +646,35 @@
     {
       "id": "DA_BloodthirsterRadiant",
       "name": "Radiant Bloodthirster",
-      "stats": {
-        "ad_pct": 40,
-        "ap": 40,
-        "mr": 40,
-        "omnivamp_pct": 40
-      },
+      "stats": {},
       "effect": "Once per combat at 50% Health: shield of 60% max Health for up to 5s.",
       "status": "third_party_unverified",
       "source_ids": [
         "tactics-tools-items-2026-10-20",
         "owner-screenshots-2026-10-20"
       ],
-      "note": "effect text matches the owner's screenshot; the screenshot shows no stat line, so stats are still the page's",
+      "note": "owner's screenshot (sent twice) shows the effect and no stat line; the page transcription had 40% AD, 40 AP, 40 MR, 40% Omnivamp (kept as a conflict)",
+      "conflicts": [
+        {
+          "stats": {
+            "ad_pct": 40,
+            "ap": 40,
+            "mr": 40,
+            "omnivamp_pct": 40
+          },
+          "source_ids": [
+            "tactics-tools-items-2026-10-20"
+          ],
+          "note": "page transcription; the owner's screenshot shows no stat line"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT5_Item_BloodthirsterRadiant",
         "diffs": [
-          "ad_pct: 40 here, 30 in TFT5_Item_BloodthirsterRadiant",
-          "ap: 40 here, 30 in TFT5_Item_BloodthirsterRadiant"
+          "ad_pct: None here, 30 in TFT5_Item_BloodthirsterRadiant",
+          "ap: None here, 30 in TFT5_Item_BloodthirsterRadiant",
+          "mr: None here, 40 in TFT5_Item_BloodthirsterRadiant",
+          "omnivamp_pct: None here, 40 in TFT5_Item_BloodthirsterRadiant"
         ]
       }
     },
@@ -944,6 +955,19 @@
         "owner-screenshots-2026-10-20"
       ],
       "note": "owner's screenshot shows +50 Armor, +50 MR and no Health; the page transcription had 400 HP (wrong)",
+      "conflicts": [
+        {
+          "stats": {
+            "hp": 400,
+            "armor": 50,
+            "mr": 50
+          },
+          "source_ids": [
+            "tactics-tools-items-2026-10-20"
+          ],
+          "note": "page transcription; the owner's screenshot shows no Health"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT5_Item_GargoyleStoneplateRadiant",
         "diffs": [
@@ -1611,6 +1635,19 @@
         "owner-screenshots-2026-10-20"
       ],
       "note": "owner's screenshot shows +40 Armor, +40% Crit and no Health; the page transcription had 500 HP (wrong)",
+      "conflicts": [
+        {
+          "stats": {
+            "hp": 500,
+            "armor": 40,
+            "crit_pct": 40
+          },
+          "source_ids": [
+            "tactics-tools-items-2026-10-20"
+          ],
+          "note": "page transcription; the owner's screenshot shows no Health"
+        }
+      ],
       "older_copy_check": {
         "older_copy": "TFT5_Item_NightHarvesterRadiant",
         "diffs": [

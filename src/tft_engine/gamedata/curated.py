@@ -94,6 +94,10 @@ def apply_curated(
             item["stats_note"] = r.get("note", "")
             if r.get("older_copy_check"):
                 item["stats_check"] = r["older_copy_check"]
+            for c in r.get("conflicts", []):
+                if not c.get("source_ids"):
+                    raise SchemaError(f"{where}: each conflict needs source_ids")
+            item["stats_conflicts"] = list(r.get("conflicts", []))
         notes.append(f"item stats for {len(doc['records'])} items from curated/item_stats/{patch}")
 
     doc = _read(folder / "augment_tiers" / f"{patch}.json")
