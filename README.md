@@ -2,13 +2,14 @@
 
 Çevrimdışı bir TFT strateji araştırma ve karar motoru. Sadece maç sonrası analiz ve bağımsız simülasyon içindir: oyun istemcisini okumaz, canlı maç sırasında çalışmaz, çekirdek katmanlar ağ çağrısı yapmaz.
 
-Plan ve gerekçeler: proje dosyalarındaki `PLAN.md` (v0.4). Şu anki durum: **M0 (iskelet)**.
+Plan ve gerekçeler: [docs/PLAN.md](docs/PLAN.md). Şu anki durum ve sıradaki işler: [docs/DURUM.md](docs/DURUM.md).
 
 ## Kurulum (Windows, PowerShell)
 
-Python 3.11 veya üstü gerekir (`py --version` ile kontrol et).
+Python 3.11 veya üstü ve Git gerekir (`py --version`, `git --version` ile kontrol et).
 
 ```powershell
+git clone https://github.com/bahadiremirkizilay/tft-engine
 cd tft-engine
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1

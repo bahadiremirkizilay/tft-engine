@@ -10,3 +10,6 @@ dist/
 runs/
 data/raw/
 .env
+recordings/
+*.mp4
+*.mkv
