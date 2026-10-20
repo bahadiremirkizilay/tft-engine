@@ -32,8 +32,7 @@ Shop'taki level/olasılık göstergesinin üzerine gel. Oyun dosyasındaki değe
 | Soru | Verideki değer | Oyunda |
 |---|---|---|
 | Reroll kaç altın? | 2 | |
-| 2 maçlık galibiyet veya mağlubiyet serisinde tur sonu ek altın | 0 | 0 (sahip, 18.4b) |
-| 3–4 maçlık seride | +1 | |
+| 2 maçlık galibiyet veya mağlubiyet serisinde tur sonu ek altın | +1 | +1 (0 altın, 2. galibiyet: +7 toplam, 18.4b) |
 | 5 maçlık seride | +2 | |
 | 6+ maçlık seride | +3 | +3 (adım adım okundu, 18.4b) |
 | PvP galibiyetinde ek altın | +1 | |

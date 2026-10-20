@@ -101,16 +101,16 @@
       "source_ids": ["opgg-gold-xp", "wiki-tft-gold"]
     },
     "streak_gold": {
-      "value": [[3, 1], [5, 2], [6, 3]],
+      "value": [[2, 1], [5, 2], [6, 3]],
       "status": "third_party_unverified",
-      "source": "owner (18.4b): a 2-round streak pays no extra gold, loss streaks pay like win streaks; 6+ -> +3 read step by step in game; wiki TFT:Gold table",
-      "source_ids": ["owner-ingame-2026-10-20", "wiki-tft-gold"],
-      "note": "[[min streak length, bonus gold]]: 3-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks (a loss streak only misses the +1 win gold). Step-by-step reading (owner, 18.4b): 5 wins before the round, 14 gold before combat, 15 after the win (+1 win gold), sold a unit to 20, next round start 30: 10 = 5 base + 2 interest + 3 streak. A loss after a 6 win streak (30 gold) paid 5 + 3 = 8: the streak resets. Earlier rough totals (0 gold + 4 streak -> 6, + 5 -> 7) were not read step by step. Lengths 3-5 not read step by step.",
+      "source": "op.gg gold-xp guide (Set 18) and tft.ninja; 2 -> +1 and 6+ -> +3 read in game (owner, 18.4b)",
+      "source_ids": ["opgg-gold-xp", "tftninja-economy", "owner-ingame-2026-10-20"],
+      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks (a loss streak only misses the +1 win gold). In game (owner, 18.4b): 0 gold, 1 win before the round, won -> +7 = 1 win + 5 base + 1 streak, so a 2-round streak pays +1. Step by step: 5 wins before the round, 14 gold before combat, 15 after the win, sold a unit to 20, next round start 30: 10 = 5 base + 2 interest + 3 streak. A loss after a 6 win streak (30 gold) paid 5 + 3 = 8: the streak resets. The owner first said a 2-round streak pays nothing, then measured +1; the measurement is used. Lengths 3-5 not read step by step.",
       "conflicts": [
         {
-          "value": [[2, 1], [5, 2], [6, 3]],
-          "source_ids": ["opgg-gold-xp", "tftninja-economy"],
-          "note": "These guides start the +1 at a 2-round streak; the owner says a 2-round streak pays nothing in Set 18."
+          "value": [[3, 1], [5, 2], [6, 3]],
+          "source_ids": ["wiki-tft-gold"],
+          "note": "Wiki income section starts at 3; the owner's in-game reading shows a 2-round streak pays +1."
         }
       ]
     },

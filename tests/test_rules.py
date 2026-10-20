@@ -106,8 +106,8 @@ def test_set18_round_income_win_and_loss_streaks(set18):
     # same gold on a 4-round loss streak, loses again: base 5 + interest 3 + streak(5) 2
     lost = r.end_round(state(gold=34, streak=-4), won=False, next_stage="4-2")
     assert (lost.gold, lost.streak) == (44, -5)
-    # owner (18.4b): a 2-round streak pays nothing, 3 pays +1, 6 pays +3
-    assert [r.streak_bonus(n) for n in (1, 2, 3, 4, 5, 6, -2, -3)] == [0, 0, 1, 1, 2, 3, 0, 1]
+    # owner (18.4b): a 2-round streak pays +1, 6 pays +3; loss streaks pay the same
+    assert [r.streak_bonus(n) for n in (1, 2, 3, 4, 5, 6, -2, -3)] == [0, 1, 1, 1, 2, 3, 1, 1]
 
 
 def test_set18_sell_values_follow_the_recorded_rule(set18):
