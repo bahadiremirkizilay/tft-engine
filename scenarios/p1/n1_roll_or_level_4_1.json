@@ -1,0 +1,98 @@
+{
+  "id": "n1_roll_or_level_4_1",
+  "description": "4-1, level 7, 50 gold: roll for a 2-star 4-cost carry now or level to 8 first? One opponent may be on the same carry.",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions.",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "4-1",
+    "gold": 50,
+    "level": 7,
+    "xp": 20,
+    "hp": 55,
+    "streak": -1,
+    "units": [
+      {
+        "unit_id": "4golf",
+        "cost": 4,
+        "star": 1
+      },
+      {
+        "unit_id": "4golf",
+        "cost": 4,
+        "star": 1
+      },
+      {
+        "unit_id": "3echo",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "3india",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "2delta",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "3juliet",
+        "cost": 3,
+        "star": 2
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "golf_carry",
+      "units": [
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        },
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "3india",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "2charlie",
+          "cost": 2,
+          "star": 2
+        },
+        {
+          "unit_id": "2delta",
+          "cost": 2,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "golf_carry",
+  "contest_prior": {
+    "4golf": [
+      [
+        0.6,
+        0
+      ],
+      [
+        0.4,
+        3
+      ]
+    ]
+  }
+}

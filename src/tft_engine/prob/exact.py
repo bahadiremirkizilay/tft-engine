@@ -32,6 +32,7 @@ class RollResult:
     p_success_ci95: tuple[float, float] | None = None  # sampler only
     n_samples: int | None = None
     extra: dict = field(default_factory=dict)
+    joint: dict[tuple[bool, int], float] = field(default_factory=dict)  # (success, gold) -> p
 
     @property
     def expected_gold_left(self) -> float:
@@ -139,4 +140,5 @@ def roll_down_exact(query: RollQuery, belief: PoolBelief, model: ShopModel) -> R
         assumptions=model.assumptions,
         pool_basis=belief.basis,
         start_gold=query.gold,
+        joint=dict(total),
     )

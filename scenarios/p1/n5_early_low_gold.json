@@ -1,0 +1,66 @@
+{
+  "id": "n5_early_low_gold",
+  "description": "2-1, level 4, 10 gold, nothing upgraded: very little to decide yet.",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions.",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "2-1",
+    "gold": 10,
+    "level": 4,
+    "xp": 0,
+    "hp": 100,
+    "streak": 0,
+    "units": [
+      {
+        "unit_id": "1alfa",
+        "cost": 1,
+        "star": 1
+      },
+      {
+        "unit_id": "1alfa",
+        "cost": 1,
+        "star": 1
+      },
+      {
+        "unit_id": "1bravo",
+        "cost": 1,
+        "star": 1
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 1
+      },
+      {
+        "unit_id": "2delta",
+        "cost": 2,
+        "star": 1
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "early_pairs",
+      "units": [
+        {
+          "unit_id": "1alfa",
+          "cost": 1,
+          "star": 2
+        },
+        {
+          "unit_id": "1bravo",
+          "cost": 1,
+          "star": 2
+        },
+        {
+          "unit_id": "2charlie",
+          "cost": 2,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "early_pairs"
+}

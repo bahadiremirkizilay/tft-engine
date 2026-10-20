@@ -1,0 +1,151 @@
+{
+  "id": "o5_pivot_off_contested",
+  "description": "Main carry has no copies left; an uncontested alternative needs one more copy of a 3-cost. Low HP.",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions.",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "4-2",
+    "gold": 40,
+    "level": 7,
+    "xp": 10,
+    "hp": 30,
+    "streak": -3,
+    "units": [
+      {
+        "unit_id": "4golf",
+        "cost": 4,
+        "star": 1
+      },
+      {
+        "unit_id": "3november",
+        "cost": 3,
+        "star": 1
+      },
+      {
+        "unit_id": "3november",
+        "cost": 3,
+        "star": 1
+      },
+      {
+        "unit_id": "3echo",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "3india",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "2delta",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "2oscar",
+        "cost": 2,
+        "star": 2
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "golf_carry",
+      "units": [
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        },
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "3india",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "2charlie",
+          "cost": 2,
+          "star": 2
+        }
+      ]
+    },
+    {
+      "name": "november_carry",
+      "units": [
+        {
+          "unit_id": "3november",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "3india",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "2oscar",
+          "cost": 2,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "golf_carry",
+  "observed_opponents": [
+    {
+      "player": "p2",
+      "seen_at": "4-1",
+      "units": [
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        }
+      ]
+    },
+    {
+      "player": "p3",
+      "seen_at": "4-1",
+      "units": [
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        }
+      ]
+    },
+    {
+      "player": "p6",
+      "seen_at": "4-1",
+      "units": [
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "best_in": [
+      "D:november_carry"
+    ]
+  }
+}

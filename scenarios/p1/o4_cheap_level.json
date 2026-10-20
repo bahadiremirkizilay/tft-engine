@@ -1,0 +1,91 @@
+{
+  "id": "o4_cheap_level",
+  "description": "4 XP short of level 8 at 4-1 with 64 gold (above the interest cap) and a strong unit waiting on the bench; comp already done.",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions.",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "4-1",
+    "gold": 64,
+    "level": 7,
+    "xp": 52,
+    "hp": 70,
+    "streak": 0,
+    "units": [
+      {
+        "unit_id": "4golf",
+        "cost": 4,
+        "star": 2
+      },
+      {
+        "unit_id": "3echo",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "3india",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "2delta",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "3juliet",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "2mike",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "4hotel",
+        "cost": 4,
+        "star": 2
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "done",
+      "units": [
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        },
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "3india",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "2charlie",
+          "cost": 2,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "done",
+  "expected": {
+    "best_in": [
+      "B"
+    ]
+  }
+}

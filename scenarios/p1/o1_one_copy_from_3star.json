@@ -1,0 +1,96 @@
+{
+  "id": "o1_one_copy_from_3star",
+  "description": "1 copy missing for a 3-star 1-cost, many copies left, enough gold, HP under pressure.",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions.",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "3-2",
+    "gold": 50,
+    "level": 5,
+    "xp": 4,
+    "hp": 45,
+    "streak": -2,
+    "units": [
+      {
+        "unit_id": "1alfa",
+        "cost": 1,
+        "star": 2
+      },
+      {
+        "unit_id": "1alfa",
+        "cost": 1,
+        "star": 2
+      },
+      {
+        "unit_id": "1alfa",
+        "cost": 1,
+        "star": 1
+      },
+      {
+        "unit_id": "1alfa",
+        "cost": 1,
+        "star": 1
+      },
+      {
+        "unit_id": "1bravo",
+        "cost": 1,
+        "star": 2
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "2delta",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "3echo",
+        "cost": 3,
+        "star": 2
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "reroll_1alfa",
+      "units": [
+        {
+          "unit_id": "1alfa",
+          "cost": 1,
+          "star": 3
+        },
+        {
+          "unit_id": "1bravo",
+          "cost": 1,
+          "star": 2
+        },
+        {
+          "unit_id": "2charlie",
+          "cost": 2,
+          "star": 2
+        },
+        {
+          "unit_id": "2delta",
+          "cost": 2,
+          "star": 2
+        },
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "reroll_1alfa",
+  "expected": {
+    "best_in": [
+      "A"
+    ]
+  }
+}

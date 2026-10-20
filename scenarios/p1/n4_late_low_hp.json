@@ -1,0 +1,112 @@
+{
+  "id": "n4_late_low_hp",
+  "description": "5-1, level 8, 20 HP: chase a 2-star 5-cost or pivot to a 4-cost line with one copy missing.",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions.",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "5-1",
+    "gold": 44,
+    "level": 8,
+    "xp": 10,
+    "hp": 20,
+    "streak": -2,
+    "units": [
+      {
+        "unit_id": "5papa",
+        "cost": 5,
+        "star": 1
+      },
+      {
+        "unit_id": "5papa",
+        "cost": 5,
+        "star": 1
+      },
+      {
+        "unit_id": "4golf",
+        "cost": 4,
+        "star": 2
+      },
+      {
+        "unit_id": "4hotel",
+        "cost": 4,
+        "star": 1
+      },
+      {
+        "unit_id": "4hotel",
+        "cost": 4,
+        "star": 1
+      },
+      {
+        "unit_id": "3echo",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "3india",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 2
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "papa_carry",
+      "units": [
+        {
+          "unit_id": "5papa",
+          "cost": 5,
+          "star": 2
+        },
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        },
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "3india",
+          "cost": 3,
+          "star": 2
+        }
+      ]
+    },
+    {
+      "name": "hotel_carry",
+      "units": [
+        {
+          "unit_id": "4hotel",
+          "cost": 4,
+          "star": 2
+        },
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        },
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "3india",
+          "cost": 3,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "papa_carry",
+  "opponents_alive": 4
+}

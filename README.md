@@ -59,6 +59,14 @@ tft-engine odds --set set18 --patch 18.4 --level 8 --gold 50 --target Ahri:4:2 -
 - `--wisp` her iki shop'ta bir Wisp'in bir şampiyon yerini kapladığını varsayar (doğrulanmadı).
 - Çıktı, hesabın dayandığı varsayımları ve gözden geçirilmemiş yamaları her zaman yazar.
 
+## Karar prototipi (P1)
+
+```powershell
+tft-engine decide scenarios/p1/o1_one_copy_from_3star.json
+```
+
+Senaryo dosyaları `scenarios/p1/` altında. Çıktı her aday için olasılıkları, altını, HP kaybını, her sayının güven sınıfını ve kararı en çok değiştiren varsayımları gösterir. Sonuçlar ve bulgular: [docs/P1_SONUC.md](docs/P1_SONUC.md).
+
 ## Yama verisi
 
 Her set için `data/sets/<set>/base.json` ve her yama için `data/sets/<set>/patches/<yama>.json` vardır. Yama dosyası sadece değişiklikleri (buff, nerf vb.) kaynağıyla birlikte içerir. Dosyası olmayan bir yama yüklenmez.

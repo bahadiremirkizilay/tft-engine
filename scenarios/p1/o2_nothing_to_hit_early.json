@@ -1,0 +1,77 @@
+{
+  "id": "o2_nothing_to_hit_early",
+  "description": "Healthy and win-streaking at 2-5; current goal needs two 2-star 4-costs at level 5.",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions.",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "2-5",
+    "gold": 40,
+    "level": 5,
+    "xp": 2,
+    "hp": 90,
+    "streak": 3,
+    "units": [
+      {
+        "unit_id": "1alfa",
+        "cost": 1,
+        "star": 2
+      },
+      {
+        "unit_id": "1bravo",
+        "cost": 1,
+        "star": 2
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "2delta",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "1foxtrot",
+        "cost": 1,
+        "star": 2
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "late_4costs",
+      "units": [
+        {
+          "unit_id": "4golf",
+          "cost": 4,
+          "star": 2
+        },
+        {
+          "unit_id": "4hotel",
+          "cost": 4,
+          "star": 2
+        },
+        {
+          "unit_id": "2charlie",
+          "cost": 2,
+          "star": 2
+        },
+        {
+          "unit_id": "2delta",
+          "cost": 2,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "late_4costs",
+  "expected": {
+    "best_in": [
+      "B",
+      "C"
+    ]
+  }
+}

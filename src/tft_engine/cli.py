@@ -3,6 +3,7 @@
 Examples:
     tft-engine run toy_dice_mean --config configs/example.json --seed 1 --log runs/runs.jsonl
     tft-engine replay runs/runs.jsonl
+    tft-engine decide scenarios/p1/o1_one_copy_from_3star.json
     tft-engine odds --set set18 --patch 18.4 --level 8 --gold 50 --target Ahri:4:2 --taken Ahri:3
 """
 
@@ -13,6 +14,8 @@ import json
 import sys
 from pathlib import Path
 
+from tft_engine.decision import Evaluator, load_scenario
+from tft_engine.decision.report import render
 from tft_engine.experiments import load_records, replay, run_experiment
 from tft_engine.gamedata import load_gamedata
 from tft_engine.prob import IndependentShopModel, RollQuery, Target, roll_down_exact
@@ -80,6 +83,16 @@ def _cmd_odds(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_decide(args: argparse.Namespace) -> int:
+    sc = load_scenario(args.scenario)
+    ev = Evaluator(sc)
+    result = ev.evaluate()
+    sens = None if args.no_sensitivity else ev.sensitivity(result)
+    augs = ev.augments() if sc.augment_offers else None
+    print(render(sc, result, sens, augs))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="tft-engine")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -112,6 +125,11 @@ def main(argv: list[str] | None = None) -> int:
         help="force whether a Wisp takes a champion slot (default: follow the set data)",
     )
     p_odds.set_defaults(func=_cmd_odds)
+
+    p_dec = sub.add_parser("decide", help="P1: compare candidate decisions for a scenario")
+    p_dec.add_argument("scenario", help="scenario JSON file")
+    p_dec.add_argument("--no-sensitivity", action="store_true")
+    p_dec.set_defaults(func=_cmd_decide)
 
     args = parser.parse_args(argv)
     return args.func(args)

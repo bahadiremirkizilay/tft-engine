@@ -102,6 +102,7 @@ def roll_down_sample(
 
     s = int(success.sum())
     counts = Counter(gold.tolist())
+    joint = Counter(zip(success.tolist(), gold.tolist(), strict=True))
     return RollResult(
         p_success=s / n,
         gold_left={g: c / n for g, c in sorted(counts.items())},
@@ -114,4 +115,5 @@ def roll_down_sample(
         p_success_ci95=wilson_ci(s, n),
         n_samples=n,
         extra={"seed": seed, "stream": stream},
+        joint={key: c / n for key, c in joint.items()},
     )
