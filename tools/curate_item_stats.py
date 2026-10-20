@@ -31,38 +31,38 @@ PAGE = "tactics-tools-items-2026-10-20"
 
 # name | stats | effect | extra sources (comma separated) | note
 CRAFTABLE = """
-Adaptive Helm | 20 MR, 3 Mana Regen | +15% Mana gain. Tanks and Fighters gain 30 Armor and MR; other roles gain 10% AD and AP. | |
+Adaptive Helm | 20 MR, 3 Mana Regen | +15% Mana gain. Tanks and Fighters gain 30 Armor and MR; other roles gain 10% AD and AP. | METATFT | MetaTFT says 80 Armor and MR for Tanks and Fighters (kept as a conflict; 80 is the Radiant value in the older game-file copy, the base copy has 30)
 Archangel's Staff | 30 AP, 1 Mana Regen | Combat start and every 5s in combat: +20 AP. | SHOTS |
-Bloodthirster | 18% AD, 18 AP, 20 MR, 20% Omnivamp | Once per combat at 50% Health: shield of 30% max Health for up to 5s. | |
+Bloodthirster | 18% AD, 18 AP, 20 MR, 20% Omnivamp | Once per combat at 50% Health: shield of 30% max Health for up to 5s. | METATFT |
 Blue Buff | 15% AD, 15 AP, 5 Mana Regen | +10% additional AD and AP from all sources. | SHOTS |
-Bramble Vest | 50 Armor | +6% max Health; 5% less damage from attacks; when struck, 100 magic damage to adjacent enemies (2s cooldown). | |
-Crownguard | 100 HP, 20 AP, 20 Armor | Combat start: shield of 25% max Health for 8s; when it expires, +20 AP. | SHOTS, riot-notes-18.4 | 18.4: AP on shield expire 25 => 20; the screenshot still shows the pre-18.4 25% AP on expire
-Deathblade | 55% AD, 10% Damage Amp | Stacking bonus with more copies (page text was a placeholder). | |
+Bramble Vest | 50 Armor | +6% max Health; 5% less damage from attacks; when struck, 100 magic damage to adjacent enemies (2s cooldown). | METATFT |
+Crownguard | 100 HP, 20 AP, 20 Armor | Combat start: shield of 25% max Health for 8s; when it expires, +20 AP. | METATFT, SHOTS, riot-notes-18.4 | 18.4: AP on shield expire 25 => 20; the screenshot still shows the pre-18.4 25% AP on expire
+Deathblade | 55% AD, 10% Damage Amp | Stacking bonus with more copies (page text was a placeholder). | METATFT |
 Dragon's Claw | 60 MR | +6% max Health; every 2s heal 2.5% max Health. | SHOTS |
 Edge of Night | 10% AD, 10 AP, 20 Armor, 15% AS | At 40% Health: briefly untargetable, shed negative effects, heal 15% missing Health. | SHOTS |
-Evenshroud | 20 MR, 250 HP | 30% Sunder to enemies within 2 hexes; first 15s of combat: +15 Armor and MR. | |
-Gargoyle Stoneplate | 100 HP, 25 Armor, 25 MR | +10 Armor and MR for each enemy targeting the holder. | |
-Giant Slayer | 15% AD, 15 AP, 15% AS, 15% Damage Amp | +15% additional Damage Amp against Tanks. | |
-Guinsoo's Rageblade | 10 AP, 10% AS | +7% stacking Attack Speed every second. | |
-Hand of Justice | 20% Crit, 1 Mana Regen | 18% AD and AP and 15% Omnivamp; AD/AP doubled above 50% Health, Omnivamp doubled below 50% Health. | |
-Hextech Gunblade | 20% AD, 20 AP, 15% Omnivamp, 1 Mana Regen | Heals the lowest-Health ally for 20% of damage dealt. | |
+Evenshroud | 20 MR, 250 HP | 30% Sunder to enemies within 2 hexes; first 15s of combat: +15 Armor and MR. | METATFT |
+Gargoyle Stoneplate | 100 HP, 25 Armor, 25 MR | +10 Armor and MR for each enemy targeting the holder. | METATFT |
+Giant Slayer | 15% AD, 15 AP, 15% AS, 15% Damage Amp | +15% additional Damage Amp against Tanks. | METATFT |
+Guinsoo's Rageblade | 10 AP, 10% AS | +7% stacking Attack Speed every second. | METATFT |
+Hand of Justice | 20% Crit, 1 Mana Regen | 18% AD and AP and 15% Omnivamp; AD/AP doubled above 50% Health, Omnivamp doubled below 50% Health. | METATFT |
+Hextech Gunblade | 20% AD, 20 AP, 15% Omnivamp, 1 Mana Regen | Heals the lowest-Health ally for 20% of damage dealt. | METATFT |
 Infinity Edge | 35% AD, 35% Crit | Precision: abilities can crit; extra Precision adds 10% Crit Damage. | SHOTS |
 Ionic Spark | 250 HP, 15 AP, 35 MR | 30% Shred to enemies within 2 hexes; enemy casts take magic damage equal to 150% of the Mana spent. | SHOTS |
 Jeweled Gauntlet | 35 AP, 35% Crit | Precision: abilities can crit; extra Precision adds 10% Crit Damage. | SHOTS |
 Kraken's Fury | 10% AD, 20 MR, 10% AS | Attacks grant 3.5% stacking AD (up to 15 attacks), then +15% Attack Speed. | SHOTS |
 Last Whisper | 15% AD, 20% AS, 20% Crit | Attacks and abilities Sunder 30% for 3s (does not stack). | SHOTS |
-Morellonomicon | 150 HP, 20 AP, 1 Mana Regen | Attacks and abilities apply 1% Burn and 33% Wound for 10s. | |
-Nashor's Tooth | 150 HP, 15 AP, 10% AS, 20% Crit | Attacks grant 2 bonus Mana (2 more on crit). | |
+Morellonomicon | 150 HP, 20 AP, 1 Mana Regen | Attacks and abilities apply 1% Burn and 33% Wound for 10s. | METATFT |
+Nashor's Tooth | 150 HP, 15 AP, 10% AS, 20% Crit | Attacks grant 2 bonus Mana (2 more on crit). | METATFT |
 Protector's Vow | 25 Armor, 25 MR, 1 Mana Regen | Combat start: 20 Mana. At 40% Health: 15 Mana and a shield of 20% max Health. | SHOTS |
 Quicksilver | 20 MR, 15% AS, 20% Crit | Combat start: Unstoppable for 18s; +3% stacking Attack Speed per second. | SHOTS |
-Rabadon's Deathcap | 55 AP, 15% Damage Amp | Stacking bonus with more copies (page text was a placeholder). | |
-Red Buff | 45% AS, 3% Damage Amp | Attacks and abilities apply 1% Burn and 33% Wound for 5s. | |
+Rabadon's Deathcap | 55 AP, 15% Damage Amp | Stacking bonus with more copies (page text was a placeholder). | METATFT |
+Red Buff | 45% AS, 3% Damage Amp | Attacks and abilities apply 1% Burn and 33% Wound for 5s. | METATFT |
 Spear of Shojin | 15% AD, 15 AP, 1 Mana Regen | Attacks grant 5 bonus Mana. | SHOTS |
-Spirit Visage | 300 HP, 10% Durability, 2 Mana Regen | Regenerate 2% of missing Health per second. | riot-notes-18.4 | 18.4: Durability 8% => 10% (the page called it damage reduction)
-Steadfast Heart | 250 HP, 20 Armor, 20% Crit | 5% Durability (15% above 50% Health). | |
-Sterak's Gage | 300 HP, 45% AD | At 60% Health: shield of 40% max Health, decaying over 4s. | |
-Striker's Flail | 150 HP, 10% AS, 20% Crit, 10% Damage Amp | Crits grant 5% Damage Amp for 5s, up to 4 stacks. | |
-Sunfire Cape | 150 HP, 20 Armor | +8% max Health; every 2s, 1% Burn and 33% Wound to a nearby enemy for 10s. | |
+Spirit Visage | 300 HP, 10% Durability, 2 Mana Regen | Regenerate 2% of missing Health per second. | METATFT, riot-notes-18.4 | 18.4: Durability 8% => 10% (the page called it damage reduction)
+Steadfast Heart | 250 HP, 20 Armor, 20% Crit | 5% Durability (15% above 50% Health). | METATFT | MetaTFT shows a Health stat with the value '?'
+Sterak's Gage | 300 HP, 45% AD | At 60% Health: shield of 40% max Health, decaying over 4s. | METATFT |
+Striker's Flail | 150 HP, 10% AS, 20% Crit, 10% Damage Amp | Crits grant 5% Damage Amp for 5s, up to 4 stacks. | METATFT |
+Sunfire Cape | 150 HP, 20 Armor | +8% max Health; every 2s, 1% Burn and 33% Wound to a nearby enemy for 10s. | METATFT |
 Thief's Gloves | 150 HP, 20% Crit | Each round: equip 2 random items (uses all 3 slots). | SHOTS |
 Titan's Resolve | 20 Armor, 10% AS | +2% AD and AP per attack or damage taken (up to 25 stacks); at full: 10% Damage Amp and Unstoppable. | SHOTS |
 Void Staff | 35 AP, 15% AS, 1 Mana Regen | Attacks and abilities Shred 30% for 5s (does not stack). | SHOTS |
@@ -143,6 +143,8 @@ Zhonya's Paradox | 25 AP, 25 Armor, 25 MR | Once per combat at 40% Health: invul
 """
 
 SHOTS = "owner-screenshots-2026-10-20"
+METATFT = "metatft-items-2026-10-20"
+TOKENS = {"SHOTS": SHOTS, "METATFT": METATFT}
 
 # The owner's screenshots come from a site whose tooltips leave out some stats
 # (Health on Gargoyle Stoneplate, Steadfast Heart, Sunfire Cape ...; every Damage
@@ -164,7 +166,14 @@ CONFLICTS: dict[str, list[dict]] = {
     ],
     "Rabadon's Deathcap": [{"stats": {"ap": 55}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
     "Deathblade": [{"stats": {"ad_pct": 55}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
-    "Adaptive Helm": [{"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE}],
+    "Adaptive Helm": [
+        {"stats": {}, "source_ids": [SHOTS], "note": SHOT_NOTE},
+        {
+            "effect": "Tanks and Fighters gain 80 Armor and MR",
+            "source_ids": [METATFT],
+            "note": "MetaTFT tooltip; the older game-file copy has FrontlineResists 30 for the base item and 80 for the Radiant one; no patch note changed it",
+        },
+    ],
     "Giant Slayer": [
         {"stats": {"ad_pct": 15, "ap": 15, "as_pct": 15}, "source_ids": [SHOTS], "note": SHOT_NOTE}
     ],
@@ -331,7 +340,7 @@ def build(set_id: str, patch: str) -> dict:
     blocks = ((CRAFTABLE, [PAGE]), (RADIANT, [PAGE]), (ARTIFACT, [PAGE]), (EMBLEM, []))
     for block, base_sources in blocks:
         for name, stats, effect, extra, note in rows(block):
-            extra = [SHOTS if s.strip() == "SHOTS" else s.strip() for s in extra]
+            extra = [TOKENS.get(s.strip(), s.strip()) for s in extra]
             ids = by_name.get(name.lower(), [])
             if not ids and len(other.get(name.lower(), [])) == 1:
                 ids = other[name.lower()]

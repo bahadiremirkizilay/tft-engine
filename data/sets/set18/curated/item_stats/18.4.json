@@ -295,8 +295,10 @@
       "effect": "+15% Mana gain. Tanks and Fighters gain 30 Armor and MR; other roles gain 10% AD and AP.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
+      "note": "MetaTFT says 80 Armor and MR for Tanks and Fighters (kept as a conflict; 80 is the Radiant value in the older game-file copy, the base copy has 30)",
       "conflicts": [
         {
           "stats": {},
@@ -304,6 +306,13 @@
             "owner-screenshots-2026-10-20"
           ],
           "note": "owner's screenshot (stats site) shows only these stats; the older game-file copy matches the page values, so the site likely leaves stats out"
+        },
+        {
+          "effect": "Tanks and Fighters gain 80 Armor and MR",
+          "source_ids": [
+            "metatft-items-2026-10-20"
+          ],
+          "note": "MetaTFT tooltip; the older game-file copy has FrontlineResists 30 for the base item and 80 for the Radiant one; no patch note changed it"
         }
       ],
       "older_copy_check": {
@@ -924,7 +933,8 @@
       "effect": "Once per combat at 50% Health: shield of 30% max Health for up to 5s.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1020,7 +1030,8 @@
       "effect": "+6% max Health; 5% less damage from attacks; when struck, 100 magic damage to adjacent enemies (2s cooldown).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1064,6 +1075,7 @@
       "status": "third_party_unverified",
       "source_ids": [
         "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20",
         "owner-screenshots-2026-10-20",
         "riot-notes-18.4"
       ],
@@ -1102,7 +1114,8 @@
       "effect": "Stacking bonus with more copies (page text was a placeholder).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1219,7 +1232,8 @@
       "effect": "30% Sunder to enemies within 2 hexes; first 15s of combat: +15 Armor and MR.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1265,7 +1279,8 @@
       "effect": "+10 Armor and MR for each enemy targeting the holder.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1328,7 +1343,8 @@
       "effect": "+15% additional Damage Amp against Tanks.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1377,7 +1393,8 @@
       "effect": "+7% stacking Attack Speed every second.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1420,7 +1437,8 @@
       "effect": "18% AD and AP and 15% Omnivamp; AD/AP doubled above 50% Health, Omnivamp doubled below 50% Health.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1465,7 +1483,8 @@
       "effect": "Heals the lowest-Health ally for 20% of damage dealt.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1710,7 +1729,8 @@
       "effect": "Attacks and abilities apply 1% Burn and 33% Wound for 10s.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1756,7 +1776,8 @@
       "effect": "Attacks grant 2 bonus Mana (2 more on crit).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1877,7 +1898,8 @@
       "effect": "Stacking bonus with more copies (page text was a placeholder).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -1922,7 +1944,8 @@
       "effect": "Attacks and abilities apply 1% Burn and 33% Wound for 5s.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -2006,6 +2029,7 @@
       "status": "third_party_unverified",
       "source_ids": [
         "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20",
         "riot-notes-18.4"
       ],
       "note": "18.4: Durability 8% => 10% (the page called it damage reduction)",
@@ -2054,8 +2078,10 @@
       "effect": "5% Durability (15% above 50% Health).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
+      "note": "MetaTFT shows a Health stat with the value '?'",
       "conflicts": [
         {
           "stats": {
@@ -2115,7 +2141,8 @@
       "effect": "At 60% Health: shield of 40% max Health, decaying over 4s.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -2160,7 +2187,8 @@
       "effect": "Crits grant 5% Damage Amp for 5s, up to 4 stacks.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
@@ -2209,7 +2237,8 @@
       "effect": "+8% max Health; every 2s, 1% Burn and 33% Wound to a nearby enemy for 10s.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "metatft-items-2026-10-20"
       ],
       "conflicts": [
         {
