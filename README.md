@@ -69,6 +69,16 @@ tft-engine decide scenarios/p1/o1_one_copy_from_3star.json
 
 Senaryo dosyaları `scenarios/p1/` altında. Çıktı her aday için olasılıkları, altını, HP kaybını, her sayının güven sınıfını ve kararı en çok değiştiren varsayımları gösterir. Sonuçlar ve bulgular: [docs/P1_SONUC.md](docs/P1_SONUC.md).
 
+Augment'ler ve shop kuralları (B3):
+
+- Augment teklifi gerçek id ile: `"augment_offers": [{"augment": "DA_LevelUp"}, {"augment": "DA_TradeSector"}]`. Motor her teklifi seçilmiş sayıp en iyi adayı bulur; modellenemeyen kısımları not olarak yazar.
+- Daha önce seçilmiş augment'ler `state.augments` içine yazılır (ör. `["DA_UpwardMobility"]`) ve bütün adayların kurallarını değiştirir. Bedava reroll'lar `state.free_rerolls`, aktif trait'ler `active_traits` (ör. `{"DA_18_Blossom": 5}`).
+- Roll adayları Wisp almadan ve "önce Wisp al" olarak iki kez hesaplanır, iyisi gösterilir.
+
+```powershell
+tft-engine data augments --set set18 --patch 18.4 --list   # hangi augment ne kadar modellendi
+```
+
 ## Bilgi tabanı (B1): şampiyon, trait, item, augment, Wisp
 
 Set verisi CommunityDragon'un oyun dosyası dışa aktarımından otomatik üretilir (resmi değil; ayrıntı [docs/KAYNAKLAR.md](docs/KAYNAKLAR.md)).

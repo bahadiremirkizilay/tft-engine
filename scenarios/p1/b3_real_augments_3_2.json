@@ -1,0 +1,85 @@
+{
+  "id": "b3_real_augments_3_2",
+  "description": "Augment round at 3-2 with real Set 18 offers: Level Up!, Trade Sector and Upward Mobility (rule-changing), plus Time Skip (not modelled).",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions. Augment numbers come from the 18.4 game data with the curated note overrides.",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "3-2",
+    "gold": 22,
+    "level": 5,
+    "xp": 6,
+    "hp": 72,
+    "streak": 1,
+    "units": [
+      {
+        "unit_id": "1alfa",
+        "cost": 1,
+        "star": 2
+      },
+      {
+        "unit_id": "1bravo",
+        "cost": 1,
+        "star": 2
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "2delta",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "3echo",
+        "cost": 3,
+        "star": 1
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "echo_carry",
+      "units": [
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "2charlie",
+          "cost": 2,
+          "star": 2
+        },
+        {
+          "unit_id": "2delta",
+          "cost": 2,
+          "star": 2
+        },
+        {
+          "unit_id": "1alfa",
+          "cost": 1,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "echo_carry",
+  "augment_offers": [
+    {
+      "augment": "DA_LevelUp"
+    },
+    {
+      "augment": "DA_TradeSector"
+    },
+    {
+      "augment": "DA_UpwardMobility"
+    },
+    {
+      "augment": "DA_TimeSkip"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Proje durumu
 
-Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; kararlar en üstte). Kaynaklar: [KAYNAKLAR.md](KAYNAKLAR.md). Veri erişim ve izin raporu: [VERI_KAYNAKLARI.md](VERI_KAYNAKLARI.md). Önceki plan: [PLAN_v0.4.md](PLAN_v0.4.md).
+Son güncelleme: 2026-10-21. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; kararlar en üstte). Kaynaklar: [KAYNAKLAR.md](KAYNAKLAR.md). Veri erişim ve izin raporu: [VERI_KAYNAKLARI.md](VERI_KAYNAKLARI.md). Önceki plan: [PLAN_v0.4.md](PLAN_v0.4.md).
 
 ## Neredeyiz
 
@@ -12,8 +12,8 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 | **B0: plan v0.5 ve belgeler** | **Bitti (2026-10-20)** |
 | **B1: kaynak kaydı + CommunityDragon importer** | **Bitti (2026-10-20)**, 18.4 için. Ayrıntı aşağıda |
 | **B2: ekonomi ve shop'u tamamlama** | **Bitti (2026-10-20).** Ayrıntı aşağıda |
-| B3: modifier ve olay sistemi | Sıradaki |
-| B4: item ve trait yapısı | Başlamadı |
+| **B3: modifier ve olay sistemi** | **Bitti (2026-10-21).** Ayrıntı aşağıda |
+| B4: item ve trait yapısı | Sıradaki |
 | B5: komp şablonları ve meta | Başlamadı |
 | B6: savaş ve dizilim arayüzü | Başlamadı |
 | B7: yama döngüsü + Set 19 provası | Başlamadı |
@@ -55,6 +55,15 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Augment tier'ları:** 245 ad `curated/augment_tiers/18.4.json` içinde (Chosen of the Sun 18.4'te Silver'a indi). "Nesting Dolls" oyun dosyasında yok.
 - **Resmi not düzeltmeleri:** `curated/overrides/18.4.json` içinde 33 augment ve Wisp değeri, 3 şampiyon değeri (18.4b: Varus mana, Mama Beak AD) ve 2026-10-20'de 18.2/18.3/18.4 notlarıyla şampiyon ve trait taramasından çıkan 9 değer (Hecarim başlangıç manası 50, Varus AS 0,75, Lunar AP 7/12/16/20, Sprykin (7) %55, Juggernaut (4) %30, Hunter (4) %40). Trait eşikleri liste sırasıyla adreslenir (`breakpoints.1.values.X`). Elderwood'un çözülemeyen iki değeri (0,25 ve 0,1) her eşikte aynı ve açıklamada görünmüyor; oyunun iç değerleri. Oyun dosyası 18.4 sayı değişikliklerini içermiyordu. Alanı dosyada olmayan değişiklikler (Wisp maliyetleri, Trait Ladder ödülleri vb.) "pending" listesinde.
 - `load_knowledge` bu üç katmanı otomatik uyguluyor. Düzeltmenin beklediği eski değer dosyada yoksa yükleme hata veriyor.
+
+## B3 sonucu (2026-10-21)
+
+- **Modifier ve olay katmanı** (`rules/modifiers.py`): kural değiştiren `Modifier` (set/add/mul/min/max, sıra belirlenimli) ve tetikleyiciye bağlı `Event` (now, round_start, after_combat_win/loss, stage_start, level_up, buy_xp, wisp_bought). `Rules` her parametreyi modifier'larla okur, hangi augment'in neyi değiştirdiğini kaydeder ve olayları `end_round`, `buy_xp`, `gain_xp` içinde ateşler.
+- **Tek doğruluk kaynağı düzeltmeleri:** Roll hesabı reroll fiyatını `Rules` üzerinden okuyor. 3 turluk ileri bakışın hasarı `player_damage` kuralından geliyor; ayrı `damage_by_stage` tablosu kalktı, sadece hayatta kalan rakip birim sayısı varsayım. `GameState` bedava reroll, sahip olunan augment'ler ve olay sayaçlarını taşıyor; `RollQuery.free_rolls` ile bedava reroll'lar roll hesabında önce kullanılıyor.
+- **Shop modeli:** Slot sayısı artık bir dağılım (`slot_probs`). Wisp: shop'ta Wisp çıkma olasılığı varsayım (`wisp_shop_prob`, set verisinden 0,5; 5 Blossom'da 1). Roll adayları iki şekilde hesaplanıyor: Wisp almadan ve "önce Wisp al" (`wisp_price`, varsayılan 1 altın; o turun bütün shop'ları 5 şampiyon). Lux formu: elinde Lux yoksa istediğin formun payı 1/9, başka form elindeyse 0, aynı form elindeyse 1. Inferno ve Riftbeast savaştan sonraki ilk shop'u değiştiriyor; roll hesabı o shop'u zaten ekranda saydığı için modele not olarak yazıldı.
+- **Augment modelleri** (`curated/effects/augments.json`): 64 ekonomi/XP/shop augment'i; 27 tam, 32 kısmi (eksik kısım yazılı: birim, item, bileşen, savaş etkisi ya da motorun göremediği koşullar), 5 sadece metin. Sayılar augment kaydındaki değerlere referans; not düzeltmeleri (ör. Level Up! 10 XP) otomatik geliyor. Kapsam: `tft-engine data augments --set set18 --patch 18.4 --list`.
+- **Senaryolarda:** Augment teklifi gerçek id ile verilebiliyor (`{"augment": "DA_LevelUp"}`). Sahip olunan augment'ler `state.augments`, bedava reroll'lar `state.free_rerolls`, aktif trait'ler `active_traits` alanında. Yeni senaryolar: `b3_real_augments_3_2`, `b3_wisp_first_three_star`.
+- **P1'e etkisi:** Kararların harfi hiçbir senaryoda değişmedi. Yeni Wisp modeli yüzünden o1 ve o5'te en iyi seçenek artık "önce Wisp al, sonra roll at"; n3'te roll seçeneği 3. sıradan 2. sıraya çıktı (hedefe ulaşma %37,8 → %44,0). Hasar düzeltmesi puanları değiştirmedi (aşama 2–6 hasarları aynı kaldı).
 
 ## Araştırmanın önemli sonuçları (ayrıntı: KAYNAKLAR.md)
 

@@ -1,0 +1,84 @@
+{
+  "id": "b3_wisp_first_three_star",
+  "description": "Same board as n3 (level 7, 50 gold, 6 of 9 copies of a 3-cost) with 5 Blossom active: every shop shows a Wisp, so buying one first frees a champion slot for the whole roll-down.",
+  "note": "Unit names are placeholders (cost is the first digit), not Set 18 champions. Blossom count is given in active_traits; the every-shop rule comes from the Blossom trait text (set data).",
+  "set": "set18",
+  "patch": "18.4",
+  "seed": 1,
+  "state": {
+    "stage": "4-3",
+    "gold": 50,
+    "level": 7,
+    "xp": 30,
+    "hp": 50,
+    "streak": 0,
+    "units": [
+      {
+        "unit_id": "3echo",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "3echo",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "3india",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "2charlie",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "2delta",
+        "cost": 2,
+        "star": 2
+      },
+      {
+        "unit_id": "3juliet",
+        "cost": 3,
+        "star": 2
+      },
+      {
+        "unit_id": "4golf",
+        "cost": 4,
+        "star": 2
+      }
+    ]
+  },
+  "comps": [
+    {
+      "name": "echo_3star",
+      "units": [
+        {
+          "unit_id": "3echo",
+          "cost": 3,
+          "star": 3
+        },
+        {
+          "unit_id": "3india",
+          "cost": 3,
+          "star": 2
+        },
+        {
+          "unit_id": "2charlie",
+          "cost": 2,
+          "star": 2
+        },
+        {
+          "unit_id": "2delta",
+          "cost": 2,
+          "star": 2
+        }
+      ]
+    }
+  ],
+  "current_comp": "echo_3star",
+  "active_traits": {
+    "DA_18_Blossom": 5
+  }
+}
