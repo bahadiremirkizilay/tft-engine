@@ -145,3 +145,11 @@ def test_decide_command(capsys):
     out = capsys.readouterr().out
     assert "Motorun tercihi: [A]" in out
     assert "UYUMLU" in out
+
+
+def test_free_rerolls_in_the_state_raise_the_hit_chance():
+    d = json.loads((SCEN_DIR / "n1_roll_or_level_4_1.json").read_text(encoding="utf-8"))
+    plain = Evaluator(Scenario.from_dict(d)).evaluate().by_key("A")
+    d["state"]["free_rerolls"] = 5
+    free = Evaluator(Scenario.from_dict(d)).evaluate().by_key("A")
+    assert free.metrics["p_hit"].value > plain.metrics["p_hit"].value

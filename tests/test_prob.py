@@ -199,3 +199,21 @@ def test_never_buys_more_copies_than_exist():
 def test_set18_follows_wisp_rule_by_default():
     assert IndependentShopModel.from_gamedata(S18).wisp_takes_slot is True
     assert IndependentShopModel.from_gamedata(SYN).wisp_takes_slot is False
+
+
+def test_free_rolls_are_used_first_and_cost_nothing():
+    # 1 slot, target is 1 of 2 copies: each shop hits with p = 0.5.
+    model = IndependentShopModel({1: (100, 0, 0, 0, 0)}, slots=1)
+    pool = PoolState((2, 0, 0, 0, 0), (("A", 1, 1),))
+    belief = PoolBelief.certain(pool)
+    # 1 gold: the free shop only, unless free rolls are available.
+    base = RollQuery(level=1, gold=1, targets=(Target("A", 1),), roll_cost=2)
+    assert roll_down_exact(base, belief, model).p_success == pytest.approx(0.5)
+    q = RollQuery(level=1, gold=1, targets=(Target("A", 1),), roll_cost=2, free_rolls=2)
+    r = roll_down_exact(q, belief, model)
+    assert r.p_success == pytest.approx(1 - 0.5**3)
+    # buying the unit is the only gold spent: 1 gold on success, kept on failure
+    assert r.gold_left == pytest.approx({0: 1 - 0.5**3, 1: 0.5**3})
+    mc = roll_down_sample(q, belief, model, n=40_000, seed=7)
+    assert abs(mc.p_success - r.p_success) < 0.01
+    assert abs(mc.expected_rolls - r.expected_rolls) < 0.02

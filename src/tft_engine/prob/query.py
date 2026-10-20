@@ -21,7 +21,9 @@ class RollQuery:
 
     Policy (identical in the exact solver and the sampler):
       1. Look at the shop. The first shop is free if ``first_shop_free``
-         (it is already on screen); every later shop costs ``roll_cost``.
+         (it is already on screen); every later shop costs ``roll_cost``,
+         except that the first ``free_rolls`` rolls cost nothing (free
+         rerolls from augments are always used first).
       2. Buy target copies that appear, in the order of ``targets``, while
          copies are still needed and gold covers the unit cost.
       3. If every target is complete, stop: success.
@@ -36,10 +38,17 @@ class RollQuery:
     gold_floor: int = 0
     first_shop_free: bool = True
     max_shops: int = 200  # safety cap; never reached with sane inputs
+    free_rolls: int = 0
 
     def __post_init__(self) -> None:
         if self.gold < 0 or self.roll_cost <= 0 or self.gold_floor < 0:
             raise ValueError("gold and gold_floor must be >= 0, roll_cost > 0")
+        if self.free_rolls < 0:
+            raise ValueError("free_rolls must be >= 0")
+
+    def price(self, free_left: int) -> int:
+        """Gold paid for the next roll."""
+        return 0 if free_left > 0 else self.roll_cost
         if not self.targets:
             raise ValueError("at least one target is required")
         ids = [t.unit_id for t in self.targets]

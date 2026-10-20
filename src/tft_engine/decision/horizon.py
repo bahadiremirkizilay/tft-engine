@@ -53,7 +53,9 @@ def simulate(
         "excess": 0.0,
     }
     first = {}
-    cap_gold = rules.param("interest_cap") * 10 // rules.param("interest_per_10_gold")
+    per10 = rules.param("interest_per_10_gold")
+    # gold above this earns no interest (all of it, when an augment removes interest)
+    cap_gold = rules.param("interest_cap") * 10 // per10 if per10 else 0
 
     def strength(s: GameState) -> float:
         return board_strength(s.units, s.level, comps, a)

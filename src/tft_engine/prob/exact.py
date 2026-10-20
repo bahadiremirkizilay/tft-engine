@@ -1,7 +1,7 @@
 """Exact roll-down probabilities by dynamic programming.
 
 State: (shop index mod period, gold, copies still needed, copies left of each
-target, copies left in each target's tier). Each shop's target hits follow a
+target, copies left in each target's tier, free rolls left). Each shop's target hits follow a
 multinomial over {target 1, ..., target m, anything else}; every outcome is
 enumerated, so the result is exact for the shop model and policy given.
 """
@@ -69,8 +69,9 @@ def _solve_one(query: RollQuery, pool: PoolState, model: ShopModel):
     period = model.period
 
     @cache
-    def f(idx: int, gold: int, needs: tuple, ks: tuple, ts: tuple, depth: int):
-        """Return (dist over (success, gold) -> prob, expected future paid rolls)."""
+    def f(idx: int, gold: int, needs: tuple, ks: tuple, ts: tuple, depth: int, free: int):
+        """Return (dist over (success, gold) -> prob, expected future rolls)."""
+        price = query.price(free)
         slots = model.champion_slots(idx)
         probs = []
         for j, c in enumerate(costs):
@@ -90,14 +91,15 @@ def _solve_one(query: RollQuery, pool: PoolState, model: ShopModel):
                     tt[tier_pos[costs[j]]] -= b
             if not any(nd):
                 dist[(True, g)] += pr
-            elif g - query.roll_cost >= query.gold_floor and depth < query.max_shops:
+            elif g - price >= query.gold_floor and depth < query.max_shops:
                 sub, sub_rolls = f(
                     (idx + 1) % period,
-                    g - query.roll_cost,
+                    g - price,
                     tuple(nd),
                     tuple(kk),
                     tuple(tt),
                     depth + 1,
+                    max(0, free - 1),
                 )
                 for key, q in sub.items():
                     dist[key] += pr * q
@@ -111,11 +113,13 @@ def _solve_one(query: RollQuery, pool: PoolState, model: ShopModel):
     ts = tuple(pool.tier_remaining[c - 1] for c in tiers)
     if not any(needs):
         return {(True, query.gold): 1.0}, 0.0
+    free = query.free_rolls
     if query.first_shop_free:
-        return f(0, query.gold, needs, ks, ts, 0)
-    if query.gold - query.roll_cost < query.gold_floor:
+        return f(0, query.gold, needs, ks, ts, 0, free)
+    price = query.price(free)
+    if query.gold - price < query.gold_floor:
         return {(False, query.gold): 1.0}, 0.0
-    dist, rolls = f(0, query.gold - query.roll_cost, needs, ks, ts, 0)
+    dist, rolls = f(0, query.gold - price, needs, ks, ts, 0, max(0, free - 1))
     return dist, rolls + 1
 
 

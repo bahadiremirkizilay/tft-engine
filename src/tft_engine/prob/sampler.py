@@ -55,13 +55,21 @@ def roll_down_sample(
     need = np.tile([t.copies_needed for t in query.targets], (n, 1)).astype(np.int64)
     gold = np.full(n, query.gold, dtype=np.int64)
     rolls = np.zeros(n, dtype=np.int64)
+    free = np.full(n, query.free_rolls, dtype=np.int64)
     active = need.sum(axis=1) > 0
     success = ~active
 
+    def pay(sel: np.ndarray) -> None:
+        """Roll once for the trials in ``sel`` (indices): a free roll first, else gold."""
+        price = np.where(free[sel] > 0, 0, query.roll_cost)
+        gold[sel] -= price
+        free[sel] = np.maximum(0, free[sel] - 1)
+        rolls[sel] += 1
+
     if not query.first_shop_free:
-        can = active & (gold - query.roll_cost >= query.gold_floor)
-        gold[can] -= query.roll_cost
-        rolls[can] += 1
+        price0 = np.where(free > 0, 0, query.roll_cost)
+        can = active & (gold - price0 >= query.gold_floor)
+        pay(np.flatnonzero(can))
         active &= can
 
     cum_odds = np.cumsum(model.tier_probs(query.level))
@@ -92,9 +100,9 @@ def roll_down_sample(
         gold[idx] = g
         done = need[idx].sum(axis=1) == 0
         success[idx[done]] = True
-        cont = ~done & (g - query.roll_cost >= query.gold_floor)
-        gold[idx[cont]] -= query.roll_cost
-        rolls[idx[cont]] += 1
+        price = np.where(free[idx] > 0, 0, query.roll_cost)
+        cont = ~done & (g - price >= query.gold_floor)
+        pay(idx[cont])
         new_active = np.zeros(n, dtype=bool)
         new_active[idx[cont]] = True
         active = new_active

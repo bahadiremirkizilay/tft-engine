@@ -172,18 +172,22 @@ class Evaluator:
     def model(self, a: AssumptionSet) -> IndependentShopModel:
         return IndependentShopModel.from_gamedata(self.data, wisp_takes_slot=a["wisp_takes_slot"])
 
-    def roll(self, state: GameState, comp: Comp, a: AssumptionSet) -> RollResult | None:
+    def roll(
+        self, state: GameState, comp: Comp, a: AssumptionSet, rules: Rules | None = None
+    ) -> RollResult | None:
         needs = comp.needs(state)
         if not needs:
             return None
+        rules = rules or Rules(self.data)
         targets = tuple(Target(uid, n) for uid, _, n in needs)
         tracked = {uid: cost for uid, cost, _ in needs}
         query = RollQuery(
             level=state.level,
             gold=state.gold,
             targets=targets,
-            roll_cost=self.data.get("reroll_cost"),
+            roll_cost=rules.param("reroll_cost"),
             gold_floor=a["roll_floor"],
+            free_rolls=state.free_rerolls,
         )
         model = self.model(a)
         key = (
@@ -254,14 +258,15 @@ class Evaluator:
         }
 
     def _roll_candidate(self, key, label, state, comp, rules, a, extra_income):
-        res = self.roll(state, comp, a)
+        res = self.roll(state, comp, a, rules)
         if res is None:
             return CandidateResult(key, label, False, "nothing left to buy for this comp")
         hit_units = _upgrade(state.units, comp)
         branches = []
         for (ok, g), p in res.joint.items():
             units = hit_units if ok else state.units
-            branches.append((p, replace(state, gold=g, units=units)))
+            # free rerolls are used first; any left after the roll-down are dropped
+            branches.append((p, replace(state, gold=g, units=units, free_rerolls=0)))
         tot, score = self._outcome(branches, rules, a, extra_income)
         m = self._metrics(tot, res.expected_gold_left)
         ci = res.p_success_ci95
