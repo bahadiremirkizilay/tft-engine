@@ -37,6 +37,7 @@ class HorizonResult:
     p_elim: float
     exp_strength_ratio_end: float  # own strength / typical opponent strength
     exp_future_loss_per_round: float  # HP lost per round after the horizon, if the board stays
+    exp_free_rerolls_end: float = 0.0  # free rerolls not used by the horizon end
 
 
 def simulate(
@@ -46,8 +47,8 @@ def simulate(
     observed: list[float],
     alive: int,
     a: AssumptionSet,
-    extra_income: int = 0,
 ) -> HorizonResult:
+    """Per-round effects of augments come from the events in ``rules.modifiers``."""
     rounds = a["horizon_rounds"]
     acc = {
         "gold": 0.0,
@@ -57,6 +58,7 @@ def simulate(
         "ratio": 0.0,
         "future": 0.0,
         "excess": 0.0,
+        "free": 0.0,
     }
     first = {}
     per10 = rules.param("interest_per_10_gold")
@@ -70,6 +72,7 @@ def simulate(
         major = s.stage_round[0]
         acc["gold"] += p * s.gold
         acc["excess"] += p * max(0, s.gold - cap_gold)
+        acc["free"] += p * s.free_rerolls
         acc["level"] += p * s.level
         acc["hp"] += p * hp_lost
         acc["elim"] += p * elim
@@ -90,14 +93,14 @@ def simulate(
             first["p"] = pw
         nxt = next_stage(s.stage)
         won = rules.end_round(s, True, nxt)
-        step(replace(won, gold=won.gold + extra_income), p * pw, r + 1, hp_lost)
+        step(won, p * pw, r + 1, hp_lost)
         dmg = round(loss_damage(rules, major, a))
         hp = s.hp - dmg
         if hp <= 0:
             finish(s, p * (1 - pw), hp_lost + s.hp, True)
             return
         lost = rules.end_round(replace(s, hp=hp), False, nxt)
-        step(replace(lost, gold=lost.gold + extra_income), p * (1 - pw), r + 1, hp_lost + dmg)
+        step(lost, p * (1 - pw), r + 1, hp_lost + dmg)
 
     step(state, 1.0, 0, 0)
     return HorizonResult(
@@ -109,4 +112,5 @@ def simulate(
         p_elim=acc["elim"],
         exp_strength_ratio_end=acc["ratio"],
         exp_future_loss_per_round=acc["future"],
+        exp_free_rerolls_end=acc["free"],
     )

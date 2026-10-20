@@ -9,6 +9,11 @@ notes. Three curated files per patch fill these gaps, each record with sources:
     curated/augment_tiers/<patch>.json  silver / gold / prismatic, by display name
     curated/overrides/<patch>.json      values the official notes changed
 
+One set-level file describes how augments change the rules (B3); it holds no
+numbers of its own, only references to augment effect values:
+
+    curated/effects/augments.json       augment models (modifiers and events)
+
 An override states the value it replaces (``old``). If the generated data does
 not hold that value, loading fails: either the notes were already applied by a
 newer export, or the override targets the wrong field. Nothing is replaced
@@ -24,6 +29,8 @@ from typing import Any
 from tft_engine.gamedata.schema import STATUSES, SchemaError
 
 TIERS = ("silver", "gold", "prismatic")
+MODEL_CATEGORIES = ("economy", "xp", "shop", "other")
+MODEL_STATUSES = ("modelled", "partial", "text_only")
 STAT_KEYS = (
     "hp",
     "ad_pct",
@@ -163,3 +170,53 @@ def apply_curated(
             )
         notes.append(f"{len(doc['records'])} values replaced from curated/overrides/{patch}")
     return notes
+
+
+def read_augment_models(curated_folder: Path) -> dict[str, dict[str, Any]]:
+    """Augment models by augment id (empty when the set has none). Structure only.
+
+    Effect references are checked against the augment records by
+    ``check_augment_models``; building them into modifiers is done by
+    ``tft_engine.rules.modifiers.build``.
+    """
+    doc = _read(curated_folder / "effects" / "augments.json")
+    if not doc:
+        return {}
+    out: dict[str, dict[str, Any]] = {}
+    for r in doc["records"]:
+        where = f"effects/augments.json {r.get('id')}"
+        if r.get("id") in out:
+            raise SchemaError(f"{where}: duplicate id")
+        if r.get("category") not in MODEL_CATEGORIES:
+            raise SchemaError(f"{where}: category must be one of {MODEL_CATEGORIES}")
+        if r.get("model_status") not in MODEL_STATUSES:
+            raise SchemaError(f"{where}: model_status must be one of {MODEL_STATUSES}")
+        if not r.get("source_ids"):
+            raise SchemaError(f"{where}: needs source_ids")
+        parts = r.get("modifiers", []) + r.get("events", [])
+        if r["model_status"] == "text_only" and parts:
+            raise SchemaError(f"{where}: a text_only model has no modifiers or events")
+        if r["model_status"] != "modelled" and not r.get("note"):
+            raise SchemaError(f"{where}: a {r['model_status']} model must say what is missing")
+        out[r["id"]] = r
+    return out
+
+
+def effect_refs(model: dict[str, Any]) -> list[str]:
+    """Names of the augment effect values a model refers to."""
+    refs: list[str] = []
+
+    def walk(v: Any) -> None:
+        if isinstance(v, dict):
+            if "effect" in v:
+                refs.append(v["effect"])
+            else:
+                for x in v.values():
+                    walk(x)
+        elif isinstance(v, list):
+            for x in v:
+                walk(x)
+
+    walk(model.get("modifiers", []))
+    walk(model.get("events", []))
+    return refs

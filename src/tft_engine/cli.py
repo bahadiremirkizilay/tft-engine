@@ -111,6 +111,35 @@ def _cmd_data_check(args: argparse.Namespace) -> int:
     return 0 if rep.ok else 1
 
 
+def _cmd_data_augments(args: argparse.Namespace) -> int:
+    """Coverage of the augment models: which augments change the rules, and how fully."""
+    kb = load_knowledge(args.set, args.patch)
+    models = kb.augment_models
+    offered = [
+        a
+        for a in kb.augments.values()
+        if isinstance(a.get("offered_in_set"), dict) and not a.get("variant_of")
+    ]
+    print(f"{args.set} {args.patch}: {len(offered)} augments offered, {len(models)} with a model")
+    table: dict[str, dict[str, int]] = {}
+    for m in models.values():
+        row = table.setdefault(m["category"], {"modelled": 0, "partial": 0, "text_only": 0})
+        row[m["model_status"]] += 1
+    for cat in sorted(table):
+        row = table[cat]
+        total = sum(row.values())
+        print(
+            f"  {cat:8} {total:3}: modelled {row['modelled']}, partial {row['partial']}, "
+            f"text_only {row['text_only']}"
+        )
+    if args.list:
+        for aid, m in sorted(models.items()):
+            name = kb.augments.get(aid, {}).get("name", "?")
+            note = f" - {m['note']}" if m.get("note") else ""
+            print(f"  [{m['model_status']}] {name} ({aid}){note}")
+    return 0
+
+
 def _cmd_data_diff(args: argparse.Namespace) -> int:
     old = load_knowledge(args.set, args.old)
     new = load_knowledge(args.set, args.new)
@@ -177,6 +206,11 @@ def main(argv: list[str] | None = None) -> int:
     p_chk.add_argument("--patch", required=True)
     p_chk.add_argument("--max", type=int, default=30, help="warnings to print")
     p_chk.set_defaults(func=_cmd_data_check)
+    p_aug = data_sub.add_parser("augments", help="coverage of the augment models")
+    p_aug.add_argument("--set", required=True)
+    p_aug.add_argument("--patch", required=True)
+    p_aug.add_argument("--list", action="store_true", help="list every model with its note")
+    p_aug.set_defaults(func=_cmd_data_augments)
     p_diff = data_sub.add_parser("diff", help="what changed between two patches")
     p_diff.add_argument("--set", required=True)
     p_diff.add_argument("old")

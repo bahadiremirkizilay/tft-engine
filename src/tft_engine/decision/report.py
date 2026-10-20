@@ -71,6 +71,9 @@ def render(
                 f"  {r.name} [{r.low} .. {r.high}]: {flip} ({r.best_low} / {r.best_high}),"
                 f" en kötü kayıp {r.regret:.2f} HP  ({r.description})"
             )
+    if ev.notes:
+        out += ["", "Kural değişiklikleri ve notlar (sahip olunan augment'ler):"]
+        out += [f"  {n}" for n in ev.notes]
     weak = sorted({k for k, s in ev.data_status.items() if s not in ("verified", "observed")})
     out += ["", f"Shop modeli: {ev.shop_model}"]
     for a in ev.shop_assumptions:

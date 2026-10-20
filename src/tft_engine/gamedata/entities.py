@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from tft_engine.gamedata.cdragon import KINDS
-from tft_engine.gamedata.curated import apply_curated
+from tft_engine.gamedata.curated import apply_curated, effect_refs, read_augment_models
 from tft_engine.gamedata.loader import GameData, load_gamedata
 from tft_engine.gamedata.schema import STATUSES, SchemaError
 from tft_engine.gamedata.sources import (
@@ -35,6 +35,7 @@ class KnowledgeBase:
     records: dict[str, dict[str, dict[str, Any]]]  # kind -> id -> record
     headers: dict[str, dict[str, Any]]  # kind -> file header
     curated_notes: list[str] = field(default_factory=list)
+    augment_models: dict[str, dict[str, Any]] = field(default_factory=dict)
 
     def __getattr__(self, kind: str) -> dict[str, dict[str, Any]]:
         if kind in KINDS:
@@ -90,6 +91,7 @@ def load_knowledge(
     kb = KnowledgeBase(set_id, patch, records, headers)
     if curated:
         kb.curated_notes = apply_curated(records, folder.parent.parent / "curated", patch)
+        kb.augment_models = read_augment_models(folder.parent.parent / "curated")
     return kb
 
 
@@ -119,6 +121,8 @@ def check_knowledge(
                 extra += r["tier"].get("source_ids", [])
             for o in r.get("overrides", []):
                 extra += o.get("source_ids", [])
+            if kind == "augments" and rid in kb.augment_models:
+                extra += kb.augment_models[rid]["source_ids"]
             used_sources.update(ids + extra)
             if sources is not None:
                 for sid in ids + extra:
@@ -139,6 +143,21 @@ def check_knowledge(
                     f"({mapping.get('evidence', 'no evidence')})"
                 )
                 break
+
+    # augment models: every model names a Set augment and only its own effect values
+    for aid, m in kb.augment_models.items():
+        where = f"augment model {aid}"
+        if aid not in kb.augments:
+            rep.errors.append(f"{where}: no such augment")
+            continue
+        effects = kb.augments[aid].get("effects", {})
+        for name in effect_refs(m):
+            if effects.get(name) is None:
+                rep.errors.append(f"{where}: effect value {name!r} is not in the augment record")
+        if sources is not None:
+            for sid in m["source_ids"]:
+                if sid not in sources:
+                    rep.errors.append(f"{where}: unknown source {sid!r}")
 
     # champions <-> traits
     for cid, c in champs.items():

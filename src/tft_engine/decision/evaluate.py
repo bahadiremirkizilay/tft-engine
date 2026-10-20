@@ -22,6 +22,7 @@ from itertools import product
 from typing import Any
 
 from tft_engine.decision.assumptions import DEFAULTS, AssumptionSet
+from tft_engine.decision.effects import AugmentOffer, AugmentRef, augment_offer, combine
 from tft_engine.decision.horizon import simulate
 from tft_engine.decision.scenario import Comp, Scenario
 from tft_engine.decision.strength import board_strength
@@ -37,6 +38,7 @@ from tft_engine.prob import (
 )
 from tft_engine.repro import derive_seed
 from tft_engine.rules import Rules
+from tft_engine.rules.modifiers import ModifierSet
 from tft_engine.state import GameState, PoolBelief, PoolState, UnitInstance
 
 EXACT, ASSUMPTION = "exact", "assumption"
@@ -109,14 +111,19 @@ class AugmentRow:
 
 
 @lru_cache(maxsize=8)
-def _champion_forms(set_id: str, patch: str) -> dict[str, tuple[str, int]]:
-    """Champion id -> (base id, number of forms) for champions with shop forms (Lux).
-
-    Empty when the set has no generated knowledge base (synthetic test sets).
-    """
+def _knowledge(set_id: str, patch: str):
+    """The patch's knowledge base, or None for sets without one (synthetic test sets)."""
     try:
-        kb = load_knowledge(set_id, patch)
+        return load_knowledge(set_id, patch)
     except (SchemaError, FileNotFoundError):
+        return None
+
+
+@lru_cache(maxsize=8)
+def _champion_forms(set_id: str, patch: str) -> dict[str, tuple[str, int]]:
+    """Champion id -> (base id, number of forms) for champions with shop forms (Lux)."""
+    kb = _knowledge(set_id, patch)
+    if kb is None:
         return {}
     by_base: dict[str, list[str]] = {}
     for c in kb.champions.values():
@@ -146,6 +153,23 @@ class Evaluator:
         self.cp = {int(k): v for k, v in cp.items()}
         self.cc = {int(k): v for k, v in cc.items()}
         self.comp_units = [c.units for c in scenario.comps]
+        # augments already picked keep changing the rules for every candidate
+        self.owned = ModifierSet()
+        self.owned_notes: list[str] = []
+        for aid in scenario.state.augments:
+            offer = self.offer(AugmentRef(aid))
+            if offer.evaluable:
+                self.owned = self.owned.merged(offer.modifiers)
+            self.owned_notes += [f"owned {offer.id}: {n}" for n in offer.notes]
+
+    def offer(self, e) -> AugmentOffer:
+        """An offer (hand-written Effect or real augment) in the common shape."""
+        if isinstance(e, AugmentRef):
+            kb = _knowledge(self.sc.set_id, self.sc.patch)
+            if kb is None:
+                raise ValueError(f"{e.id}: real augments need the set's knowledge base")
+            return augment_offer(e.id, kb)
+        return e.to_offer()
 
     # --- pool ------------------------------------------------------------
 
@@ -257,9 +281,13 @@ class Evaluator:
             for o in self.sc.observed_opponents
         ]
 
-    def _score(self, h, a: AssumptionSet) -> float:
+    def _score(self, h, a: AssumptionSet, rules: Rules) -> float:
+        """HP-equivalent score. Free rerolls left at the horizon end count as their gold price."""
+        free = h.exp_free_rerolls_end
+        free_gold = free * rules.param("reroll_cost") if free else 0.0
         return (
             -h.exp_hp_lost
+            + a["gold_value_hp"] * free_gold
             - a["elim_penalty_hp"] * h.p_elim
             + a["gold_value_hp"] * (h.exp_gold_end - h.exp_gold_excess_end)
             + a["excess_gold_value_hp"] * h.exp_gold_excess_end
@@ -267,7 +295,7 @@ class Evaluator:
             - a["future_rounds"] * h.exp_future_loss_per_round
         )
 
-    def _outcome(self, branches, rules, a, extra_income) -> tuple[dict[str, float], float]:
+    def _outcome(self, branches, rules, a) -> tuple[dict[str, float], float]:
         """Average horizon results over (probability, state) branches."""
         obs = self._observed_strengths(a)
         keys = ("p_win_first", "exp_gold_end", "exp_level_end", "exp_hp_lost", "p_elim")
@@ -276,10 +304,10 @@ class Evaluator:
         score = 0.0
         strength_now = 0.0
         for p, st in branches:
-            h = simulate(st, rules, self.comp_units, obs, self.sc.opponents_alive, a, extra_income)
+            h = simulate(st, rules, self.comp_units, obs, self.sc.opponents_alive, a)
             for k in keys:
                 tot[k] += p * getattr(h, k)
-            score += p * self._score(h, a)
+            score += p * self._score(h, a, rules)
             strength_now += p * board_strength(st.units, st.level, self.comp_units, a)
         tot["strength_now"] = strength_now
         return tot, score
@@ -299,20 +327,20 @@ class Evaluator:
             ),
         }
 
-    def _roll_candidate(self, key, label, state, comp, rules, a, extra_income):
+    def _roll_candidate(self, key, label, state, comp, rules, a):
         """Roll candidate; when shops can show a Wisp, also try buying one first."""
-        best = self._roll_policy(key, label, state, comp, rules, a, extra_income, False)
+        best = self._roll_policy(key, label, state, comp, rules, a, False)
         price = a["wisp_price"]
         if self.model(a).wisp_prob > 0 and best.available and state.gold >= price:
-            paid = replace(state, gold=state.gold - price)
+            paid = rules.fire("wisp_bought", replace(state, gold=state.gold - price))
             buy = self._roll_policy(
-                key, f"{label}, buying a Wisp first", paid, comp, rules, a, extra_income, True
+                key, f"{label}, buying a Wisp first", paid, comp, rules, a, True
             )
             if buy.available and buy.score > best.score:
                 best = buy
         return best
 
-    def _roll_policy(self, key, label, state, comp, rules, a, extra_income, wisp_bought):
+    def _roll_policy(self, key, label, state, comp, rules, a, wisp_bought):
         res = self.roll(state, comp, a, rules, wisp_bought)
         if res is None:
             return CandidateResult(key, label, False, "nothing left to buy for this comp")
@@ -322,7 +350,7 @@ class Evaluator:
             units = hit_units if ok else state.units
             # free rerolls are used first; any left after the roll-down are dropped
             branches.append((p, replace(state, gold=g, units=units, free_rerolls=0)))
-        tot, score = self._outcome(branches, rules, a, extra_income)
+        tot, score = self._outcome(branches, rules, a)
         m = self._metrics(tot, res.expected_gold_left)
         ci = res.p_success_ci95
         m["p_hit"] = Metric(
@@ -334,11 +362,15 @@ class Evaluator:
         return CandidateResult(key, label, True, metrics=m, score=score, roll=res)
 
     def evaluate(
-        self, a: AssumptionSet | None = None, state: GameState | None = None, extra_income: int = 0
+        self,
+        a: AssumptionSet | None = None,
+        state: GameState | None = None,
+        modifiers: ModifierSet | None = None,
     ) -> Evaluation:
+        """Compare candidates; ``modifiers`` are rule changes on top of the owned augments."""
         a = a or self.base
         state = state or self.sc.state
-        rules = Rules(self.data)
+        rules = Rules(self.data, modifiers=self.owned.merged(modifiers or ModifierSet()))
         cands: list[CandidateResult] = []
         current = self.sc.comp(self.sc.current_comp)
 
@@ -350,7 +382,6 @@ class Evaluator:
                 current,
                 rules,
                 a,
-                extra_income,
             )
         )
 
@@ -361,14 +392,14 @@ class Evaluator:
             except ValueError:
                 break
         if lvl.level > state.level:
-            tot, score = self._outcome([(1.0, lvl)], rules, a, extra_income)
+            tot, score = self._outcome([(1.0, lvl)], rules, a)
             m = self._metrics(tot, lvl.gold)
             m["levels_gained"] = Metric(lvl.level - state.level, EXACT)
             cands.append(CandidateResult("B", f"buy XP to level {lvl.level}", True, "", m, score))
         else:
             cands.append(CandidateResult("B", "buy XP", False, "not enough gold to level"))
 
-        tot, score = self._outcome([(1.0, state)], rules, a, extra_income)
+        tot, score = self._outcome([(1.0, state)], rules, a)
         cands.append(
             CandidateResult("C", "keep gold", True, "", self._metrics(tot, state.gold), score)
         )
@@ -377,15 +408,14 @@ class Evaluator:
             if c.name == current.name:
                 continue
             cands.append(
-                self._roll_candidate(
-                    f"D:{c.name}", f"pivot: roll for {c.name}", state, c, rules, a, extra_income
-                )
+                self._roll_candidate(f"D:{c.name}", f"pivot: roll for {c.name}", state, c, rules, a)
             )
 
         statuses = dict(rules.used)
         for name in ("shop_odds", "copies_per_champion", "champions_per_cost", "reroll_cost"):
             statuses[name] = self.data.param(name).status
         model = self.model(a)
+        notes = [f"{p} changed by {', '.join(ids)}" for p, ids in sorted(rules.applied.items())]
         return Evaluation(
             scenario_id=self.sc.id,
             candidates=cands,
@@ -393,6 +423,7 @@ class Evaluator:
             shop_model=model.name,
             shop_assumptions=model.assumptions,
             unreviewed_patches=list(self.data.unreviewed_patches),
+            notes=notes + self.owned_notes + rules.notes,
         )
 
     # --- sensitivity and augments ---------------------------------------
@@ -428,16 +459,21 @@ class Evaluator:
         return rows
 
     def augments(self) -> list[AugmentRow]:
+        """Rank the offers: each one is picked, then the best candidate is taken under it."""
         rows = []
-        rules = Rules(self.data)
         for e in self.sc.augment_offers:
-            if not e.evaluable:
-                rows.append(
-                    AugmentRow(e.id, e.type, False, notes=(f"{e.type} effects are not evaluated",))
-                )
+            offer = self.offer(e)
+            if not offer.evaluable:
+                why = offer.notes or (f"{offer.type} effects are not evaluated",)
+                rows.append(AugmentRow(offer.id, offer.type, False, notes=tuple(why)))
                 continue
-            st, notes = e.apply(self.sc.state, rules)
-            ev = self.evaluate(state=st, extra_income=e.gold_per_round)
-            rows.append(AugmentRow(e.id, e.type, True, ev.best.key, ev.best.score, tuple(notes)))
+            rules = Rules(self.data, modifiers=self.owned.merged(offer.modifiers))
+            st = self.sc.state
+            if offer.augment_id:
+                st = replace(st, augments=st.augments + (offer.augment_id,))
+            st = rules.fire("now", replace(st, units=combine(st.units + offer.units)))
+            ev = self.evaluate(state=st, modifiers=offer.modifiers)
+            notes = tuple(offer.notes) + tuple(n for n in ev.notes if n not in offer.notes)
+            rows.append(AugmentRow(offer.id, offer.type, True, ev.best.key, ev.best.score, notes))
         rows.sort(key=lambda r: (r.evaluated, r.score), reverse=True)
         return rows

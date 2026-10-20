@@ -247,14 +247,16 @@ def build(
     for i, e in enumerate(model.get("events", [])):
         where = f"{source} event {i}"
         do = tuple((a, resolve(v, effects, f"{where} {a}")) for a, v in sorted(e["do"].items()))
+        when = {k: resolve(v, effects, f"{where} when.{k}") for k, v in e.get("when", {}).items()}
+        limit = e.get("limit")
         events.append(
             Event(
                 id=f"{source}:{e['on']}:{i}",
                 source=source,
                 on=e["on"],
                 do=do,
-                when=Condition(**e.get("when", {})),
-                limit=e.get("limit"),
+                when=Condition(**when),
+                limit=None if limit is None else resolve(limit, effects, f"{where} limit"),
                 status=status,
             )
         )

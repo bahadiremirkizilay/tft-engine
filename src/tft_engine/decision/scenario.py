@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from tft_engine.decision.effects import Effect
+from tft_engine.decision.effects import AugmentRef, Effect, parse_offer
 from tft_engine.state import GameState, UnitInstance
 
 _STAR_COPIES = {1: 1, 2: 3, 3: 9}
@@ -54,7 +54,7 @@ class Scenario:
     observed_opponents: tuple[ObservedOpponent, ...] = ()
     contest_prior: dict[str, tuple[tuple[float, int], ...]] = field(default_factory=dict)
     opponents_alive: int = 7
-    augment_offers: tuple[Effect, ...] = ()
+    augment_offers: tuple[Effect | AugmentRef, ...] = ()
     active_traits: dict[str, int] = field(default_factory=dict)  # trait id -> active units
     assumptions: dict[str, Any] = field(default_factory=dict)
     seed: int = 0
@@ -125,7 +125,7 @@ class Scenario:
                 for k, v in d.get("contest_prior", {}).items()
             },
             opponents_alive=d.get("opponents_alive", 7),
-            augment_offers=tuple(Effect.from_dict(e) for e in d.get("augment_offers", [])),
+            augment_offers=tuple(parse_offer(e) for e in d.get("augment_offers", [])),
             active_traits={k: int(v) for k, v in d.get("active_traits", {}).items()},
             assumptions=d.get("assumptions", {}),
             seed=d.get("seed", 0),

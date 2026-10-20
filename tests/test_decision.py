@@ -171,7 +171,7 @@ def test_buying_a_wisp_first_is_tried_and_can_win():
     d = _n3(assumptions={"wisp_price": 0}, active_traits={"DA_18_Blossom": 5})
     ev = Evaluator(Scenario.from_dict(d))
     never = ev._roll_policy(
-        "A", "x", ev.sc.state, ev.sc.comp(ev.sc.current_comp), ev_rules(ev), ev.base, 0, False
+        "A", "x", ev.sc.state, ev.sc.comp(ev.sc.current_comp), ev_rules(ev), ev.base, False
     )
     bought = ev.evaluate().by_key("A")
     assert bought.metrics["p_hit"].value > never.metrics["p_hit"].value
