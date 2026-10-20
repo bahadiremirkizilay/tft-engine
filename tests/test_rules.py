@@ -77,9 +77,10 @@ def test_gold_never_negative_after_round(gold, won, streak):
     assert s.gold >= gold
 
 
-def test_unknown_parameter_raises_and_override_is_tracked(synthetic, set18):
+def test_unknown_parameter_raises_and_override_is_tracked(set18):
+    # the synthetic set's "mystery" parameter is unknown until patch 1.2 defines it
     with pytest.raises(UnknownMechanicError):
-        synthetic.param("mystery").get()
+        load_gamedata("synthetic", "1.1", root=FIXTURE_SETS).get("mystery")
     r2 = Rules(set18, overrides={"base_income": {"default": 4}})
     assert r2.base_income("3-2") == 4
     assert r2.used["base_income"] == "assumption"
