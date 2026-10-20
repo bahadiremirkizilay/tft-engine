@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from tft_engine.gamedata.cdragon import KINDS
+from tft_engine.gamedata.curated import apply_curated
 from tft_engine.gamedata.loader import GameData, load_gamedata
 from tft_engine.gamedata.schema import STATUSES, SchemaError
 from tft_engine.gamedata.sources import (
@@ -33,6 +34,7 @@ class KnowledgeBase:
     patch: str
     records: dict[str, dict[str, dict[str, Any]]]  # kind -> id -> record
     headers: dict[str, dict[str, Any]]  # kind -> file header
+    curated_notes: list[str] = field(default_factory=list)
 
     def __getattr__(self, kind: str) -> dict[str, dict[str, Any]]:
         if kind in KINDS:
@@ -64,7 +66,10 @@ def generated_dir(set_id: str, patch: str, root: Path | None = None) -> Path:
     return (Path(root) if root else _DATA / "sets") / set_id / "generated" / patch
 
 
-def load_knowledge(set_id: str, patch: str, root: Path | None = None) -> KnowledgeBase:
+def load_knowledge(
+    set_id: str, patch: str, root: Path | None = None, curated: bool = True
+) -> KnowledgeBase:
+    """Generated records for one patch, with the curated layers applied (see curated.py)."""
     folder = generated_dir(set_id, patch, root)
     if not folder.is_dir():
         raise SchemaError(
@@ -82,7 +87,10 @@ def load_knowledge(set_id: str, patch: str, root: Path | None = None) -> Knowled
             by_id[r["id"]] = r
         records[kind] = by_id
         headers[kind] = {k: v for k, v in doc.items() if k != "records"}
-    return KnowledgeBase(set_id, patch, records, headers)
+    kb = KnowledgeBase(set_id, patch, records, headers)
+    if curated:
+        kb.curated_notes = apply_curated(records, folder.parent.parent / "curated", patch)
+    return kb
 
 
 def check_knowledge(
@@ -106,9 +114,14 @@ def check_knowledge(
             ids = r.get("source_ids") or []
             if not ids:
                 rep.errors.append(f"{where}: no source_ids")
-            used_sources.update(ids)
+            extra = list(r.get("stats_source_ids", []))
+            if isinstance(r.get("tier"), dict):
+                extra += r["tier"].get("source_ids", [])
+            for o in r.get("overrides", []):
+                extra += o.get("source_ids", [])
+            used_sources.update(ids + extra)
             if sources is not None:
-                for sid in ids:
+                for sid in ids + extra:
                     if sid not in sources:
                         rep.errors.append(f"{where}: unknown source {sid!r}")
 

@@ -1,0 +1,1974 @@
+{
+  "set": "set18",
+  "patch": "18.4",
+  "kind": "augment_tiers",
+  "note": "Tiers from tactics.tools/info/augments (read 2026-10-20; page state is pre-18.4) plus tier moves from later official notes. Matched by display name, so every game-file record with that name gets the tier; names on the page that were not found in the game files are listed under unmatched.",
+  "unmatched": [
+    "Nesting Dolls (first)",
+    "Nesting Dolls (second)"
+  ],
+  "records": [
+    {
+      "name": "Advanced Loan",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Advanced Loan+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Arcane Viktor-y",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Ascension",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Augmented Power",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Backline Blueprint",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Backup Bows",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Band of Thieves",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Band of Thieves II",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Band of Thieves II+",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Band of Thieves II++",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Baron's Lair",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Beast Within",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Beast Within+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Belt Overflow",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Big Grab Bag",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Birthday Present",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Birthday Reunion",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Blossom's Call",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Bodyguard Training",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Bonus Gifts",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Bonus Gifts+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Booster Pack",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Booster Pack+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Booster Pack++",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Boxing Lessons",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Branching Out",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Branching Out+",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Bronze For Life I",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Bronze For Life II",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Build A Bud",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Buried Treasures III",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Call To Chaos",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Called Shot",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Capital Gains I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Capital Gains II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Caretaker's Ally",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Caretaker's Favor",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Carve a Path",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Celestial Blessing I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Celestial Blessing II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Celestial Blessing III",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Challenger's Grace",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Champ Delivery",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Champ Delivery+",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Champ Delivery++",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Chosen of the Sun",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20",
+        "riot-notes-18.4"
+      ],
+      "note": "18.4: tier Gold => Silver"
+    },
+    {
+      "name": "Clear Mind",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Clockwork Accelerator",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Cluttered Mind",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Cognitive Overload",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Cognitive Tax",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Cognitive Tax+",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Comeback Story",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Commerce Core",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Component Buffet",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Component Quest",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Consuming Flora",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Cooking Pot",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Coronation",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Corrosion",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Coven Acolyte",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Crafted Crafting",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Cry Me A River",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Cybernetic Implants",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Cybernetic Uplink",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Dark Ritual",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Deadlier Blades",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Deadlier Caps",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Dummify",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Duo Queue",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Early Learnings",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Electrocharge I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Electrocharge II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Embiggen",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Epic Rolldown",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Epoch",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Epoch+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Exclusive Customization",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Expedition",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Explosive Growth",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Explosive Growth+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Extra Buckles",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "FOURcing",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Feeling Lucky",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Find Your Center",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Flame On",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Flexible",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Flowing Tears",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Focused Fire",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Forged In Strength",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Frontline Foundation",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Future Focused",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Gain 21 Gold",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Giant and Mighty",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Gilded Steel",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Glass Cannon I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Glass Cannon II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Going Long",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Gold Destiny",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Gold Destiny+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Golden Gamble",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Golden Gamble+",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Golden Gamble++",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Good For Something I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Group Hug I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Group Hug II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Hard Bargain",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Hard Commit",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Healing Orbs I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Healing Orbs II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Heart of Steel",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Hedge Fund",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Heroic Grab Bag",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Heroic Grab Bag+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Heroic Grab Bag++",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Hold the Line",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Hustler",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Infinity Protection",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Invested+",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Invested++",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Investment Strategy I",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Investment Strategy II",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Iron Assets",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "It's Me, Baby",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Item Extraction",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Item Grab Bag I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Jeweled Lotus I",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Jeweled Lotus II",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Kick Start",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Kingslayer",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Know Your Enemy",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Late Game Scaling",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Late Game Specialist",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Latent Forge",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Legion Of Threes",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Level Up!",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Living Forge",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Loaded Dice",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Lucky Gloves",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Lucky Gloves+",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Luxury Subscription",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Magic Roll",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Makeshift Armor I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Makeshift Armor II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Malicious Monetization",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Master of All Origins",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Max Build",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Min-Max",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Missed Connections",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Money Hungry",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Money Hungry+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Money Monsoon",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "NO SCOUT NO PIVOT",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Nature's Shelter",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Nesting Anvils",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Nesting Anvils+",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Omega Riftbeast",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "One Buff Two Buff",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "One, Two, Five!",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Ones Two Three",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Pandora's Bench",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Pandora's Items I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Pandora's Items II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Pandora's Items III",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Partial Ascension",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Patience Is A Virtue",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Patient Study",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Pilfer",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Plot Armor",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Portable Forge",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Prismatic Destiny",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Prismatic Destiny+",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Prismatic Ticket",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Promised Protection",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Quick Streaks",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Radiant Rascal",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Radiant Relics",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Recombobulator",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Replication",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Residual Magic",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Residual Magic +",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Residual Magic ++",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Retribution",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Rolling For Days",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Salvage Bin",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Salvage Bin+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Seraphim's Staff",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Shimmerscale Essence",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Shopping Spree",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Silver Destiny",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Silver Destiny+",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Silver Destiny++",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Silver Spoon",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Slammin'",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Slammin'+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Slice of Life",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Slightly Magic Roll",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Small Furry Friend",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Small Grab Bag",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Solo Leveling",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Solo Plate",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Soul Awakening",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Speedy Double Kill",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Spirit Of Redemption",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Spreading Roots",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Spreading Roots+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Staffsmith",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Stand United",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Sun and Moon",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Sun and Moon+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Sweet Treats",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Sword Overflow",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Swordsmith",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "TONS of Stats!",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Tactician's Kitchen",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Team Building",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "The Golden Dragon",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "The Golden Egg",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "The Tower",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "The Trait Tree",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "The Trait Tree+",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Time Skip",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Tons of Stats!",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Trade Sector",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Trade Sector+",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Trait Ladder",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Twin Guardians",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "U.R.F",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Unrivaled",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Upward Mobility",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Urf's Grab Bag",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Verticality I",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Verticality II",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Verticality III",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Wand Overflow",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Warpath",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "We Stick Together",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Weight The Worth",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Wisp Rebate",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Wisp Rebate+",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Worth the Wait",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Worth the Wait II",
+      "tier": "prismatic",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Woven Magic",
+      "tier": "gold",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    },
+    {
+      "name": "Young and Wild and Free",
+      "tier": "silver",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-augments-2026-10-20"
+      ]
+    }
+  ]
+}

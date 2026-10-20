@@ -149,6 +149,28 @@
       "note": "Names and costs only. 2026-10-20: all 74 TFTSet18 entries match the CommunityDragon champions in name and cost (tools/ddragon_check.py)."
     },
     {
+      "id": "tactics-tools-items-2026-10-20",
+      "type": "stats_site",
+      "title": "tactics.tools Set 18 item info (stats and effects)",
+      "url": "https://tactics.tools/info/items",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.2",
+      "filters": {"page": "info/items"},
+      "note": "Page says 'Set 18' without a patch. Inferred 18.2: it has the 18.2 Bloodthirster values but not the 18.3 artifact changes (Collector 40% AD, Statikk Shiv 15 AP) nor the 18.4 Crownguard/Spirit Visage changes. Read by hand, numbers transcribed in tools/curate_item_stats.py."
+    },
+    {
+      "id": "tactics-tools-augments-2026-10-20",
+      "type": "stats_site",
+      "title": "tactics.tools Set 18 augment info (tiers)",
+      "url": "https://tactics.tools/info/augments",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.2",
+      "filters": {"page": "info/augments"},
+      "note": "69 silver, 112 gold, 68 prismatic. Inferred pre-18.3: Upward Mobility shows 1 reroll (18.3 made it 2), Level Up! 6 XP (18.4 made it 10), Chosen of the Sun still gold (18.4 moved it to silver). Only tiers are used."
+    },
+    {
       "id": "tactics-tools-units",
       "type": "stats_site",
       "title": "tactics.tools Set 18 unit list",

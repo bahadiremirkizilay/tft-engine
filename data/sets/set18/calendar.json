@@ -13,7 +13,7 @@
     "16.20": {
       "patch": "18.4",
       "status": "unverified",
-      "evidence": "content-metadata.json of the 16.20 folder was created 2026-10-07, the day after the 18.4 notes; no source states the mapping directly"
+      "evidence": "content-metadata.json of the 16.20 folder was created 2026-10-07, the day after the 18.4 notes; the export contains the Wisps added in 18.4 (Drizzle, Grove Armor). But many 18.4 number changes are missing (Level Up! 6 XP, Future Focused 8 gold): balance numbers in the export can lag the notes, see curated/overrides/18.4.json"
     }
   }
 }

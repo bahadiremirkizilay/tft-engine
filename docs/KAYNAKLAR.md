@@ -102,6 +102,21 @@ Alıntılar:
 
 **Örnek tarif:** `TFT_Item_InfinityEdge` → `composition: ["TFT_Item_BFSword","TFT_Item_SparringGloves"]`.
 
+**Önemli bulgu (2026-10-20): oyun dosyası sayıları resmi notların gerisinde kalabiliyor.**
+- 16.20 dışa aktarımında 18.4'te **eklenenler** var: yeni Wisp'ler, Min-Max'ın 4 altını, Small Furry Friend %45.
+- Ama 18.4'teki **sayısal ayarlamaların çoğu yok:** Level Up! 6 XP (notta 10), Future Focused 8 altın (notta 5), Backrow Star %85 (notta %100).
+- Muhtemel sebep: denge ayarlarının sunucu tarafında yapılması.
+- **Kural:** Değişen değerlerde resmi not esastır. Bu değerler `curated/overrides/<yama>.json` içine işlenir; her kayıt dosyadaki eski değeri kontrol eder.
+- **Set 18 item'ları (`DA_`):** Dışa aktarımda istatistik ve açıklama **boş**. Aynı item'ların eski set kopyaları (`TFT_Item_*`) eski değerleri taşıyor; örneğin Bloodthirster 18.2 öncesi değerlerle duruyor. Set 18 değeri olarak kullanılmaz.
+
+**tactics.tools bilgi sayfaları (`/info/items`, `/info/augments`) da eski:**
+- Sayfa "Set 18" diyor, ama değerler 18.2 durumunda:
+  - 18.2 Bloodthirster değişikliği var.
+  - 18.3'teki Collector, Statikk Shiv ve Upward Mobility değişiklikleri yok.
+  - 18.4'teki Crownguard, Spirit Visage, Level Up! ve Chosen of the Sun değişiklikleri de yok.
+- Elle aktarımda kaynağın yaması 18.2 olarak kaydedildi; 18.3 ve 18.4 değişiklikleri resmi notlardan işlendi (`tools/curate_item_stats.py`, `tools/curate_augment_tiers.py`).
+- **Aktarımın doğrulaması:** 103 item'ın 84'ü eski oyun dosyası kopyalarıyla istatistik olarak birebir aynı. Farklar ya yamalarla değişen item'larda ya da başka setlerden gelen artifact'larda.
+
 **Bilinen boşluklar:**
 - **Yetenek değişkenleri:** 74 `DA_` şampiyonun sadece 2'sinde `ability.variables` dolu. Eski setlerde yıldız başına 7 değerlik diziler vardı.
 - **Trait değişken adları hash'li.** Örnek `DA_18_Brawler`: `{"{da2472a7}":120.0,"{f1ed73eb}":0.25}`. Açıklamadaki adlar (`@BrawlerTeamHealth@`) aday olarak kullanılabilir.

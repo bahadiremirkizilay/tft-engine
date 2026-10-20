@@ -1,0 +1,1881 @@
+{
+  "set": "set18",
+  "patch": "18.4",
+  "kind": "item_stats",
+  "note": "Hand transcription of tactics.tools/info/items (read 2026-10-20; numbers match 18.2). Items changed in 18.3/18.4 carry the official values and the notes as a source. Effect texts are short paraphrases, not Riot's wording. AP is stored as a number. older_copy_check compares with the older-set entry of the same item in the game-file export (values there can be outdated): equal stats support the transcription, differences need a look.",
+  "records": [
+    {
+      "id": "DA_AdaptiveHelm",
+      "name": "Adaptive Helm",
+      "stats": {
+        "mr": 20,
+        "mana_regen": 3
+      },
+      "effect": "+15% Mana gain. Tanks and Fighters gain 30 Armor and MR; other roles gain 10% AD and AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_AdaptiveHelm",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_AdaptiveHelm_Radiant",
+      "name": "Radiant Adaptive Helm",
+      "stats": {
+        "mr": 40,
+        "mana_regen": 7
+      },
+      "effect": "+30% Mana gain. Tanks and Fighters gain 80 Armor and MR; others gain 40% AD and AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_AdaptiveHelmRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_ArchangelsStaff",
+      "name": "Archangel's Staff",
+      "stats": {
+        "ap": 30,
+        "mana_regen": 1
+      },
+      "effect": "Combat start and every 5s in combat: +20 AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_ArchangelsStaff",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_ArchangelsStaffRadiant",
+      "name": "Radiant Archangel's Staff",
+      "stats": {
+        "ap": 60,
+        "mana_regen": 2
+      },
+      "effect": "Combat start and every 5s: +40 AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_ArchangelsStaffRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_AegisOfDawn",
+      "name": "Aegis of Dawn",
+      "stats": {
+        "hp": 400,
+        "armor": 50
+      },
+      "effect": "Every 2.5s: steal 3 Armor from adjacent enemies and heal 20% of the holder's Armor (1.25s with Aegis of Dusk).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_AegisOfDawn",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_AegisOfDusk",
+      "name": "Aegis of Dusk",
+      "stats": {
+        "hp": 400,
+        "mr": 70
+      },
+      "effect": "Every 2.5s: steal 3 MR from adjacent enemies and deal 18% of the holder's MR as magic damage (1.25s with Aegis of Dawn).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_AegisOfDusk",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_BlightingJewel",
+      "name": "Blighting Jewel",
+      "stats": {
+        "ap": 30,
+        "mana_regen": 2
+      },
+      "effect": "Magic damage reduces the target's MR by 3; at 0 MR, gain 4 Mana.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_BlightingJewel",
+        "diffs": [
+          "ap: 30 here, 60 in TFT_Item_Artifact_BlightingJewel"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_Dawncore",
+      "name": "Dawncore",
+      "stats": {
+        "ad_pct": 20,
+        "ap": 20,
+        "mana_regen": 1
+      },
+      "effect": "Reduces max Mana by 10, then 5% per cast (minimum 15).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_Dawncore",
+        "diffs": [
+          "ad_pct: 20 here, 15 in TFT_Item_Artifact_Dawncore",
+          "ap: 20 here, 15 in TFT_Item_Artifact_Dawncore",
+          "mana_regen: 1 here, 2 in TFT_Item_Artifact_Dawncore"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_EternalPact",
+      "name": "Eternal Pact",
+      "stats": {
+        "ap": 35,
+        "mana_regen": 1
+      },
+      "effect": "Combat start: pact with the highest-Health ally; shields that ally every 6s for 200% of the holder's AP. The ally gains 10 Mana on Tank ability cast.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20",
+        "riot-notes-18.3"
+      ],
+      "note": "18.3: Mana on Tank ability cast 15 => 10",
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_EternalPact",
+        "diffs": [
+          "ap: 35 here, 40 in TFT_Item_Artifact_EternalPact"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_Fishbones",
+      "name": "Fishbones",
+      "stats": {
+        "ad_pct": 25,
+        "as_pct": 25
+      },
+      "effect": "Attacks target random enemies; +2 attack range.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_Fishbones",
+        "diffs": [
+          "ad_pct: 25 here, 50 in TFT_Item_Artifact_Fishbones",
+          "as_pct: 25 here, 50 in TFT_Item_Artifact_Fishbones"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_ForbiddenIdol",
+      "name": "Forbidden Idol",
+      "stats": {
+        "hp": 500,
+        "mana_regen": 2
+      },
+      "effect": "Shields convert 40% of their value to max Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_ForbiddenIdol",
+        "diffs": [
+          "armor: None here, 25 in TFT_Item_Artifact_ForbiddenIdol",
+          "mr: None here, 25 in TFT_Item_Artifact_ForbiddenIdol",
+          "hp: 500 here, 200 in TFT_Item_Artifact_ForbiddenIdol"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_GamblersBlade",
+      "name": "Gambler's Blade",
+      "stats": {
+        "as_pct": 55
+      },
+      "effect": "+1% Attack Speed per gold banked (up to 30); attacks have a 6% chance to drop gold.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT7_Item_ShimmerscaleGamblersBlade",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_GoldCollector",
+      "name": "Gold Collector",
+      "stats": {
+        "ad_pct": 35,
+        "crit_pct": 20
+      },
+      "effect": "Attacks and abilities execute enemies below 12% Health; champion executions have a 33% chance to drop gold. Unique.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20",
+        "riot-notes-18.3"
+      ],
+      "note": "18.3: AD 40% => 35% (notes call it The Collector)",
+      "older_copy_check": {
+        "older_copy": "TFT4_Item_OrnnTheCollector",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_HellfireHatchet",
+      "name": "Hellfire Hatchet",
+      "stats": {
+        "hp": 400,
+        "omnivamp_pct": 20
+      },
+      "effect": "Attacks deal 3% max Health as bonus physical damage; +1.5% Attack Speed per 1% missing Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_HellfireHatchet",
+        "diffs": [
+          "ad_pct: None here, 20 in TFT_Item_Artifact_HellfireHatchet",
+          "hp: 400 here, 150 in TFT_Item_Artifact_HellfireHatchet"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_HorizonFocus",
+      "name": "Horizon Focus",
+      "stats": {
+        "hp": 250,
+        "armor": 20,
+        "mr": 20,
+        "mana_regen": 2
+      },
+      "effect": "Stunning an enemy strikes it with lightning for 30% of its max Health as magic damage.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_HorizonFocus",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_Hullcrusher",
+      "name": "Hullcrusher",
+      "stats": {
+        "armor": 60,
+        "mr": 60
+      },
+      "effect": "Combat start with no adjacent allies: +400 Health, 10% AD, 10% AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT9_Item_OrnnHullbreaker",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_InfinityForce",
+      "name": "Infinity Force",
+      "stats": {
+        "hp": 300,
+        "ad_pct": 30,
+        "ap": 30,
+        "armor": 30,
+        "mr": 30,
+        "as_pct": 30
+      },
+      "effect": "Stats only.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT4_Item_OrnnInfinityForce",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_LichBane",
+      "name": "Lich Bane",
+      "stats": {
+        "ap": 55,
+        "as_pct": 10
+      },
+      "effect": "First attack after each cast deals 250/350/500/600/700/700 bonus magic damage (by stage).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_LichBane",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_LightshieldCrest",
+      "name": "Lightshield Crest",
+      "stats": {
+        "armor": 55,
+        "mr": 55
+      },
+      "effect": "Every 3s: shield the lowest-Health ally for 70% of the holder's Armor+MR for 5s; on death, shield all allies.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_LightshieldCrest",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_LudensTempest",
+      "name": "Luden's Tempest",
+      "stats": {
+        "ad_pct": 55,
+        "ap": 55
+      },
+      "effect": "100% of overkill damage plus 130 hits the two nearest enemies as magic damage.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_LudensTempest",
+        "diffs": [
+          "ad_pct: 55 here, 60 in TFT_Item_Artifact_LudensTempest",
+          "ap: 55 here, 60 in TFT_Item_Artifact_LudensTempest"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_Manazane",
+      "name": "Manazane",
+      "stats": {
+        "ad_pct": 15,
+        "ap": 15,
+        "mana_regen": 1
+      },
+      "effect": "After the first cast in combat, gain 110 Mana over 5s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT4_Item_OrnnMuramana",
+        "diffs": [
+          "ap: 15 here, 10 in TFT4_Item_OrnnMuramana",
+          "as_pct: None here, 15 in TFT4_Item_OrnnMuramana"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_Mittens",
+      "name": "Mittens",
+      "stats": {
+        "as_pct": 65,
+        "damage_amp_pct": 15
+      },
+      "effect": "Shrinks the holder: faster movement, immune to Slow, Burn and Wound.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_Mittens",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_MogulsMail",
+      "name": "Mogul's Mail",
+      "stats": {
+        "hp": 300
+      },
+      "effect": "+1 Armor, 1 MR and 5 Health per hit taken (up to 35 stacks); at full, 1 gold every 11s. Unique.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT7_Item_ShimmerscaleMogulsMail_HR",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_NavoriFlickerblade",
+      "name": "Flickerblades",
+      "stats": {
+        "ap": 10,
+        "as_pct": 20
+      },
+      "effect": "Attacks grant 4% stacking Attack Speed; every 3 attacks grant 2% AD and AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_NavoriFlickerblades",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_RapidFireCannon",
+      "name": "Rapid Firecannon",
+      "stats": {
+        "as_pct": 55,
+        "damage_amp_pct": 5
+      },
+      "effect": "+1 attack range, +1 more per kill.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_RapidFirecannon",
+        "diffs": [
+          "as_pct: 55 here, 65 in TFT_Item_Artifact_RapidFirecannon"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_SeekersArmguard",
+      "name": "Seeker's Armguard",
+      "stats": {
+        "ap": 25,
+        "armor": 10,
+        "mr": 10,
+        "omnivamp_pct": 20
+      },
+      "effect": "Takedowns grant +20 Armor, MR and AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_SeekersArmguard",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_SilvermereDawn",
+      "name": "Silvermere Dawn",
+      "stats": {
+        "ad_pct": 150,
+        "armor": 30,
+        "mr": 30,
+        "omnivamp_pct": 30
+      },
+      "effect": "Stun immunity; attacks stun for 0.8s; Attack Speed locked at 0.5.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_SilvermereDawn",
+        "diffs": [
+          "ad_pct: 150 here, 140 in TFT_Item_Artifact_SilvermereDawn",
+          "armor: 30 here, 80 in TFT_Item_Artifact_SilvermereDawn",
+          "mr: 30 here, 80 in TFT_Item_Artifact_SilvermereDawn"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_StatikkShiv",
+      "name": "Statikk Shiv",
+      "stats": {
+        "ap": 25,
+        "as_pct": 40
+      },
+      "effect": "Every 3rd attack deals 15 + 35% of the holder's AP as magic damage to up to 6 enemies.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20",
+        "riot-notes-18.3"
+      ],
+      "note": "18.3: base AP 15% => 25%",
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_StatikkShiv",
+        "diffs": [
+          "ap: 25 here, 15 in TFT_Item_Artifact_StatikkShiv",
+          "as_pct: 40 here, 50 in TFT_Item_Artifact_StatikkShiv"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_TheIndomitable",
+      "name": "The Indomitable",
+      "stats": {
+        "hp": 500,
+        "armor": 20,
+        "mr": 20
+      },
+      "effect": "Much slower movement; +15% max Health, Unstoppable, pulls its target into melee.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_TheIndomitable",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_TitanicHydra",
+      "name": "Titanic Hydra",
+      "stats": {
+        "hp": 300,
+        "ad_pct": 20,
+        "as_pct": 20
+      },
+      "effect": "Attacks deal 2% max Health + 4% AD as bonus physical damage to the target and adjacent enemies.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_TitanicHydra",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_VoidGauntlet",
+      "name": "Void Gauntlet",
+      "stats": {
+        "hp": 300,
+        "damage_reduction_pct": 10
+      },
+      "effect": "Combat start: stores 30% max Health (+2.5% per second); on death, releases it as magic damage within 4 hexes. Unique.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_VoidGauntlet",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Artifact_WitsEnd",
+      "name": "Wit's End",
+      "stats": {
+        "hp": 300,
+        "armor": 20,
+        "mr": 20,
+        "as_pct": 25
+      },
+      "effect": "Attacks deal 25/45/65/85/100 bonus magic damage (by stage); heal 25% of magic damage dealt.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_WitsEnd",
+        "diffs": [
+          "hp: 300 here, 400 in TFT_Item_Artifact_WitsEnd"
+        ]
+      }
+    },
+    {
+      "id": "DA_Artifact_ZhonyasParadox",
+      "name": "Zhonya's Paradox",
+      "stats": {
+        "ap": 25,
+        "armor": 25,
+        "mr": 25
+      },
+      "effect": "Once per combat at 40% Health: invulnerable and untargetable for 3s. Unique.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT4_Item_OrnnZhonyasParadox",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Bloodthirster",
+      "name": "Bloodthirster",
+      "stats": {
+        "ad_pct": 18,
+        "ap": 18,
+        "mr": 20,
+        "omnivamp_pct": 20
+      },
+      "effect": "Once per combat at 50% Health: shield of 30% max Health for up to 5s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Bloodthirster",
+        "diffs": [
+          "ad_pct: 18 here, 15 in TFT_Item_Bloodthirster",
+          "ap: 18 here, 15 in TFT_Item_Bloodthirster"
+        ]
+      }
+    },
+    {
+      "id": "DA_BloodthirsterRadiant",
+      "name": "Radiant Bloodthirster",
+      "stats": {
+        "ad_pct": 40,
+        "ap": 40,
+        "mr": 40,
+        "omnivamp_pct": 40
+      },
+      "effect": "Once per combat at 50% Health: shield of 60% max Health for up to 5s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_BloodthirsterRadiant",
+        "diffs": [
+          "ad_pct: 40 here, 30 in TFT5_Item_BloodthirsterRadiant",
+          "ap: 40 here, 30 in TFT5_Item_BloodthirsterRadiant"
+        ]
+      }
+    },
+    {
+      "id": "DA_BlueBuff",
+      "name": "Blue Buff",
+      "stats": {
+        "ad_pct": 15,
+        "ap": 15,
+        "mana_regen": 5
+      },
+      "effect": "+10% additional AD and AP from all sources.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFTTutorial_Item_BlueBuff",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_BlueBuffRadiant",
+      "name": "Radiant Blue Buff",
+      "stats": {
+        "ad_pct": 30,
+        "ap": 30,
+        "mana_regen": 10
+      },
+      "effect": "+20% additional AD and AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_BlueBuffRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_BrambleVest",
+      "name": "Bramble Vest",
+      "stats": {
+        "armor": 50
+      },
+      "effect": "+6% max Health; 5% less damage from attacks; when struck, 100 magic damage to adjacent enemies (2s cooldown).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_BrambleVest",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_BrambleVestRadiant",
+      "name": "Radiant Bramble Vest",
+      "stats": {
+        "armor": 100
+      },
+      "effect": "+12% max Health; 10% less damage from attacks; when struck, 200 magic damage to adjacent enemies (2s cooldown).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_BrambleVestRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Crownguard",
+      "name": "Crownguard",
+      "stats": {
+        "hp": 100,
+        "ap": 20,
+        "armor": 20
+      },
+      "effect": "Combat start: shield of 25% max Health for 8s; when it expires, +20 AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20",
+        "riot-notes-18.4"
+      ],
+      "note": "18.4: AP on shield expire 25 => 20",
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Crownguard",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_CrownguardRadiant",
+      "name": "Radiant Crownguard",
+      "stats": {
+        "hp": 200,
+        "ap": 40,
+        "armor": 40
+      },
+      "effect": "Combat start: shield of 50% max Health for 8s; when it expires, +50 AP.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "note": "18.4 changed base Crownguard's AP on expire; the notes list no Radiant change",
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_CrownguardRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Deathblade",
+      "name": "Deathblade",
+      "stats": {
+        "ad_pct": 55,
+        "damage_amp_pct": 10
+      },
+      "effect": "Stacking bonus with more copies (page text was a placeholder).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Deathblade",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_DeathbladeRadiant",
+      "name": "Radiant Deathblade",
+      "stats": {
+        "ad_pct": 100,
+        "damage_amp_pct": 20
+      },
+      "effect": "Stacking bonus (page text was a placeholder).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_DeathbladeRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_DragonsClaw",
+      "name": "Dragon's Claw",
+      "stats": {
+        "mr": 60
+      },
+      "effect": "+6% max Health; every 2s heal 2.5% max Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_DragonsClaw",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_DragonsClawRadiant",
+      "name": "Radiant Dragon's Claw",
+      "stats": {
+        "mr": 120
+      },
+      "effect": "+28% max Health; every 2s heal 5% max Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_DragonsClawRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_EdgeOfNight",
+      "name": "Edge of Night",
+      "stats": {
+        "ad_pct": 10,
+        "ap": 10,
+        "armor": 20,
+        "as_pct": 15
+      },
+      "effect": "At 40% Health: briefly untargetable, shed negative effects, heal 15% missing Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_GuardianAngel",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_EdgeOfNightRadiant",
+      "name": "Radiant Edge of Night",
+      "stats": {
+        "ad_pct": 30,
+        "ap": 30,
+        "armor": 40,
+        "as_pct": 30
+      },
+      "effect": "At 40% Health: untargetable, shed negative effects, heal all missing Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_GuardianAngelRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Evenshroud",
+      "name": "Evenshroud",
+      "stats": {
+        "mr": 20,
+        "hp": 250
+      },
+      "effect": "30% Sunder to enemies within 2 hexes; first 15s of combat: +15 Armor and MR.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_SpectralGauntlet",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_EvenshroudRadiant",
+      "name": "Radiant Evenshroud",
+      "stats": {
+        "hp": 500,
+        "mr": 40
+      },
+      "effect": "30% Sunder within 3 hexes; first 20s: +50 Armor and MR.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_SpectralGauntletRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_GargoyleStoneplate",
+      "name": "Gargoyle Stoneplate",
+      "stats": {
+        "hp": 100,
+        "armor": 25,
+        "mr": 25
+      },
+      "effect": "+10 Armor and MR for each enemy targeting the holder.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_GargoyleStoneplate",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_GargoyleStoneplate_Radiant",
+      "name": "Radiant Gargoyle Stoneplate",
+      "stats": {
+        "hp": 400,
+        "armor": 50,
+        "mr": 50
+      },
+      "effect": "+20 Armor and MR for each enemy targeting the holder.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_GargoyleStoneplateRadiant",
+        "diffs": [
+          "hp: 400 here, 300 in TFT5_Item_GargoyleStoneplateRadiant"
+        ]
+      }
+    },
+    {
+      "id": "DA_GiantSlayer",
+      "name": "Giant Slayer",
+      "stats": {
+        "ad_pct": 15,
+        "ap": 15,
+        "as_pct": 15,
+        "damage_amp_pct": 15
+      },
+      "effect": "+15% additional Damage Amp against Tanks.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_MadredsBloodrazor",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_GiantSlayer_Radiant",
+      "name": "Radiant Giant Slayer",
+      "stats": {
+        "ad_pct": 30,
+        "ap": 30,
+        "as_pct": 30,
+        "damage_amp_pct": 30
+      },
+      "effect": "+30% additional Damage Amp against Tanks.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_GiantSlayerRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_GuinsoosRageblade",
+      "name": "Guinsoo's Rageblade",
+      "stats": {
+        "ap": 10,
+        "as_pct": 10
+      },
+      "effect": "+7% stacking Attack Speed every second.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT11_Encounter_ChoiceItem_GiveRageblade",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_GuinsoosRagebladeRadiant",
+      "name": "Radiant Guinsoo's Rageblade",
+      "stats": {
+        "ap": 20,
+        "as_pct": 25
+      },
+      "effect": "+16% stacking Attack Speed per second.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_GuinsoosRagebladeRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_HandOfJustice",
+      "name": "Hand of Justice",
+      "stats": {
+        "crit_pct": 20,
+        "mana_regen": 1
+      },
+      "effect": "18% AD and AP and 15% Omnivamp; AD/AP doubled above 50% Health, Omnivamp doubled below 50% Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT11_Encounter_ChoiceItem_GiveHoJ",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_HandOfJusticeRadiant",
+      "name": "Radiant Hand of Justice",
+      "stats": {
+        "crit_pct": 40,
+        "mana_regen": 2
+      },
+      "effect": "35% AD and AP and 30% Omnivamp; same doubling rule as the base item.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_HandOfJusticeRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_HextechGunblade",
+      "name": "Hextech Gunblade",
+      "stats": {
+        "ad_pct": 20,
+        "ap": 20,
+        "omnivamp_pct": 15,
+        "mana_regen": 1
+      },
+      "effect": "Heals the lowest-Health ally for 20% of damage dealt.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT11_Encounter_ChoiceItem_GiveGunblade",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_HextechGunbladeRadiant",
+      "name": "Radiant Hextech Gunblade",
+      "stats": {
+        "ad_pct": 40,
+        "ap": 40,
+        "omnivamp_pct": 30,
+        "mana_regen": 2
+      },
+      "effect": "Heals the lowest-Health ally for 40% of damage dealt.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_HextechGunbladeRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_InfinityEdge",
+      "name": "Infinity Edge",
+      "stats": {
+        "ad_pct": 35,
+        "crit_pct": 35
+      },
+      "effect": "Precision: abilities can crit; extra Precision adds 10% Crit Damage.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_InfinityEdge",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_InfinityEdgeRadiant",
+      "name": "Radiant Infinity Edge",
+      "stats": {
+        "ad_pct": 75,
+        "crit_pct": 75
+      },
+      "effect": "Precision.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_InfinityEdgeRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_IonicSpark",
+      "name": "Ionic Spark",
+      "stats": {
+        "hp": 250,
+        "ap": 15,
+        "mr": 35
+      },
+      "effect": "30% Shred to enemies within 2 hexes; enemy casts take magic damage equal to 150% of the Mana spent.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_IonicSpark",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_IonicSparkRadiant",
+      "name": "Radiant Ionic Spark",
+      "stats": {
+        "hp": 500,
+        "ap": 30,
+        "mr": 70
+      },
+      "effect": "30% Shred within 2 hexes; enemy casts take 300% of Mana spent as magic damage.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_IonicSparkRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Item_Artifact_TalismanOfAscension",
+      "name": "Talisman of Ascension",
+      "stats": {
+        "hp": 450,
+        "ad_pct": 20,
+        "ap": 20
+      },
+      "effect": "After 22s: +100% max Health, 12 Mana Regen and 120% Damage Amp for the rest of combat.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Artifact_TalismanOfAscension",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_JeweledGauntlet",
+      "name": "Jeweled Gauntlet",
+      "stats": {
+        "ap": 35,
+        "crit_pct": 35
+      },
+      "effect": "Precision: abilities can crit; extra Precision adds 10% Crit Damage.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_JeweledGauntlet",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_JeweledGauntletRadiant",
+      "name": "Radiant Jeweled Gauntlet",
+      "stats": {
+        "ap": 75,
+        "crit_pct": 75
+      },
+      "effect": "Precision.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_JeweledGauntletRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_KrakensFury",
+      "name": "Kraken's Fury",
+      "stats": {
+        "ad_pct": 10,
+        "mr": 20,
+        "as_pct": 10
+      },
+      "effect": "Attacks grant 3.5% stacking AD (up to 15 attacks), then +15% Attack Speed.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_RunaansHurricane",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_KrakensFury_Radiant",
+      "name": "Radiant Kraken's Fury",
+      "stats": {
+        "ad_pct": 20,
+        "mr": 40,
+        "as_pct": 20
+      },
+      "effect": "Attacks grant 7% stacking AD (15 attacks), then +30% Attack Speed.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_RunaansHurricaneRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_LastWhisper",
+      "name": "Last Whisper",
+      "stats": {
+        "ad_pct": 15,
+        "as_pct": 20,
+        "crit_pct": 20
+      },
+      "effect": "Attacks and abilities Sunder 30% for 3s (does not stack).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_LastWhisper",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_LastWhisperRadiant",
+      "name": "Radiant Last Whisper",
+      "stats": {
+        "ad_pct": 45,
+        "as_pct": 40,
+        "crit_pct": 40
+      },
+      "effect": "30% Sunder for the rest of combat (does not stack).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_LastWhisperRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Morellonomicon",
+      "name": "Morellonomicon",
+      "stats": {
+        "hp": 150,
+        "ap": 20,
+        "mana_regen": 1
+      },
+      "effect": "Attacks and abilities apply 1% Burn and 33% Wound for 10s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Morellonomicon",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_MorellonomiconRadiant",
+      "name": "Radiant Morellonomicon",
+      "stats": {
+        "hp": 300,
+        "ap": 35,
+        "mana_regen": 2
+      },
+      "effect": "2% Burn and 33% Wound for 10s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_MorellonomiconRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_NashorsTooth",
+      "name": "Nashor's Tooth",
+      "stats": {
+        "hp": 150,
+        "ap": 15,
+        "as_pct": 10,
+        "crit_pct": 20
+      },
+      "effect": "Attacks grant 2 bonus Mana (2 more on crit).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Leviathan",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_NashorsToothRadiant",
+      "name": "Radiant Nashor's Tooth",
+      "stats": {
+        "hp": 300,
+        "ap": 30,
+        "as_pct": 20,
+        "crit_pct": 40
+      },
+      "effect": "Attacks grant 4 bonus Mana (2 more on crit).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_LeviathanRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_ProtectorsVow",
+      "name": "Protector's Vow",
+      "stats": {
+        "armor": 25,
+        "mr": 25,
+        "mana_regen": 1
+      },
+      "effect": "Combat start: 20 Mana. At 40% Health: 15 Mana and a shield of 20% max Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_FrozenHeart",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_ProtectorsVowRadiant",
+      "name": "Radiant Protector's Vow",
+      "stats": {
+        "armor": 50,
+        "mr": 50,
+        "mana_regen": 2
+      },
+      "effect": "Combat start: 40 Mana. At 40% Health: 30 Mana and a shield of 50% max Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_FrozenHeartRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_Quicksilver",
+      "name": "Quicksilver",
+      "stats": {
+        "mr": 20,
+        "as_pct": 15,
+        "crit_pct": 20
+      },
+      "effect": "Combat start: Unstoppable for 18s; +3% stacking Attack Speed per second.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_Quicksilver",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_QuicksilverRadiant",
+      "name": "Radiant Quicksilver",
+      "stats": {
+        "mr": 40,
+        "as_pct": 40,
+        "crit_pct": 40
+      },
+      "effect": "Unstoppable for 45s; +6% stacking Attack Speed per second.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_QuicksilverRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_RabadonsDeathcap",
+      "name": "Rabadon's Deathcap",
+      "stats": {
+        "ap": 55,
+        "damage_amp_pct": 15
+      },
+      "effect": "Stacking bonus with more copies (page text was a placeholder).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_RabadonsDeathcap",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_RabadonsDeathcap_Radiant",
+      "name": "Radiant Rabadon's Deathcap",
+      "stats": {
+        "ap": 100,
+        "damage_amp_pct": 30
+      },
+      "effect": "Stacking bonus (page text was a placeholder).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_RabadonsDeathcapRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_RedBuff",
+      "name": "Red Buff",
+      "stats": {
+        "as_pct": 45,
+        "damage_amp_pct": 3
+      },
+      "effect": "Attacks and abilities apply 1% Burn and 33% Wound for 5s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_RapidFireCannon",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_RedBuffRadiant",
+      "name": "Radiant Red Buff",
+      "stats": {
+        "as_pct": 80,
+        "damage_amp_pct": 6
+      },
+      "effect": "2% Burn and 33% Wound for 5s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_RapidFirecannonRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SpearOfShojin",
+      "name": "Spear of Shojin",
+      "stats": {
+        "ad_pct": 15,
+        "ap": 15,
+        "mana_regen": 1
+      },
+      "effect": "Attacks grant 5 bonus Mana.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_SpearOfShojin",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SpearOfShojinRadiant",
+      "name": "Radiant Spear of Shojin",
+      "stats": {
+        "ad_pct": 30,
+        "ap": 30,
+        "mana_regen": 2
+      },
+      "effect": "Attacks grant 10 bonus Mana.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_SpearOfShojinRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SpiritVisage",
+      "name": "Spirit Visage",
+      "stats": {
+        "hp": 300,
+        "durability_pct": 10,
+        "mana_regen": 2
+      },
+      "effect": "Regenerate 2% of missing Health per second.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20",
+        "riot-notes-18.4"
+      ],
+      "note": "18.4: Durability 8% => 10% (the page called it damage reduction)",
+      "older_copy_check": {
+        "older_copy": "TFT11_Encounter_ChoiceItem_GiveRedemption",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SpiritVisage_Radiant",
+      "name": "Radiant Spirit Visage",
+      "stats": {
+        "hp": 700,
+        "durability_pct": 18,
+        "mana_regen": 4
+      },
+      "effect": "Regenerate 4% of missing Health per second.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20",
+        "riot-notes-18.4"
+      ],
+      "note": "18.4: Radiant Durability 15% => 18% (the page called it damage reduction)",
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_RedemptionRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SteadfastHeart",
+      "name": "Steadfast Heart",
+      "stats": {
+        "hp": 250,
+        "armor": 20,
+        "crit_pct": 20
+      },
+      "effect": "5% Durability (15% above 50% Health).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT11_Encounter_ChoiceItem_GiveSteadfast",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SteadfastHeartRadiant",
+      "name": "Radiant Steadfast Heart",
+      "stats": {
+        "hp": 500,
+        "armor": 40,
+        "crit_pct": 40
+      },
+      "effect": "10% Durability (30% above 50% Health).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_NightHarvesterRadiant",
+        "diffs": [
+          "hp: 500 here, 600 in TFT5_Item_NightHarvesterRadiant"
+        ]
+      }
+    },
+    {
+      "id": "DA_SteraksGage",
+      "name": "Sterak's Gage",
+      "stats": {
+        "hp": 300,
+        "ad_pct": 45
+      },
+      "effect": "At 60% Health: shield of 40% max Health, decaying over 4s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_SteraksGage",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SteraksGageRadiant",
+      "name": "Radiant Sterak's Gage",
+      "stats": {
+        "hp": 600,
+        "ad_pct": 90
+      },
+      "effect": "At 60% Health: shield of 80% max Health, decaying over 6s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_SteraksGageRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_StrikersFlail",
+      "name": "Striker's Flail",
+      "stats": {
+        "hp": 150,
+        "as_pct": 10,
+        "crit_pct": 20,
+        "damage_amp_pct": 10
+      },
+      "effect": "Crits grant 5% Damage Amp for 5s, up to 4 stacks.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_PowerGauntlet",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_StrikersFlailRadiant",
+      "name": "Radiant Striker's Flail",
+      "stats": {
+        "hp": 300,
+        "as_pct": 20,
+        "crit_pct": 40,
+        "damage_amp_pct": 20
+      },
+      "effect": "Crits grant 10% Damage Amp for 5s, up to 4 stacks.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_TrapClawRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SunfireCape",
+      "name": "Sunfire Cape",
+      "stats": {
+        "hp": 150,
+        "armor": 20
+      },
+      "effect": "+8% max Health; every 2s, 1% Burn and 33% Wound to a nearby enemy for 10s.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT11_Encounter_ChoiceItem_GiveSunfire",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_SunfireCape_Radiant",
+      "name": "Radiant Sunfire Cape",
+      "stats": {
+        "hp": 300,
+        "armor": 40
+      },
+      "effect": "+16% max Health; every 2s, 2% Burn and 33% Wound to a nearby enemy.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_SunfireCapeRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_ThiefsGloves",
+      "name": "Thief's Gloves",
+      "stats": {
+        "hp": 150,
+        "crit_pct": 20
+      },
+      "effect": "Each round: equip 2 random items (uses all 3 slots).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_ThiefsGloves",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_ThiefsGlovesRadiant",
+      "name": "Radiant Thief's Gloves",
+      "stats": {
+        "hp": 150,
+        "crit_pct": 20
+      },
+      "effect": "Each round: equip 2 random Radiant items.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_ThiefsGlovesRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_TitansResolve",
+      "name": "Titan's Resolve",
+      "stats": {
+        "armor": 20,
+        "as_pct": 10
+      },
+      "effect": "+2% AD and AP per attack or damage taken (up to 25 stacks); at full: 10% Damage Amp and Unstoppable.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_TitansResolve",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_TitansResolve_Radiant",
+      "name": "Radiant Titan's Resolve",
+      "stats": {
+        "armor": 40,
+        "as_pct": 20
+      },
+      "effect": "+4% AD and AP per attack or damage taken (25 stacks); at full: 20% Damage Amp and Unstoppable.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_TitansResolveRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_VoidStaff",
+      "name": "Void Staff",
+      "stats": {
+        "ap": 35,
+        "as_pct": 15,
+        "mana_regen": 1
+      },
+      "effect": "Attacks and abilities Shred 30% for 5s (does not stack).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT_Item_StatikkShiv",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_VoidStaffRadiant",
+      "name": "Radiant Void Staff",
+      "stats": {
+        "ap": 75,
+        "as_pct": 30,
+        "mana_regen": 2
+      },
+      "effect": "30% Shred for the rest of combat (does not stack).",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_StatikkShivRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_WarmogsArmor",
+      "name": "Warmog's Armor",
+      "stats": {
+        "hp": 500
+      },
+      "effect": "+18% max Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT11_Encounter_ChoiceItem_GiveWarmogs",
+        "diffs": []
+      }
+    },
+    {
+      "id": "DA_WarmogsArmorRadiant",
+      "name": "Radiant Warmog's Armor",
+      "stats": {
+        "hp": 1200
+      },
+      "effect": "+36% max Health.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "older_copy_check": {
+        "older_copy": "TFT5_Item_WarmogsArmorRadiant",
+        "diffs": []
+      }
+    },
+    {
+      "id": "TFT4_Item_OrnnDeathsDefiance",
+      "name": "Death's Defiance",
+      "stats": {
+        "ad_pct": 25,
+        "as_pct": 15
+      },
+      "effect": "25% of damage received is dealt over time as non-lethal damage. Unique. Armor and Omnivamp values were not readable on the page.",
+      "status": "third_party_unverified",
+      "source_ids": [
+        "tactics-tools-items-2026-10-20"
+      ],
+      "note": "Set 18 uses the older entry TFT4_Item_OrnnDeathsDefiance",
+      "older_copy_check": {
+        "older_copy": "TFT4_Item_OrnnDeathsDefiance",
+        "diffs": [
+          "armor: None here, 40 in TFT4_Item_OrnnDeathsDefiance",
+          "omnivamp_pct: None here, 25 in TFT4_Item_OrnnDeathsDefiance"
+        ]
+      }
+    }
+  ]
+}
