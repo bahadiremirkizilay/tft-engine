@@ -105,7 +105,7 @@
       "status": "third_party_unverified",
       "source": "op.gg gold-xp guide (Set 18) and tft.ninja; streaks of 4, 5 and 6 checked in game (owner, 18.4b)",
       "source_ids": ["opgg-gold-xp", "tftninja-economy", "owner-ingame-2026-10-20"],
-      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks. In game at stage 4 (income = 5 base + interest + streak): 4 win streak +1, 5 +2, 6 +3, matching this table and ruling out tables with 4 -> +2. Not yet seen: whether a 2 streak pays (the wiki conflict below), loss streaks.",
+      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks. In game at stage 4 (income = 5 base + interest + streak): 4 win streak +1, 5 +2, 6 +3, matching this table and ruling out tables with 4 -> +2. A loss after a 6 win streak (30 gold) paid 5 + 3 = 8: the streak resets and a 1-round streak pays nothing. Not yet seen: whether a 2 streak pays (the wiki conflict below), loss streaks.",
       "conflicts": [
         {
           "value": [[3, 1], [5, 2], [6, 3]],
