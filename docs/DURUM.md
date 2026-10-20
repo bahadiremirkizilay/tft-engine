@@ -23,7 +23,8 @@ Son güncelleme: 2026-10-20. Ayrıntılı plan: [PLAN.md](PLAN.md) (v0.4.2).
 3. **10-20 kayıtlı ranked maç** (M1b):
    - OBS ile kaydet. Videolar bilgisayarında kalsın, depoya yüklenmez.
    - Her maç için [templates/mac_formu.md](../templates/mac_formu.md) formunu doldur.
-   - Bana aşama başlarının (2-1, 3-1, 4-1, 5-1) ve roll yaptığın anların ekran görüntülerini gönder.
+   - Maç bitince `python tools/extract_frames.py <video> --every 20` ile videodan 20 saniyede bir kare çıkar (ffmpeg gerekir). Elle ekran görüntüsü alma.
+   - Formda sadece 3-4 büyük kararı video dakikasıyla yaz.
 4. **Ligin**: tahta gücü doğrulamasında hangi elo dilimine bakılacağını belirler.
 5. **Riot API kişisel anahtarı** (G0): kayıt metnini ben hazırlarım, onay senin.
 

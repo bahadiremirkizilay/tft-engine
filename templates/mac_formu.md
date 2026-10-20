@@ -25,9 +25,11 @@ Bir kayıtlı maç için bir kopya. Dosya adı: `data/ownlogs/<tarih>_<sıra>.md
 
 ## Önemli kararlar
 
-| Aşama | Ne yaptın (roll / level / pivot / bekle) | Kısa gerekçe | Eminlik (1-5) |
-|---|---|---|---|
-| | | | |
+Sadece 3-4 büyük karar: büyük roll, level zamanlaması, pivot. Her küçük adımı yazmana gerek yok. Videodaki dakikayı yazarsan karesini ben bulurum.
+
+| Video dakikası | Aşama | Ne yaptın (roll / level / pivot / bekle) | Kısa gerekçe | Eminlik (1-5) |
+|---|---|---|---|---|
+| | | | | |
 
 ## Hedeflediğin kompozisyon
 
