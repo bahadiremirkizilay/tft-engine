@@ -1,0 +1,18 @@
+{
+  "set": "set18",
+  "note": "Dates are when the official notes were published, not the exact hour a patch went live. A record taken on a notes day is flagged as ambiguous.",
+  "patches": [
+    {"patch": "18.1", "notes_published": "2026-08-26", "status": "released", "source_id": "riot-notes-18.1"},
+    {"patch": "18.2", "notes_published": "2026-09-09", "status": "released", "source_id": "riot-notes-18.2"},
+    {"patch": "18.3", "notes_published": "2026-09-22", "status": "released", "source_id": "riot-notes-18.3"},
+    {"patch": "18.4", "notes_published": "2026-10-06", "status": "released", "source_id": "riot-notes-18.4"},
+    {"patch": "18.5", "notes_published": "2026-10-21", "status": "planned", "source_id": "esportsgg-patch-schedule-2026"}
+  ],
+  "cdragon_versions": {
+    "16.20": {
+      "patch": "18.4",
+      "status": "unverified",
+      "evidence": "content-metadata.json of the 16.20 folder was created 2026-10-07, the day after the 18.4 notes; no source states the mapping directly"
+    }
+  }
+}

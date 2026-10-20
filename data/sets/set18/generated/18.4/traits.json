@@ -1,0 +1,1590 @@
+{
+  "count": 36,
+  "generator": "tft_engine.gamedata.cdragon/1",
+  "kind": "traits",
+  "patch": "18.4",
+  "patch_mapping": {
+    "evidence": "content-metadata.json of the 16.20 folder was created 2026-10-07, the day after the 18.4 notes; no source states the mapping directly",
+    "patch": "18.4",
+    "status": "unverified"
+  },
+  "records": [
+    {
+      "breakpoints": [
+        {
+          "max_units": 2,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "ADAPGain": 0.25
+          }
+        },
+        {
+          "max_units": 3,
+          "min_units": 3,
+          "style": 3,
+          "values": {
+            "ADAPGain": 0.35
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 4,
+          "style": 5,
+          "values": {
+            "ADAPGain": 0.5
+          }
+        }
+      ],
+      "id": "DA_18_Adaptor",
+      "name": "Adaptor",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Innate: Adaptor abilities change depending on if their Attack Damage or Ability Power is higher.<br><br>Adaptors gain Ability Power or Attack Damage, depending on which is higher.<br><row>(@MinUnits@) @ADAPGain*100@%  OR</row><br><row>(@MinUnits@) @ADAPGain*100@%  OR</row><br><row>(@MinUnits@) @ADAPGain*100@%  OR</row>",
+      "units": [
+        "DA_18_Akali_AD",
+        "DA_18_MasterYi_AD",
+        "DA_Gromp18_AP",
+        "DA_KogMaw18_AD",
+        "DA_Nidalee18_AP"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {}
+        }
+      ],
+      "id": "DA_18_ApexPredator",
+      "name": "Apex Predator",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Elder Dragon takes up 2 team slots and grants +2 to the Riftbeast trait.",
+      "units": [
+        "DA_18_ElderDragon"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {
+            "Resists": 10
+          }
+        }
+      ],
+      "id": "DA_18_Battlemage",
+      "name": "Monolith",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Monoliths gain @Resists@ Armor and Magic Resist for each enemy targeting them.",
+      "units": [
+        "DA_18_Malphite"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "Health": 175
+          }
+        },
+        {
+          "max_units": 5,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "Health": 350,
+            "StatMultiplier": 0.3
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 6,
+          "style": 5,
+          "values": {
+            "Health": 600,
+            "StatMultiplier": 0.6
+          }
+        }
+      ],
+      "id": "DA_18_Blackthorn",
+      "name": "Blackthorn",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "The ally on the Blackthorn hex is sacrificed before combat, granting your champions Health. <br><br>Blackthorn champions gain additional stats based on the sacrifice's Role, Star Level, and Cost.<br><row>(@MinUnits@) @Health@ %i:scaleHealth%</row><br><row>(@MinUnits@) @Health@ %i:scaleHealth%; Bonus is @StatMultiplier*100@% stronger</row><br><row>(@MinUnits@) @Health@ %i:scaleHealth%; Bonus is @StatMultiplier*100@% stronger</row>",
+      "units": [
+        "DA_18_Azir",
+        "DA_18_Malphite",
+        "DA_18_RekSai",
+        "DA_18_Veigar",
+        "DA_18_Warwick",
+        "DA_Lux18_Blackthorn"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 4,
+          "min_units": 3,
+          "style": 1,
+          "values": {
+            "ADAP": 0.12,
+            "BonusHealth": 0.1
+          }
+        },
+        {
+          "max_units": 6,
+          "min_units": 5,
+          "style": 3,
+          "values": {
+            "ADAP": 0.3,
+            "BonusHealth": 0.1
+          }
+        },
+        {
+          "max_units": 8,
+          "min_units": 7,
+          "style": 5,
+          "values": {
+            "ADAP": 0.5,
+            "BonusHealth": 0.1,
+            "GoldPerCharmPurchased": 4
+          }
+        },
+        {
+          "max_units": 10,
+          "min_units": 9,
+          "style": 5,
+          "values": {
+            "ADAP": 0.55,
+            "BonusHealth": 0.1
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 11,
+          "style": 6,
+          "values": {
+            "ADAP": 1,
+            "BonusHealth": 0.1
+          }
+        }
+      ],
+      "id": "DA_18_Blossom",
+      "name": "Blossom",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "After combat, your Wisps are empowered. <br><br>Blossom champions gain Attack Damage, Ability Power, and @BonusHealth*100@% max Health.<br><row>(@MinUnits@) Wisps are upgraded, @ADAP*100@% %i:scaleAD%%i:scaleAP%</row><br><row>(@MinUnits@) Wisps are in every shop, @ADAP*100@% %i:scaleAD%%i:scaleAP%</row><br><row>(@MinUnits@) Gain @GoldPerCharmPurchased@ gold after buying a Wisp, @ADAP*100@% %i:scaleAD%%i:scaleAP%</row><br><row>(@MinUnits@) You can buy 2 Wisps per round, @ADAP*100@% %i:scaleAD%%i:scaleAP%</row><br><row>(@MinUnits@) Wisps overflow with power, @ADAP*100@% %i:scaleAD%%i:scaleAP%</row>",
+      "units": [
+        "DA_18_Ahri",
+        "DA_18_Ashe",
+        "DA_18_MasterYi_AD",
+        "DA_18_Sett",
+        "DA_18_Yorick",
+        "DA_18_Yunara",
+        "DA_Karma18",
+        "DA_Lux18_Blossom"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "BrawlerHealthPercent": 0.25,
+            "BrawlerTeamHealth": 120
+          }
+        },
+        {
+          "max_units": 5,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "BrawlerHealthPercent": 0.4,
+            "BrawlerTeamHealth": 120
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 6,
+          "style": 5,
+          "values": {
+            "BrawlerHealthPercent": 0.65,
+            "BrawlerTeamHealth": 120
+          }
+        }
+      ],
+      "id": "DA_18_Brawler",
+      "name": "Brawler",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your team gains @BrawlerTeamHealth@ max Health. Brawlers gain more.<br><row>(@MinUnits@) @BrawlerHealthPercent*100@% %i:scaleHealth%</row><br><row>(@MinUnits@) @BrawlerHealthPercent*100@% %i:scaleHealth%</row><br><row>(@MinUnits@) @BrawlerHealthPercent*100@% %i:scaleHealth%</row>",
+      "units": [
+        "DA_18_Alistar",
+        "DA_18_GnarSmall",
+        "DA_18_Kobuko",
+        "DA_18_RekSai",
+        "DA_18_Sett",
+        "DA_Krug18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {
+            "ShredDuration": 4,
+            "ShredPercent": 30
+          }
+        }
+      ],
+      "id": "DA_18_Caustic",
+      "name": "Caustic",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Caustic damage @ShredPercent@% Shreds and Sunders enemies for @ShredDuration@ seconds.<br><br><rules>Shred: Reduce Magic Resist</rules><br><rules>Sunder: Reduce Armor</rules>",
+      "units": [
+        "DA_KogMaw18_AD"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 3,
+          "style": 1,
+          "values": {
+            "EssenceForRitualTooltip": 40,
+            "EssencePerDeath": 2,
+            "EssencePerLoss": 22
+          }
+        },
+        {
+          "max_units": 4,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "EssenceForRitualTooltip": 40,
+            "EssencePerDeath": 2,
+            "EssencePerLoss": 28
+          }
+        },
+        {
+          "max_units": 6,
+          "min_units": 5,
+          "style": 3,
+          "values": {
+            "EssenceForRitualTooltip": 40,
+            "EssencePerDeath": 3,
+            "EssencePerLoss": 35
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 7,
+          "style": 5,
+          "values": {
+            "EssenceForRitualTooltip": 40,
+            "EssencePerDeath": 10,
+            "EssencePerLoss": 60
+          }
+        }
+      ],
+      "id": "DA_18_Coven",
+      "name": "Coven",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Gather Essence by killing champions, plus more by losing player combat. <br><br>Beginning at @EssenceForRitualTooltip@ Essence, choose to convert Essence to rewards or continue gathering Essence. Each reward requires increasing amounts of Essence.<br><row>(@MinUnits@) @EssencePerDeath@ Essence per kill, @EssencePerLoss@ Essence per loss</row><br><row>(@MinUnits@) @EssencePerDeath@ per kill, @EssencePerLoss@ per loss</row><br><row>(@MinUnits@) @EssencePerDeath@ per kill, @EssencePerLoss@ per loss</row><br><row>(@MinUnits@) @EssencePerDeath@ per kill, @EssencePerLoss@ per loss</row>",
+      "units": [
+        "DA_18_Caitlyn",
+        "DA_18_Camille",
+        "DA_18_Cassiopeia",
+        "DA_18_Elise",
+        "DA_18_Lux_Coven",
+        "DA_18_Morgana"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "DefenderDefenseGain": 25,
+            "NonDefenderDefenseGain": 12
+          }
+        },
+        {
+          "max_units": 5,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "DefenderDefenseGain": 60,
+            "NonDefenderDefenseGain": 12
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 6,
+          "style": 5,
+          "values": {
+            "DefenderDefenseGain": 115,
+            "NonDefenderDefenseGain": 12
+          }
+        }
+      ],
+      "id": "DA_18_Defender",
+      "name": "Defender",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your team gains @NonDefenderDefenseGain@ Armor and Magic Resist. Defenders gain more.<br><row>(@MinUnits@) @DefenderDefenseGain@</row><br><row>(@MinUnits@) @DefenderDefenseGain@</row><br><row>(@MinUnits@) @DefenderDefenseGain@</row>",
+      "units": [
+        "DA_18_Leona",
+        "DA_18_Lillia",
+        "DA_18_Ornn",
+        "DA_18_Rammus",
+        "DA_18_Shen",
+        "DA_Fiddlesticks18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": null,
+          "style": 1,
+          "values": {
+            "DelaySeconds": 8,
+            "EclipseBeamPeriod": 3.5
+          }
+        }
+      ],
+      "id": "DA_18_Eclipse",
+      "name": "Eclipse",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "After @DelaySeconds@ seconds of combat, the Eclipse kills the lowest Health enemy, repeating every @EclipseBeamPeriod@ seconds.",
+      "units": [],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 4,
+          "min_units": 3,
+          "style": 1,
+          "values": {
+            "{0f90e7a4}": 0.25,
+            "{4013f48e}": 0.1
+          }
+        },
+        {
+          "max_units": 6,
+          "min_units": 5,
+          "style": 3,
+          "values": {
+            "StonebarkTreeBonusHealth": 200,
+            "{0f90e7a4}": 0.25,
+            "{4013f48e}": 0.1
+          }
+        },
+        {
+          "max_units": 8,
+          "min_units": 7,
+          "style": 5,
+          "values": {
+            "{0f90e7a4}": 0.25,
+            "{4013f48e}": 0.1
+          }
+        },
+        {
+          "max_units": 10,
+          "min_units": 9,
+          "style": 5,
+          "values": {
+            "{0f90e7a4}": 0.25,
+            "{4013f48e}": 0.1
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 11,
+          "style": 6,
+          "values": {
+            "{0f90e7a4}": 0.25,
+            "{4013f48e}": 0.1
+          }
+        }
+      ],
+      "id": "DA_18_Elderwood",
+      "name": "Elderwood",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Gain placeable Elderwood plants.<br><row>(@MinUnits@) A Stonebark Tree and a Lifebloom</row><br><row>(@MinUnits@) A second Stonebark Tree and Stonebark Trees gain @StonebarkTreeBonusHealth@ Health</row><br><row>(@MinUnits@) and the Deepwood Protector</row><br><row>(@MinUnits@) Plants star up to 2-star</row><br><row>(@MinUnits@) Plants star up to 3-star and the forest comes to life</row>",
+      "units": [
+        "DA_18_Alistar",
+        "DA_18_Ezreal",
+        "DA_18_GnarSmall",
+        "DA_18_Hecarim",
+        "DA_18_LeBlanc",
+        "DA_18_Lux_Elderwood",
+        "DA_18_Ornn",
+        "DA_18_Xayah"
+      ],
+      "unresolved_hashes": [
+        "{0f90e7a4}",
+        "{4013f48e}"
+      ]
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 2,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "CritChance": 0.15
+          }
+        },
+        {
+          "max_units": 3,
+          "min_units": 3,
+          "style": 3,
+          "values": {
+            "BleedDuration": 3,
+            "BonusBleedPercent": 0.25
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 4,
+          "style": 5,
+          "values": {
+            "BonusBleedPercent": 0.35
+          }
+        }
+      ],
+      "id": "DA_18_Executioner",
+      "name": "Executioner",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "<row>(@MinUnits@) Executioners gain <TFTKeyword>Precision</TFTKeyword> and @CritChance*100@% Critical Strike Chance.</row><br><row>(@MinUnits@) Additionally, enemies bleed for @BonusBleedPercent*100@% bonus true damage over @BleedDuration@ seconds.</row><br><row>(@MinUnits@) Bleed damage increased to @BonusBleedPercent*100@%.</row>",
+      "units": [
+        "DA_18_Azir",
+        "DA_18_Ezreal",
+        "DA_18_Kennen",
+        "DA_18_Soraka",
+        "DA_18_Yunara"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "ADAP": 4.5,
+            "Heal": 2.5,
+            "HealThreshold": 0.5
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 4,
+          "style": 5,
+          "values": {
+            "ADAP": 7,
+            "Heal": 4,
+            "HealThreshold": 0.5
+          }
+        }
+      ],
+      "id": "DA_18_Fae",
+      "name": "Fae",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your team's damage, healing, and shielding attracts Pixies.<br><br>Each Pixie grants Fae champions Attack Damage and Ability Power, and after they fall below @HealThreshold*100@% Health, they heal for each Pixie.<br><row>(@MinUnits@) @ADAP@%  and @Heal@% Heal.</row><br><row>(@MinUnits@) @ADAP@%  and @Heal@% Heal. After attracting 7 Pixies, start attracting Golden Pixies instead which grant gold.</row>",
+      "units": [
+        "DA_18_Lillia",
+        "DA_18_Lux_Fae",
+        "DA_18_Rakan",
+        "DA_18_Tristana",
+        "DA_18_Xayah"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {
+            "CombatStartSeeds": 3,
+            "SeedsPerCast": 1,
+            "SeedsToGrowHex": 5
+          }
+        }
+      ],
+      "id": "DA_18_Greenfather",
+      "name": "Greenfather",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Gain @SeedsPerCast@ seed when your strongest Ivern casts, plus @CombatStartSeeds@ every combat. Ivern uses @SeedsToGrowHex@ seeds to grow a hex on your board that grants a bonus to its occupant. <br><br>Seeds: 0 / @SeedsToGrowHex@<br><br>Current Biome:",
+      "units": [
+        "DA_18_Ivern"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 2,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "DamageAmp": 0.1,
+            "HunterAD": 0.2,
+            "HunterDuration": 3
+          }
+        },
+        {
+          "max_units": 3,
+          "min_units": 3,
+          "style": 3,
+          "values": {
+            "DamageAmp": 0.1,
+            "HunterAD": 0.3,
+            "HunterDuration": 3
+          }
+        },
+        {
+          "max_units": 4,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "DamageAmp": 0.1,
+            "HunterAD": 0.45,
+            "HunterDuration": 3
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 5,
+          "style": 5,
+          "values": {
+            "DamageAmp": 0.1,
+            "HunterAD": 0.6,
+            "HunterDuration": 3
+          }
+        }
+      ],
+      "id": "DA_18_Hunter",
+      "name": "Hunter",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Hunters gain Attack Damage. If a Hunter hasn't swapped targets for @HunterDuration@ seconds, they gain @DamageAmp*100@% Damage Amp.<br><row>(@MinUnits@) @HunterAD*100@% %i:scaleAD%</row><br><row>(@MinUnits@) @HunterAD*100@% %i:scaleAD%</row><br><row>(@MinUnits@) @HunterAD*100@% %i:scaleAD%</row><br><row>(@MinUnits@) @HunterAD*100@% %i:scaleAD%</row>",
+      "units": [
+        "DA_18_Ashe",
+        "DA_18_Caitlyn",
+        "DA_18_Sivir",
+        "DA_18_Tristana",
+        "DA_Cinderling18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 2,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "Duration": 3,
+            "HPBurnPerSecond": 1,
+            "WoundPercent": 33
+          }
+        },
+        {
+          "max_units": 4,
+          "min_units": 3,
+          "style": 3,
+          "values": {
+            "Duration": 3,
+            "LuckySlotCount": 1
+          }
+        },
+        {
+          "max_units": 6,
+          "min_units": 5,
+          "style": 5,
+          "values": {
+            "Duration": 3,
+            "HPBurnPerSecond": 3,
+            "LuckySlotCount": 2
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 7,
+          "style": 5,
+          "values": {
+            "Duration": 3,
+            "HPBurnPerSecond": 4,
+            "LuckySlotCount": 4
+          }
+        }
+      ],
+      "id": "DA_18_Inferno",
+      "name": "Inferno",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Inferno damage <TFTKeyword>Burns</TFTKeyword> and <TFTKeyword>Wounds</TFTKeyword> enemies for @Duration@ seconds. Inferno Burns stack with other Burns.<br><row>(@MinUnits@) @HPBurnPerSecond@% Burn, @WoundPercent@% Wound</row><br><row>(@MinUnits@) After combat, @LuckySlotCount@ of your shop slots without an Inferno champion ignites, rolling a champion one tier higher</row><br><row>(@MinUnits@) Ignite @LuckySlotCount@ shop slots, @HPBurnPerSecond@% Burn</row><br><row>(@MinUnits@) Ignite @LuckySlotCount@ shop slots, @HPBurnPerSecond@% Burn</row>",
+      "units": [
+        "DA_18_Akali_AD",
+        "DA_18_Kennen",
+        "DA_18_Lux_Inferno",
+        "DA_18_Shen",
+        "DA_18_Varus",
+        "DA_Amumu18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 2,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "InvokerManaBonus": 3,
+            "TeamManaRegen": 1
+          }
+        },
+        {
+          "max_units": 3,
+          "min_units": 3,
+          "style": 3,
+          "values": {
+            "InvokerManaBonus": 4,
+            "TeamManaRegen": 1
+          }
+        },
+        {
+          "max_units": 4,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "InvokerManaBonus": 6,
+            "TeamManaRegen": 2
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 5,
+          "style": 5,
+          "values": {
+            "InvokerManaBonus": 8,
+            "TeamManaRegen": 2
+          }
+        }
+      ],
+      "id": "DA_18_Invoker",
+      "name": "Invoker",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your team gains Mana Regen, increased for Invokers.<br><row>(@MinUnits@) @TeamManaRegen@ %i:scaleManaRegen% | @InvokerManaBonus@ %i:scaleManaRegen%</row><br><row>(@MinUnits@) @TeamManaRegen@ %i:scaleManaRegen% | @InvokerManaBonus@ %i:scaleManaRegen%</row><br><row>(@MinUnits@) @TeamManaRegen@ %i:scaleManaRegen% | @InvokerManaBonus@ %i:scaleManaRegen%</row><br><row>(@MinUnits@) @TeamManaRegen@ %i:scaleManaRegen% | @InvokerManaBonus@ %i:scaleManaRegen%</row>",
+      "units": [
+        "DA_18_Morgana",
+        "DA_18_Sentry",
+        "DA_18_Teemo",
+        "DA_KogMaw18_AD",
+        "DA_Sentinel18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 2,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "AbilityPower": 0.07,
+            "AttackSpeed": 0.07,
+            "LunarMultiplier": 1
+          }
+        },
+        {
+          "max_units": 3,
+          "min_units": 3,
+          "style": 3,
+          "values": {
+            "AbilityPower": 0.1,
+            "AttackSpeed": 0.12,
+            "LunarMultiplier": 1
+          }
+        },
+        {
+          "max_units": 4,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "AbilityPower": 0.14,
+            "AttackSpeed": 0.16,
+            "LunarMultiplier": 1
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 5,
+          "style": 5,
+          "values": {
+            "AbilityPower": 0.18,
+            "AttackSpeed": 0.2,
+            "LunarMultiplier": 1
+          }
+        }
+      ],
+      "id": "DA_18_Lunar",
+      "name": "Lunar",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Lunar champions and adjacent allies gain Attack Speed and Ability Power. Lunar champions gain @LunarMultiplier*100@% more.<br><row>(@MinUnits@) @AttackSpeed*100@% %i:scaleAS%, @AbilityPower*100@% %i:scaleAP%</row><br><row>(@MinUnits@) @AttackSpeed*100@% %i:scaleAS%, @AbilityPower*100@% %i:scaleAP%</row><br><row>(@MinUnits@) @AttackSpeed*100@% %i:scaleAS%, @AbilityPower*100@% %i:scaleAP%</row><br><row>(@MinUnits@) @AttackSpeed*100@% %i:scaleAS%, @AbilityPower*100@% %i:scaleAP%</row>",
+      "units": [
+        "DA_18_Alune",
+        "DA_18_Aphelios",
+        "DA_18_Diana",
+        "DA_18_Lux_Moonbeam"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {}
+        }
+      ],
+      "id": "DA_18_LuxUniqueTrait",
+      "name": "Avatar",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Having an Avatar on your bench or board transforms all other Avatars in your shop to the Trait of that Avatar.<br><br>An Avatar's chosen Trait is counted twice for Trait bonuses.",
+      "units": [
+        "DA_18_Lux_Coven",
+        "DA_18_Lux_Elderwood",
+        "DA_18_Lux_Fae",
+        "DA_18_Lux_Inferno",
+        "DA_18_Lux_Moonbeam",
+        "DA_18_Lux_Primal",
+        "DA_18_Lux_Sunbeam",
+        "DA_Lux18_Base",
+        "DA_Lux18_Blackthorn",
+        "DA_Lux18_Blossom"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {
+            "UniqueTraitHealthPerStack": 30,
+            "UniqueTraitHexRange": 3
+          }
+        }
+      ],
+      "id": "DA_18_Maokai_UniqueTrait",
+      "name": "Old Growth",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Whenever an enemy within @UniqueTraitHexRange@ hexes dies, your strongest Old Growth champion gains @UniqueTraitHealthPerStack@ permanent max Health.<br><br>Current: 0",
+      "units": [
+        "DA_18_Maokai"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 2,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "ASperAttack": 0.03,
+            "MaxStacks": 10,
+            "TeamAS": 0.1
+          }
+        },
+        {
+          "max_units": 3,
+          "min_units": 3,
+          "style": 3,
+          "values": {
+            "ASperAttack": 0.05,
+            "MaxStacks": 10,
+            "TeamAS": 0.1
+          }
+        },
+        {
+          "max_units": 4,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "ASperAttack": 0.08,
+            "MaxStacks": 10,
+            "TeamAS": 0.1
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 5,
+          "style": 5,
+          "values": {
+            "ASperAttack": 0.12,
+            "MaxStacks": 10,
+            "TeamAS": 0.1
+          }
+        }
+      ],
+      "id": "DA_18_Rapidfire",
+      "name": "Rapidfire",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your team gains @TeamAS*100@% Attack Speed. Rapidfire champions gain more on every attack, up to @MaxStacks@ stacks.<br><row>(@MinUnits@) +@ASPerAttack*100@% %i:scaleAS% per Attack</row><br><row>(@MinUnits@) +@ASPerAttack*100@% %i:scaleAS% per Attack</row><br><row>(@MinUnits@) +@ASPerAttack*100@% %i:scaleAS% per Attack</row><br><row>(@MinUnits@) +@ASPerAttack*100@% %i:scaleAS% per Attack</row>",
+      "units": [
+        "DA_18_Aphelios",
+        "DA_18_Kayle",
+        "DA_18_Varus",
+        "DA_18_Xayah",
+        "DA_CrimsonRaptor18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 5,
+          "values": {}
+        },
+        {
+          "max_units": 1,
+          "min_units": 1,
+          "style": 1,
+          "values": {
+            "RengarADPerStack": 0.002,
+            "RengarADStackReq": 30,
+            "RengarGold": 2,
+            "RengarGold_2": 3,
+            "RengarGold_3": 5,
+            "RengarStackReq": 8,
+            "RengarThresholdAD": 0.05
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 2,
+          "style": 5,
+          "values": {}
+        }
+      ],
+      "id": "DA_18_Rival",
+      "name": "Rival",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "<row>(@MinUnits@) Only active while fielding 1 Rival.<br><br>Rivals collect takedowns, gaining 3 if they takedown another Rival.</row><br><row>(@MinUnits@) Rivals collect takedowns, gaining 3 if they takedown another Rival.<br><br>Takedowns evolve Kha'Zix, permanently granting him your choice of Executioner, Rapidfire, Ravager, or Spellweaver.<br><br>Rengar grants @RengarGold@/@RengarGold_2@/@RengarGold_3@ gold every @RengarStackReq@ takedowns. After @RengarADStackReq@ takedowns, your team gains @RengarThresholdAD*100@% Attack Damage plus @RengarADPerStack*100@% %i:scaleAD% per additional takedown.<br><br>Kha'Zix Takedowns: 0 / 0<br>Rengar Takedowns: 0<br>Gold Earned: 0</row><br><row>(@MinUnits@) Rivals can be fielded together, and their abilities grant each other bonuses.</row>",
+      "units": [
+        "DA_18_KhaZix",
+        "DA_18_Rengar"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "BonusDamagePercentBase": 0.12,
+            "EnemyHealthThreshold": 0.5,
+            "Omnivamp": 0.1
+          }
+        },
+        {
+          "max_units": 5,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "BonusDamagePercentBase": 0.25,
+            "EnemyHealthThreshold": 0.5,
+            "Omnivamp": 0.1
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 6,
+          "style": 5,
+          "values": {
+            "BonusDamagePercentBase": 0.4,
+            "EnemyHealthThreshold": 0.5,
+            "Omnivamp": 0.1
+          }
+        }
+      ],
+      "id": "DA_18_Slayer",
+      "name": "Ravager",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Ravagers gain @Omnivamp*100@% Omnivamp. Additionally, Ravagers deal bonus damage, doubled against units below @EnemyHealthThreshold*100@% Health.<br><row>(@MinUnits@) @BonusDamagePercentBase*100@% Bonus Damage</row><br><row>(@MinUnits@) @BonusDamagePercentBase*100@% Bonus Damage</row><br><row>(@MinUnits@) @BonusDamagePercentBase*100@% Bonus Damage</row>",
+      "units": [
+        "DA_18_Akali_AD",
+        "DA_18_Camille",
+        "DA_18_Diana",
+        "DA_18_Warwick",
+        "DA_Brambleback18",
+        "DA_Murkwolf18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 3,
+          "style": 5,
+          "values": {
+            "BonusMagicDamage": 0.08,
+            "NumThreeStarThreshold1": 3,
+            "NumThreeStarThreshold2": 5,
+            "NumThreeStarThreshold3": 7,
+            "PercentIncreasePer3Star": 0.01,
+            "ShieldRatio": 0.05,
+            "Threshold1ArmorMagicResist": 12,
+            "Threshold1AttackSpeed": 0.15,
+            "Threshold2TrueDamageConversion": 0.4,
+            "Threshold3StarUpPeriod": 4
+          }
+        }
+      ],
+      "id": "DA_18_Solar",
+      "name": "Solar",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "<row>(@MinUnits@) Your champions gain a @ShieldRatio*100@% max Health shield and deal @BonusMagicDamage*100@% bonus magic damage. Gain additional bonuses for each unique 3-star  champion:<br><br>1 : Increase shield and magic damage by @PercentIncreasePer3Star*100@% for each 3-star. <br>@NumThreeStarThreshold1@ : @Threshold1AttackSpeed*100@% %i:scaleAS% and @Threshold1ArmorMagicResist@ %i:scaleArmor%%i:scaleMR%<br>@NumThreeStarThreshold2@ : Convert @Threshold2TrueDamageConversion*100@% of the bonus magic damage to true damage.<br>@NumThreeStarThreshold3@ : Every @Threshold3StarUpPeriod@ seconds of combat, a 3-star champion ascends to 4-star.</row>",
+      "units": [
+        "DA_18_Kayle",
+        "DA_18_Leona",
+        "DA_18_Lux_Sunbeam",
+        "DA_18_Sejuani"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "APPerCast": 0.01,
+            "SpellweaverAP": 0.1,
+            "TeamwideAP": 0.1
+          }
+        },
+        {
+          "max_units": 5,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "APPerCast": 0.01,
+            "SpellweaverAP": 0.3,
+            "TeamwideAP": 0.1
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 6,
+          "style": 5,
+          "values": {
+            "APPerCast": 0.02,
+            "SpellweaverAP": 0.55,
+            "TeamwideAP": 0.1
+          }
+        }
+      ],
+      "id": "DA_18_Spellweaver",
+      "name": "Spellweaver",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your team gains @TeamwideAP*100@% Ability Power. Spellweavers gain more, plus extra Ability Power whenever a Spellweaver casts an Ability.<br><row>(@MinUnits@) @SpellweaverAP*100@% %i:scaleAP%, +@APPerCast*100@% %i:scaleAP% per cast</row><br><row>(@MinUnits@) @SpellweaverAP*100@% %i:scaleAP%, +@APPerCast*100@% %i:scaleAP% per cast</row><br><row>(@MinUnits@) @SpellweaverAP*100@% %i:scaleAP%, +@APPerCast*100@% %i:scaleAP% per cast</row>",
+      "units": [
+        "DA_18_Ahri",
+        "DA_18_Alune",
+        "DA_18_Cassiopeia",
+        "DA_18_LeBlanc",
+        "DA_18_Veigar",
+        "DA_Fiddlesticks18",
+        "DA_Karma18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 4,
+          "min_units": 3,
+          "style": 1,
+          "values": {
+            "AttackSpeedIncrease": 0.15,
+            "HealthIncrease": 0.15
+          }
+        },
+        {
+          "max_units": 6,
+          "min_units": 5,
+          "style": 3,
+          "values": {
+            "AttackSpeedIncrease": 0.35,
+            "HealthIncrease": 0.4,
+            "TeamwideRatio": 0.5
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 7,
+          "style": 5,
+          "values": {
+            "AttackSpeedIncrease": 0.45,
+            "HealthIncrease": 0.45,
+            "TeamwideRatio": 1
+          }
+        }
+      ],
+      "id": "DA_18_Sprykin",
+      "name": "Sprykin",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Gain the Big Furry Friend. Drop a Sprykin on the BFF to pick its Rider.<br><row>(@MinUnits@) The Rider gains<br>@HealthIncrease*100@% %i:scaleHealth% and @AttackSpeedIncrease*100@% %i:scaleAS%</row><br><row>(@MinUnits@) @HealthIncrease*100@% %i:scaleHealth% @AttackSpeedIncrease*100@% %i:scaleAS%, and @TeamwideRatio*100@% of the BFF's Ability applies to your Sprykin champions.</row><br><row>(@MinUnits@) @HealthIncrease*100@% %i:scaleHealth% @AttackSpeedIncrease*100@% %i:scaleAS%, and @TeamwideRatio*100@% of the BFF's Ability applies to your Sprykin champions.</row>",
+      "units": [
+        "DA_18_GnarSmall",
+        "DA_18_Kobuko",
+        "DA_18_Rammus",
+        "DA_18_Teemo",
+        "DA_18_Tristana",
+        "DA_18_Veigar"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 2,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "AzirDamageMult": 0.2,
+            "DamageMult": 0.45,
+            "HealthMult": 0.3,
+            "NumExtraAttacks": 4
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 3,
+          "style": 5,
+          "values": {
+            "AzirDamageMult": 0.2,
+            "DamageMult": 0.45,
+            "HealthMult": 0.3,
+            "NumExtraAttacks": 4
+          }
+        }
+      ],
+      "id": "DA_18_Summoner",
+      "name": "Summoner",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Summoners empower their summons in different ways.<br><br>Yorick: +@HealthMult*100@% Health<br>Azir: +@AzirDamageMult*100@% Damage<br>Mama Beak: +@DamageMult*100@% Damage<br>Zyra: +@NumExtraAttacks@ Plant Attacks<br><row>(@MinUnits@) Empower Summons</row><br><row>(@MinUnits@) Improve each effect by 50%</row>",
+      "units": [
+        "DA_18_Azir",
+        "DA_18_Yorick",
+        "DA_18_Zyra",
+        "DA_CrimsonRaptor18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "HealthThreshold": 0.5,
+            "MaxHealthShield": 0.18,
+            "ShieldDuration": 10
+          }
+        },
+        {
+          "max_units": 5,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "HealthThreshold": 0.5,
+            "MaxHealthShield": 0.3,
+            "ShieldDuration": 10
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 6,
+          "style": 5,
+          "values": {
+            "DurabilityIncrease": 0.05,
+            "HealthThreshold": 0.5,
+            "MaxHealthShield": 0.4,
+            "ShieldDuration": 10
+          }
+        }
+      ],
+      "id": "DA_18_Vanguard",
+      "name": "Vanguard",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "At Combat Start and after dropping below @HealthThreshold*100@% Health, Vanguards gain a max Health Shield for @ShieldDuration@ seconds.<br><row>(@MinUnits@) @MaxHealthShield*100@% max Health</row><br><row>(@MinUnits@) @MaxHealthShield*100@% max Health</row><br><row>(@MinUnits@) @MaxHealthShield*100@% max Health. Gain @DurabilityIncrease*100@% Durability while Shielded.</row>",
+      "units": [
+        "DA_18_Diana",
+        "DA_18_Elise",
+        "DA_18_Hecarim",
+        "DA_18_Rakan",
+        "DA_Sentinel18",
+        "DA_Taric18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {
+            "BaseDurability": 0.05,
+            "IncreasedDurability": 0.1,
+            "PlantNumThreshold": 6
+          }
+        }
+      ],
+      "id": "DA_18_ZyraUniqueTrait",
+      "name": "Thornmaiden",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your team gains @BaseDurability*100@% Durability, increased to @IncreasedDurability*100@% if @PlantNumThreshold@ or more Zyra plants are alive.",
+      "units": [
+        "DA_18_Zyra"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {
+            "DamageAmp": 0.07,
+            "Durability": 0.07
+          }
+        }
+      ],
+      "id": "DA_AluneUniqueTrait18",
+      "name": "Attuned",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your strongest Alune cycles to a new phase of the moon after each cast. While the moon is at or below half full, your team gains @Durability*100@% Durabilty. While above, your team gains @DamageAmp*100@% Damage Amp.",
+      "units": [
+        "DA_18_Alune"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {}
+        }
+      ],
+      "id": "DA_DravenUniqueTrait18",
+      "name": "Bounty Seeker",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Choose a bounty. Your strongest Draven can progress on the bounty to earn its reward. Upon completing a bounty, choose another.",
+      "units": [
+        "DA_Draven18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": null,
+          "min_units": 1,
+          "style": 4,
+          "values": {}
+        }
+      ],
+      "id": "DA_Emerald18",
+      "name": "Emerald Aspect",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Drag an ally onto your strongest Taric to pair them, granting the ally powerful bonuses from Taric's Ability.",
+      "units": [
+        "DA_Taric18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 1,
+          "min_units": 1,
+          "style": 1,
+          "values": {
+            "Mana": 10
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 2,
+          "style": 5,
+          "values": {
+            "PercentHeal": 0.08
+          }
+        }
+      ],
+      "id": "DA_FloraFatalis18",
+      "name": "Flora Fatalis",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Flora Fatalis champions harvest enemies on takedown, gaining:<br><row>(@MinUnits@) @Mana@ Mana</row><br><row>(@MinUnits@) and grant a @PercentHeal*100@% max Health heal to the lowest Health ally.</row>",
+      "units": [
+        "DA_18_Soraka",
+        "DA_Fiddlesticks18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {
+            "JuggernautDurability": 0.2,
+            "TeamDurability": 0.04
+          }
+        },
+        {
+          "max_units": 5,
+          "min_units": 4,
+          "style": 3,
+          "values": {
+            "JuggernautDurability": 0.33,
+            "TeamDurability": 0.06
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 6,
+          "style": 5,
+          "values": {
+            "JuggernautDurability": 0.42,
+            "TeamDurability": 0.08
+          }
+        }
+      ],
+      "id": "DA_Juggernaut18",
+      "name": "Juggernaut",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Your team gains Durability. Juggernauts gain more.<br><row>(@MinUnits@) @TeamDurability*100@% %i:scaleDR% or @JuggernautDurability*100@% %i:scaleDR%</row><br><row>(@MinUnits@) @TeamDurability*100@% %i:scaleDR% or @JuggernautDurability*100@% %i:scaleDR%</row><br><row>(@MinUnits@) @TeamDurability*100@% %i:scaleDR% or @JuggernautDurability*100@% %i:scaleDR%</row>",
+      "units": [
+        "DA_18_Maokai",
+        "DA_18_Rakan",
+        "DA_18_Sejuani",
+        "DA_18_Yorick",
+        "DA_Amumu18",
+        "DA_Scuttlecrab18",
+        "DA_Vi18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 3,
+          "min_units": 2,
+          "style": 1,
+          "values": {}
+        },
+        {
+          "max_units": null,
+          "min_units": 4,
+          "style": 5,
+          "values": {}
+        }
+      ],
+      "id": "DA_Primal18",
+      "name": "Primal",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "Choose one of four Primal Blessings.<br><row>(@MinUnits@)</row><br><row>(@MinUnits@)</row>",
+      "units": [
+        "DA_18_Lux_Primal",
+        "DA_18_Sivir",
+        "DA_Nidalee18_AP",
+        "DA_Vi18"
+      ],
+      "unresolved_hashes": []
+    },
+    {
+      "breakpoints": [
+        {
+          "max_units": 4,
+          "min_units": 3,
+          "style": 1,
+          "values": {}
+        },
+        {
+          "max_units": 6,
+          "min_units": 5,
+          "style": 3,
+          "values": {
+            "OverrunCombats": 3
+          }
+        },
+        {
+          "max_units": 9,
+          "min_units": 7,
+          "style": 5,
+          "values": {
+            "CapstoneAD": 0.06,
+            "CapstoneAP": 0.06,
+            "CapstoneArmor": 5,
+            "CapstoneAspd": 0.06,
+            "CapstoneHealth": 50,
+            "CapstoneMR": 5,
+            "CapstoneManaRegen": 1
+          }
+        },
+        {
+          "max_units": null,
+          "min_units": 10,
+          "style": 5,
+          "values": {
+            "TeamSize": 2
+          }
+        }
+      ],
+      "id": "DA_Riftbeast18",
+      "name": "Riftbeast",
+      "patch": "18.4",
+      "set": "set18",
+      "source_ids": [
+        "cdragon-16.20"
+      ],
+      "status": "community_extracted",
+      "text": "<row>(@MinUnits@) Use the Alpha Mark to grant a Riftbeast their unique Buff</row><br><row>(@MinUnits@) Every @OverrunCombats@ combats, your next shop is overrun with Riftbeasts.</row><br><row>(@MinUnits@) On combat start and every 5 seconds Riftbeasts grow gaining <br>@CapstoneAD*100@% %i:scaleAD% @CapstoneAP*100@% %i:scaleAP% @CapstoneAspd*100@% %i:scaleAS%<br>+@CapstoneArmor@ %i:scaleArmor% +@CapstoneMR@ %i:scaleMR%  +@CapstoneHealth@ %i:scaleHealth% +@CapstoneManaRegen@ %i:scaleManaRegen%</row><br><row>(@MinUnits@) +@TeamSize@ maximum team size</row>",
+      "units": [
+        "DA_18_ElderDragon",
+        "DA_18_Sentry",
+        "DA_Brambleback18",
+        "DA_Cinderling18",
+        "DA_CrimsonRaptor18",
+        "DA_Gromp18_AP",
+        "DA_Krug18",
+        "DA_Murkwolf18",
+        "DA_Scuttlecrab18",
+        "DA_Sentinel18"
+      ],
+      "unresolved_hashes": []
+    }
+  ],
+  "set": "set18",
+  "source_id": "cdragon-16.20"
+}

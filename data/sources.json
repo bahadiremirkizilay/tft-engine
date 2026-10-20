@@ -1,0 +1,64 @@
+{
+  "note": "Source registry. Every record in data/ points to source ids listed here. Stats and guide sites are manual notes only (docs/VERI_KAYNAKLARI.md). Auto sources are written by tools/ importers.",
+  "sources": [
+    {
+      "id": "riot-notes-18.1",
+      "type": "official_notes",
+      "title": "Teamfight Tactics patch 18.1 notes",
+      "url": "https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-1",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.1"
+    },
+    {
+      "id": "riot-notes-18.2",
+      "type": "official_notes",
+      "title": "Teamfight Tactics patch 18.2 notes",
+      "url": "https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-2",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.2"
+    },
+    {
+      "id": "riot-notes-18.3",
+      "type": "official_notes",
+      "title": "Teamfight Tactics patch 18.3 notes",
+      "url": "https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-3",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.3"
+    },
+    {
+      "id": "riot-notes-18.4",
+      "type": "official_notes",
+      "title": "Teamfight Tactics patch 18.4 notes",
+      "url": "https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-4",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.4"
+    },
+    {
+      "id": "esportsgg-patch-schedule-2026",
+      "type": "community_table",
+      "title": "TFT patch schedule 2026 (esports.gg)",
+      "url": "https://esports.gg/news/teamfight-tactics/tft-patch-schedule-2026/",
+      "retrieved_at": "2026-10-18",
+      "collected_by": "manual",
+      "note": "Planned dates only; used for patches whose notes are not out yet."
+    },
+    {
+      "id": "cdragon-16.20",
+      "type": "game_file",
+      "title": "CommunityDragon TFT export 16.20 (cdragon/tft/en_us.json)",
+      "url": "https://raw.communitydragon.org/16.20/cdragon/tft/en_us.json",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "auto",
+      "version": "16.20.8248524",
+      "sha256": {
+        "content-metadata.json": "ab28af6e79f41825ad5f1f8b9d8f262df1267ce1ce0ea7d77291800484879dcd",
+        "en_us.json": "17d19792f662cec404aa071492ae9144a2d2677d2eeb1e0d7d8db9b52a47a9c7"
+      },
+      "note": "Unofficial export of Riot game files (not endorsed by Riot). content-metadata.json Last-Modified 2026-10-07 (18.4 live day); en_us.json Last-Modified 2026-10-19."
+    }
+  ]
+}

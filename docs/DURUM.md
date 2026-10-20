@@ -10,7 +10,7 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 | M1a: mekanik çekirdek (ekonomi, shop olasılıkları, yama katmanı) | Bitti |
 | P1: ilk karar prototipi | İlk sürüm bitti ([P1_SONUC.md](P1_SONUC.md)). Artık regresyon testi olarak kullanılıyor |
 | **B0: plan v0.5 ve belgeler** | **Bitti (2026-10-20)** |
-| B1: kaynak kaydı + CommunityDragon importer | Sıradaki |
+| **B1: kaynak kaydı + CommunityDragon importer** | **Bitti (2026-10-20)**, 18.4 için. Ayrıntı aşağıda |
 | B2: ekonomi ve shop'u tamamlama (18.2–18.4 kayıtları) | Sıradaki (B1 ile paralel) |
 | B3: modifier ve olay sistemi | Başlamadı |
 | B4: item ve trait yapısı | Başlamadı |
@@ -18,6 +18,20 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 | B6: savaş ve dizilim arayüzü | Başlamadı |
 | B7: yama döngüsü + Set 19 provası | Başlamadı |
 | Ertelenenler: G0/M2 (Riot API), M4+ (ML), maç kayıtları, canlı kullanım | PLAN bölüm 9 |
+
+## B1 sonucu (18.4, CommunityDragon 16.20)
+
+- **65 şampiyon** (14/13/14/14/10) + Lux'un 9 formu. Sayılar `champions_per_cost` parametresiyle ve tactics.tools listesiyle aynı.
+- **36 trait:** Eşikler ve değerler var. Değer adlarının hash'leri açıklamadaki adlarla çözüldü; sadece Elderwood'da 2 değer adı çözülemedi.
+- **427 item:**
+  - Tür dağılımı: 20 bileşen, 78 tamamlanmış, 80 artifact, 72 radiant, 21 amblem, 16 destek, 58 tüketilebilir, 82 diğer.
+  - Tarif kontrolü temiz.
+  - Bileşenlerden 10'u Set 18'in `DA_` ailesinden, 10'u eski `TFT_` ailesinden.
+- **592 augment kaydı** (407 farklı ad, varyantlarla). Tier bilgisi oyun dosyasında hash'li, şimdilik `unknown`. Hangi augment'lerin bu yamada gerçekten teklif edildiği doğrulanmadı.
+- **349 Wisp kaydı** (165 farklı ad, yükseltilmiş sürümleriyle). Oyun dosyasında "Charm" adıyla geçiyorlar.
+- **Eksik:** 74 şampiyon kaydının 72'sinde yetenek sayıları yok. B4'te araştırılacak.
+- **16.20 = 18.4 eşlemesi doğrulanmadı.** Kanıt: 16.20 klasörü 7 Ekim'de, 18.4 notlarından bir gün sonra oluşturulmuş.
+- B2'ye kalanlar: bilinen eski değer uyarısı (yama kayıtlarında eski değerler gerekiyor), Data Dragon ile ad ve maliyet çapraz kontrolü.
 
 ## Araştırmanın önemli sonuçları (ayrıntı: KAYNAKLAR.md)
 

@@ -5,6 +5,8 @@ Examples:
     tft-engine replay runs/runs.jsonl
     tft-engine decide scenarios/p1/o1_one_copy_from_3star.json
     tft-engine odds --set set18 --patch 18.4 --level 8 --gold 50 --target Ahri:4:2 --taken Ahri:3
+    tft-engine data check --set set18 --patch 18.4
+    tft-engine data diff --set set18 18.4 18.5
 """
 
 from __future__ import annotations
@@ -18,6 +20,7 @@ from tft_engine.decision import Evaluator, load_scenario
 from tft_engine.decision.report import render
 from tft_engine.experiments import load_records, replay, run_experiment
 from tft_engine.gamedata import load_gamedata
+from tft_engine.gamedata.entities import check_all, diff_knowledge, load_knowledge
 from tft_engine.prob import IndependentShopModel, RollQuery, Target, roll_down_exact
 from tft_engine.state import PoolBelief, PoolState
 
@@ -93,6 +96,34 @@ def _cmd_decide(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_data_check(args: argparse.Namespace) -> int:
+    kb, rep = check_all(args.set, args.patch)
+    print(f"{args.set} {args.patch}: " + ", ".join(f"{k} {len(v)}" for k, v in kb.records.items()))
+    for w in rep.warnings[: args.max]:
+        print(f"WARNING: {w}")
+    if len(rep.warnings) > args.max:
+        print(f"... {len(rep.warnings) - args.max} more warnings (use --max)")
+    for e in rep.errors:
+        print(f"ERROR: {e}")
+    print("OK" if rep.ok else f"FAILED: {len(rep.errors)} errors")
+    return 0 if rep.ok else 1
+
+
+def _cmd_data_diff(args: argparse.Namespace) -> int:
+    old = load_knowledge(args.set, args.old)
+    new = load_knowledge(args.set, args.new)
+    for kind, d in diff_knowledge(old, new).items():
+        print(f"== {kind}: +{len(d['added'])} -{len(d['removed'])} changed {len(d['changed'])}")
+        for rid in d["added"]:
+            print(f"  + {rid}")
+        for rid in d["removed"]:
+            print(f"  - {rid}")
+        for rid, fields in d["changed"].items():
+            for name, (a, b) in fields.items():
+                print(f"  ~ {rid}.{name}: {a!r} -> {b!r}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="tft-engine")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -130,6 +161,19 @@ def main(argv: list[str] | None = None) -> int:
     p_dec.add_argument("scenario", help="scenario JSON file")
     p_dec.add_argument("--no-sensitivity", action="store_true")
     p_dec.set_defaults(func=_cmd_decide)
+
+    p_data = sub.add_parser("data", help="knowledge base: check or compare patches")
+    data_sub = p_data.add_subparsers(dest="data_cmd", required=True)
+    p_chk = data_sub.add_parser("check", help="load and check one patch")
+    p_chk.add_argument("--set", required=True)
+    p_chk.add_argument("--patch", required=True)
+    p_chk.add_argument("--max", type=int, default=30, help="warnings to print")
+    p_chk.set_defaults(func=_cmd_data_check)
+    p_diff = data_sub.add_parser("diff", help="what changed between two patches")
+    p_diff.add_argument("--set", required=True)
+    p_diff.add_argument("old")
+    p_diff.add_argument("new")
+    p_diff.set_defaults(func=_cmd_data_diff)
 
     args = parser.parse_args(argv)
     return args.func(args)

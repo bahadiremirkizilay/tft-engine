@@ -68,6 +68,22 @@ tft-engine decide scenarios/p1/o1_one_copy_from_3star.json
 
 Senaryo dosyaları `scenarios/p1/` altında. Çıktı her aday için olasılıkları, altını, HP kaybını, her sayının güven sınıfını ve kararı en çok değiştiren varsayımları gösterir. Sonuçlar ve bulgular: [docs/P1_SONUC.md](docs/P1_SONUC.md).
 
+## Bilgi tabanı (B1): şampiyon, trait, item, augment, Wisp
+
+Set verisi CommunityDragon'un oyun dosyası dışa aktarımından otomatik üretilir (resmi değil; ayrıntı [docs/KAYNAKLAR.md](docs/KAYNAKLAR.md)).
+
+```powershell
+python tools/cdragon_fetch.py 16.20                  # data/raw/cdragon/16.20/ altına indirir (git'e girmez)
+python tools/import_cdragon.py set18 16.20           # data/sets/set18/generated/18.4/ dosyalarını üretir
+tft-engine data check --set set18 --patch 18.4       # bağlantıları, tarifleri, kaynakları ve yama atamasını kontrol eder
+tft-engine data diff --set set18 18.4 18.5           # iki yama arasındaki farklar
+```
+
+- `generated/<yama>/`: Sadece importer yazar, elle düzenlenmez. Aynı girdiden her zaman aynı bayt üretilir.
+- `curated/`: Elle hazırlanan kurallar ve düzeltmeler. İlk dosya `cdragon_rules.json`: hangi kayıtların oynanabilir şampiyon olduğu ve item türlerinin nasıl ayrıldığı, kanıtlarıyla.
+- `data/sources.json`: Her kaynağın adresi, alınma tarihi ve (dosyalar için) sha256'sı. Importer, dosya kayıttaki hash'ten farklıysa çalışmaz.
+- `data/sets/<set>/calendar.json`: Yama notlarının tarihleri ve CommunityDragon sürümü ↔ yama eşlemesi. Başka bir yamanın döneminde alınmış veri o yamaya atanırsa kontrol uyarı verir.
+
 ## Yama verisi
 
 Her set için `data/sets/<set>/base.json` ve her yama için `data/sets/<set>/patches/<yama>.json` vardır. Yama dosyası sadece değişiklikleri (buff, nerf vb.) kaynağıyla birlikte içerir. Dosyası olmayan bir yama yüklenmez.

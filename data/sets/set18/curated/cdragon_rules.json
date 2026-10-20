@@ -1,0 +1,30 @@
+{
+  "set": "set18",
+  "note": "How to read Set 18 out of a CommunityDragon export. Hand-made from inspecting cdragon-16.20; every rule below says what it is based on. Rules are applied in order; the first match wins.",
+  "mutator": "TFTSet18",
+  "champions": {
+    "api_prefixes": ["DA_"],
+    "require_traits": true,
+    "evidence": "cdragon-16.20: the 74 DA_ entries with traits give 14/13/14/14/10 champions per cost plus 9 Lux forms, matching tactics.tools/info/units; the other entries (TFT_*, cost 8/11) are PvE monsters, dummies and anvils",
+    "variant_groups": [
+      {
+        "trait": "DA_18_LuxUniqueTrait",
+        "base": "DA_Lux18_Base",
+        "note": "Lux forms share the Avatar trait; counted as one champion with forms"
+      }
+    ]
+  },
+  "item_kinds": [
+    {"kind": "component", "tag": "component", "evidence": "plain tag 'component' on the 10 DA_Component_* and 10 TFT_Item_* basic components"},
+    {"kind": "wisp", "tag": "{5b609ae2}", "evidence": "349 entries; descriptions use <Set18CharmUpgrade> and names match the Wisps in the 18.1-18.4 notes (Drizzle, Grove Armor, Returning Friend, Room for a Shroom); hash name not resolved"},
+    {"kind": "artifact", "tag": "{44ace175}", "evidence": "all 80 entries are DA_Artifact_* or known artifacts; hash name not resolved"},
+    {"kind": "radiant", "tag": "{6ef5c598}", "evidence": "all 72 entries are named 'Radiant ...'; hash name not resolved"},
+    {"kind": "emblem", "tag": "{ebcd1bac}", "tag_name": "TraitItem", "evidence": "hash resolves to 'TraitItem'"},
+    {"kind": "emblem", "api_contains": "Emblem", "evidence": "emblems without the TraitItem tag (e.g. DA_18_EmblemCoven)"},
+    {"kind": "support", "tag": "{27557a09}", "tag_name": "TFT_Support", "evidence": "hash resolves to 'TFT_Support'"},
+    {"kind": "consumable", "tag": "Consumable", "evidence": "plain tag"},
+    {"kind": "completed", "tag": "{7ea41d13}", "evidence": "72 entries, all with a two-component recipe; hash name not resolved"},
+    {"kind": "completed", "composition_len": 2, "evidence": "Tactician's items have a recipe but not the tag above"},
+    {"kind": "other", "evidence": "everything else: assist rewards, potions, legacy entries"}
+  ]
+}

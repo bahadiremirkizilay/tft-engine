@@ -1,0 +1,209 @@
+"""Knowledge base: champions, traits, items, augments and Wisps for one patch.
+
+Loads ``data/sets/<set>/generated/<patch>/`` (written by tools/import_cdragon.py)
+and checks it: links between records, recipes, sources, which patch each
+source belongs to, and agreement with the economy parameters in base.json.
+Problems are returned as plain sentences; ``errors`` must be empty before the
+data is used, ``warnings`` are shown to the reader.
+"""
+
+from __future__ import annotations
+
+import json
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any
+
+from tft_engine.gamedata.cdragon import KINDS
+from tft_engine.gamedata.loader import GameData, load_gamedata
+from tft_engine.gamedata.schema import STATUSES, SchemaError
+from tft_engine.gamedata.sources import (
+    PatchCalendar,
+    SourceRegistry,
+    load_calendar,
+    load_sources,
+)
+
+_DATA = Path(__file__).resolve().parents[3] / "data"
+
+
+@dataclass
+class KnowledgeBase:
+    set_id: str
+    patch: str
+    records: dict[str, dict[str, dict[str, Any]]]  # kind -> id -> record
+    headers: dict[str, dict[str, Any]]  # kind -> file header
+
+    def __getattr__(self, kind: str) -> dict[str, dict[str, Any]]:
+        if kind in KINDS:
+            return self.records[kind]
+        raise AttributeError(kind)
+
+    def champion_by_name(self, name: str) -> dict[str, Any]:
+        hits = [
+            c
+            for c in self.records["champions"].values()
+            if c["name"].lower() == name.lower() and not c.get("variant_of")
+        ]
+        if len(hits) != 1:
+            raise KeyError(f"{len(hits)} champions named {name!r}")
+        return hits[0]
+
+
+@dataclass
+class CheckReport:
+    errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
+
+    @property
+    def ok(self) -> bool:
+        return not self.errors
+
+
+def generated_dir(set_id: str, patch: str, root: Path | None = None) -> Path:
+    return (Path(root) if root else _DATA / "sets") / set_id / "generated" / patch
+
+
+def load_knowledge(set_id: str, patch: str, root: Path | None = None) -> KnowledgeBase:
+    folder = generated_dir(set_id, patch, root)
+    if not folder.is_dir():
+        raise SchemaError(
+            f"no generated data for {set_id} {patch} ({folder}); run tools/import_cdragon.py"
+        )
+    records, headers = {}, {}
+    for kind in KINDS:
+        doc = json.loads((folder / f"{kind}.json").read_text(encoding="utf-8"))
+        if doc.get("set") != set_id or doc.get("patch") != patch or doc.get("kind") != kind:
+            raise SchemaError(f"{folder / kind}.json header does not match {set_id} {patch}")
+        by_id: dict[str, dict[str, Any]] = {}
+        for r in doc["records"]:
+            if r["id"] in by_id:
+                raise SchemaError(f"{kind}: duplicate id {r['id']}")
+            by_id[r["id"]] = r
+        records[kind] = by_id
+        headers[kind] = {k: v for k, v in doc.items() if k != "records"}
+    return KnowledgeBase(set_id, patch, records, headers)
+
+
+def check_knowledge(
+    kb: KnowledgeBase,
+    sources: SourceRegistry | None = None,
+    calendar: PatchCalendar | None = None,
+    gamedata: GameData | None = None,
+) -> CheckReport:
+    rep = CheckReport()
+    champs, traits, items = kb.champions, kb.traits, kb.items
+
+    # every record: set, patch, status, sources
+    used_sources: set[str] = set()
+    for kind, by_id in kb.records.items():
+        for rid, r in by_id.items():
+            where = f"{kind}/{rid}"
+            if r.get("set") != kb.set_id or r.get("patch") != kb.patch:
+                rep.errors.append(f"{where}: filed under {r.get('set')} {r.get('patch')}")
+            if r.get("status") not in STATUSES:
+                rep.errors.append(f"{where}: bad status {r.get('status')!r}")
+            ids = r.get("source_ids") or []
+            if not ids:
+                rep.errors.append(f"{where}: no source_ids")
+            used_sources.update(ids)
+            if sources is not None:
+                for sid in ids:
+                    if sid not in sources:
+                        rep.errors.append(f"{where}: unknown source {sid!r}")
+
+    # stale-data guard: each source must belong to this patch
+    if sources is not None and calendar is not None:
+        for sid in sorted(used_sources):
+            if sid in sources:
+                for problem in calendar.check_assignment(sources[sid], kb.patch):
+                    rep.warnings.append(problem)
+        for kind, header in kb.headers.items():
+            mapping = header.get("patch_mapping") or {}
+            if mapping.get("status") != "verified":
+                rep.warnings.append(
+                    f"{kind}: game-file version to patch mapping is {mapping.get('status')} "
+                    f"({mapping.get('evidence', 'no evidence')})"
+                )
+                break
+
+    # champions <-> traits
+    for cid, c in champs.items():
+        for t in c["traits"]:
+            if t not in traits:
+                rep.errors.append(f"champion {cid}: unknown trait {t}")
+            elif cid not in traits[t].get("units", []):
+                rep.errors.append(f"trait {t} does not list champion {cid}")
+        base = c.get("variant_of")
+        if base and base not in champs:
+            rep.errors.append(f"champion {cid}: variant of unknown {base}")
+    for tid, t in traits.items():
+        for cid in t.get("units", []):
+            if cid not in champs or tid not in champs[cid]["traits"]:
+                rep.errors.append(f"trait {tid}: lists {cid}, which does not have the trait")
+        if t.get("unresolved_hashes"):
+            rep.warnings.append(f"trait {tid}: unresolved value names {t['unresolved_hashes']}")
+
+    # recipes
+    for iid, it in items.items():
+        recipe = it.get("recipe") or []
+        for comp in recipe:
+            if comp not in items:
+                rep.errors.append(f"item {iid}: recipe uses unknown {comp}")
+            elif items[comp]["kind"] != "component":
+                rep.errors.append(f"item {iid}: recipe uses {comp}, which is not a component")
+            elif items[comp]["family"] != it["family"]:
+                rep.warnings.append(f"item {iid}: recipe mixes item families ({comp})")
+        if it["kind"] == "completed" and len(recipe) != 2:
+            rep.errors.append(f"item {iid}: completed item without a two-component recipe")
+    recipes: dict[tuple[str, ...], list[str]] = {}
+    for iid, it in items.items():
+        if it["kind"] == "completed" and it.get("recipe"):
+            recipes.setdefault(tuple(sorted(it["recipe"])), []).append(iid)
+    for pair, ids in recipes.items():
+        if len(ids) > 1:
+            rep.warnings.append(f"recipe {pair} makes several items: {sorted(ids)}")
+
+    # agreement with the economy data (two independent sources)
+    if gamedata is not None and "champions_per_cost" in gamedata.params:
+        p = gamedata.params["champions_per_cost"]
+        if p.is_known:
+            counted: dict[str, int] = {}
+            for c in champs.values():
+                if not c.get("variant_of"):
+                    counted[str(c["cost"])] = counted.get(str(c["cost"]), 0) + 1
+            expected = {str(k): v for k, v in p.value.items()}
+            if counted != expected:
+                rep.errors.append(
+                    f"champions per cost {counted} differ from base.json {expected} ({p.source})"
+                )
+    return rep
+
+
+def check_all(set_id: str, patch: str) -> tuple[KnowledgeBase, CheckReport]:
+    kb = load_knowledge(set_id, patch)
+    rep = check_knowledge(kb, load_sources(), load_calendar(set_id), load_gamedata(set_id, patch))
+    return kb, rep
+
+
+def diff_knowledge(old: KnowledgeBase, new: KnowledgeBase) -> dict[str, dict[str, Any]]:
+    """Per kind: added ids, removed ids, and changed fields of common ids."""
+    ignore = {"patch", "source_ids"}
+    out: dict[str, dict[str, Any]] = {}
+    for kind in KINDS:
+        a, b = old.records[kind], new.records[kind]
+        changed: dict[str, dict[str, tuple[Any, Any]]] = {}
+        for rid in sorted(set(a) & set(b)):
+            fields = {
+                k: (a[rid].get(k), b[rid].get(k))
+                for k in sorted(set(a[rid]) | set(b[rid]))
+                if k not in ignore and a[rid].get(k) != b[rid].get(k)
+            }
+            if fields:
+                changed[rid] = fields
+        out[kind] = {
+            "added": sorted(set(b) - set(a)),
+            "removed": sorted(set(a) - set(b)),
+            "changed": changed,
+        }
+    return out
