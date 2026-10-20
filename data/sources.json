@@ -171,6 +171,15 @@
       "note": "69 silver, 112 gold, 68 prismatic. Inferred pre-18.3: Upward Mobility shows 1 reroll (18.3 made it 2), Level Up! 6 XP (18.4 made it 10), Chosen of the Sun still gold (18.4 moved it to silver). Only tiers are used."
     },
     {
+      "id": "owner-screenshots-2026-10-20",
+      "type": "player_report",
+      "title": "Item tooltip screenshots sent by the owner (Radiant Bloodthirster, Radiant Gargoyle Stoneplate, Radiant Steadfast Heart)",
+      "url": "https://github.com/bahadiremirkizilay/tft-engine",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "note": "Where the screenshots were taken (game client or a site) is not yet confirmed; if from the game client this becomes an 'observation' source."
+    },
+    {
       "id": "tactics-tools-units",
       "type": "stats_site",
       "title": "tactics.tools Set 18 unit list",

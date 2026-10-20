@@ -655,8 +655,10 @@
       "effect": "Once per combat at 50% Health: shield of 60% max Health for up to 5s.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
+      "note": "effect text matches the owner's screenshot; the screenshot shows no stat line, so stats are still the page's",
       "older_copy_check": {
         "older_copy": "TFT5_Item_BloodthirsterRadiant",
         "diffs": [
@@ -932,19 +934,20 @@
       "id": "DA_GargoyleStoneplate_Radiant",
       "name": "Radiant Gargoyle Stoneplate",
       "stats": {
-        "hp": 400,
         "armor": 50,
         "mr": 50
       },
       "effect": "+20 Armor and MR for each enemy targeting the holder.",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
+      "note": "owner's screenshot shows +50 Armor, +50 MR and no Health; the page transcription had 400 HP (wrong)",
       "older_copy_check": {
         "older_copy": "TFT5_Item_GargoyleStoneplateRadiant",
         "diffs": [
-          "hp: 400 here, 300 in TFT5_Item_GargoyleStoneplateRadiant"
+          "hp: None here, 300 in TFT5_Item_GargoyleStoneplateRadiant"
         ]
       }
     },
@@ -1598,19 +1601,20 @@
       "id": "DA_SteadfastHeartRadiant",
       "name": "Radiant Steadfast Heart",
       "stats": {
-        "hp": 500,
         "armor": 40,
         "crit_pct": 40
       },
       "effect": "10% Durability (30% above 50% Health).",
       "status": "third_party_unverified",
       "source_ids": [
-        "tactics-tools-items-2026-10-20"
+        "tactics-tools-items-2026-10-20",
+        "owner-screenshots-2026-10-20"
       ],
+      "note": "owner's screenshot shows +40 Armor, +40% Crit and no Health; the page transcription had 500 HP (wrong)",
       "older_copy_check": {
         "older_copy": "TFT5_Item_NightHarvesterRadiant",
         "diffs": [
-          "hp: 500 here, 600 in TFT5_Item_NightHarvesterRadiant"
+          "hp: None here, 600 in TFT5_Item_NightHarvesterRadiant"
         ]
       }
     },

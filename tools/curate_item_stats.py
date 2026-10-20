@@ -72,7 +72,7 @@ Warmog's Armor | 500 HP | +18% max Health. | |
 RADIANT = """
 Radiant Adaptive Helm | 40 MR, 7 Mana Regen | +30% Mana gain. Tanks and Fighters gain 80 Armor and MR; others gain 40% AD and AP. | |
 Radiant Archangel's Staff | 60 AP, 2 Mana Regen | Combat start and every 5s: +40 AP. | |
-Radiant Bloodthirster | 40% AD, 40 AP, 40 MR, 40% Omnivamp | Once per combat at 50% Health: shield of 60% max Health for up to 5s. | |
+Radiant Bloodthirster | 40% AD, 40 AP, 40 MR, 40% Omnivamp | Once per combat at 50% Health: shield of 60% max Health for up to 5s. | owner-screenshots-2026-10-20 | effect text matches the owner's screenshot; the screenshot shows no stat line, so stats are still the page's
 Radiant Blue Buff | 30% AD, 30 AP, 10 Mana Regen | +20% additional AD and AP. | |
 Radiant Bramble Vest | 100 Armor | +12% max Health; 10% less damage from attacks; when struck, 200 magic damage to adjacent enemies (2s cooldown). | |
 Radiant Crownguard | 200 HP, 40 AP, 40 Armor | Combat start: shield of 50% max Health for 8s; when it expires, +50 AP. | | 18.4 changed base Crownguard's AP on expire; the notes list no Radiant change
@@ -80,7 +80,7 @@ Radiant Deathblade | 100% AD, 20% Damage Amp | Stacking bonus (page text was a p
 Radiant Dragon's Claw | 120 MR | +28% max Health; every 2s heal 5% max Health. | |
 Radiant Edge of Night | 30% AD, 30 AP, 40 Armor, 30% AS | At 40% Health: untargetable, shed negative effects, heal all missing Health. | |
 Radiant Evenshroud | 500 HP, 40 MR | 30% Sunder within 3 hexes; first 20s: +50 Armor and MR. | |
-Radiant Gargoyle Stoneplate | 400 HP, 50 Armor, 50 MR | +20 Armor and MR for each enemy targeting the holder. | |
+Radiant Gargoyle Stoneplate | 50 Armor, 50 MR | +20 Armor and MR for each enemy targeting the holder. | owner-screenshots-2026-10-20 | owner's screenshot shows +50 Armor, +50 MR and no Health; the page transcription had 400 HP (wrong)
 Radiant Giant Slayer | 30% AD, 30 AP, 30% AS, 30% Damage Amp | +30% additional Damage Amp against Tanks. | |
 Radiant Guinsoo's Rageblade | 20 AP, 25% AS | +16% stacking Attack Speed per second. | |
 Radiant Hand of Justice | 40% Crit, 2 Mana Regen | 35% AD and AP and 30% Omnivamp; same doubling rule as the base item. | |
@@ -98,7 +98,7 @@ Radiant Rabadon's Deathcap | 100 AP, 30% Damage Amp | Stacking bonus (page text 
 Radiant Red Buff | 80% AS, 6% Damage Amp | 2% Burn and 33% Wound for 5s. | |
 Radiant Spear of Shojin | 30% AD, 30 AP, 2 Mana Regen | Attacks grant 10 bonus Mana. | |
 Radiant Spirit Visage | 700 HP, 18% Durability, 4 Mana Regen | Regenerate 4% of missing Health per second. | riot-notes-18.4 | 18.4: Radiant Durability 15% => 18% (the page called it damage reduction)
-Radiant Steadfast Heart | 500 HP, 40 Armor, 40% Crit | 10% Durability (30% above 50% Health). | |
+Radiant Steadfast Heart | 40 Armor, 40% Crit | 10% Durability (30% above 50% Health). | owner-screenshots-2026-10-20 | owner's screenshot shows +40 Armor, +40% Crit and no Health; the page transcription had 500 HP (wrong)
 Radiant Sterak's Gage | 600 HP, 90% AD | At 60% Health: shield of 80% max Health, decaying over 6s. | |
 Radiant Striker's Flail | 300 HP, 20% AS, 40% Crit, 20% Damage Amp | Crits grant 10% Damage Amp for 5s, up to 4 stacks. | |
 Radiant Sunfire Cape | 300 HP, 40 Armor | +16% max Health; every 2s, 2% Burn and 33% Wound to a nearby enemy. | |
