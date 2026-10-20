@@ -41,7 +41,7 @@
       "status": "community_extracted",
       "source": "game file map22.bin.json TierBags (units per tier bag); same counts in the CommunityDragon champion list and tactics.tools",
       "source_ids": ["cdragon-16.20-map22", "cdragon-16.20", "tactics-tools-units"],
-      "note": "Lux is in the 5-cost bag once (DA_Lux18_Base); its forms are not separate pool entries. Owner: Lux comes to the shop like any 5-cost with the normal 5-cost copy count, and the form (the traits it gives) varies per shop appearance. Dual-form champions (Adaptor AD/AP, Gnar) are one champion each in the pool; some switch form when their mana or rage fills, Adaptors by whether AD or AP is higher."
+      "note": "Lux is in the 5-cost bag once (DA_Lux18_Base); its forms are not separate pool entries. Owner: Lux comes to the shop like any 5-cost with the normal 5-cost copy count, and the form (the traits it gives) is shown in the shop and picked at random (not matched to the player's comp). Once the player owns a Lux, later Lux shop appearances are that same form until it is sold; after selling, any form can come again. Dual-form champions (Adaptor AD/AP, Gnar) are one champion each in the pool; some switch form when their mana or rage fills, Adaptors by whether AD or AP is higher."
     },
     "shop_slots": {
       "value": 5,
