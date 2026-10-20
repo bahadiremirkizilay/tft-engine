@@ -86,13 +86,13 @@
       "status": "third_party_unverified",
       "source": "op.gg gold-xp guide and wiki TFT:Gold",
       "source_ids": ["opgg-gold-xp", "wiki-tft-gold"],
-      "note": "Gold paid at the start of each round, before interest, streak and win gold. 5 from 2-2 on."
+      "note": "Gold paid at the start of each round, before interest, streak and win gold. 5 from 2-2 on. The owner's stage 4 income readings (owner-ingame-2026-10-20) fit 5; the early-stage values are not checked."
     },
     "interest_per_10_gold": {
       "value": 1,
-      "status": "third_party_unverified",
-      "source": "op.gg gold-xp guide and wiki TFT:Gold",
-      "source_ids": ["opgg-gold-xp", "wiki-tft-gold"]
+      "status": "verified",
+      "source": "op.gg gold-xp guide and wiki TFT:Gold; seen in game: 20 gold gave 2 interest (owner, 18.4b)",
+      "source_ids": ["opgg-gold-xp", "wiki-tft-gold", "owner-ingame-2026-10-20"]
     },
     "interest_cap": {
       "value": 5,
@@ -103,9 +103,9 @@
     "streak_gold": {
       "value": [[2, 1], [5, 2], [6, 3]],
       "status": "third_party_unverified",
-      "source": "op.gg gold-xp guide (Set 18) and tft.ninja",
-      "source_ids": ["opgg-gold-xp", "tftninja-economy"],
-      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks.",
+      "source": "op.gg gold-xp guide (Set 18) and tft.ninja; streaks of 4, 5 and 6 checked in game (owner, 18.4b)",
+      "source_ids": ["opgg-gold-xp", "tftninja-economy", "owner-ingame-2026-10-20"],
+      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks. In game at stage 4 (income = 5 base + interest + streak): 4 win streak +1, 5 +2, 6 +3, matching this table and ruling out tables with 4 -> +2. Not yet seen: whether a 2 streak pays (the wiki conflict below), loss streaks.",
       "conflicts": [
         {
           "value": [[3, 1], [5, 2], [6, 3]],

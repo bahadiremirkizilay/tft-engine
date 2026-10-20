@@ -90,7 +90,12 @@ def test_change_without_source_rejected(tmp_path):
 def test_set18_loads_and_reports_provenance(set18):
     report = set18.provenance_report()
     # only what the owner saw in game on 18.4b is verified; this must stay honest
-    assert sorted(report["verified"]) == ["passive_xp_per_round", "reroll_cost", "xp_purchase"]
+    assert sorted(report["verified"]) == [
+        "interest_per_10_gold",
+        "passive_xp_per_round",
+        "reroll_cost",
+        "xp_purchase",
+    ]
     assert "shop_odds" in report["community_extracted"]  # read from the game files
     assert "copies_per_champion" in report["community_extracted"]
     assert "riftbeast_shop" in report["unknown"]
