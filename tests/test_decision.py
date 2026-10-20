@@ -153,3 +153,46 @@ def test_free_rerolls_in_the_state_raise_the_hit_chance():
     d["state"]["free_rerolls"] = 5
     free = Evaluator(Scenario.from_dict(d)).evaluate().by_key("A")
     assert free.metrics["p_hit"].value > plain.metrics["p_hit"].value
+
+
+def _n3(**changes):
+    d = json.loads((SCEN_DIR / "n3_three_star_3cost.json").read_text(encoding="utf-8"))
+    d.update(changes)
+    return d
+
+
+def test_buying_a_wisp_first_is_tried_and_can_win():
+    # Rolling for a 3-star with a Wisp costing nothing: buying it frees the slot.
+    d = _n3(assumptions={"wisp_price": 0})
+    a = Evaluator(Scenario.from_dict(d)).evaluate().by_key("A")
+    assert "buying a Wisp first" in a.label
+    assert a.roll.model == "independent+wisp_bought"
+    # With 5 Blossom every shop shows a Wisp; never buying one loses a slot each shop.
+    d = _n3(assumptions={"wisp_price": 0}, active_traits={"DA_18_Blossom": 5})
+    ev = Evaluator(Scenario.from_dict(d))
+    never = ev._roll_policy(
+        "A", "x", ev.sc.state, ev.sc.comp(ev.sc.current_comp), ev_rules(ev), ev.base, 0, False
+    )
+    bought = ev.evaluate().by_key("A")
+    assert bought.metrics["p_hit"].value > never.metrics["p_hit"].value
+
+
+def ev_rules(ev):
+    from tft_engine.rules import Rules
+
+    return Rules(ev.data)
+
+
+def test_lux_form_share_comes_from_the_knowledge_base():
+    from tft_engine.state import GameState
+
+    d = _n3()
+    d["comps"][0]["units"] = [{"unit_id": "DA_18_Lux_Elderwood", "cost": 5, "star": 1}]
+    ev = Evaluator(Scenario.from_dict(d))
+    nobody = GameState("4-3", 50, 8, 0, 50)
+    assert ev._share("DA_18_Lux_Elderwood", nobody) == pytest.approx(1 / 9)
+    coven = GameState("4-3", 50, 8, 0, 50, units=(UnitInstance("DA_18_Lux_Coven", 5, 1),))
+    # an owned form locks the shop form: other forms cannot show until it is sold
+    assert ev._share("DA_18_Lux_Elderwood", coven) == 0.0
+    assert ev._share("DA_18_Lux_Coven", coven) == 1.0
+    assert ev._share("3echo", nobody) == 1.0

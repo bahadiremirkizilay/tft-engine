@@ -65,7 +65,9 @@ def _cmd_odds(args: argparse.Namespace) -> int:
     cp = {int(k): v for k, v in data.get("copies_per_champion").items()}
     cc = {int(k): v for k, v in data.get("champions_per_cost").items()}
     pool = PoolState.build(cp, cc, tracked, taken=taken)
-    model = IndependentShopModel.from_gamedata(data, wisp_takes_slot=args.wisp)
+    model = IndependentShopModel.from_gamedata(
+        data, wisp_prob=args.wisp_prob, wisp_bought=args.buy_wisp
+    )
     query = RollQuery(
         level=args.level,
         gold=args.gold,
@@ -150,10 +152,16 @@ def main(argv: list[str] | None = None) -> int:
     p_odds.add_argument("--taken", action="append", default=[], help="unit:copies held by anyone")
     p_odds.add_argument("--floor", type=int, default=0, help="stop rolling below this gold")
     p_odds.add_argument(
-        "--wisp",
-        action=argparse.BooleanOptionalAction,
+        "--wisp-prob",
+        type=float,
         default=None,
-        help="force whether a Wisp takes a champion slot (default: follow the set data)",
+        help="chance a shop shows a Wisp and has one champion slot fewer "
+        "(default: the set data, every other shop in Set 18)",
+    )
+    p_odds.add_argument(
+        "--buy-wisp",
+        action="store_true",
+        help="this round's Wisp is bought, so every shop shows all champion slots",
     )
     p_odds.set_defaults(func=_cmd_odds)
 

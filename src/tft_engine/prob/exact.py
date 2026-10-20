@@ -67,20 +67,28 @@ def _solve_one(query: RollQuery, pool: PoolState, model: ShopModel):
     tier_pos = {c: i for i, c in enumerate(tiers)}
     tier_probs = model.tier_probs(query.level)
     period = model.period
+    need0 = tuple(t.copies_needed for t in query.targets)
+    shares = tuple(t.share for t in query.targets)
 
     @cache
     def f(idx: int, gold: int, needs: tuple, ks: tuple, ts: tuple, depth: int, free: int):
         """Return (dist over (success, gold) -> prob, expected future rolls)."""
         price = query.price(free)
-        slots = model.champion_slots(idx)
         probs = []
         for j, c in enumerate(costs):
             t = ts[tier_pos[c]]
-            probs.append(tier_probs[c - 1] * ks[j] / t if t > 0 else 0.0)
+            # a form-specific target (Lux) matches only part of its copies until one is bought
+            share = shares[j] if needs[j] == need0[j] else 1.0
+            probs.append(tier_probs[c - 1] * ks[j] / t * share if t > 0 else 0.0)
         probs.append(max(0.0, 1.0 - sum(probs)))
         dist: dict = defaultdict(float)
         exp_rolls = 0.0
-        for counts, pr in _outcomes(slots, tuple(probs)):
+        outcomes = [
+            (counts, ps * pr)
+            for ps, slots in model.slot_probs(idx)
+            for counts, pr in _outcomes(slots, tuple(probs))
+        ]
+        for counts, pr in outcomes:
             g, nd, kk, tt = gold, list(needs), list(ks), list(ts)
             for j in range(len(ids)):
                 b = min(counts[j], nd[j], g // costs[j], kk[j])

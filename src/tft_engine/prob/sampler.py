@@ -53,6 +53,8 @@ def roll_down_sample(
         tiers[mask] = pool.tier_remaining
 
     need = np.tile([t.copies_needed for t in query.targets], (n, 1)).astype(np.int64)
+    need0 = need.copy()
+    shares = np.array([t.share for t in query.targets])
     gold = np.full(n, query.gold, dtype=np.int64)
     rolls = np.zeros(n, dtype=np.int64)
     free = np.full(n, query.free_rolls, dtype=np.int64)
@@ -79,15 +81,23 @@ def roll_down_sample(
             break
         idx = np.flatnonzero(active)
         hits = np.zeros((idx.size, m), dtype=np.int64)
-        for _ in range(model.champion_slots(shop_idx)):
+        dist = model.slot_probs(shop_idx)
+        slot_p = np.array([p for p, _ in dist])
+        slot_n = np.array([s for _, s in dist])
+        n_slots = slot_n[rng.choice(len(dist), size=idx.size, p=slot_p / slot_p.sum())]
+        # until a copy is bought, a form-specific target matches only its share
+        share_now = np.where(need[idx] == need0[idx], shares, 1.0)
+        for slot in range(int(slot_n.max())):
+            open_slot = n_slots > slot
             tier = np.searchsorted(cum_odds, rng.random(idx.size), side="right")  # 0..4
             tier = np.minimum(tier, 4)
             u = rng.random(idx.size) * tiers[idx, tier]
+            form = rng.random(idx.size)
             offset = np.zeros(idx.size)
             for j in range(m):
                 in_tier = tier == costs[j] - 1
                 hit = in_tier & (u >= offset) & (u < offset + k[idx, j])
-                hits[:, j] += hit
+                hits[:, j] += hit & open_slot & (form < share_now[:, j])
                 offset = np.where(in_tier, offset + k[idx, j], offset)
         g = gold[idx]
         for j in range(m):

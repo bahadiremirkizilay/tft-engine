@@ -57,7 +57,8 @@ tft-engine odds --set set18 --patch 18.4 --level 8 --gold 50 --target Ahri:4:2 -
 
 - `--target birim:maliyet:kopya` birden fazla verilebilir. Sırayla satın alınır.
 - `--floor 20` altın 20'nin altına inecekse roll'u durdurur.
-- `--wisp` her iki shop'ta bir Wisp'in bir şampiyon yerini kapladığını varsayar (doğrulanmadı).
+- `--wisp-prob 0.5` bir shop'ta Wisp çıkma olasılığı (o shop'ta 4 şampiyon olur). Varsayılan set verisinden: Set 18'de her iki shop'ta bir (18.1 notu; sıklık ölçülmedi).
+- `--buy-wisp` o turun Wisp'i alınmış demek: altındaki şampiyon açılır ve sonraki shop'larda 5 şampiyon görünür (sahibin gözlemi, 18.4b).
 - Çıktı, hesabın dayandığı varsayımları ve gözden geçirilmemiş yamaları her zaman yazar.
 
 ## Karar prototipi (P1)
@@ -96,6 +97,6 @@ Liste ve form: [templates/oyun_ici_kontrol.md](templates/oyun_ici_kontrol.md). K
 2. XP tablosu resmi 18.2 notlarıyla tutarlı (7→8 = 56, 8→9 ve 9→10 = 68). XP alım oranı (4 altın = 4 XP), tur başına 2 XP ve en yüksek level (10) kontrol edilmeli.
 3. Oyunda kontrol edildi (18.4b): reroll 2, faiz, temel gelir 5, PvP galibiyeti +1, seri altını (2-4: +1, 5: +2, 6+: +3; kayıp serisi aynı).
 4. Satış değerleri (wiki kuralından türetildi, wiki kendi örneğiyle çelişiyor) ve oyuncu hasarı.
-5. Wisp'li shop'ta 4 şampiyon olması. Varsayılan olarak açık, `--no-wisp` ile kapatılır.
+5. Wisp: Wisp çıkan shop'ta 4 şampiyon var; turda 1 Wisp alınabiliyor, alınca o turun shop'larında 5 şampiyon görünüyor (sahip, 18.4b). Wisp çıkma sıklığı ölçülmedi; karar motoru Wisp alarak ve almayarak iki roll'u da hesaplıyor.
 
 Data Dragon çapraz kontrolü: `python tools/ddragon_check.py set18 18.4 16.20.1 --set-path TFTSet18` (74 kaydın hepsi ad ve maliyet olarak aynı).

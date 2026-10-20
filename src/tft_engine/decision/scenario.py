@@ -55,6 +55,7 @@ class Scenario:
     contest_prior: dict[str, tuple[tuple[float, int], ...]] = field(default_factory=dict)
     opponents_alive: int = 7
     augment_offers: tuple[Effect, ...] = ()
+    active_traits: dict[str, int] = field(default_factory=dict)  # trait id -> active units
     assumptions: dict[str, Any] = field(default_factory=dict)
     seed: int = 0
     expected: dict[str, Any] | None = None  # for obvious scenarios: {"best_in": [...]}
@@ -125,6 +126,7 @@ class Scenario:
             },
             opponents_alive=d.get("opponents_alive", 7),
             augment_offers=tuple(Effect.from_dict(e) for e in d.get("augment_offers", [])),
+            active_traits={k: int(v) for k, v in d.get("active_traits", {}).items()},
             assumptions=d.get("assumptions", {}),
             seed=d.get("seed", 0),
             expected=d.get("expected"),

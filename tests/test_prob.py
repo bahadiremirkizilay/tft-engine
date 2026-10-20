@@ -93,7 +93,7 @@ def _random_scenarios(n, seed):
             gold_floor=int(rng.choice([0, 0, 10, 20])),
             first_shop_free=bool(rng.random() < 0.7),
         )
-        model = IndependentShopModel.from_gamedata(gd, wisp_takes_slot=bool(rng.random() < 0.3))
+        model = IndependentShopModel.from_gamedata(gd, wisp_prob=0.5 if rng.random() < 0.3 else 0.0)
         out.append((q, belief, model))
     return out
 
@@ -134,7 +134,7 @@ def test_sampler_is_reproducible():
 
 
 CP18, CC18 = pool_params(S18)
-MODEL18 = IndependentShopModel.from_gamedata(S18, wisp_takes_slot=False)
+MODEL18 = IndependentShopModel.from_gamedata(S18, wisp_prob=0.0)
 
 
 @settings(max_examples=40, deadline=None)
@@ -178,9 +178,12 @@ def test_wisp_variant_lowers_odds():
     q = RollQuery(level=7, gold=40, targets=(Target("A", 3),), roll_cost=2)
     plain = roll_down_exact(q, PoolBelief.certain(pool), MODEL18)
     wisp = roll_down_exact(
-        q, PoolBelief.certain(pool), IndependentShopModel.from_gamedata(S18, wisp_takes_slot=True)
+        q, PoolBelief.certain(pool), IndependentShopModel.from_gamedata(S18, wisp_prob=0.5)
     )
-    assert wisp.p_success < plain.p_success
+    every = roll_down_exact(
+        q, PoolBelief.certain(pool), IndependentShopModel.from_gamedata(S18, wisp_prob=1.0)
+    )
+    assert every.p_success < wisp.p_success < plain.p_success
     assert any("Wisp" in a for a in wisp.assumptions)
 
 
@@ -197,8 +200,45 @@ def test_never_buys_more_copies_than_exist():
 
 
 def test_set18_follows_wisp_rule_by_default():
-    assert IndependentShopModel.from_gamedata(S18).wisp_takes_slot is True
-    assert IndependentShopModel.from_gamedata(SYN).wisp_takes_slot is False
+    assert IndependentShopModel.from_gamedata(S18).wisp_prob == 0.5  # 18.1 notes: every other
+    assert IndependentShopModel.from_gamedata(SYN).wisp_prob == 0.0  # no Wisps in that set
+    # 5 Blossom: a Wisp in every shop (trait text); a bought Wisp frees the slot
+    blossom = IndependentShopModel.from_gamedata(S18, active_traits={"DA_18_Blossom": 5})
+    assert blossom.wisp_prob == 1.0
+    assert (
+        IndependentShopModel.from_gamedata(S18, active_traits={"DA_18_Blossom": 3}).wisp_prob == 0.5
+    )
+    bought = IndependentShopModel.from_gamedata(S18, wisp_bought=True)
+    assert bought.wisp_prob == 0.0 and bought.name == "independent+wisp_bought"
+
+
+def test_random_wisp_slot_matches_its_closed_form():
+    # 1 champion slot when a Wisp shows (p = 0.5), else 2; one shop, target 1 of 2 copies.
+    model = IndependentShopModel({1: (100, 0, 0, 0, 0)}, slots=2, wisp_prob=0.5)
+    pool = PoolState((2, 0, 0, 0, 0), (("A", 1, 1),))
+    q = RollQuery(level=1, gold=1, targets=(Target("A", 1),), roll_cost=2)
+    r = roll_down_exact(q, PoolBelief.certain(pool), model)
+    assert r.p_success == pytest.approx(0.5 * (1 - 0.5**2) + 0.5 * 0.5)
+    mc = roll_down_sample(q, PoolBelief.certain(pool), model, n=40_000, seed=3)
+    assert abs(mc.p_success - r.p_success) < 0.01
+
+
+def test_form_share_applies_until_the_first_copy_is_bought():
+    # Lux-like target: 1 of 9 forms matches until a copy is bought, then every copy.
+    model = IndependentShopModel({1: (100, 0, 0, 0, 0)}, slots=1)
+    pool = PoolState((4, 0, 0, 0, 0), (("L", 1, 4),))  # every slot is the target champion
+    one = RollQuery(level=1, gold=1, targets=(Target("L", 1, share=1 / 9),), roll_cost=2)
+    assert roll_down_exact(one, PoolBelief.certain(pool), model).p_success == pytest.approx(1 / 9)
+    # 2 copies, 2 shops: first shop must hit the form (1/9), the second then always hits
+    two = RollQuery(level=1, gold=4, targets=(Target("L", 2, share=1 / 9),), roll_cost=2)
+    r = roll_down_exact(two, PoolBelief.certain(pool), model)
+    assert r.p_success == pytest.approx(1 / 9 * 1.0)
+    mc = roll_down_sample(two, PoolBelief.certain(pool), model, n=40_000, seed=5)
+    assert abs(mc.p_success - r.p_success) < 0.01
+    with pytest.raises(ValueError, match="share"):
+        Target("L", 1, share=1.5)
+    locked = RollQuery(level=1, gold=10, targets=(Target("L", 1, share=0.0),), roll_cost=2)
+    assert roll_down_exact(locked, PoolBelief.certain(pool), model).p_success == 0.0
 
 
 def test_free_rolls_are_used_first_and_cost_nothing():

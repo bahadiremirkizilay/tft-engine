@@ -17,6 +17,7 @@ values in assumptions.py. The score is always an assumption.
 from __future__ import annotations
 
 from dataclasses import dataclass, field, replace
+from functools import lru_cache
 from itertools import product
 from typing import Any
 
@@ -24,7 +25,8 @@ from tft_engine.decision.assumptions import DEFAULTS, AssumptionSet
 from tft_engine.decision.horizon import simulate
 from tft_engine.decision.scenario import Comp, Scenario
 from tft_engine.decision.strength import board_strength
-from tft_engine.gamedata import GameData, load_gamedata
+from tft_engine.gamedata import GameData, SchemaError, load_gamedata
+from tft_engine.gamedata.entities import load_knowledge
 from tft_engine.prob import (
     IndependentShopModel,
     RollQuery,
@@ -106,6 +108,23 @@ class AugmentRow:
     notes: tuple[str, ...] = ()
 
 
+@lru_cache(maxsize=8)
+def _champion_forms(set_id: str, patch: str) -> dict[str, tuple[str, int]]:
+    """Champion id -> (base id, number of forms) for champions with shop forms (Lux).
+
+    Empty when the set has no generated knowledge base (synthetic test sets).
+    """
+    try:
+        kb = load_knowledge(set_id, patch)
+    except (SchemaError, FileNotFoundError):
+        return {}
+    by_base: dict[str, list[str]] = {}
+    for c in kb.champions.values():
+        if c.get("variant_of"):
+            by_base.setdefault(c["variant_of"], []).append(c["id"])
+    return {cid: (base, len(ids)) for base, ids in by_base.items() for cid in ids}
+
+
 def _upgrade(units: tuple[UnitInstance, ...], comp: Comp) -> tuple[UnitInstance, ...]:
     """Board after every unit of `comp` reached its target star."""
     wanted = {u.unit_id: u for u in comp.units}
@@ -169,17 +188,39 @@ class Evaluator:
             basis += "+prior"
         return PoolBelief.mixture(states, basis + "+depletion assumption")
 
-    def model(self, a: AssumptionSet) -> IndependentShopModel:
-        return IndependentShopModel.from_gamedata(self.data, wisp_takes_slot=a["wisp_takes_slot"])
+    def model(self, a: AssumptionSet, wisp_bought: bool = False) -> IndependentShopModel:
+        return IndependentShopModel.from_gamedata(
+            self.data,
+            wisp_prob=a["wisp_shop_prob"],
+            active_traits=self.sc.active_traits,
+            wisp_bought=wisp_bought,
+        )
+
+    def _share(self, unit_id: str, state: GameState) -> float:
+        """Part of a champion's shop appearances that count (Lux forms, see Target)."""
+        forms = _champion_forms(self.sc.set_id, self.sc.patch)
+        if unit_id not in forms:
+            return 1.0
+        base, n = forms[unit_id]
+        owned = {u.unit_id for u in state.units if forms.get(u.unit_id, ("",))[0] == base}
+        if not owned:
+            return 1.0 / n
+        # an owned form locks the form every later copy shows in (owner, 18.4b)
+        return 1.0 if unit_id in owned else 0.0
 
     def roll(
-        self, state: GameState, comp: Comp, a: AssumptionSet, rules: Rules | None = None
+        self,
+        state: GameState,
+        comp: Comp,
+        a: AssumptionSet,
+        rules: Rules | None = None,
+        wisp_bought: bool = False,
     ) -> RollResult | None:
         needs = comp.needs(state)
         if not needs:
             return None
         rules = rules or Rules(self.data)
-        targets = tuple(Target(uid, n) for uid, _, n in needs)
+        targets = tuple(Target(uid, n, self._share(uid, state)) for uid, _, n in needs)
         tracked = {uid: cost for uid, cost, _ in needs}
         query = RollQuery(
             level=state.level,
@@ -189,11 +230,12 @@ class Evaluator:
             gold_floor=a["roll_floor"],
             free_rolls=state.free_rerolls,
         )
-        model = self.model(a)
+        model = self.model(a, wisp_bought)
         key = (
             query,
             state.state_hash(),
             model.name,
+            model.wisp_prob,
             a["pool_depletion_scale"],
             repr(a["tier_taken_frac_by_stage"]),
         )
@@ -258,7 +300,20 @@ class Evaluator:
         }
 
     def _roll_candidate(self, key, label, state, comp, rules, a, extra_income):
-        res = self.roll(state, comp, a, rules)
+        """Roll candidate; when shops can show a Wisp, also try buying one first."""
+        best = self._roll_policy(key, label, state, comp, rules, a, extra_income, False)
+        price = a["wisp_price"]
+        if self.model(a).wisp_prob > 0 and best.available and state.gold >= price:
+            paid = replace(state, gold=state.gold - price)
+            buy = self._roll_policy(
+                key, f"{label}, buying a Wisp first", paid, comp, rules, a, extra_income, True
+            )
+            if buy.available and buy.score > best.score:
+                best = buy
+        return best
+
+    def _roll_policy(self, key, label, state, comp, rules, a, extra_income, wisp_bought):
+        res = self.roll(state, comp, a, rules, wisp_bought)
         if res is None:
             return CandidateResult(key, label, False, "nothing left to buy for this comp")
         hit_units = _upgrade(state.units, comp)

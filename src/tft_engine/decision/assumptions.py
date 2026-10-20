@@ -74,9 +74,11 @@ DEFAULTS: dict[str, Assumption] = {
         },
         description="share of other copies per cost held by unseen boards, by stage",
     ),
-    "wisp_takes_slot": Assumption(
-        None, False, True, "a Wisp takes a champion slot (None = follow set data)"
+    # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
+    "wisp_shop_prob": Assumption(
+        None, 0.25, 1.0, "chance a shop shows a Wisp (None = set data: every other shop)"
     ),
+    "wisp_price": Assumption(1, 0, 3, "gold paid for the cheapest Wisp when buying one to roll"),
 }
 
 

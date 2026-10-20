@@ -7,12 +7,24 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Target:
+    """Copies of one champion to buy.
+
+    share: the part of its shop appearances that count, for champions whose
+    form is picked at random in the shop (Set 18 Lux: 1 / number of forms while
+    the player owns none; once one is owned, every Lux shows in that form, so
+    another form has share 0). It applies until the first copy is bought in the
+    roll-down, then 1.
+    """
+
     unit_id: str
     copies_needed: int
+    share: float = 1.0
 
     def __post_init__(self) -> None:
         if self.copies_needed < 0:
             raise ValueError("copies_needed must be >= 0")
+        if not 0.0 <= self.share <= 1.0:
+            raise ValueError("share must be in [0, 1]")
 
 
 @dataclass(frozen=True)

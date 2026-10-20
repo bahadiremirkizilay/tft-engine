@@ -147,10 +147,10 @@
   },
   "shop_rules": {
     "wisp_slot": {
-      "value": {"every_other_shop": true, "position": "rightmost", "occupies_champion_slot": true, "max_purchases_per_round": 1, "after_purchase": "5 champions in the later shops of that round", "hidden_champion_revealed": "when the Wisp is bought, otherwise at combat start", "price": "varies by Wisp, can be 0"},
+      "value": {"every_other_shop": true, "position": "rightmost", "occupies_champion_slot": true, "max_purchases_per_round": 1, "after_purchase": "5 champions in the later shops of that round", "hidden_champion_revealed": "when the Wisp is bought, otherwise at combat start", "price": "varies by Wisp, can be 0", "every_shop_with": {"trait": "DA_18_Blossom", "min_units": 5}},
       "status": "third_party_unverified",
       "source": "Riot patch 18.1 notes ('Wisps appear in every other shop') https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-1 ; rightmost slot: https://wiki.leagueoflegends.com/en-us/TFT:Enchanted_Wilds ; 4 champions + Wisp: https://noxutft.com/guide/wisps , https://blitz.gg/tr/tft/articles/tft-set-18-wisps-guide",
-      "source_ids": ["riot-notes-18.1", "owner-ingame-2026-10-20"],
+      "source_ids": ["riot-notes-18.1", "owner-ingame-2026-10-20", "cdragon-16.20"],
       "note": "When a Wisp is shown, the shop has 4 champions and the Wisp in the rightmost slot. Owner (18.4b, 2026-10-20): a champion is hidden under the Wisp and is revealed at once when the Wisp is bought, otherwise when combat starts; only 1 Wisp can be bought per round; after buying it, the later shops of that round show 5 champions, so players buy a cheap Wisp first when rolling for a 3-star; without a purchase, rerolls show a Wisp again only now and then (the owner says sometimes, the 18.1 notes say every other shop: frequency not settled); not buying costs nothing; Wisp prices vary by type, some are 0 gold. Owner is not sure how often a Wisp shows without a purchase; cheap (0-1 gold) Wisps come up sometimes. Blossom trait (game file text) changes this: (5) Wisps are in every shop, (7) gold after buying a Wisp, (9) 2 Wisps per round; so without Blossom a Wisp is not in every shop. Owner: 1 Wisp per round also with 3-7 Blossom; 9 Blossom is weak and rarely played, so the 2-per-round rule is game-file text only, not seen in play. Current model (to be replaced in B3): every other shop loses one champion slot for the whole roll-down."
     },
     "inferno_upgrade": {
