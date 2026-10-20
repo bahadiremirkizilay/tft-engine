@@ -41,7 +41,7 @@
       "status": "community_extracted",
       "source": "game file map22.bin.json TierBags (units per tier bag); same counts in the CommunityDragon champion list and tactics.tools",
       "source_ids": ["cdragon-16.20-map22", "cdragon-16.20", "tactics-tools-units"],
-      "note": "Lux is in the 5-cost bag once (DA_Lux18_Base); its forms are not separate pool entries."
+      "note": "Lux is in the 5-cost bag once (DA_Lux18_Base); its forms are not separate pool entries. Owner: Lux comes to the shop like any 5-cost with the normal 5-cost copy count, and the form (the traits it gives) varies per shop appearance. Dual-form champions (Adaptor AD/AP, Gnar) are one champion each in the pool; some switch form when their mana or rage fills, Adaptors by whether AD or AP is higher."
     },
     "shop_slots": {
       "value": 5,
@@ -164,10 +164,11 @@
       "source": "Riftbeast (5): next shop overrun with Riftbeasts every few combats (esports.gg Set 18 overview); exact rule unknown"
     },
     "bad_luck_protection": {
-      "value": null,
-      "status": "unknown",
-      "source": "parameter block seen in Set 11 game files (ACIK_KAYNAK_INCELEME.md 2.5); the TFTSet18 entry in map22.bin.json 16.20 has no field named for it, but some of its fields are hashed, so this is not proof of absence",
-      "source_ids": ["cdragon-16.20-map22"]
+      "value": false,
+      "status": "unverified",
+      "source": "owner (2026-10-21): no protection, shops are pure chance; a unit with copies left in the pool can still miss, and rolling for a unit with no copies left only wastes gold",
+      "source_ids": ["owner-ingame-2026-10-20"],
+      "note": "A parameter block for it was seen in Set 11 game files (ACIK_KAYNAK_INCELEME.md 2.5); the TFTSet18 entry in map22.bin.json 16.20 has no field named for it (some fields are hashed). Hidden mechanics cannot be seen in play, so this stays unverified."
     }
   }
 }
