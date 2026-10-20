@@ -164,6 +164,9 @@ def check_knowledge(
         if len(ids) > 1:
             rep.warnings.append(f"recipe {pair} makes several items: {sorted(ids)}")
 
+    if gamedata is not None:
+        check_parameters(gamedata, sources, rep)
+
     # agreement with the economy data (two independent sources)
     if gamedata is not None and "champions_per_cost" in gamedata.params:
         p = gamedata.params["champions_per_cost"]
@@ -178,6 +181,60 @@ def check_knowledge(
                     f"champions per cost {counted} differ from base.json {expected} ({p.source})"
                 )
     return rep
+
+
+def superseded_values(gamedata: GameData) -> list[str]:
+    """Values that a patch replaced but that still show up afterwards.
+
+    For every change that records ``old`` values (per key of a table), the key's
+    value after that change must differ from ``old`` unless a later change set
+    it back on purpose. Catches a later patch file or base value that copied
+    an outdated table.
+    """
+    last: dict[tuple[str, str], Any] = {}  # (param, key) -> last change touching it
+    for ch in gamedata.changes:
+        if isinstance(ch.old, dict):
+            for key in ch.old:
+                last[(ch.param, str(key))] = ch
+    problems = []
+    for (param, key), ch in sorted(last.items()):
+        group, _, name = param.partition(".")
+        params = gamedata.params if group == "params" else gamedata.shop_rules
+        if name not in params or not isinstance(params[name].value, dict):
+            continue
+        now = params[name].value.get(key)
+        if now == ch.old[key] and (ch.new or {}).get("value", {}).get(key) != ch.old[key]:
+            problems.append(
+                f"{param}[{key}] is {now!r}, the value {ch.patch} replaced; the data looks stale"
+            )
+    return problems
+
+
+def check_parameters(gamedata: GameData, sources: SourceRegistry | None, rep: CheckReport) -> None:
+    """Sources behind economy and shop parameters and patch changes."""
+    if sources is not None:
+        for group in (gamedata.params, gamedata.shop_rules):
+            for name, p in group.items():
+                ids = list(p.source_ids)
+                for c in p.conflicts:
+                    ids.extend(c["source_ids"])
+                for sid in ids:
+                    if sid not in sources:
+                        rep.errors.append(f"param {name}: unknown source {sid!r}")
+                if p.is_known and not p.source_ids:
+                    rep.warnings.append(f"param {name}: no source_ids (only free text)")
+        for ch in gamedata.changes:
+            for sid in ch.source_ids:
+                if sid not in sources:
+                    rep.errors.append(f"{ch.patch} change {ch.param}: unknown source {sid!r}")
+    for name, p in {**gamedata.params, **gamedata.shop_rules}.items():
+        if p.conflicts:
+            rep.warnings.append(
+                f"param {name}: {len(p.conflicts)} conflicting source value(s) kept"
+            )
+    rep.errors.extend(superseded_values(gamedata))
+    for patch in gamedata.unreviewed_patches:
+        rep.warnings.append(f"patch {patch}: notes not reviewed for parameter changes")
 
 
 def check_all(set_id: str, patch: str) -> tuple[KnowledgeBase, CheckReport]:

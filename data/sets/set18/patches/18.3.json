@@ -1,6 +1,6 @@
 {
   "patch": "18.3",
-  "status": "not_reviewed",
-  "note": "Patch notes for 18.3 have not been reviewed for parameter changes yet. Add each change as a separate entry with its source.",
+  "status": "reviewed",
+  "note": "Reviewed 2026-10-20 against the official 18.3 notes (and 18.3B, 2026-09-24): no change to XP, XP purchase, passive XP, base income, interest, streaks, reroll cost, shop odds, pool sizes, sell values or player damage. Augment, Wisp and trait changes come from game-file snapshots.",
   "changes": []
 }

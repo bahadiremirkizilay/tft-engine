@@ -39,5 +39,5 @@
 ## Next work (see docs/DURUM.md and PLAN v0.5 section 8)
 
 - B1 done for 18.4 (`tools/cdragon_fetch.py`, `tools/import_cdragon.py`, `gamedata/{cdragon,entities,sources,hashes}.py`, `tft-engine data check|diff`). Repeat for 18.5 when CommunityDragon has it (add the source with its sha256 and a `cdragon_versions` entry first).
-- B2: fill patches 18.2–18.4 with sourced change records; level 7 odds from game files; sell value, stage damage, streak (with conflicts); in-game checklist template.
-- Then B3 (modifier system), B4 (items and traits), B5 (comp templates and meta), B6 (combat interface), B7 (patch loop, Set 19 rehearsal).
+- B2 done: patches 18.2/18.2b/18.3/18.4 reviewed; odds and pool sizes from map22.bin.json; params carry `source_ids` and `conflicts`; `sell_value`, `player_damage`; `tools/ddragon_check.py`; `templates/oyun_ici_kontrol.md`. The owner's review notes live in the "Set 18 Veri İncelemesi" artifact (https://claude.ai/artifact/3aDCUtrQ8fAFh6aYP5DWFg, db collection `corrections`); read them with ArtifactData and turn accepted ones into sourced curated corrections.
+- Next B3 (modifier system), B4 (items and traits), B5 (comp templates and meta), B6 (combat interface), B7 (patch loop, Set 19 rehearsal).

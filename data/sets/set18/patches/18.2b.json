@@ -1,0 +1,20 @@
+{
+  "patch": "18.2b",
+  "status": "reviewed",
+  "note": "Mid-patch update of 18.2 (2026-09-14), listed in the official 18.2 notes. Reverts the 8->9 and 9->10 XP cost; 7->8 stays at 56.",
+  "changes": [
+    {
+      "param": "params.xp_to_next_level",
+      "kind": "adjustment",
+      "source": "official 18.2 notes, mid-patch update September 14: 'XP From Level 8-9: 64 => 68', 'XP From Level 9-10: 64 => 68'",
+      "source_ids": ["riot-notes-18.2"],
+      "old": {"8": 64, "9": 64},
+      "new": {
+        "value": {"1": 0, "2": 2, "3": 6, "4": 10, "5": 20, "6": 36, "7": 56, "8": 68, "9": 68},
+        "status": "third_party_unverified",
+        "source": "levels 7-9 from the official 18.2 notes (mid-patch); levels 1-6 unchanged third-party values",
+        "source_ids": ["riot-notes-18.2", "tftflow-set18-tables"]
+      }
+    }
+  ]
+}

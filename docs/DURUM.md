@@ -11,8 +11,8 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 | P1: ilk karar prototipi | İlk sürüm bitti ([P1_SONUC.md](P1_SONUC.md)). Artık regresyon testi olarak kullanılıyor |
 | **B0: plan v0.5 ve belgeler** | **Bitti (2026-10-20)** |
 | **B1: kaynak kaydı + CommunityDragon importer** | **Bitti (2026-10-20)**, 18.4 için. Ayrıntı aşağıda |
-| B2: ekonomi ve shop'u tamamlama (18.2–18.4 kayıtları) | Sıradaki (B1 ile paralel) |
-| B3: modifier ve olay sistemi | Başlamadı |
+| **B2: ekonomi ve shop'u tamamlama** | **Bitti (2026-10-20).** Ayrıntı aşağıda |
+| B3: modifier ve olay sistemi | Sıradaki |
 | B4: item ve trait yapısı | Başlamadı |
 | B5: komp şablonları ve meta | Başlamadı |
 | B6: savaş ve dizilim arayüzü | Başlamadı |
@@ -31,7 +31,18 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **349 Wisp kaydı** (165 farklı ad, yükseltilmiş sürümleriyle). Oyun dosyasında "Charm" adıyla geçiyorlar.
 - **Eksik:** 74 şampiyon kaydının 72'sinde yetenek sayıları yok. B4'te araştırılacak.
 - **16.20 = 18.4 eşlemesi doğrulanmadı.** Kanıt: 16.20 klasörü 7 Ekim'de, 18.4 notlarından bir gün sonra oluşturulmuş.
-- B2'ye kalanlar: bilinen eski değer uyarısı (yama kayıtlarında eski değerler gerekiyor), Data Dragon ile ad ve maliyet çapraz kontrolü.
+## B2 sonucu
+
+- **Shop olasılıkları ve havuz boyutları oyun dosyasından** (map22.bin.json, 16.20): seviye 7 = 19/30/40/10/1, kopya sayısı 30/25/18/10/9, havuzda 14/13/14/14/10 şampiyon (Lux tek kayıt). Durum `community_extracted`. Eski 16/30/43 tablosu çelişki kaydı olarak duruyor (17.1 notu değiştirmiş).
+- **Yama kayıtları:** 18.2 (XP 7→8 60→56, 8→9 ve 9→10 68→64), 18.2b (14 Eylül, 8→9 ve 9→10 tekrar 68), 18.3 ve 18.4 (temel ekonomi değişikliği yok). Hepsi resmi notlardan okundu, `reviewed`.
+- **Düzeltme:** `base.json` 18.1 itibarıyla 18.2'nin XP değerini içeriyordu; 18.1 değeri (60) geri kondu, değişiklik yama kaydına taşındı.
+- **Yeni parametreler:** `sell_value` (satış değeri tablosu) ve `player_damage` (aşama hasarı + hayatta kalan birim başına 1). İkisi de üçüncü taraf, çelişkiler notta.
+- **Yeni kurallar:** `Rules.sell_value`, `Rules.sell_unit`, `Rules.player_damage`.
+- **Her parametre kaynak kaydına bağlı** (`source_ids`). Çelişkiler `conflicts` alanında. `data check` kaynakları ve "eski değer" durumunu da denetliyor.
+- **Data Dragon (Riot resmi):** 74 Set 18 kaydının hepsi ad ve maliyet olarak aynı.
+- **Oyun içi kontrol formu:** [templates/oyun_ici_kontrol.md](../templates/oyun_ici_kontrol.md).
+- P1 senaryolarının tercihleri değişmedi.
+- Bulunamayanlar: TFT XP tablosu, reroll ve XP maliyeti oyun dosyasında yok (oyun içi kontrol). Kötü şans koruması için alan bulunamadı ama bazı alanlar hash'li, yani yokluğu kanıtlanmadı.
 
 ## Araştırmanın önemli sonuçları (ayrıntı: KAYNAKLAR.md)
 
@@ -43,22 +54,14 @@ Son güncelleme: 2026-10-20. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 
 ## Senden beklenenler
 
-1. **Tek maçlık oyun içi kontrol:**
-   - Seviye 7 tooltip
-   - Reroll maliyeti ve XP alım maliyeti
-   - Seri altını
-   - 2 yıldızlı birimin satış değeri
-   - Sahne hasarı
-   - Birkaç trait eşiği ve tarif
-
-   Liste B2'de `templates/oyun_ici_kontrol.md` olarak hazırlanacak.
-2. **B5'te komp şablonlarını gözden geçirme:** Sitelerden girilen 10–15 kompun senin bilginle uyuşup uyuşmadığına bakman gerekecek.
-3. Etiketli senaryolar ve maç kayıtları şimdilik beklemede.
-4. Riot API kişisel anahtarı: MVP'den sonra (G0′).
+1. **Tek maçlık oyun içi kontrol:** [templates/oyun_ici_kontrol.md](../templates/oyun_ici_kontrol.md) formunu doldur.
+2. **Veri incelemesi:** İnceleme sayfasında (Set 18 Veri İncelemesi, claude.ai artifact) yanlış gördüğün augment, item, Wisp, şampiyon veya trait'i işaretle ve not bırak. Notları okuyup kaynaklı düzeltme olarak işlerim.
+3. **B5'te komp şablonlarını gözden geçirme:** Sitelerden girilen 10–15 kompun senin bilginle uyuşup uyuşmadığına bakman gerekecek.
+4. Etiketli senaryolar ve maç kayıtları şimdilik beklemede.
+5. Riot API kişisel anahtarı: MVP'den sonra (G0′).
 
 ## Bilinen açıklar
 
 - Set 18 verilerinin çoğu üçüncü taraf kaynaktan ve doğrulanmadı. Yeni durum tablosu KAYNAKLAR.md bölüm 3'te.
-- P1 belirsiz durumlarda altını korumaya yatkın; satış kuralı ve kısmi alım eksik ([P1_SONUC.md](P1_SONUC.md)).
-- 18.2, 18.3 ve 18.4 yama dosyaları boş (`not_reviewed`). Değişiklikler B2'de işlenecek.
-- 18.5 notları 21 Ekim'de çıkacak.
+- P1 belirsiz durumlarda altını korumaya yatkın. Satış kuralı artık veride ve `Rules` içinde var, ama P1'in değerlendirmesi henüz kısmi ilerlemeyi ve satış değerini kullanmıyor ([P1_SONUC.md](P1_SONUC.md)).
+- 18.5 notları 21 Ekim'de çıkacak. Gelince yeni CommunityDragon sürümü indirilip `data diff` ile karşılaştırılacak ve `patches/18.5.json` doldurulacak.

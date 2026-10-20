@@ -59,6 +59,105 @@
         "en_us.json": "17d19792f662cec404aa071492ae9144a2d2677d2eeb1e0d7d8db9b52a47a9c7"
       },
       "note": "Unofficial export of Riot game files (not endorsed by Riot). content-metadata.json Last-Modified 2026-10-07 (18.4 live day); en_us.json Last-Modified 2026-10-19."
+    },
+    {
+      "id": "cdragon-16.20-map22",
+      "type": "game_file",
+      "title": "CommunityDragon game file map22.bin.json 16.20 (TFTSet18 shop tables)",
+      "url": "https://raw.communitydragon.org/16.20/game/data/maps/shipping/map22/map22.bin.json",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "auto",
+      "version": "16.20.8248524",
+      "sha256": {
+        "map22.bin.json": "6c4819cda6ac8211d0c154df9e7011746deeca812a46b2c9b66e1a5b957590ca"
+      },
+      "note": "Entry Maps/Shipping/Map22/Sets/TFTSet18: DropRateTables.Shop {1ee21754} (odds by level 1-11), ShopContentData {9ce996ca} TierBags (copies per champion and which champions are in the pool). Last-Modified 2026-10-19."
+    },
+    {
+      "id": "riot-notes-17.1",
+      "type": "official_notes",
+      "title": "Teamfight Tactics patch 17.1 notes (level 7 shop odds change)",
+      "url": "https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-17-1/",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "17.1",
+      "note": "Quote: 'Level 7: 16/30/43/10/1% => 19/30/40/10/1%' (published 2026-04-14)."
+    },
+    {
+      "id": "seemeta-set18-odds",
+      "type": "community_table",
+      "title": "seemeta Set 18 shop odds and pool sizes",
+      "url": "https://seemeta.com/en/tft/set-18/odds",
+      "retrieved_at": "2026-10-18",
+      "collected_by": "manual",
+      "note": "Page states no patch."
+    },
+    {
+      "id": "tftflow-set18-tables",
+      "type": "community_table",
+      "title": "tftflow Set 18 shop odds, pool size and XP table",
+      "url": "https://tftflow.com/tables/set18/shop-odds-pool-size-xp-table",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.2",
+      "note": "Says 'Last updated 18.2'. Its level 7 row is the pre-17.1 table (16/30/43/10/1)."
+    },
+    {
+      "id": "opgg-gold-xp",
+      "type": "community_table",
+      "title": "op.gg TFT game guide: gold and XP",
+      "url": "https://op.gg/tft/game-guide/gold-xp",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "note": "Base income, interest, streaks, PvP gold, stage damage for Set 18."
+    },
+    {
+      "id": "tftninja-economy",
+      "type": "community_table",
+      "title": "tft.ninja economy guide",
+      "url": "https://tft.ninja/guides/game-mechanics/economy",
+      "retrieved_at": "2026-10-18",
+      "collected_by": "manual",
+      "note": "Not set-specific."
+    },
+    {
+      "id": "wiki-tft-gold",
+      "type": "wiki",
+      "title": "League of Legends Wiki: TFT:Gold",
+      "url": "https://wiki.leagueoflegends.com/en-us/TFT:Gold",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "note": "Sell rule (full refund for 1-star or 1-cost units, otherwise 1 gold less). Its income section lists streaks starting at 3, which looks like the old 14.1 rule."
+    },
+    {
+      "id": "player-report-2026-10-18",
+      "type": "player_report",
+      "title": "Owner's report (Bahadir, 2026-10-18)",
+      "url": "https://github.com/bahadiremirkizilay/tft-engine",
+      "retrieved_at": "2026-10-18",
+      "collected_by": "manual",
+      "note": "Said: 2 XP every round; never saw a level above 10; sent an odds table with level 7 = 16/30/43/10/1 and an XP table from an internet source."
+    },
+    {
+      "id": "ddragon-16.20.1",
+      "type": "official_static",
+      "title": "Riot Data Dragon 16.20.1 tft-champion.json",
+      "url": "https://ddragon.leagueoflegends.com/cdn/16.20.1/data/en_US/tft-champion.json",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "auto",
+      "version": "16.20.1",
+      "note": "Names and costs only. 2026-10-20: all 74 TFTSet18 entries match the CommunityDragon champions in name and cost (tools/ddragon_check.py)."
+    },
+    {
+      "id": "tactics-tools-units",
+      "type": "stats_site",
+      "title": "tactics.tools Set 18 unit list",
+      "url": "https://tactics.tools/info/units",
+      "retrieved_at": "2026-10-20",
+      "collected_by": "manual",
+      "site_patch": "18.4b",
+      "filters": {"page": "info/units"},
+      "note": "Lists 14/13/14/14/10 champions per cost (Lux forms listed separately)."
     }
   ]
 }

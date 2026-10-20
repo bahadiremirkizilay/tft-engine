@@ -48,6 +48,8 @@ class PatchChange:
     kind: str
     source: str
     note: str = ""
+    old: Any = None  # the value(s) before this change, as the source states them
+    source_ids: tuple[str, ...] = ()
 
 
 @dataclass
@@ -150,6 +152,15 @@ def load_gamedata(set_id: str, patch: str, root: Path | None = None) -> GameData
             else:
                 group[name] = Param.from_dict(f"{where}.{name}", copy.deepcopy(new))
             changes.append(
-                PatchChange(pf.stem, ch["param"], new, ch["kind"], ch["source"], ch.get("note", ""))
+                PatchChange(
+                    pf.stem,
+                    ch["param"],
+                    new,
+                    ch["kind"],
+                    ch["source"],
+                    ch.get("note", ""),
+                    ch.get("old"),
+                    tuple(ch.get("source_ids", ())),
+                )
             )
     return GameData(set_id, patch, params, shop_rules, changes, patch_status)

@@ -4,6 +4,7 @@
   "patches": [
     {"patch": "18.1", "notes_published": "2026-08-26", "status": "released", "source_id": "riot-notes-18.1"},
     {"patch": "18.2", "notes_published": "2026-09-09", "status": "released", "source_id": "riot-notes-18.2"},
+    {"patch": "18.2b", "notes_published": "2026-09-14", "status": "released", "source_id": "riot-notes-18.2"},
     {"patch": "18.3", "notes_published": "2026-09-22", "status": "released", "source_id": "riot-notes-18.3"},
     {"patch": "18.4", "notes_published": "2026-10-06", "status": "released", "source_id": "riot-notes-18.4"},
     {"patch": "18.5", "notes_published": "2026-10-21", "status": "planned", "source_id": "esportsgg-patch-schedule-2026"}

@@ -90,10 +90,80 @@ def test_change_without_source_rejected(tmp_path):
 def test_set18_loads_and_reports_provenance(set18):
     report = set18.provenance_report()
     assert "verified" not in report  # nothing is verified yet; this must stay honest
-    assert "shop_odds" in report["third_party_unverified"]
+    assert "shop_odds" in report["community_extracted"]  # read from the game files
+    assert "copies_per_champion" in report["community_extracted"]
     assert "riftbeast_shop" in report["unknown"]
     assert "xp_to_next_level" in report["third_party_unverified"]
-    assert set18.unreviewed_patches == ["18.2", "18.3", "18.4"]
+    assert set18.unreviewed_patches == []
+
+
+def test_set18_xp_table_follows_the_official_patch_history():
+    xp = {p: load_gamedata("set18", p).get("xp_to_next_level") for p in ("18.1", "18.2", "18.2b")}
+    assert [xp["18.1"][k] for k in "789"] == [60, 68, 68]
+    assert [xp["18.2"][k] for k in "789"] == [56, 64, 64]
+    assert [xp["18.2b"][k] for k in "789"] == [56, 68, 68]
+    assert load_gamedata("set18", "18.4").get("xp_to_next_level") == xp["18.2b"]
+
+
+def test_set18_level7_odds_keep_the_stale_table_as_a_conflict(set18):
+    p = set18.param("shop_odds")
+    assert p.value["7"] == [19, 30, 40, 10, 1]
+    assert p.conflicts[0]["value"]["7"] == [16, 30, 43, 10, 1]
+    assert "riot-notes-17.1" in p.source_ids
+
+
+def test_superseded_value_is_caught(tmp_path):
+    import json
+
+    from tft_engine.gamedata.entities import superseded_values
+
+    d = tmp_path / "s" / "patches"
+    d.mkdir(parents=True)
+    base = {
+        "set": "s",
+        "valid_from_patch": "1.1",
+        "params": {"xp": {"value": {"7": 60}, "status": "synthetic", "source": "t"}},
+    }
+    (tmp_path / "s" / "base.json").write_text(json.dumps(base))
+    change = {
+        "param": "params.xp",
+        "kind": "adjustment",
+        "source": "t",
+        "old": {"7": 60},
+        "new": {"value": {"7": 56}, "status": "synthetic", "source": "t"},
+    }
+    (d / "1.2.json").write_text(
+        json.dumps({"patch": "1.2", "status": "reviewed", "changes": [change]})
+    )
+    assert superseded_values(load_gamedata("s", "1.2", root=tmp_path)) == []
+    # a later file copies the outdated table: caught
+    stale = dict(
+        change, old={"9": 1}, new={"value": {"7": 60}, "status": "synthetic", "source": "t"}
+    )
+    (d / "1.3.json").write_text(
+        json.dumps({"patch": "1.3", "status": "reviewed", "changes": [stale]})
+    )
+    assert superseded_values(load_gamedata("s", "1.3", root=tmp_path))
+
+
+def test_param_conflicts_need_sources():
+    from tft_engine.gamedata import Param
+
+    with pytest.raises(SchemaError):
+        Param.from_dict(
+            "x", {"value": 1, "status": "synthetic", "source": "t", "conflicts": [{"value": 2}]}
+        )
+    p = Param.from_dict(
+        "x",
+        {
+            "value": 1,
+            "status": "synthetic",
+            "source": "t",
+            "source_ids": ["a"],
+            "conflicts": [{"value": 2, "source_ids": ["b"]}],
+        },
+    )
+    assert Param.from_dict("x", p.to_dict()) == p
 
 
 def test_set18_odds_rows_sum_to_100(set18):

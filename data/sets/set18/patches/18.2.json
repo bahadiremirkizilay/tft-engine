@@ -1,6 +1,20 @@
 {
   "patch": "18.2",
-  "status": "not_reviewed",
-  "note": "Patch notes for 18.2 have not been reviewed for parameter changes yet. Add each change as a separate entry with its source.",
-  "changes": []
+  "status": "reviewed",
+  "note": "Reviewed 2026-10-20 against the official 18.2 notes for economy, XP, shop, pool, sell and damage parameters. Only the XP table changed. Augment, Wisp, item and champion changes are not parameters here; they come from the game-file snapshots (tft-engine data diff).",
+  "changes": [
+    {
+      "param": "params.xp_to_next_level",
+      "kind": "adjustment",
+      "source": "official 18.2 notes: 'Level 7 to Level 8: 60 => 56', 'Level 8 to Level 9: 68 => 64', 'Level 9 to Level 10: 68 => 64'",
+      "source_ids": ["riot-notes-18.2"],
+      "old": {"7": 60, "8": 68, "9": 68},
+      "new": {
+        "value": {"1": 0, "2": 2, "3": 6, "4": 10, "5": 20, "6": 36, "7": 56, "8": 64, "9": 64},
+        "status": "third_party_unverified",
+        "source": "levels 7-9 from the official 18.2 notes; levels 1-6 unchanged third-party values",
+        "source_ids": ["riot-notes-18.2", "tftflow-set18-tables"]
+      }
+    }
+  ]
 }

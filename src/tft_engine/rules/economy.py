@@ -102,6 +102,38 @@ class Rules:
         level, xp = self.add_xp(state.level, state.xp, cost["xp"])
         return replace(state, gold=state.gold - cost["gold"], level=level, xp=xp)
 
+    # --- selling and damage ----------------------------------------------
+
+    def sell_value(self, cost: int, star: int) -> int:
+        """sell_value format: {"<cost>": [1-star, 2-star, 3-star gold]}."""
+        table = self.param("sell_value")
+        try:
+            return table[str(cost)][star - 1]
+        except (KeyError, IndexError):
+            raise ValueError(f"no sell value for a {star}-star {cost}-cost unit") from None
+
+    def sell_unit(self, state: GameState, unit_id: str, star: int = 1) -> GameState:
+        """Sell one owned unit of this star level."""
+        units = list(state.units)
+        for u in units:
+            if u.unit_id == unit_id and u.star == star:
+                units.remove(u)
+                gold = state.gold + self.sell_value(u.cost, star)
+                return replace(state, gold=gold, units=tuple(units))
+        raise ValueError(f"no {star}-star {unit_id} to sell")
+
+    def player_damage(self, stage: int, surviving_enemy_units: int) -> int:
+        """Damage taken after losing a player combat in this stage.
+
+        player_damage format: {"stage_damage": {"<stage>": dmg}, "per_surviving_unit": n}.
+        """
+        table = self.param("player_damage")
+        try:
+            base = table["stage_damage"][str(stage)]
+        except KeyError:
+            raise ValueError(f"no stage damage for stage {stage}") from None
+        return base + table["per_surviving_unit"] * surviving_enemy_units
+
     # --- shop actions -----------------------------------------------------
 
     def reroll(self, state: GameState) -> GameState:

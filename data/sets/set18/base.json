@@ -2,114 +2,46 @@
   "set": "set18",
   "name": "Enchanted Wilds",
   "valid_from_patch": "18.1",
-  "notes": "Set-level parameters as of 18.1. Nothing here is 'verified' yet: odds and pool sizes come from a third-party site and must be checked against the in-game tooltip before they count as verified.",
+  "notes": "Set-level parameters as of 18.1. Later changes live in patches/<patch>.json. Shop odds and pool sizes are read from the game files (CommunityDragon 16.20 = 18.4; the 18.1-18.4 notes list no change to them). Nothing is 'verified' until checked in-game or stated by an official source.",
   "params": {
     "shop_odds": {
       "value": {
-        "1": [
-          100,
-          0,
-          0,
-          0,
-          0
-        ],
-        "2": [
-          100,
-          0,
-          0,
-          0,
-          0
-        ],
-        "3": [
-          75,
-          25,
-          0,
-          0,
-          0
-        ],
-        "4": [
-          55,
-          30,
-          15,
-          0,
-          0
-        ],
-        "5": [
-          45,
-          33,
-          20,
-          2,
-          0
-        ],
-        "6": [
-          30,
-          40,
-          25,
-          5,
-          0
-        ],
-        "7": [
-          19,
-          30,
-          40,
-          10,
-          1
-        ],
-        "8": [
-          15,
-          20,
-          32,
-          30,
-          3
-        ],
-        "9": [
-          10,
-          17,
-          25,
-          33,
-          15
-        ],
-        "10": [
-          5,
-          10,
-          20,
-          40,
-          25
-        ],
-        "11": [
-          1,
-          2,
-          12,
-          50,
-          35
-        ]
+        "1": [100, 0, 0, 0, 0],
+        "2": [100, 0, 0, 0, 0],
+        "3": [75, 25, 0, 0, 0],
+        "4": [55, 30, 15, 0, 0],
+        "5": [45, 33, 20, 2, 0],
+        "6": [30, 40, 25, 5, 0],
+        "7": [19, 30, 40, 10, 1],
+        "8": [15, 20, 32, 30, 3],
+        "9": [10, 17, 25, 33, 15],
+        "10": [5, 10, 20, 40, 25],
+        "11": [1, 2, 12, 50, 35]
       },
-      "status": "third_party_unverified",
-      "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)",
-      "note": "Percent per cost tier 1..5 by player level. CONFLICT at level 7: the table the player sent on 2026-10-18 gives [16,30,43,10,1]; seemeta gives [19,30,40,10,1]. Kept seemeta until the in-game tooltip decides. All other levels agree."
+      "status": "community_extracted",
+      "source": "game file map22.bin.json (CommunityDragon 16.20), TFTSet18 DropRateTables.Shop; matches seemeta; level 7 row as set by the official 17.1 notes",
+      "source_ids": ["cdragon-16.20-map22", "riot-notes-17.1", "seemeta-set18-odds"],
+      "note": "Percent per cost tier 1..5 by player level. Game file stores fractions (0.19 ...). Not in any 18.x patch note, so assumed unchanged since 18.1.",
+      "conflicts": [
+        {
+          "value": {"7": [16, 30, 43, 10, 1]},
+          "source_ids": ["player-report-2026-10-18", "tftflow-set18-tables"],
+          "note": "Pre-17.1 level 7 row (riot-notes-17.1 changed it to 19/30/40/10/1). Stale copy."
+        }
+      ]
     },
     "copies_per_champion": {
-      "value": {
-        "1": 30,
-        "2": 25,
-        "3": 18,
-        "4": 10,
-        "5": 9
-      },
-      "status": "third_party_unverified",
-      "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)"
+      "value": {"1": 30, "2": 25, "3": 18, "4": 10, "5": 9},
+      "status": "community_extracted",
+      "source": "game file map22.bin.json (CommunityDragon 16.20), TFTSet18 ShopContentData TierBags Count; matches seemeta",
+      "source_ids": ["cdragon-16.20-map22", "seemeta-set18-odds"]
     },
     "champions_per_cost": {
-      "value": {
-        "1": 14,
-        "2": 13,
-        "3": 14,
-        "4": 14,
-        "5": 10
-      },
-      "status": "third_party_unverified",
-      "source": "https://seemeta.com/en/tft/set-18/odds (retrieved 2026-10-18; page states no patch)",
-      "note": "Should be cross-checked against the champion list once it is added."
+      "value": {"1": 14, "2": 13, "3": 14, "4": 14, "5": 10},
+      "status": "community_extracted",
+      "source": "game file map22.bin.json TierBags (units per tier bag); same counts in the CommunityDragon champion list and tactics.tools",
+      "source_ids": ["cdragon-16.20-map22", "cdragon-16.20", "tactics-tools-units"],
+      "note": "Lux is in the 5-cost bag once (DA_Lux18_Base); its forms are not separate pool entries."
     },
     "shop_slots": {
       "value": 5,
@@ -120,102 +52,103 @@
     "reroll_cost": {
       "value": 2,
       "status": "unverified",
-      "source": "long-standing TFT value; not checked for Set 18"
+      "source": "long-standing TFT value; not in the game files' shop actions; not checked for Set 18"
     },
     "xp_purchase": {
-      "value": {
-        "gold": 4,
-        "xp": 4
-      },
+      "value": {"gold": 4, "xp": 4},
       "status": "unverified",
       "source": "long-standing TFT value; not checked for Set 18"
     },
     "passive_xp_per_round": {
       "value": 2,
       "status": "unverified",
-      "source": "player report (Bahadir, 2026-10-18): the game gives 2 XP every round"
+      "source": "player report (Bahadir, 2026-10-18): the game gives 2 XP every round",
+      "source_ids": ["player-report-2026-10-18"]
     },
     "xp_to_next_level": {
-      "value": {
-        "1": 0,
-        "2": 2,
-        "3": 6,
-        "4": 10,
-        "5": 20,
-        "6": 36,
-        "7": 56,
-        "8": 68,
-        "9": 68
-      },
+      "value": {"1": 0, "2": 2, "3": 6, "4": 10, "5": 20, "6": 36, "7": 60, "8": 68, "9": 68},
       "status": "third_party_unverified",
-      "source": "player report (Bahadir, 2026-10-18), table copied from an internet source; to be checked in-game",
-      "note": "Key = current level, value = XP needed to reach the next level. 1->2 is automatic. Level 8 was said to be lowered to 56 by a patch (patch not named). 9->10 and 8->9 both 68 looks odd; check."
+      "source": "levels 7-9 from the 18.2 notes' old values (60, 68, 68); levels 1-6 from third-party tables",
+      "source_ids": ["riot-notes-18.2", "tftflow-set18-tables", "player-report-2026-10-18"],
+      "note": "Key = current level, value = XP needed to reach the next level. 1->2 is automatic. 18.2 changes 7->8 to 56 (see patches)."
     },
     "max_level": {
       "value": 10,
       "status": "unverified",
       "source": "player report (Bahadir, 2026-10-18): never saw above 10",
+      "source_ids": ["player-report-2026-10-18"],
       "note": "shop_odds lists level 11; it may only be reachable with an augment."
     },
     "base_income": {
-      "value": {
-        "default": 5,
-        "by_stage": {
-          "1-2": 2,
-          "1-3": 2,
-          "1-4": 3,
-          "2-1": 4
-        }
-      },
+      "value": {"default": 5, "by_stage": {"1-2": 2, "1-3": 2, "1-4": 3, "2-1": 4}},
       "status": "third_party_unverified",
-      "source": "https://op.gg/tft/game-guide/gold-xp (via the player's search, 2026-10-18)",
+      "source": "op.gg gold-xp guide and wiki TFT:Gold",
+      "source_ids": ["opgg-gold-xp", "wiki-tft-gold"],
       "note": "Gold paid at the start of each round, before interest, streak and win gold. 5 from 2-2 on."
     },
     "interest_per_10_gold": {
       "value": 1,
-      "status": "unverified",
-      "source": "long-standing TFT value; not checked for Set 18"
+      "status": "third_party_unverified",
+      "source": "op.gg gold-xp guide and wiki TFT:Gold",
+      "source_ids": ["opgg-gold-xp", "wiki-tft-gold"]
     },
     "interest_cap": {
       "value": 5,
-      "status": "unverified",
-      "source": "long-standing TFT value; not checked for Set 18"
+      "status": "third_party_unverified",
+      "source": "op.gg gold-xp guide and wiki TFT:Gold",
+      "source_ids": ["opgg-gold-xp", "wiki-tft-gold"]
     },
     "streak_gold": {
-      "value": [
-        [
-          2,
-          1
-        ],
-        [
-          5,
-          2
-        ],
-        [
-          6,
-          3
-        ]
-      ],
+      "value": [[2, 1], [5, 2], [6, 3]],
       "status": "third_party_unverified",
-      "source": "https://tft.ninja/guides/game-mechanics/economy (via the player's search, 2026-10-18; not set-specific)",
-      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks."
+      "source": "op.gg gold-xp guide (Set 18) and tft.ninja",
+      "source_ids": ["opgg-gold-xp", "tftninja-economy"],
+      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks.",
+      "conflicts": [
+        {
+          "value": [[3, 1], [5, 2], [6, 3]],
+          "source_ids": ["wiki-tft-gold"],
+          "note": "Wiki income section starts at 3; looks like the 14.1 rule that was later reverted."
+        }
+      ]
     },
     "pvp_win_gold": {
       "value": 1,
       "status": "third_party_unverified",
-      "source": "https://tft.ninja/guides/game-mechanics/economy (via the player's search, 2026-10-18)",
+      "source": "op.gg gold-xp guide, wiki TFT:Gold and tft.ninja",
+      "source_ids": ["opgg-gold-xp", "wiki-tft-gold", "tftninja-economy"],
       "note": "Paid when the player combat is won, before interest is computed."
+    },
+    "sell_value": {
+      "value": {
+        "1": [1, 3, 9],
+        "2": [2, 5, 17],
+        "3": [3, 8, 26],
+        "4": [4, 11, 35],
+        "5": [5, 14, 44]
+      },
+      "status": "third_party_unverified",
+      "source": "wiki TFT:Gold rule: a unit sells for what it cost (cost x copies) when it is 1-star or 1-cost, otherwise 1 gold less",
+      "source_ids": ["wiki-tft-gold"],
+      "note": "Key = cost, list = gold for 1/2/3-star. Derived from the rule, not read from the game. The wiki's own example (3-star 1-cost sells for 5) contradicts the rule; check 2-star and 3-star values in game."
+    },
+    "player_damage": {
+      "value": {
+        "stage_damage": {"1": 0, "2": 2, "3": 5, "4": 8, "5": 10, "6": 12, "7": 17, "8": 150},
+        "per_surviving_unit": 1
+      },
+      "status": "third_party_unverified",
+      "source": "op.gg gold-xp guide and tft.ninja (stage damage plus 1 per surviving enemy unit, regardless of star level)",
+      "source_ids": ["opgg-gold-xp", "tftninja-economy"],
+      "note": "Damage a player takes after losing a player combat. Research also saw 0/2/5/7/9/11/17/150 (attributed to the 14.8 notes, URL not found) and 2/6/7/10/12/17 (tftflow, page not recorded); neither could be sourced well enough to record as a conflict."
     }
   },
   "shop_rules": {
     "wisp_slot": {
-      "value": {
-        "every_other_shop": true,
-        "position": "rightmost",
-        "occupies_champion_slot": true
-      },
+      "value": {"every_other_shop": true, "position": "rightmost", "occupies_champion_slot": true},
       "status": "third_party_unverified",
       "source": "Riot patch 18.1 notes ('Wisps appear in every other shop') https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-1 ; rightmost slot: https://wiki.leagueoflegends.com/en-us/TFT:Enchanted_Wilds ; 4 champions + Wisp: https://noxutft.com/guide/wisps , https://blitz.gg/tr/tft/articles/tft-set-18-wisps-guide",
+      "source_ids": ["riot-notes-18.1"],
       "note": "When a Wisp is shown, the shop has 4 champions. Claim (unverified): a 5th champion is hidden behind the Wisp and appears if the Wisp is bought or when the round starts. For roll-downs the slot is treated as lost. On by default for Set 18."
     },
     "inferno_upgrade": {
@@ -231,7 +164,8 @@
     "bad_luck_protection": {
       "value": null,
       "status": "unknown",
-      "source": "parameter block seen in Set 11 game files (ACIK_KAYNAK_INCELEME.md 2.5); Set 18 status unknown"
+      "source": "parameter block seen in Set 11 game files (ACIK_KAYNAK_INCELEME.md 2.5); the TFTSet18 entry in map22.bin.json 16.20 has no field named for it, but some of its fields are hashed, so this is not proof of absence",
+      "source_ids": ["cdragon-16.20-map22"]
     }
   }
 }

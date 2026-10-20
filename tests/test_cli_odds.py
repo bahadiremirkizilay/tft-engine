@@ -1,7 +1,7 @@
 from tft_engine.cli import main
 
 
-def test_odds_command_prints_result_and_warns(capsys):
+def test_odds_command_prints_result_and_assumptions(capsys):
     code = main(
         [
             "odds",
@@ -22,4 +22,5 @@ def test_odds_command_prints_result_and_warns(capsys):
     out = capsys.readouterr().out
     assert code == 0
     assert "P(success)" in out
-    assert "not reviewed" in out
+    assert "assumptions:" in out
+    assert "not reviewed" not in out  # 18.2-18.4 notes have been reviewed

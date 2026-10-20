@@ -38,6 +38,11 @@ class Param:
     status: str
     source: str
     note: str = ""
+    # Ids in data/sources.json backing this value (checked by `tft-engine data check`).
+    source_ids: tuple[str, ...] = ()
+    # Other values seen in other sources, never merged silently:
+    # each {"value": ..., "source_ids": [...], "note": "..."}.
+    conflicts: tuple[dict[str, Any], ...] = ()
 
     def __post_init__(self) -> None:
         if self.status not in STATUSES:
@@ -46,6 +51,9 @@ class Param:
             raise SchemaError(f"{self.name}: every parameter needs a source")
         if (self.status == "unknown") != (self.value is None):
             raise SchemaError(f"{self.name}: value must be null exactly when status is 'unknown'")
+        for c in self.conflicts:
+            if not isinstance(c, dict) or "value" not in c or not c.get("source_ids"):
+                raise SchemaError(f"{self.name}: each conflict needs a value and source_ids")
 
     def get(self) -> Any:
         if self.status == "unknown":
@@ -63,13 +71,25 @@ class Param:
     def from_dict(cls, name: str, d: Any) -> Param:
         if not isinstance(d, dict) or not {"value", "status", "source"} <= d.keys():
             raise SchemaError(f"{name}: expected an object with value, status and source")
-        extra = set(d) - {"value", "status", "source", "note"}
+        extra = set(d) - {"value", "status", "source", "note", "source_ids", "conflicts"}
         if extra:
             raise SchemaError(f"{name}: unexpected fields {sorted(extra)}")
-        return cls(name, d["value"], d["status"], d["source"], d.get("note", ""))
+        return cls(
+            name,
+            d["value"],
+            d["status"],
+            d["source"],
+            d.get("note", ""),
+            tuple(d.get("source_ids", ())),
+            tuple(d.get("conflicts", ())),
+        )
 
     def to_dict(self) -> dict[str, Any]:
         d = {"value": self.value, "status": self.status, "source": self.source}
         if self.note:
             d["note"] = self.note
+        if self.source_ids:
+            d["source_ids"] = list(self.source_ids)
+        if self.conflicts:
+            d["conflicts"] = list(self.conflicts)
         return d

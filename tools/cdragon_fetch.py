@@ -22,7 +22,10 @@ BASE = "https://raw.communitydragon.org"
 FILES = {
     "content-metadata.json": "{base}/{version}/content-metadata.json",
     "en_us.json": "{base}/{version}/cdragon/tft/en_us.json",
+    # Game file with the shop odds tables (large; only fetched with --with-map22).
+    "map22.bin.json": "{base}/{version}/game/data/maps/shipping/map22/map22.bin.json",
 }
+DEFAULT_FILES = ("content-metadata.json", "en_us.json")
 USER_AGENT = "tft-engine (personal research; github.com/bahadiremirkizilay/tft-engine)"
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -73,11 +76,16 @@ def last_modified(url: str, timeout: float = 30.0) -> str | None:
         return None
 
 
-def fetch(version: str, out_root: Path) -> dict[str, dict[str, object]]:
+def fetch(
+    version: str, out_root: Path, names: tuple[str, ...] = DEFAULT_FILES
+) -> dict[str, dict[str, object]]:
     """Download missing files; return name -> {url, bytes, sha256, last_modified}."""
     out = out_root / version
-    info: dict[str, dict[str, object]] = {}
-    for name in FILES:
+    meta = out / "fetch.json"
+    info: dict[str, dict[str, object]] = (
+        json.loads(meta.read_text(encoding="utf-8")) if meta.exists() else {}
+    )
+    for name in names:
         url = file_url(name, version)
         dest = out / name
         if not dest.exists():
@@ -90,7 +98,6 @@ def fetch(version: str, out_root: Path) -> dict[str, dict[str, object]]:
             "last_modified": last_modified(url),
         }
         print(f"{name}: {info[name]}")
-    meta = out / "fetch.json"
     meta.write_text(json.dumps(info, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return info
 
@@ -99,8 +106,10 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("version", help="CommunityDragon version folder, e.g. 16.20 or pbe")
     p.add_argument("--out", default=str(ROOT / "data" / "raw" / "cdragon"))
+    p.add_argument("--with-map22", action="store_true", help="also fetch map22.bin.json")
     args = p.parse_args(argv)
-    fetch(args.version, Path(args.out))
+    names = DEFAULT_FILES + (("map22.bin.json",) if args.with_map22 else ())
+    fetch(args.version, Path(args.out), names)
     return 0
 
 

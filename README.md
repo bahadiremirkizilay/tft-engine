@@ -90,12 +90,12 @@ Her set için `data/sets/<set>/base.json` ve her yama için `data/sets/<set>/pat
 
 ## Oyun içinde doğrulanması gerekenler (Set 18)
 
-Aşağıdaki değerler veride var ama internetten veya oyuncu anlatımından geliyor. Oyunda kontrol edilince durumları `verified` yapılır:
+Liste ve form: [templates/oyun_ici_kontrol.md](templates/oyun_ici_kontrol.md). Kısaca:
 
-1. Shop olasılıkları. **Seviye 7'de iki kaynak çelişiyor:** 16/30/43/10/1 ile 19/30/40/10/1. Şimdilik ikincisi kullanılıyor.
-2. Level başına gereken XP. 8'den 9'a ve 9'dan 10'a ikisinin de 68 olması kontrol edilmeli.
-3. Tur başına 2 pasif XP ve normalde ulaşılan en yüksek level (10).
-4. Seri altını (kazanma ve kaybetme serisinde aynı: 2-4 seride +1, 5'te +2, 6 ve üstünde +3), PvP galibiyet altını (+1) ve temel gelir (1-2 ve 1-3: 2, 1-4: 3, 2-1: 4, sonra 5).
+1. Shop olasılıkları ve havuz boyutları oyun dosyasından okunuyor (seviye 7 = 19/30/40/10/1, 17.1 notuyla aynı). Tooltip ile son kontrol.
+2. XP tablosu resmi 18.2 notlarıyla tutarlı (7→8 = 56, 8→9 ve 9→10 = 68). XP alım oranı (4 altın = 4 XP), tur başına 2 XP ve en yüksek level (10) kontrol edilmeli.
+3. Reroll maliyeti (2), seri altını (2-4: +1, 5: +2, 6+: +3), PvP galibiyeti (+1), faiz ve temel gelir: üçüncü taraf kaynaklı.
+4. Satış değerleri (wiki kuralından türetildi, wiki kendi örneğiyle çelişiyor) ve oyuncu hasarı.
 5. Wisp'li shop'ta 4 şampiyon olması. Varsayılan olarak açık, `--no-wisp` ile kapatılır.
 
-Hâlâ bilinmeyenler: maliyet başına havuz boyutları (üçüncü taraf kaynaktan), satış değerleri.
+Data Dragon çapraz kontrolü: `python tools/ddragon_check.py set18 18.4 16.20.1 --set-path TFTSet18` (74 kaydın hepsi ad ve maliyet olarak aynı).

@@ -86,7 +86,7 @@ def test_unknown_parameter_raises_and_override_is_tracked(set18):
     assert r2.streak_bonus(5) == 2
     assert r2.used["streak_gold"] == "third_party_unverified"
     r2.interest(20)
-    assert r2.used["interest_cap"] == "unverified"
+    assert r2.used["interest_cap"] == "third_party_unverified"
 
 
 def test_set18_xp_table_levels_up(set18):
@@ -106,3 +106,31 @@ def test_set18_round_income_win_and_loss_streaks(set18):
     # same gold on a 4-round loss streak, loses again: base 5 + interest 3 + streak(5) 2
     lost = r.end_round(state(gold=34, streak=-4), won=False, next_stage="4-2")
     assert (lost.gold, lost.streak) == (44, -5)
+
+
+def test_set18_sell_values_follow_the_recorded_rule(set18):
+    r = Rules(set18)
+    assert r.sell_value(1, 1) == 1 and r.sell_value(1, 2) == 3  # 1-cost: full refund
+    assert r.sell_value(4, 1) == 4 and r.sell_value(4, 2) == 11  # 2-star 4-cost: 12 - 1
+    assert r.used["sell_value"] == "third_party_unverified"
+    with pytest.raises(ValueError):
+        r.sell_value(6, 1)
+
+
+def test_selling_a_unit_returns_gold(set18):
+    from tft_engine.state import UnitInstance
+
+    r = Rules(set18)
+    s = state(gold=10, units=(UnitInstance("Sett", 4, 2), UnitInstance("Akali", 1, 1)))
+    after = r.sell_unit(s, "Sett", 2)
+    assert after.gold == 21 and [u.unit_id for u in after.units] == ["Akali"]
+    with pytest.raises(ValueError):
+        r.sell_unit(s, "Sett", 1)
+
+
+def test_set18_player_damage(set18):
+    r = Rules(set18)
+    assert r.player_damage(4, 3) == 11
+    assert r.player_damage(2, 0) == 2
+    with pytest.raises(ValueError):
+        r.player_damage(9, 1)
