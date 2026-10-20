@@ -103,9 +103,9 @@
     "streak_gold": {
       "value": [[2, 1], [5, 2], [6, 3]],
       "status": "third_party_unverified",
-      "source": "op.gg gold-xp guide (Set 18) and tft.ninja; streaks of 4, 5 and 6 checked in game (owner, 18.4b)",
+      "source": "op.gg gold-xp guide (Set 18) and tft.ninja; in-game check (owner, 18.4b) unresolved, see note",
       "source_ids": ["opgg-gold-xp", "tftninja-economy", "owner-ingame-2026-10-20"],
-      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks. In game at stage 4 (income = 5 base + interest + streak): 4 win streak +1, 5 +2, 6 +3, matching this table and ruling out tables with 4 -> +2. A loss after a 6 win streak (30 gold) paid 5 + 3 = 8: the streak resets and a 1-round streak pays nothing. Not yet seen: whether a 2 streak pays (the wiki conflict below), loss streaks.",
+      "note": "[[min streak length, bonus gold]]: 2-4 -> +1, 5 -> +2, 6+ -> +3. Same for win and loss streaks. In-game readings at stage 4 (owner, 18.4b), total gold gained per won round: 0 gold + 4 win streak -> 6, 0 gold + 5 -> 7, 20 gold + 6 -> 10. Without the +1 win gold they match this table exactly; the owner says the totals include the +1 win gold, which would mean 4 -> 0, 5 -> +1, 6 -> +2 (one less than every source). Unresolved until one round is read step by step (gold before combat, after combat, at the next round start). A loss after a 6 win streak (30 gold) paid 5 + 3 = 8: the streak resets and a 1-round streak pays nothing.",
       "conflicts": [
         {
           "value": [[3, 1], [5, 2], [6, 3]],
@@ -119,7 +119,7 @@
       "status": "third_party_unverified",
       "source": "op.gg gold-xp guide, wiki TFT:Gold and tft.ninja",
       "source_ids": ["opgg-gold-xp", "wiki-tft-gold", "tftninja-economy"],
-      "note": "Paid when the player combat is won, before interest is computed."
+      "note": "Paid when the player combat is won, before interest is computed. Owner (18.4b): a won round pays +1 gold."
     },
     "sell_value": {
       "value": {
