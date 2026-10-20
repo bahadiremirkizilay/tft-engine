@@ -3,13 +3,16 @@
 ## Who and what
 
 - The owner is Bahadır. Talk to them in **Turkish**, plainly; code, identifiers, commit messages in English.
-- This is an offline TFT strategy research and post-game analysis engine. It never runs during a live game, never reads or controls the game client, and never gives live in-game advice. Keep it that way.
+- This is a TFT strategy research and decision engine. The current phase (PLAN v0.5) builds the game knowledge base: champions, traits, items, augments, Wisps, economy, shop, comps; versioned per patch and portable to later sets.
+- Live in-game use is out of scope for now. The owner wants it eventually (local, personal use); it will be decided after the MVP, with Riot's TFT policy quoted in docs/KAYNAKLAR.md 1.4 and the account risk stated plainly. Never read game memory, inject into or automate the game client.
 - Before any Riot API integration, check the current official developer policies; capacity is not permission. YouTube/Kick content is never downloaded or processed automatically; manual notes only.
+- Work plan-first: for a new phase, research and present a plan; implement only after the owner approves.
 
 ## Where things are
 
-- Plan (source of truth): `docs/PLAN.md`. Status and next steps: `docs/DURUM.md`. P1 results: `docs/P1_SONUC.md`.
-- Game data: `data/sets/<set>/base.json` plus `data/sets/<set>/patches/<patch>.json`. Every value carries `status` and `source`.
+- Plan (source of truth): `docs/PLAN.md` (v0.5). Previous plan: `docs/PLAN_v0.4.md`. Sources and research findings: `docs/KAYNAKLAR.md`. Data access, permissions and the owner's decisions: `docs/VERI_KAYNAKLARI.md` (personal use only; automatic data only from CommunityDragon, Data Dragon, official notes and later the Riot API; stats sites are manual notes only, never scraped; meta rank filter Master+, widen to Diamond/Emerald if samples are small). Status and next steps: `docs/DURUM.md`. P1 results: `docs/P1_SONUC.md`.
+- Game data: `data/sets/<set>/base.json` plus `data/sets/<set>/patches/<patch>.json`. Every value carries `status` and `source`. Planned (PLAN v0.5 section 4): `generated/<patch>/` written only by the importer, `curated/` for hand-made records; the importer never overwrites curated files.
+- Python: system Python may be too old; use the repo `.venv` (`.\.venv\Scripts\python.exe`).
 - Code: `src/tft_engine/` with
   - `gamedata`: schema and patch loader
   - `state`: game state and pool belief
@@ -28,9 +31,13 @@
 4. Every important component gets tests. Run `python -m pytest` and `ruff check .` and `ruff format --check .` before each commit.
 5. Reproducibility: seeds through `tft_engine.repro.derive_seed`; no unseeded randomness.
 6. Decision assumptions live in `src/tft_engine/decision/assumptions.py` with a default and a low/high range; never hard-code them elsewhere.
-7. Keep core layers (gamedata, state, rules, prob, decision) free of network calls.
+7. Keep core layers (gamedata, state, rules, prob, decision) free of network calls. Network access lives only in `tools/` importers.
+8. One source of truth per game rule: rules read parameters through the data layer (and, from B3, modifiers); never a second hard-coded copy of a value.
+9. Conflicting sources are never merged silently: keep both values with their sources in `conflicts`. Source priority: official patch notes > in-game observation > game files (CommunityDragon) > Data Dragon > wiki and stats sites.
+10. Meta statistics stay separate from game rules and from comp templates; every stat records site, rank filter, patch and definition.
 
-## Next work (see docs/DURUM.md)
+## Next work (see docs/DURUM.md and PLAN v0.5 section 8)
 
-- M1b: sell rules and partial buys (main cause of P1's bias to keep gold); Wisp/Inferno/Riftbeast variants; bad luck protection research; tests against the owner's recorded games.
-- P1: convert the owner's labelled situations into `scenarios/p1/` with `expert_choice`, keep a seeded dev/test split, and report agreement as described in docs/PLAN.md (P1).
+- B1: source registry + CommunityDragon importer (`generated/18.4/`, then 18.5), hash resolver, schema validator, `data diff`.
+- B2: fill patches 18.2–18.4 with sourced change records; level 7 odds from game files; sell value, stage damage, streak (with conflicts); in-game checklist template.
+- Then B3 (modifier system), B4 (items and traits), B5 (comp templates and meta), B6 (combat interface), B7 (patch loop, Set 19 rehearsal).
