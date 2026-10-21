@@ -152,6 +152,22 @@ DEFAULTS: dict[str, Assumption] = {
     "sim_idle_holder_factor": Assumption(
         0.6, 0.4, 1.0, "item fit multiplier for a holder that adds to no active trait"
     ),
+    # --- board builder (best board for a level, from the engine's own rules) ---
+    "build_cost_caps": Assumption(
+        {7: {4: 2, 5: 0}, 8: {4: 4, 5: 1}, 9: {4: 5, 5: 3}},
+        description="most 4- and 5-cost units a board can hold at a level (from shop odds)",
+    ),
+    "build_stars": Assumption(
+        {
+            7: {1: 2, 2: 2, 3: 2, 4: 1, 5: 1},
+            8: {1: 2, 2: 2, 3: 2, 4: 1, 5: 1},
+            9: {1: 2, 2: 2, 3: 2, 4: 2, 5: 1},
+        },
+        description="star level assumed per unit cost at a level",
+    ),
+    "build_item_slots": Assumption(
+        (3, 3, 2), description="items for the main carry, the main tank and a second carry"
+    ),
     # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
     "wisp_shop_prob": Assumption(
         None, 0.25, 1.0, "chance a shop shows a Wisp (None = set data: every other shop)"
