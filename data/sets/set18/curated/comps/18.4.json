@@ -2,117 +2,31 @@
  "set": "set18",
  "patch": "18.4",
  "kind": "comp_templates",
- "note": "Comp templates (B5). Test data for 18.4: units read from tactics.tools/team-compositions on 2026-10-21 (patch 18.4b, Diamond+). The page does not say which items go on which unit or which units are core, so items are left out and every unit is 'core' except the named carries and tanks; carries and tanks follow the comp name. Real 18.5 templates replace these after 18.5 data settles.",
+ "note": "Comp templates (B5). 18.4 data: unit lists, 3-star targets, early and flex units, level plans and tips from guide screenshots the owner sent on 2026-10-21 (site not named; page patch not shown, taken on the 18.5 release day); three comps also appear on tactics.tools (18.4b, Diamond+) with stats in curated/meta/18.4/tactics-tools.json. Carry items are left out until the owner names them (icons too small to read). Guide tiers live in curated/meta/18.4/guide.json, not here.",
  "records": [
   {
-   "id": "set18-18.4-riftbeast-pebbles-krug",
-   "name": "Riftbeast Pebbles & Krug",
-   "style": "reroll_5",
-   "units": [
-    {
-     "id": "DA_18_Sentry",
-     "role": "carry"
-    },
-    {
-     "id": "DA_Krug18",
-     "role": "carry"
-    },
-    {
-     "id": "DA_Murkwolf18",
-     "role": "core"
-    },
-    {
-     "id": "DA_Scuttlecrab18",
-     "role": "tank"
-    },
-    {
-     "id": "DA_Brambleback18",
-     "role": "core"
-    },
-    {
-     "id": "DA_Sentinel18",
-     "role": "tank"
-    },
-    {
-     "id": "DA_Cinderling18",
-     "role": "core"
-    },
-    {
-     "id": "DA_18_Rakan",
-     "role": "tank"
-    }
-   ],
-   "source_ids": [
-    "tactics-tools-comps-2026-10-21"
-   ],
-   "status": "third_party_unverified",
-   "last_reviewed": "2026-10-21",
-   "note": "Page tag 'Level 5 Reroll'. Krug is a tank by role but named as a carry by the comp title."
-  },
-  {
-   "id": "set18-18.4-elderwood-khazix-hecarim",
-   "name": "Elderwood Kha'Zix & Hecarim",
-   "style": "reroll_7",
-   "units": [
-    {
-     "id": "DA_18_KhaZix",
-     "role": "carry"
-    },
-    {
-     "id": "DA_18_Hecarim",
-     "role": "carry"
-    },
-    {
-     "id": "DA_18_Ornn",
-     "role": "tank"
-    },
-    {
-     "id": "DA_Fiddlesticks18",
-     "role": "tank"
-    },
-    {
-     "id": "DA_18_Diana",
-     "role": "core"
-    },
-    {
-     "id": "DA_18_Aphelios",
-     "role": "core"
-    },
-    {
-     "id": "DA_18_Ezreal",
-     "role": "core"
-    },
-    {
-     "id": "DA_18_Soraka",
-     "role": "core"
-    }
-   ],
-   "source_ids": [
-    "tactics-tools-comps-2026-10-21"
-   ],
-   "status": "third_party_unverified",
-   "last_reviewed": "2026-10-21",
-   "note": "Page tags 'Level 7 Reroll', 'Items Dependent'."
-  },
-  {
    "id": "set18-18.4-sprykin-azir-rammus",
-   "name": "Sprykin Azir & Rammus",
+   "name": "Azir Rammus (Sprykin Azir & Rammus)",
    "style": "reroll_7",
+   "reroll_cost": 3,
    "units": [
     {
      "id": "DA_18_Azir",
-     "role": "carry"
+     "role": "carry",
+     "star": 3
     },
     {
      "id": "DA_18_Rammus",
-     "role": "carry"
-    },
-    {
-     "id": "DA_18_Veigar",
-     "role": "core"
+     "role": "tank",
+     "star": 3
     },
     {
      "id": "DA_18_Teemo",
+     "role": "core",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Veigar",
      "role": "core"
     },
     {
@@ -126,18 +40,319 @@
     {
      "id": "DA_18_Zyra",
      "role": "core"
-    },
-    {
-     "id": "DA_18_Yorick",
-     "role": "core"
     }
    ],
+   "early_units": [
+    "DA_Karma18",
+    "DA_18_Yorick",
+    "DA_18_Yunara",
+    "DA_18_Azir"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_18_Kennen",
+     "at_level": 8
+    },
+    {
+     "id": "DA_Lux18_Base",
+     "at_level": 9
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "3",
+     "action": "econ to level 7; roll a little at 6 only with key pairs"
+    },
+    {
+     "stage": "4-1",
+     "level": 7,
+     "action": "have 2* Azir and Rammus, then slow roll above 50 gold for 3 stars"
+    },
+    {
+     "stage": "after 3 stars",
+     "action": "level for more Summoner / Executioner"
+    }
+   ],
+   "tips": [
+    "Needs many Needlessly Large Rods: take item augments early, take rods from carousel.",
+    "Blackthorn sacrifice hex scales with gold value: 3* Teemo > 2* AP 4-cost without items > 2* Teemo > 2* Veigar.",
+    "Blackthorn Lux is a strong win condition.",
+    "Stage 2: angle with early Azir, ideally a Blossom opener for better Wisps."
+   ],
    "source_ids": [
+    "owner-guide-comps-2026-10-21",
     "tactics-tools-comps-2026-10-21"
    ],
    "status": "third_party_unverified",
    "last_reviewed": "2026-10-21",
-   "note": "Page tags 'Level 7 Reroll', 'Items Dependent'."
+   "note": "Guide screenshot (tier S). 7 units at level 7. Carry items not read: the icons are too small."
+  },
+  {
+   "id": "set18-18.4-elderwood-khazix-hecarim",
+   "name": "Kha'Zix reroll (Elderwood Kha'Zix & Hecarim)",
+   "style": "reroll_7",
+   "reroll_cost": 3,
+   "units": [
+    {
+     "id": "DA_18_KhaZix",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Hecarim",
+     "role": "tank",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Diana",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Ornn",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Fiddlesticks18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Soraka",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Ezreal",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Alune",
+     "role": "core"
+    }
+   ],
+   "early_units": [
+    "DA_18_Ornn",
+    "DA_18_Alistar",
+    "DA_18_LeBlanc",
+    "DA_18_KhaZix"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_Sentinel18",
+     "at_level": 9
+    },
+    {
+     "id": "DA_18_GnarSmall",
+     "at_level": 8
+    },
+    {
+     "id": "DA_Taric18",
+     "at_level": 8
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "slam items aggressively on Kha'Zix, move them later"
+    },
+    {
+     "stage": "3",
+     "action": "econ to level 7; roll a little at 6 only with key pairs"
+    },
+    {
+     "stage": "4",
+     "level": 7,
+     "action": "slow roll at 7 for the 3-cost 3 stars"
+    }
+   ],
+   "tips": [
+    "With Hand of Justice first go Executioner > Ravager; with AP / Mana / tempo items go Ravager > Executioner; then Spellweaver > Rapidfire with the last evolutions.",
+    "3rd Executioner / Lux / Ivern as the level cap.",
+    "Give leftover AP items to Diana.",
+    "Elderwood plants (Lifebloom, Stonebark Tree) on the board."
+   ],
+   "source_ids": [
+    "owner-guide-comps-2026-10-21",
+    "tactics-tools-comps-2026-10-21"
+   ],
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21",
+   "note": "Guide screenshot (tier S, Turkish page title 'Ay Ağacı Kha'Zix'). Carry items not read: the icons are too small."
+  },
+  {
+   "id": "set18-18.4-riftbeast-pebbles-krug",
+   "name": "Riftbeast Reroll (Pebbles & Krug)",
+   "style": "reroll_7",
+   "reroll_cost": 1,
+   "units": [
+    {
+     "id": "DA_Cinderling18",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Sentry",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_Scuttlecrab18",
+     "role": "tank",
+     "star": 3
+    },
+    {
+     "id": "DA_Krug18",
+     "role": "tank",
+     "star": 3
+    },
+    {
+     "id": "DA_Murkwolf18",
+     "role": "core"
+    },
+    {
+     "id": "DA_Sentinel18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Brambleback18",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_GnarSmall",
+     "role": "core"
+    }
+   ],
+   "early_units": [
+    "DA_Cinderling18",
+    "DA_18_Sentry",
+    "DA_18_Yorick",
+    "DA_Scuttlecrab18"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_Gromp18_AP"
+    },
+    {
+     "id": "DA_18_ElderDragon",
+     "at_level": 9
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "slam items, win streak with Pebbles items; Alpha Mark on Scuttlecrab or Gromp"
+    },
+    {
+     "stage": "3-5",
+     "level": 7,
+     "action": "save econ and go 7 for 7 Riftbeast (4-1 if poor); use the 5-Riftbeast shops to finish 3 stars"
+    },
+    {
+     "stage": "4",
+     "level": 8,
+     "action": "after the 3 stars, level to 8 and field 7 Riftbeast; at 9 replace 1* Ravagers with Elder Dragon"
+    }
+   ],
+   "tips": [
+    "Every Riftbeast carry except Mama Beak can carry with items.",
+    "Krug 3* is the best tank; else Sentinel 2* > Scuttlecrab 3*.",
+    "Alpha Mark: Cinderling early, Scuttlecrab late."
+   ],
+   "source_ids": [
+    "owner-guide-comps-2026-10-21",
+    "tactics-tools-comps-2026-10-21"
+   ],
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21",
+   "note": "Guide screenshot (tier A, 1-cost reroll, easy). Carry items not read: the icons are too small."
+  },
+  {
+   "id": "set18-18.4-draven-ezreal-9",
+   "name": "Draven Ezreal 9",
+   "style": "fast9",
+   "units": [
+    {
+     "id": "DA_Draven18",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Ezreal",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Maokai",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Alistar",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Amumu18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Ivern",
+     "role": "core"
+    },
+    {
+     "id": "DA_Taric18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_GnarSmall",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Kennen",
+     "role": "core"
+    }
+   ],
+   "early_units": [
+    "DA_18_RekSai",
+    "DA_18_Alistar",
+    "DA_18_Warwick",
+    "DA_18_Rengar"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_18_Hecarim"
+    },
+    {
+     "id": "DA_Sentinel18"
+    },
+    {
+     "id": "DA_Lux18_Base"
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "slam items, full win streak with Draven items; resource-engine opener (Rengar, Blossom)"
+    },
+    {
+     "stage": "3",
+     "action": "keep win streaking; with an econ augment go fast 7 before 3-3"
+    },
+    {
+     "stage": "4",
+     "action": "may lose rounds for econ"
+    },
+    {
+     "stage": "end of 4 / start of 5",
+     "level": 9,
+     "action": "fast 9 for the scaling 5-costs (Draven, Maokai, Ivern)"
+    }
+   ],
+   "tips": [
+    "Only from an early win streak and lots of gold.",
+    "Best Draven quests: damage for gold; avoid the 10k damage in one round (can get trapped)."
+   ],
+   "source_ids": [
+    "owner-guide-comps-2026-10-21"
+   ],
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21",
+   "note": "Guide screenshot (tier A, fast 9, hard). Carry items not read: the icons are too small."
   }
  ]
 }

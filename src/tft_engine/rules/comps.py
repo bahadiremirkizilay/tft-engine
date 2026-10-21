@@ -37,6 +37,15 @@ class CompSet:
                     out.append({**row, **{k: m.get(k) for k in _META_FIELDS}})
         return out
 
+    def tiers(self, comp_id: str) -> list[dict[str, Any]]:
+        """Editorial tier labels (guides), each with its site context."""
+        out = []
+        for m in self.meta:
+            for row in m.get("tiers", []):
+                if row["comp"] == comp_id:
+                    out.append({**row, **{k: m.get(k) for k in _META_FIELDS}})
+        return out
+
     def unit_builds(self, unit_id: str) -> list[dict[str, Any]]:
         out = []
         for m in self.meta:
@@ -70,6 +79,8 @@ def load_comps(set_id: str, patch: str, root: Path | None = None) -> CompSet:
             for u in r.get("units", []):
                 if u.get("role") not in UNIT_ROLES:
                     raise SchemaError(f"{where}: unit role must be one of {UNIT_ROLES}")
+                if u.get("star", 1) not in (1, 2, 3):
+                    raise SchemaError(f"{where}: star must be 1, 2 or 3")
             out.templates[r["id"]] = r
     meta_dir = folder / "meta" / patch
     if meta_dir.is_dir():
@@ -89,7 +100,8 @@ def check_comps(kb, comps: CompSet, sources=None) -> list[str]:
         ids = [u["id"] for u in r.get("units", [])]
         if len(set(ids)) != len(ids):
             errors.append(f"comp {cid}: a unit appears twice")
-        for uid in ids:
+        others = list(r.get("early_units", [])) + [f["id"] for f in r.get("flex_units", [])]
+        for uid in ids + others:
             if uid not in kb.champions:
                 errors.append(f"comp {cid}: unknown champion {uid}")
         for carry in r.get("carry_items", []):
@@ -108,7 +120,7 @@ def check_comps(kb, comps: CompSet, sources=None) -> list[str]:
         where = f"meta {m['site']} {m['patch']}"
         if sources is not None and m["source_id"] not in sources:
             errors.append(f"{where}: unknown source {m['source_id']}")
-        for row in m.get("comps", []):
+        for row in m.get("comps", []) + m.get("tiers", []):
             if row["comp"] not in comps.templates:
                 errors.append(f"{where}: stats for unknown comp {row['comp']}")
         for row in m.get("unit_builds", []):

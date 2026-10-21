@@ -81,7 +81,24 @@ def test_commands(capsys):
     args = ["--set", "set18", "--patch", "18.4"]
     assert main(["comps", *args, "--units", "Krug,Pebbles", "--have", "Recurve Bow"]) == 0
     out = capsys.readouterr().out
-    assert out.splitlines()[0].startswith("Riftbeast Pebbles & Krug")
+    assert out.splitlines()[0].startswith("Riftbeast Reroll (Pebbles & Krug)")
+    assert "tier A" in out
     assert "site stats (tactics.tools 18.4b Diamond+)" in out
     assert main(["trio", "Pebbles", *args, "--have", "Needlessly Large Rod,Recurve Bow"]) == 0
     assert "missing:" in capsys.readouterr().out
+
+
+def test_owned_units_beat_a_single_matching_component():
+    # 3 Azir-comp units and one Rod: the Rod suits a Riftbeast carry, but units decide
+    owned = [KB.champion_by_name(n)["id"] for n in ("Azir", "Teemo", "Veigar")]
+    ranked = match_comps(KB, COMPS, owned, [item("Needlessly Large Rod")], A, BOOK)
+    assert ranked[0].comp_id == "set18-18.4-sprykin-azir-rammus"
+    assert not ranked[0].items_known  # carry items not entered yet
+    assert ranked[0].tiers[0]["tier"] == "S" and "opinion" in ranked[0].tiers[0]["definition"]
+
+
+def test_templates_carry_guide_plans():
+    t = COMPS.templates["set18-18.4-sprykin-azir-rammus"]
+    stars = {u["id"]: u.get("star") for u in t["units"]}
+    assert stars["DA_18_Azir"] == 3 and t["reroll_cost"] == 3
+    assert any(p.get("level") == 7 for p in t["level_plan"])

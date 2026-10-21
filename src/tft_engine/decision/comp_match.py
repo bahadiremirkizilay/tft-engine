@@ -29,6 +29,9 @@ class CompMatch:
     missing: tuple[str, ...]
     item_uses: tuple[str, ...]  # "component -> item (carry)" for held components
     stats: tuple[dict[str, Any], ...] = ()  # site statistics, shown apart from the score
+    tiers: tuple[dict[str, Any], ...] = ()  # editorial tier labels (guides)
+    style: str = ""
+    items_known: bool = True  # False: no carry builds known, items did not count
     trust: str = "assumption"
 
 
@@ -105,8 +108,14 @@ def match_comps(
             if comp in wanted:
                 used += 1
                 uses.append(f"{book.name(comp)} -> {wanted[comp]}")
-        item_share = used / len(comps_held) if comps_held else 0.0
-        score = w["units"] * unit_share + w["items"] * item_share
+        # comps without known carry builds get no item term, so they are not penalised
+        denom = max(len(comps_held), w["min_components"])
+        item_share = used / denom if comps_held and wanted else 0.0
+        if not wanted:
+            # rank on units alone: scale so the item weight does not decide between comps
+            score = w["units"] * unit_share
+        else:
+            score = w["units"] * unit_share + w["items"] * item_share
         out.append(
             CompMatch(
                 cid,
@@ -116,6 +125,9 @@ def match_comps(
                 tuple(u for u in units if u not in owned),
                 tuple(uses),
                 tuple(comps.comp_stats(cid)),
+                tuple(comps.tiers(cid)),
+                r.get("style", ""),
+                bool(wanted),
             )
         )
     out.sort(key=lambda m: (-m.score, m.name))

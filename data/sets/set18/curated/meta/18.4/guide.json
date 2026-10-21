@@ -1,0 +1,31 @@
+{
+ "set": "set18",
+ "kind": "meta_stats",
+ "source_id": "owner-guide-comps-2026-10-21",
+ "site": "guide (not named)",
+ "patch": "18.4",
+ "rank_filter": "none (editorial)",
+ "window": "guide page on 2026-10-21",
+ "collected_at": "2026-10-21",
+ "collected_by": "manual",
+ "definition": "tier: the guide's own editorial label (S best, then A ...), an opinion, not a statistic; no games or placements.",
+ "comps": [],
+ "tiers": [
+  {
+   "comp": "set18-18.4-sprykin-azir-rammus",
+   "tier": "S"
+  },
+  {
+   "comp": "set18-18.4-elderwood-khazix-hecarim",
+   "tier": "S"
+  },
+  {
+   "comp": "set18-18.4-riftbeast-pebbles-krug",
+   "tier": "A"
+  },
+  {
+   "comp": "set18-18.4-draven-ezreal-9",
+   "tier": "A"
+  }
+ ]
+}

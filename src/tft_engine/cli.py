@@ -245,11 +245,16 @@ def _cmd_comps(args: argparse.Namespace) -> int:
     owned = [_champion_id(kb, x) for x in _split(args.units or "")]
     have = _components(book, args.have)
     for m in match_comps(kb, comps, owned, have, AssumptionSet(), book)[: args.top]:
-        print(f"{m.name}  score {m.score:.2f} (assumption)")
+        tier = ", ".join(f"tier {t['tier']} ({t['site']})" for t in m.tiers)
+        print(
+            f"{m.name}  [{m.style}{', ' + tier if tier else ''}]  score {m.score:.2f} (assumption)"
+        )
         names = [kb.champions[u]["name"] for u in m.owned]
         print(f"  owned {len(m.owned)}/{len(m.owned) + len(m.missing)}: {', '.join(names) or '-'}")
         for use in m.item_uses:
             print(f"  item: {use}")
+        if not m.items_known:
+            print("  items: no carry builds known for this comp yet")
         for st in m.stats:
             print(
                 f"  site stats ({st['site']} {st['patch']} {st['rank_filter']}): avg place "

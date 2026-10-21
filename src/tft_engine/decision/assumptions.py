@@ -101,9 +101,10 @@ DEFAULTS: dict[str, Assumption] = {
     ),
     # --- comp matching (B5) ------------------------------------------------
     "comp_match_weights": Assumption(
-        {"units": 1.0, "items": 0.5, "unit_cost_exp": 1.0},
+        {"units": 1.0, "items": 0.3, "unit_cost_exp": 1.0, "min_components": 4},
         description="comp match score: share of the comp's units owned (weighted by cost ** "
-        "unit_cost_exp) and share of held components that its carries' items use",
+        "unit_cost_exp) and share of held components (counted as at least min_components) "
+        "that its carries' items use",
     ),
     # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
     "wisp_shop_prob": Assumption(

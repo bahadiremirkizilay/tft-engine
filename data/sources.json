@@ -232,6 +232,15 @@
       "note": "Read once by hand for B5 test data. Comp names, unit lists and avg place / top 4 / win; the page does not assign items to units. Unit cards show 3 items and two unlabeled numbers."
     },
     {
+      "id": "owner-guide-comps-2026-10-21",
+      "type": "guide_site",
+      "title": "Comp guide screenshots sent by the owner (Azir Rammus, Kha'Zix, Riftbeast Reroll, Draven Ezreal 9)",
+      "url": "https://github.com/bahadiremirkizilay/tft-engine",
+      "retrieved_at": "2026-10-21",
+      "collected_by": "manual",
+      "note": "Guide pages with tier, playstyle, augments, early and flex units, item priority, positioning, alt builds, tips and stage-by-stage plans; some pages in Turkish. The site and page patch are not named in the screenshots; taken on the 18.5 release day."
+    },
+    {
       "id": "tactics-tools-units",
       "type": "stats_site",
       "title": "tactics.tools Set 18 unit list",
