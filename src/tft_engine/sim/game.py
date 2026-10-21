@@ -8,9 +8,12 @@ Simplified (assumptions, see ``assumptions.py`` sim_*):
     the set's player damage with a survivor count from the power gap;
   * rounds x-1..x-6 are player combats, x-7 is a monster round that drops one
     component; no carousel, no augments, no Wisps, no positioning;
-  * every player uses the same policy (``Policy``): build the best board from
-    what it owns, buy units that improve it or pair up, level on a curve, slow
-    roll above 50 near a 3-star, roll deep when HP is low.
+  * every player uses the same policy: build the best board from what it owns,
+    buy units that improve it or complete a star-up (shop copies included), save
+    gold on an early loss streak or with Coven, level on a curve, slow roll above
+    50 near a 3-star, roll down at level 8 from 4-2, roll deep when HP is low;
+    items are crafted from stage 2, each on the board unit it fits best, and only
+    when some unit fits (owner's feedback on the first replays, 2026-10-21).
 The policy never aims at a fixed comp: the board follows the shops.
 """
 
@@ -21,7 +24,7 @@ from dataclasses import dataclass, field, replace
 from typing import Any
 
 from tft_engine.decision.assumptions import AssumptionSet
-from tft_engine.decision.item_fit import item_fit, profile
+from tft_engine.decision.item_fit import item_fit
 from tft_engine.decision.strength import win_prob
 from tft_engine.gamedata import load_gamedata
 from tft_engine.gamedata.entities import load_knowledge
@@ -44,6 +47,7 @@ class Player:
     items: dict[str, list[str]] = field(default_factory=dict)  # unit id -> completed items
     components: list[str] = field(default_factory=list)
     board: list[str] = field(default_factory=list)  # unit ids on the board
+    rolled_down: bool = False  # the level 8 roll-down is done
     alive: bool = True
     placement: int | None = None
 
@@ -70,6 +74,12 @@ class GameSim:
             Player(i, GameState(stage="1-1", gold=0, level=1, xp=0, hp=START_HP)) for i in range(8)
         ]
         self.log: list[dict[str, Any]] = []
+        self._fit: dict[tuple[str, str], float] = {}
+        self.unique_traits = {
+            t["id"]
+            for t in self.kb.traits.values()
+            if max((b["min_units"] or 0 for b in t["breakpoints"]), default=0) <= 1
+        }
 
     # --- pool and shop ------------------------------------------------------
 
@@ -101,8 +111,20 @@ class GameSim:
 
     # --- board evaluation -----------------------------------------------------
 
+    def fit(self, unit_id: str, item_id: str) -> float:
+        key = (unit_id, item_id)
+        if key not in self._fit:
+            self._fit[key] = item_fit(self.kb, unit_id, item_id, self.a).score
+        return self._fit[key]
+
     def unit_power(self, u: UnitInstance, items: list[str]) -> float:
-        return u.cost * STAR_POWER[u.star] * (1 + self.a["sim_item_bonus"] * len(items))
+        """Cost and stars; each item adds up to sim_item_bonus, scaled by how well it fits."""
+        good = self.a["sim_item_good_fit"]
+        bonus = sum(
+            self.a["sim_item_bonus"] * min(1.0, max(0.2, self.fit(u.unit_id, i) / good))
+            for i in items
+        )
+        return u.cost * STAR_POWER[u.star] * (1 + bonus)
 
     def board_power(self, p: Player, board: list[str]) -> tuple[float, list]:
         best: dict[str, UnitInstance] = {}
@@ -114,6 +136,8 @@ class GameSim:
         traits = [t for t in active_traits(self.kb, counts) if t.active]
         steps = 0
         for t in traits:
+            if t.trait_id in self.unique_traits:  # one-unit traits: their power is the unit
+                continue
             bps = sorted(
                 {
                     b["min_units"]
@@ -172,15 +196,25 @@ class GameSim:
         cap = self.rules.param("interest_cap") * 10 // per10
         return min(cap, (s.gold // 10) * 10)
 
-    def _completes_star(self, p: Player, uid: str) -> bool:
-        # two 1-stars plus this copy make a 2-star (which may chain into a 3-star)
-        return sum(1 for u in p.state.units if u.unit_id == uid and u.star == 1) == 2
+    def _completes_star(self, p: Player, uid: str, in_shop: int = 1) -> bool:
+        """Owned 1-stars plus the copies in this shop make a 2-star (may chain to 3)."""
+        ones = sum(1 for u in p.state.units if u.unit_id == uid and u.star == 1)
+        return ones < 3 and ones + in_shop >= 3
 
-    def _buy_from(self, p: Player, shop: list[str], notes: list[str], reserve: int) -> list[str]:
+    def _buy_from(
+        self, p: Player, shop: list[str], notes: list[str], reserve: int, econ: bool = False
+    ) -> list[str]:
         left = []
+        remaining = Counter(shop)
         for uid in shop:
             value, why = self._value_of_buy(p, uid)
-            star_up = self._completes_star(p, uid)
+            star_up = self._completes_star(p, uid, remaining[uid])
+            remaining[uid] -= 1
+            if econ and not star_up:  # saving gold: only star-ups
+                left.append(uid)
+                continue
+            if star_up:
+                value = max(value, 0.5 * self.cost[uid])
             # breaking an interest step needs a star-up or a large gain (>= 15% of board power)
             keep = reserve
             if not star_up and value < 0.15 * max(self.board_power(p, p.board)[0], 1.0):
@@ -208,38 +242,66 @@ class GameSim:
         return None
 
     def _items(self, p: Player, notes: list[str]) -> None:
+        """Craft an item only from stage 2, on the board unit it fits best, if one fits."""
         if len(p.components) < 2 or not p.board:
             return
-        holders = sorted(
-            p.board,
-            key=lambda u: (
-                -max(x.cost * STAR_POWER[x.star] for x in p.state.units if x.unit_id == u)
-            ),
-        )
-        carry = next((u for u in holders if "tank" not in profile(self.kb, u).tags), holders[0])
-        tank = next((u for u in holders if "tank" in profile(self.kb, u).tags), None)
+        if not self._reached(p.state.stage, self.a["sim_no_items_before"]):
+            return
+        weight = {
+            u: max(x.cost * STAR_POWER[x.star] for x in p.state.units if x.unit_id == u)
+            for u in p.board
+        }
         while len(p.components) >= 2:
-            target = carry if len(p.items.get(carry, [])) < 3 else tank
-            if target is None or len(p.items.get(target, [])) >= 3:
+            opts = [
+                o
+                for o in self.book.options(p.components)
+                if self.kb.items[o.item]["kind"] == "completed"
+            ]
+            pairs = [
+                (self.fit(u, o.item) + 0.1 * weight[u], self.fit(u, o.item), o, u)
+                for o in opts
+                for u in p.board
+                if len(p.items.get(u, [])) < 3
+            ]
+            if not pairs:
                 break
-            opts = self.book.options(p.components)
-            opts = [o for o in opts if self.kb.items[o.item]["kind"] == "completed"]
-            if not opts:
-                break
-            best = max(opts, key=lambda o: item_fit(self.kb, target, o.item, self.a).score)
+            _, fit, best, holder = max(pairs, key=lambda x: (x[0], x[3], x[2].item))
+            if fit < self.a["sim_item_min_fit"]:
+                break  # nobody on the board suits these components yet: keep them
             for c in best.pair:
                 p.components.remove(c)
-            p.items.setdefault(target, []).append(best.item)
+            p.items.setdefault(holder, []).append(best.item)
             notes.append(
-                f"built {self.book.name(best.item)} on {self.kb.champions[target]['name']}"
+                f"built {self.book.name(best.item)} on {self.kb.champions[holder]['name']}"
+                f" (fit {fit:.1f})"
             )
 
     def plan_round(self, p: Player) -> dict[str, Any]:
         """One planning phase for one player; returns what it did and why."""
         notes: list[str] = []
         a, s = self.a, p.state
+        if s.stage == "1-1":  # no shop on the first round
+            p.board = self.best_board(p)
+            power, traits = self.board_power(p, p.board)
+            return {
+                "shop": [],
+                "shop_costs": [],
+                "notes": [],
+                "rolls": 0,
+                "power": round(power, 1),
+                "traits": [f"{t.name} {t.count}" for t in traits],
+            }
         shop = self.roll_shop(s.level)
         first_shop = list(shop)
+        major = int(s.stage.split("-")[0])
+        coven = trait_counts(self.kb, p.board, None, self.same_trait)[0].get("DA_18_Coven", 0)
+        econ = major <= 3 and s.hp >= a["sim_lose_streak_hp"] and (s.streak <= -2 or coven >= 3)
+        if econ:
+            reason = "Coven" if coven >= 3 else f"loss streak {s.streak}"
+            notes.append(
+                f"saving gold ({reason}, HP {s.hp}): only star-ups"
+                + ("; Coven rewards for losses are not modelled" if coven >= 3 else "")
+            )
         # 1. level on the curve
         want = max(
             (lv for st, lv in a["sim_level_curve"].items() if self._reached(s.stage, st)), default=1
@@ -251,17 +313,35 @@ class GameSim:
                 break
             if p.state.level >= want:
                 notes.append(f"leveled to {p.state.level} (level curve: {want} by now)")
-        # 2. how much to spend on rolling
+        # 2. spare gold above the cap: XP first, then rolls
+        while p.state.gold > a["sim_excess_gold"] and p.state.level < 9 and not econ:
+            before = p.state.level
+            p.state = self.rules.buy_xp(p.state)
+            if p.state.level > before:
+                notes.append(f"leveled to {p.state.level} (gold above {a['sim_excess_gold']})")
+        # 3. how much to spend on rolling
         near = self._near_three_star(p)
-        if p.state.hp < a["sim_low_hp"] and p.state.level >= 6:
+        rolldown = (
+            not p.rolled_down and p.state.level >= 8 and self._reached(s.stage, "4-2") and not econ
+        )
+        if econ:
+            floor, why = None, ""
+        elif p.state.hp < a["sim_low_hp"] and p.state.level >= 6:
             floor, why = a["sim_deep_roll_floor"], f"HP {p.state.hp} < {a['sim_low_hp']}: roll deep"
+        elif rolldown:
+            floor, why = a["sim_rolldown_floor"], f"level {p.state.level} roll-down"
+            p.rolled_down = True
+        elif p.state.gold > a["sim_excess_gold"]:
+            floor, why = a["sim_slow_roll_floor"], f"gold above {a['sim_excess_gold']}"
         elif near:
             floor = a["sim_slow_roll_floor"]
             why = f"slow roll above {floor} for {self.kb.champions[near]['name']} 3*"
         else:
             floor, why = None, ""
         # 3. buy from the shop, roll while above the floor
-        shop = self._buy_from(p, shop, notes, reserve=0 if floor is None else min(floor, 50))
+        shop = self._buy_from(
+            p, shop, notes, reserve=0 if floor is None else min(floor, 50), econ=econ
+        )
         rolls = 0
         if floor is not None:
             while p.state.gold - int(self.data.get("reroll_cost")) >= floor and rolls < 30:

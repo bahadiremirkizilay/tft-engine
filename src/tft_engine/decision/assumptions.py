@@ -118,6 +118,20 @@ DEFAULTS: dict[str, Assumption] = {
     "sim_slow_roll_floor": Assumption(50, 30, 50, "slow roll stays above this gold"),
     "sim_low_hp": Assumption(40, 25, 55, "below this HP the simulated player rolls deep"),
     "sim_deep_roll_floor": Assumption(10, 0, 20, "gold kept when rolling deep"),
+    "sim_item_good_fit": Assumption(
+        4.0, 2.0, 6.0, "item fit score at which an item gives its full power bonus"
+    ),
+    "sim_item_min_fit": Assumption(
+        2.0, 1.0, 3.0, "below this fit no holder suits the item: keep the components"
+    ),
+    "sim_no_items_before": Assumption(
+        "2-1", description="no items are crafted before this round (owner: stage 1 is won anyway)"
+    ),
+    "sim_lose_streak_hp": Assumption(
+        60, 50, 75, "early loss streak (or Coven) keeps saving gold while HP is at least this"
+    ),
+    "sim_rolldown_floor": Assumption(20, 10, 30, "gold kept in the level 8 roll-down (from 4-2)"),
+    "sim_excess_gold": Assumption(60, 50, 80, "above this gold, spend the excess on XP or rolls"),
     # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
     "wisp_shop_prob": Assumption(
         None, 0.25, 1.0, "chance a shop shows a Wisp (None = set data: every other shop)"
