@@ -436,6 +436,24 @@ v0.5 bölüm 8'deki B0–B7 geçerli. Bu raporun eklemeleri:
 5. **Rank filtresi:** Önce Master, Grandmaster ve Challenger. Örneklem azsa Diamond ve Emerald'a genişletilir. Her meta kaydı kullanılan filtreyi yazar.
 6. **Yama başına elle iş bütçesi:** Yeni yama gelince karar verilecek. Şimdi odak ilk bilgi temeli (B1–B5).
 
+### Sahibin kararı (2026-10-21): sitelerden veri okuma
+
+4. maddenin yerine geçer. Sahip: "Bilgilerimizi doğrulama ve genişletme amacıyla, şu an güncel nereden çekebiliyorsak çekebiliriz." Şartlar:
+
+- **Amaç:** Kişisel kullanım; bilgi tabanını doğrulamak ve genişletmek. Veriler yeniden yayımlanmaz.
+- **Hangi siteler:** robots.txt'nin izin verdiği ve kullanım şartlarında otomatik erişim yasağı olmayan siteler. 2026-10-21 kontrolü:
+  - **TFT Academy:** robots.txt genel sayfalara izin veriyor (`/dashboard/`, `/_app/` yasak). Şartlarda scraping maddesi yok, sadece "lawful purposes".
+  - **MetaTFT:** robots.txt her şeye izin veriyor. Şartlar sayfası okunamadı (JavaScript).
+  - **tactics.tools:** robots.txt kısıtlamasız. Şartlar bulunamadı.
+  - **METAsrc:** Şartlar otomatik toplamayı ve izinsiz kopyalamayı açıkça yasaklıyor. **Kullanılmaz.**
+- **Sıklık:** Yama başına veya istek üzerine, sayfa sayfa. Sürekli ya da zamanlanmış çekme yok.
+- **Yöntem:**
+  - Giriş, ödeme duvarı ve bot korumaları aşılmaz.
+  - Sitenin belgelenmemiş (gizli) API'leri kullanılmaz; sadece herkese açık sayfalar okunur.
+  - Bir araç yazılırsa `tools/` içinde olur, istekler arasında bekler ve ham sayfayı önbelleğe alır.
+- **Kayıt:** Her değer site, tarih, yama ve rank filtresiyle kaynak kaydına bağlanır; üçüncü taraf olarak `third_party_unverified` kalır.
+- Bir sitenin şartları değişir veya yasak getirirse o site listeden çıkarılır.
+
 ---
 
 ## Net cevap: neler yapabiliriz, neler yapamayız, doğru sıra ne?
