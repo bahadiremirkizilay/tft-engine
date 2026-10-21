@@ -105,6 +105,15 @@ tft-engine items-for Ahri --set set18 --patch 18.4                              
 
 Item istatistikleri üçüncü taraf kaynaklı (tactics.tools, MetaTFT). Item uyumu bir kural tahminidir (varsayım), oyuncu istatistiği değildir.
 
+## Komplar ve item üçlüleri (B5)
+
+```powershell
+tft-engine comps --set set18 --patch 18.4 --units "Krug,Pebbles" --have "Needlessly Large Rod,Recurve Bow"
+tft-engine trio Pebbles --set set18 --patch 18.4 --have "Needlessly Large Rod,Recurve Bow" --items "Void Staff"
+```
+
+Komp puanı bir varsayımdır (sahip olunan birimler ve bileşenlerin uyumu). Site istatistikleri puana karışmaz; site, yama ve rank filtresiyle yanında yazılır.
+
 ## Yama verisi
 
 Her set için `data/sets/<set>/base.json` ve her yama için `data/sets/<set>/patches/<yama>.json` vardır. Yama dosyası sadece değişiklikleri (buff, nerf vb.) kaynağıyla birlikte içerir. Dosyası olmayan bir yama yüklenmez.

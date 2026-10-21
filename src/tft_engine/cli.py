@@ -18,12 +18,15 @@ from pathlib import Path
 
 from tft_engine.decision import Evaluator, load_scenario
 from tft_engine.decision.assumptions import AssumptionSet
+from tft_engine.decision.comp_match import best_trio, match_comps
 from tft_engine.decision.item_fit import best_items, profile
 from tft_engine.decision.report import render
 from tft_engine.experiments import load_records, replay, run_experiment
 from tft_engine.gamedata import load_gamedata
 from tft_engine.gamedata.entities import check_all, diff_knowledge, load_knowledge
+from tft_engine.gamedata.sources import load_sources
 from tft_engine.prob import IndependentShopModel, RollQuery, Target, roll_down_exact
+from tft_engine.rules.comps import check_comps, load_comps
 from tft_engine.rules.items import RecipeBook
 from tft_engine.rules.traits import active_traits, trait_counts
 from tft_engine.state import PoolBelief, PoolState
@@ -104,6 +107,7 @@ def _cmd_decide(args: argparse.Namespace) -> int:
 
 def _cmd_data_check(args: argparse.Namespace) -> int:
     kb, rep = check_all(args.set, args.patch)
+    rep.errors += check_comps(kb, load_comps(args.set, args.patch), load_sources())
     print(f"{args.set} {args.patch}: " + ", ".join(f"{k} {len(v)}" for k, v in kb.records.items()))
     for w in rep.warnings[: args.max]:
         print(f"WARNING: {w}")
@@ -224,6 +228,53 @@ def _cmd_items_for(args: argparse.Namespace) -> int:
     return 0
 
 
+def _components(book: RecipeBook, text: str | None) -> list[str]:
+    try:
+        return [book.item_id(x) for x in _split(text or "")]
+    except KeyError as e:
+        raise SystemExit(str(e)) from None
+
+
+def _cmd_comps(args: argparse.Namespace) -> int:
+    """Comps that fit the held units and components."""
+    kb = load_knowledge(args.set, args.patch)
+    comps = load_comps(args.set, args.patch)
+    if not comps.templates:
+        raise SystemExit(f"no comp templates for {args.set} {args.patch}")
+    book = RecipeBook(kb)
+    owned = [_champion_id(kb, x) for x in _split(args.units or "")]
+    have = _components(book, args.have)
+    for m in match_comps(kb, comps, owned, have, AssumptionSet(), book)[: args.top]:
+        print(f"{m.name}  score {m.score:.2f} (assumption)")
+        names = [kb.champions[u]["name"] for u in m.owned]
+        print(f"  owned {len(m.owned)}/{len(m.owned) + len(m.missing)}: {', '.join(names) or '-'}")
+        for use in m.item_uses:
+            print(f"  item: {use}")
+        for st in m.stats:
+            print(
+                f"  site stats ({st['site']} {st['patch']} {st['rank_filter']}): avg place "
+                f"{st['avg_place']}, top 4 {st['top4']:.0%}, win {st['win']:.0%}"
+            )
+    return 0
+
+
+def _cmd_trio(args: argparse.Namespace) -> int:
+    """Best three items for a carry from what is held."""
+    kb = load_knowledge(args.set, args.patch)
+    comps = load_comps(args.set, args.patch)
+    book = RecipeBook(kb)
+    cid = _champion_id(kb, args.champion)
+    have = _components(book, args.have)
+    held = _components(book, args.items)
+    print(f"{kb.champions[cid]['name']}: three-item options (fewest missing components first)")
+    for o in best_trio(kb, comps, cid, have, AssumptionSet(), held, book, args.top):
+        miss = ", ".join(book.name(c) if c in kb.items else c for c in o.missing_components)
+        score = f", fit {o.score:+.1f}" if o.score is not None else ""
+        print(f"  {' + '.join(book.name(i) for i in o.items)}")
+        print(f"     missing: {miss or 'nothing'} | basis: {o.basis}{score}")
+    return 0
+
+
 def _cmd_data_diff(args: argparse.Namespace) -> int:
     old = load_knowledge(args.set, args.old)
     new = load_knowledge(args.set, args.new)
@@ -308,6 +359,23 @@ def main(argv: list[str] | None = None) -> int:
     p_fit.add_argument("--patch", required=True)
     p_fit.add_argument("--top", type=int, default=8)
     p_fit.set_defaults(func=_cmd_items_for)
+
+    p_comps = sub.add_parser("comps", help="comps that fit held units and components")
+    p_comps.add_argument("--set", required=True)
+    p_comps.add_argument("--patch", required=True)
+    p_comps.add_argument("--units", help='champion names, e.g. "Krug,Pebbles"')
+    p_comps.add_argument("--have", help='held components, e.g. "Needlessly Large Rod,Recurve Bow"')
+    p_comps.add_argument("--top", type=int, default=5)
+    p_comps.set_defaults(func=_cmd_comps)
+
+    p_trio = sub.add_parser("trio", help="best three items for a carry from what is held")
+    p_trio.add_argument("champion")
+    p_trio.add_argument("--set", required=True)
+    p_trio.add_argument("--patch", required=True)
+    p_trio.add_argument("--have", help="held components")
+    p_trio.add_argument("--items", help="held completed items")
+    p_trio.add_argument("--top", type=int, default=5)
+    p_trio.set_defaults(func=_cmd_trio)
 
     p_data = sub.add_parser("data", help="knowledge base: check or compare patches")
     data_sub = p_data.add_subparsers(dest="data_cmd", required=True)

@@ -1,0 +1,143 @@
+{
+ "set": "set18",
+ "patch": "18.4",
+ "kind": "comp_templates",
+ "note": "Comp templates (B5). Test data for 18.4: units read from tactics.tools/team-compositions on 2026-10-21 (patch 18.4b, Diamond+). The page does not say which items go on which unit or which units are core, so items are left out and every unit is 'core' except the named carries and tanks; carries and tanks follow the comp name. Real 18.5 templates replace these after 18.5 data settles.",
+ "records": [
+  {
+   "id": "set18-18.4-riftbeast-pebbles-krug",
+   "name": "Riftbeast Pebbles & Krug",
+   "style": "reroll_5",
+   "units": [
+    {
+     "id": "DA_18_Sentry",
+     "role": "carry"
+    },
+    {
+     "id": "DA_Krug18",
+     "role": "carry"
+    },
+    {
+     "id": "DA_Murkwolf18",
+     "role": "core"
+    },
+    {
+     "id": "DA_Scuttlecrab18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Brambleback18",
+     "role": "core"
+    },
+    {
+     "id": "DA_Sentinel18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Cinderling18",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Rakan",
+     "role": "tank"
+    }
+   ],
+   "source_ids": [
+    "tactics-tools-comps-2026-10-21"
+   ],
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21",
+   "note": "Page tag 'Level 5 Reroll'. Krug is a tank by role but named as a carry by the comp title."
+  },
+  {
+   "id": "set18-18.4-elderwood-khazix-hecarim",
+   "name": "Elderwood Kha'Zix & Hecarim",
+   "style": "reroll_7",
+   "units": [
+    {
+     "id": "DA_18_KhaZix",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Hecarim",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Ornn",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Fiddlesticks18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Diana",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Aphelios",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Ezreal",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Soraka",
+     "role": "core"
+    }
+   ],
+   "source_ids": [
+    "tactics-tools-comps-2026-10-21"
+   ],
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21",
+   "note": "Page tags 'Level 7 Reroll', 'Items Dependent'."
+  },
+  {
+   "id": "set18-18.4-sprykin-azir-rammus",
+   "name": "Sprykin Azir & Rammus",
+   "style": "reroll_7",
+   "units": [
+    {
+     "id": "DA_18_Azir",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Rammus",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Veigar",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Teemo",
+     "role": "core"
+    },
+    {
+     "id": "DA_Fiddlesticks18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Soraka",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Zyra",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Yorick",
+     "role": "core"
+    }
+   ],
+   "source_ids": [
+    "tactics-tools-comps-2026-10-21"
+   ],
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21",
+   "note": "Page tags 'Level 7 Reroll', 'Items Dependent'."
+  }
+ ]
+}

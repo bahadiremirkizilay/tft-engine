@@ -1,0 +1,102 @@
+{
+ "set": "set18",
+ "kind": "meta_stats",
+ "source_id": "tactics-tools-comps-2026-10-21",
+ "site": "tactics.tools",
+ "patch": "18.4b",
+ "rank_filter": "Diamond+",
+ "region": null,
+ "window": "patch",
+ "collected_at": "2026-10-21",
+ "collected_by": "manual",
+ "definition": "Comps: the site's own clustering of boards; avg_place = average final placement, top4 / win = share of games in the top 4 / first; play_rate as shown (unlabeled decimal). Unit builds: the 3 items shown on each unit card of tactics.tools/units; the two numbers on the card are unlabeled, so they are not recorded.",
+ "note": "Test data for 18.4. The owner's rule is Master+; the page default was Diamond+ and was not changed.",
+ "comps": [
+  {
+   "comp": "set18-18.4-riftbeast-pebbles-krug",
+   "avg_place": 4.14,
+   "top4": 0.57,
+   "win": 0.128,
+   "play_rate": 0.38,
+   "games": null
+  },
+  {
+   "comp": "set18-18.4-elderwood-khazix-hecarim",
+   "avg_place": 4.25,
+   "top4": 0.559,
+   "win": 0.121,
+   "play_rate": 0.26,
+   "games": null
+  },
+  {
+   "comp": "set18-18.4-sprykin-azir-rammus",
+   "avg_place": 4.32,
+   "top4": 0.531,
+   "win": 0.138,
+   "play_rate": 0.42,
+   "games": null
+  }
+ ],
+ "unit_builds": [
+  {
+   "unit": "DA_18_Akali_AD",
+   "items": [
+    "DA_InfinityEdge",
+    "DA_EdgeOfNight",
+    "DA_SteraksGage"
+   ],
+   "avg_place": null,
+   "games": null
+  },
+  {
+   "unit": "DA_18_Camille",
+   "items": [
+    "DA_SteraksGage",
+    "DA_EdgeOfNight",
+    "DA_Bloodthirster"
+   ],
+   "avg_place": null,
+   "games": null
+  },
+  {
+   "unit": "DA_Cinderling18",
+   "items": [
+    "DA_LastWhisper",
+    "DA_SpearOfShojin",
+    "DA_InfinityEdge"
+   ],
+   "avg_place": null,
+   "games": null
+  },
+  {
+   "unit": "DA_Karma18",
+   "items": [
+    "DA_StrikersFlail",
+    "DA_SpearOfShojin",
+    "DA_GiantSlayer"
+   ],
+   "avg_place": null,
+   "games": null
+  },
+  {
+   "unit": "DA_18_Sentry",
+   "items": [
+    "DA_HextechGunblade",
+    "DA_VoidStaff",
+    "DA_GiantSlayer"
+   ],
+   "avg_place": null,
+   "games": null
+  },
+  {
+   "unit": "DA_18_RekSai",
+   "items": [
+    "DA_SteraksGage",
+    "DA_WarmogsArmor",
+    "DA_ThiefsGloves"
+   ],
+   "avg_place": null,
+   "games": null
+  }
+ ]
+}

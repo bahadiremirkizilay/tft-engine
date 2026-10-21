@@ -221,6 +221,17 @@
       "note": "From a stats site the owner did not name (layout: 'SETT STATS', Health/Damage/DPS per star). Kha'Zix values match the 18.3 B-patch, Gromp's splash matches the 18.3 notes, so the page is at least 18.3; but Brambleback (80% AD, leap 155/235) and Kayle (62/92/105) still show pre-18.4 values, so the site mixes patches; site_patch 18.4 is assumed, values the 18.4 notes changed are kept as conflicts. Unit stats match the CommunityDragon 16.20 export (e.g. Sett 1200 Health, 60/135 mana)."
     },
     {
+      "id": "tactics-tools-comps-2026-10-21",
+      "type": "stats_site",
+      "title": "tactics.tools team compositions and unit list (patch 18.4b, Diamond+)",
+      "url": "https://tactics.tools/team-compositions",
+      "retrieved_at": "2026-10-21",
+      "collected_by": "manual",
+      "site_patch": "18.4b",
+      "filters": {"rank": "Diamond+", "sort": "avg place", "pages": "team-compositions, units"},
+      "note": "Read once by hand for B5 test data. Comp names, unit lists and avg place / top 4 / win; the page does not assign items to units. Unit cards show 3 items and two unlabeled numbers."
+    },
+    {
       "id": "tactics-tools-units",
       "type": "stats_site",
       "title": "tactics.tools Set 18 unit list",

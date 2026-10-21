@@ -99,6 +99,12 @@ DEFAULTS: dict[str, Assumption] = {
         },
         description="item fit rule weights by champion profile (rule-based, not statistics)",
     ),
+    # --- comp matching (B5) ------------------------------------------------
+    "comp_match_weights": Assumption(
+        {"units": 1.0, "items": 0.5, "unit_cost_exp": 1.0},
+        description="comp match score: share of the comp's units owned (weighted by cost ** "
+        "unit_cost_exp) and share of held components that its carries' items use",
+    ),
     # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
     "wisp_shop_prob": Assumption(
         None, 0.25, 1.0, "chance a shop shows a Wisp (None = set data: every other shop)"

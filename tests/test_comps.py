@@ -1,0 +1,87 @@
+"""B5: comp templates, meta statistics, comp matching and item trios."""
+
+import json
+
+import pytest
+
+from tft_engine.cli import main
+from tft_engine.decision.assumptions import AssumptionSet
+from tft_engine.decision.comp_match import best_trio, match_comps, missing_components
+from tft_engine.gamedata import SchemaError
+from tft_engine.gamedata.entities import load_knowledge
+from tft_engine.gamedata.sources import load_sources
+from tft_engine.rules.comps import check_comps, load_comps
+from tft_engine.rules.items import RecipeBook
+
+KB = load_knowledge("set18", "18.4")
+COMPS = load_comps("set18", "18.4")
+BOOK = RecipeBook(KB)
+A = AssumptionSet()
+
+
+def item(name):
+    return BOOK.item_id(name)
+
+
+def test_templates_and_meta_load_and_link():
+    assert len(COMPS.templates) >= 3
+    assert check_comps(KB, COMPS, load_sources()) == []
+    stats = COMPS.comp_stats("set18-18.4-riftbeast-pebbles-krug")
+    # every number carries the site, rank filter, patch and definition (plan rule 10)
+    assert stats and all(stats[0][k] for k in ("site", "rank_filter", "patch", "definition"))
+
+
+def test_bad_references_are_reported():
+    bad = load_comps("set18", "18.4")
+    t = json.loads(json.dumps(bad.templates["set18-18.4-sprykin-azir-rammus"]))
+    t["units"].append({"id": "DA_18_Nobody", "role": "core"})
+    t["pivots"] = ["set18-18.4-missing"]
+    bad.templates["x"] = t
+    errors = check_comps(KB, bad, load_sources())
+    assert any("unknown champion DA_18_Nobody" in e for e in errors)
+    assert any("pivot to unknown comp" in e for e in errors)
+
+
+def test_meta_files_need_their_context(tmp_path):
+    folder = tmp_path / "setx" / "curated" / "meta" / "1.1"
+    folder.mkdir(parents=True)
+    (folder / "site.json").write_text(json.dumps({"site": "x", "patch": "1.1", "comps": []}))
+    with pytest.raises(SchemaError, match="missing"):
+        load_comps("setx", "1.1", root=tmp_path)
+
+
+def test_missing_components_counts_held_items_and_components():
+    build = [item("Hextech Gunblade"), item("Void Staff"), item("Giant Slayer")]
+    have = [item(n) for n in ("Needlessly Large Rod", "Recurve Bow", "Tear of the Goddess")]
+    miss = missing_components(BOOK, build, have, held=[item("Hextech Gunblade")])
+    assert sorted(BOOK.name(c) for c in miss) == ["B.F. Sword", "Recurve Bow"]
+
+
+def test_owned_units_and_components_rank_the_matching_comp_first():
+    owned = [KB.champion_by_name("Krug")["id"], KB.champion_by_name("Pebbles")["id"]]
+    have = [item("Needlessly Large Rod"), item("Recurve Bow")]
+    ranked = match_comps(KB, COMPS, owned, have, A, BOOK)
+    top = ranked[0]
+    assert top.comp_id == "set18-18.4-riftbeast-pebbles-krug"
+    assert len(top.owned) == 2 and top.item_uses and top.trust == "assumption"
+    assert top.stats[0]["avg_place"] == 4.14  # shown apart from the score
+
+
+def test_trio_uses_known_builds_first_then_rules():
+    have = [item(n) for n in ("Needlessly Large Rod", "Recurve Bow", "Tear of the Goddess")]
+    pebbles = best_trio(KB, COMPS, KB.champion_by_name("Pebbles")["id"], have, A, book=BOOK)
+    assert pebbles[0].basis.startswith("meta: tactics.tools")
+    rods = [item("Needlessly Large Rod")] * 2 + [item("Tear of the Goddess")] * 2
+    ahri = best_trio(KB, COMPS, KB.champion_by_name("Ahri")["id"], rods, A, book=BOOK)
+    assert ahri[0].basis == "rule" and ahri[0].score > 0
+    assert len(ahri[0].items) == 3
+
+
+def test_commands(capsys):
+    args = ["--set", "set18", "--patch", "18.4"]
+    assert main(["comps", *args, "--units", "Krug,Pebbles", "--have", "Recurve Bow"]) == 0
+    out = capsys.readouterr().out
+    assert out.splitlines()[0].startswith("Riftbeast Pebbles & Krug")
+    assert "site stats (tactics.tools 18.4b Diamond+)" in out
+    assert main(["trio", "Pebbles", *args, "--have", "Needlessly Large Rod,Recurve Bow"]) == 0
+    assert "missing:" in capsys.readouterr().out

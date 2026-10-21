@@ -14,8 +14,8 @@ Son güncelleme: 2026-10-21. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 | **B2: ekonomi ve shop'u tamamlama** | **Bitti (2026-10-20).** Ayrıntı aşağıda |
 | **B3: modifier ve olay sistemi** | **Bitti (2026-10-21).** Ayrıntı aşağıda |
 | **B4: item ve trait yapısı** | **Bitti (2026-10-21).** Ayrıntı aşağıda; roller senden bekleniyor |
-| B5: komp şablonları ve meta | Sıradaki |
-| B6: savaş ve dizilim arayüzü | Başlamadı |
+| **B5: komp şablonları ve meta** | **Altyapı bitti (2026-10-21)**, 18.4 test verisiyle. 18.5 kompları ve istatistikleri veri oturunca (2–3 gün) girilecek |
+| B6: savaş ve dizilim arayüzü | Sıradaki |
 | B7: yama döngüsü + Set 19 provası | Başlamadı |
 | Ertelenenler: G0/M2 (Riot API), M4+ (ML), maç kayıtları, canlı kullanım | PLAN bölüm 9 |
 
@@ -74,6 +74,16 @@ Son güncelleme: 2026-10-21. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Komutlar:** `tft-engine items --have "B.F. Sword,Recurve Bow"`, `tft-engine traits --board "Ahri,Sett" --emblem "Ornn:Blossom Emblem"`, `tft-engine items-for Ahri`.
 - **Eksikler:** Roller (`curated/champion_roles.json` boş, senden bekleniyor). Yetenek sayıları oyun dosyalarında yok (KAYNAKLAR bölüm 2), `unknown`.
 - P1 senaryoları değişmedi.
+
+## B5 sonucu (2026-10-21, altyapı)
+
+- **Komp şablonları** (`curated/comps/<yama>.json`): birimler (carry / tank / core / flex), oyun tarzı (reroll_5/6/7, fast8, fast9, standard), carry item üçlüleri, pivotlar, kaynak ve son gözden geçirme tarihi.
+- **Meta istatistikleri** (`curated/meta/<yama>/<site>.json`): komptan ayrı. Her dosyada site, yama, rank filtresi, toplama tarihi ve her sayının tanımı zorunlu. Komp başına ortalama sıra / ilk 4 / birincilik; birim başına item üçlüleri.
+- **Komp eşleştirme** (`decision/comp_match.py`, varsayım): Elindeki birimler (maliyetle ağırlıklı) ve bileşenlerin carry item'larına uyumu. Site istatistikleri puana karışmaz, yanında gösterilir.
+- **Item üçlüsü:** Önce bilinen üçlüler (şablon, site), eksik bileşenleri sayarak; yoksa kural tabanlı uyumdan en iyi üçlü.
+- **Komutlar:** `tft-engine comps --units "Krug,Pebbles" --have "Recurve Bow"`, `tft-engine trio Pebbles --have "..." --items "..."`. `data check` şablon ve meta referanslarını da denetliyor.
+- **18.4 test verisi:** tactics.tools'tan 3 komp (18.4b, Diamond+; sayfa varsayılanı, senin kuralın Master+). Sayfa item'ları birimlere bağlamıyor; birim kartlarındaki 3 item kaydedildi, etiketsiz sayılar alınmadı.
+- **Bekleyen:** 18.5 kompları ve gerçek üçlü istatistikleri (MetaTFT, Master+), veri oturunca.
 
 ## Araştırmanın önemli sonuçları (ayrıntı: KAYNAKLAR.md)
 
