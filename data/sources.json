@@ -210,6 +210,17 @@
       "note": "Roles estimated from each champion's League of Legends class, range, Health, starting mana and traits, because the CommunityDragon export has roles for only 2 of 65 Set 18 champions. The owner said roles follow the League class and will correct wrong ones."
     },
     {
+      "id": "owner-ability-pastes-2026-10-21",
+      "type": "stats_site",
+      "title": "Ability text and unit stats pasted by the owner (Sett, Morgana, Kennen, Gromp, Kha'Zix)",
+      "url": "https://github.com/bahadiremirkizilay/tft-engine",
+      "retrieved_at": "2026-10-21",
+      "collected_by": "manual",
+      "site_patch": "18.4",
+      "filters": {"page": "unit pages (ability and stats)"},
+      "note": "From a stats site the owner did not name (layout: 'SETT STATS', Health/Damage/DPS per star). Kha'Zix values match the 18.3 B-patch, Gromp's splash matches the 18.3 notes, so the page is at least 18.3; site_patch 18.4 is assumed. Unit stats match the CommunityDragon 16.20 export (e.g. Sett 1200 Health, 60/135 mana)."
+    },
+    {
       "id": "tactics-tools-units",
       "type": "stats_site",
       "title": "tactics.tools Set 18 unit list",

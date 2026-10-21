@@ -136,8 +136,10 @@
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Estimate consistent with the ability text and stats the owner pasted"
   },
   {
    "id": "DA_18_Kayle",
@@ -256,8 +258,10 @@
    "role": "APAssassin",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Estimate consistent with the ability text and stats the owner pasted"
   },
   {
    "id": "DA_KogMaw18_AD",
@@ -384,8 +388,10 @@
    "role": "APFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Estimate consistent with the ability text and stats the owner pasted"
   },
   {
    "id": "DA_Nidalee18_AP",
@@ -405,11 +411,13 @@
   },
   {
    "id": "DA_18_Sett",
-   "role": "ADTank",
+   "role": "ADFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Changed from ADTank: 1200 Health and 60 Armor like the fighters (Kennen), ability heals and deals large physical damage (owner's paste)"
   },
   {
    "id": "DA_18_Sivir",
@@ -480,8 +488,10 @@
    "role": "APFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Estimate consistent with the ability text and stats the owner pasted"
   },
   {
    "id": "DA_Lux18_Base",

@@ -1,0 +1,131 @@
+{
+ "set": "set18",
+ "patch": "18.4",
+ "kind": "ability_values",
+ "note": "Ability values per star level (1/2/3) for champions whose values are missing in the CommunityDragon export. Transcribed from text and a screenshot the owner pasted from a stats site (site not named) on 2026-10-21. Not used by the engine yet (combat is B6); kept so the values are not lost. Values are third-party until checked in game.",
+ "records": [
+  {
+   "id": "DA_18_Sett",
+   "name": "Haymaker",
+   "values": {
+    "passive_health_threshold_pct": 40,
+    "passive_mana": 100,
+    "heal": [
+     225,
+     275,
+     2000
+    ],
+    "physical_damage": [
+     222,
+     355,
+     5233
+    ]
+   },
+   "text": "Passive: upon falling below 40% max Health the first time each combat, gain 100 mana. Active: wind up a big punch, rapidly healing for 225/275/2000 before dealing 222/355/5233 physical damage in a large cone."
+  },
+  {
+   "id": "DA_18_Morgana",
+   "name": "Withering Curse",
+   "values": {
+    "omnivamp_pct": 25,
+    "targets": 3,
+    "magic_damage": [
+     60,
+     90,
+     500
+    ],
+    "curse_seconds": 4,
+    "zone_magic_damage_per_second": [
+     33,
+     50,
+     500
+    ],
+    "bonus_damage_per_curse": [
+     22,
+     33,
+     240
+    ]
+   },
+   "text": "Passive: gain 25% Omnivamp. Active: fire a dark blast at 3 nearby enemies, dealing 60/90/500 magic damage and cursing them for 4 seconds; spawn a Hex withering zone for the same duration dealing 33/50/500 magic damage per second. Cursed enemies take 22/33/240 more damage per curse."
+  },
+  {
+   "id": "DA_18_Kennen",
+   "name": "Firestorm",
+   "values": {
+    "ap_per_burning_enemy_pct": 15,
+    "shield": [
+     250,
+     350,
+     3000
+    ],
+    "shield_seconds": 2.5,
+    "rush_magic_damage": [
+     80,
+     120,
+     1500
+    ],
+    "firestorm_magic_damage_total": [
+     475,
+     715,
+     5000
+    ],
+    "firestorm_seconds": 2
+   },
+   "text": "Charge up, gaining 15% Ability Power per Burning enemy. Then gain 250/350/3000 Shield for 2.5 seconds and rush through a nearby group of enemies, dealing 80/120/1500 magic damage to each. After rushing, unleash a 2 Hex firestorm that deals a total of 475/715/5000 magic damage split among all enemies hit over 2 seconds."
+  },
+  {
+   "id": "DA_Gromp18_AP",
+   "name": "Belchy Bubble",
+   "values": {
+    "magic_damage": [
+     225,
+     340,
+     535
+    ],
+    "splash_magic_damage_over_3s": [
+     175,
+     265,
+     410
+    ],
+    "purple_buff_ap_pct_every_5s": 30
+   },
+   "text": "Adaptor (AP): bubble explodes on the first enemy hit for 225/340/535 magic damage; enemies within 1 hex take 175/265/410 magic damage over 3 seconds. Adaptor (AD): heavily slows the target. Purple Buff: every 5 seconds, gain 30% Ability Power.",
+   "note": "Splash 175/265/410 matches the 18.3 notes (AP Form Ability DoT 160/240/360 => 175/265/410); the 18.4 B-patch line 'Gromp AP Form Splash Damage: 160/240/375 => 180/270/435' disagrees, kept as a conflict.",
+   "conflicts": [
+    {
+     "values": {
+      "splash_magic_damage_over_3s": [
+       180,
+       270,
+       435
+      ]
+     },
+     "source_ids": [
+      "riot-notes-18.4"
+     ],
+     "note": "18.4 mid-patch update line; its old values (160/240/375) also differ from the 18.3 notes' new values"
+    }
+   ]
+  },
+  {
+   "id": "DA_18_KhaZix",
+   "name": "Taste Their Fear",
+   "values": {
+    "leap_range_hexes": 3,
+    "magic_damage": [
+     265,
+     370,
+     535
+    ],
+    "isolated_magic_damage": [
+     285,
+     410,
+     605
+    ],
+    "isolated_mana": 10
+   },
+   "text": "Leap to the farthest enemy within 3 Hexes, dealing 265/370/535 magic damage. If they have no adjacent allies, deal 285/410/605 magic damage instead and gain 10 mana.",
+   "note": "Matches the 18.3 B-patch (Kha'Zix 265/370/535 and 285/410/605)."
+  }
+ ]
+}

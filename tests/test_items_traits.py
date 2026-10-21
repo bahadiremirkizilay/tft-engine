@@ -129,7 +129,7 @@ def test_profiles_come_from_ability_text_and_range():
     assert profile(KB, champ("Ahri")).tags == ("ap", "backline")
     assert profile(KB, champ("Draven")).tags == ("ad", "backline")
     assert profile(KB, champ("Warwick")).tags == ("ad", "frontline")  # ADFighter
-    assert profile(KB, champ("Sett")).tags == ("tank", "frontline")  # estimated ADTank
+    assert profile(KB, champ("Sett")).tags == ("ad", "frontline")  # ADFighter after the paste
     assert profile(KB, "DA_18_Kobuko").tags == ("tank", "frontline")  # role APTank in the export
 
 
