@@ -126,6 +126,219 @@
    },
    "text": "Leap to the farthest enemy within 3 Hexes, dealing 265/370/535 magic damage. If they have no adjacent allies, deal 285/410/605 magic damage instead and gain 10 mana.",
    "note": "Matches the 18.3 B-patch (Kha'Zix 265/370/535 and 285/410/605)."
+  },
+  {
+   "id": "DA_18_ElderDragon",
+   "name": "Heat Without Equal",
+   "values": {
+    "passive_splash_pct": [
+     75,
+     75,
+     100
+    ],
+    "stun_seconds": [
+     1.25,
+     1.25,
+     99
+    ],
+    "omnivamp_pct": [
+     15,
+     15,
+     100
+    ],
+    "ignite_seconds": [
+     3,
+     3,
+     99
+    ],
+    "ignite_max_health_pct_per_second": [
+     2,
+     2,
+     20
+    ],
+    "flame_breath_physical_damage": [
+     305,
+     465,
+     7200
+    ],
+    "flame_breath_falloff_pct": 20,
+    "execute_below_health_pct": 12
+   },
+   "text": "Passive: attacks deal 75/75/100% damage to enemies adjacent to the target. Active: become invulnerable and fly up; on return stun all enemies for 1.25/1.25/99 s, gain 15/15/100% Omnivamp and Ignite them for 3/3/99 s (2/2/20% max Health physical damage per second). Then cast Flame Breath: 305/465/7200 physical damage in a line, 20% less per enemy passed (minimum 20%), Ignite. Elder Dragon Buff: damaging an enemy below 12% Health executes it."
+  },
+  {
+   "id": "DA_Vi18",
+   "name": "Furious Fists",
+   "values": {
+    "heal_on_attack": [
+     22,
+     40,
+     71
+    ],
+    "heal": [
+     200,
+     265,
+     360
+    ],
+    "attack_speed_pct": [
+     85,
+     100,
+     125
+    ],
+    "durability_pct": 15,
+    "unstoppable_seconds": 3
+   },
+   "text": "Passive: on attack, restore 22/40/71 Health. Active: restore 200/265/360 Health, then gain 85/100/125% Attack Speed, 15% Durability and Unstoppable for 3 seconds."
+  },
+  {
+   "id": "DA_Brambleback18",
+   "name": "Crimson Fury",
+   "values": {
+    "leap_physical_damage": [
+     155,
+     235,
+     1000
+    ],
+    "ad_pct": [
+     80,
+     80,
+     300
+    ],
+    "duration_seconds": 8,
+    "armor_ignore_pct": [
+     45,
+     45,
+     90
+    ],
+    "burn_pct": 1,
+    "heal_max_health_pct": 4
+   },
+   "text": "Passive: when the target dies, leap at the next target for 155/235/1000 physical damage. Active: gain 80/80/300% Attack Damage for 8 s and ignore 45/45/90% Armor. Red Buff: attacks 1% Burn and heal 4% max Health.",
+   "note": "Ability AD 80% and leap 155/235 match the 18.2 values; the 18.4 notes changed them (Ability Bonus AD 80% => 100%, Leap 155/235 => 135/205), so this page looks pre-18.4 for Brambleback.",
+   "conflicts": [
+    {
+     "values": {
+      "ad_pct": [
+       100,
+       100,
+       null
+      ],
+      "leap_physical_damage": [
+       135,
+       205,
+       null
+      ]
+     },
+     "source_ids": [
+      "riot-notes-18.4"
+     ],
+     "note": "18.4 notes (3-star values not given)"
+    }
+   ]
+  },
+  {
+   "id": "DA_18_Kayle",
+   "name": "Solar Judgement",
+   "values": {
+    "bonus_magic_damage_on_attack": [
+     62,
+     92,
+     105
+    ],
+    "shred_pct": 20,
+    "shred_seconds": 2,
+    "wave_magic_damage": 35
+   },
+   "text": "Ascends by star level. 1st: attacks deal 62/92/105 bonus magic damage. 2nd: attacks 20% Shred for 2 s. 3rd: attacks fire waves for 35 magic damage to all other units hit. 4th: infinite range, every 3rd wave much larger.",
+   "note": "62/92/105 is the 18.2 value; the 18.4 notes say Kayle Ability Damage 62/92/105/115 => 65/97/110/115.",
+   "conflicts": [
+    {
+     "values": {
+      "bonus_magic_damage_on_attack": [
+       65,
+       97,
+       110
+      ]
+     },
+     "source_ids": [
+      "riot-notes-18.4"
+     ],
+     "note": "18.4 notes"
+    }
+   ]
+  },
+  {
+   "id": "DA_Krug18",
+   "name": "Rock and Roll",
+   "values": {
+    "kruglette_health": [
+     182,
+     338,
+     608
+    ],
+    "max_health_gain": [
+     175,
+     225,
+     325
+    ],
+    "damage": [
+     223,
+     358,
+     620
+    ],
+    "shield_max_health_pct": 8
+   },
+   "text": "Passive: on death split into two Kruglettes (182/338/608 Health) that taunt. Active: gain 175/225/325 max Health, then roll into the target for 223/358/620 damage. Slate Buff: on death, Krug and Kruglettes shield allies for 8% max Health."
+  },
+  {
+   "id": "DA_Scuttlecrab18",
+   "name": "Can You Dig It?",
+   "values": {
+    "dance_physical_damage": [
+     50,
+     75,
+     113
+    ],
+    "durability_pct": 15,
+    "durability_seconds": 3,
+    "heal": [
+     325,
+     400,
+     675
+    ],
+    "ally_heal_max_health_pct": 15
+   },
+   "text": "Passive: attacks are replaced by a dance dealing 50/75/113 physical damage to all adjacent enemies. Active: burrow, 15% Durability for 3 s and heal 325/400/675 over the duration. Green Buff: allies below 50% Health restore 15% max Health."
+  },
+  {
+   "id": "DA_18_Ivern",
+   "name": "Triggerseed",
+   "values": {
+    "allies": [
+     2,
+     2,
+     10
+    ],
+    "shield": [
+     185,
+     350,
+     3000
+    ],
+    "damage_amp_pct": [
+     10,
+     15,
+     100
+    ],
+    "duration_seconds": 6,
+    "magic_damage": [
+     155,
+     235,
+     2000
+    ],
+    "casts_for_attack_speed": 6,
+    "attack_speed_pct": 100
+   },
+   "text": "Passive: shields can crit with Precision. Active: give 2/2/10 allies 185/350/3000 Shield and 10/15/100% Damage Amp for 6 s, then deal 155/235/2000 magic damage to enemies adjacent to them. After 6 casts, also grant 100% stacking Attack Speed."
   }
  ]
 }

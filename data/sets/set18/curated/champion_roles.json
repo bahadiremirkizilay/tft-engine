@@ -146,8 +146,10 @@
    "role": "APMarksman",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Consistent with the pasted ability: attacks deal bonus magic damage"
   },
   {
    "id": "DA_18_LeBlanc",
@@ -170,8 +172,9 @@
    "role": "ADTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "owner-ingame-2026-10-20"
+   ],
+   "note": "Owner: Scuttlecrab is a tank"
   },
   {
    "id": "DA_18_Sejuani",
@@ -276,8 +279,9 @@
    "role": "ADTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "owner-ingame-2026-10-20"
+   ],
+   "note": "Owner: Krug is used as a tank"
   },
   {
    "id": "DA_CrimsonRaptor18",
@@ -324,8 +328,10 @@
    "role": "APFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Consistent with the pasted ability: heals, attack speed, durability, Unstoppable"
   },
   {
    "id": "DA_18_Ahri",
@@ -356,8 +362,10 @@
    "role": "ADFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Consistent with the pasted ability: +80% AD steroid, armor ignore"
   },
   {
    "id": "DA_18_Ezreal",
@@ -411,13 +419,12 @@
   },
   {
    "id": "DA_18_Sett",
-   "role": "ADFighter",
+   "role": "ADTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "owner-ingame-2026-10-20"
    ],
-   "note": "Changed from ADTank: 1200 Health and 60 Armor like the fighters (Kennen), ability heals and deals large physical damage (owner's paste)"
+   "note": "Owner: treat Sett as a tank and build tank items on him (2026-10-21)"
   },
   {
    "id": "DA_18_Sivir",
@@ -464,8 +471,10 @@
    "role": "ADFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "role-estimate-2026-10-21",
+    "owner-ability-pastes-2026-10-21"
+   ],
+   "note": "Consistent with the pasted ability: large physical damage, Omnivamp, execute"
   },
   {
    "id": "DA_18_GnarSmall",
@@ -477,11 +486,12 @@
   },
   {
    "id": "DA_18_Ivern",
-   "role": "APCaster",
+   "role": "APSpecialist",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "owner-ingame-2026-10-20"
+   ],
+   "note": "Owner: utility champion; usual items Blue Buff and Spear of Shojin, for more casts"
   },
   {
    "id": "DA_18_Kennen",

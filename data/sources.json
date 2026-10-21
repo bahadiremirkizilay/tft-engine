@@ -218,7 +218,7 @@
       "collected_by": "manual",
       "site_patch": "18.4",
       "filters": {"page": "unit pages (ability and stats)"},
-      "note": "From a stats site the owner did not name (layout: 'SETT STATS', Health/Damage/DPS per star). Kha'Zix values match the 18.3 B-patch, Gromp's splash matches the 18.3 notes, so the page is at least 18.3; site_patch 18.4 is assumed. Unit stats match the CommunityDragon 16.20 export (e.g. Sett 1200 Health, 60/135 mana)."
+      "note": "From a stats site the owner did not name (layout: 'SETT STATS', Health/Damage/DPS per star). Kha'Zix values match the 18.3 B-patch, Gromp's splash matches the 18.3 notes, so the page is at least 18.3; but Brambleback (80% AD, leap 155/235) and Kayle (62/92/105) still show pre-18.4 values, so the site mixes patches; site_patch 18.4 is assumed, values the 18.4 notes changed are kept as conflicts. Unit stats match the CommunityDragon 16.20 export (e.g. Sett 1200 Health, 60/135 mana)."
     },
     {
       "id": "tactics-tools-units",

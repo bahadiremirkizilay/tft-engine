@@ -127,9 +127,10 @@ def test_rows_with_the_same_minimum_are_told_apart_by_their_maximum():
 
 def test_profiles_come_from_ability_text_and_range():
     assert profile(KB, champ("Ahri")).tags == ("ap", "backline")
-    assert profile(KB, champ("Draven")).tags == ("ad", "backline")
+    assert profile(KB, champ("Draven")).tags == ("ad", "marksman", "backline")
     assert profile(KB, champ("Warwick")).tags == ("ad", "frontline")  # ADFighter
-    assert profile(KB, champ("Sett")).tags == ("ad", "frontline")  # ADFighter after the paste
+    assert profile(KB, champ("Sett")).tags == ("tank", "frontline")  # owner: build him as a tank
+    assert profile(KB, champ("Ivern")).tags[0] == "utility"  # owner: Blue Buff, Shojin
     assert profile(KB, "DA_18_Kobuko").tags == ("tank", "frontline")  # role APTank in the export
 
 
@@ -169,3 +170,13 @@ def test_commands(capsys):
     assert main(["items-for", "Ahri", *args, "--top", "3"]) == 0
     out = capsys.readouterr().out
     assert "ap, backline" in out and "trust: assumption" in out
+
+
+def test_utility_champions_get_mana_items_and_magnitude_counts():
+    a = AssumptionSet()
+    done = [i["id"] for i in KB.items.values() if i["kind"] == "completed" and i["family"] == "DA"]
+    ivern = [KB.items[f.item]["name"] for f in best_items(KB, champ("Ivern"), a, done, 3)]
+    # owner (2026-10-21): Ivern usually holds Blue Buff and Spear of Shojin for more casts
+    assert {"Blue Buff", "Spear of Shojin"} <= set(ivern)
+    ahri = [KB.items[f.item]["name"] for f in best_items(KB, champ("Ahri"), a, done, 1)]
+    assert ahri == ["Rabadon's Deathcap"]  # largest Ability Power bonus

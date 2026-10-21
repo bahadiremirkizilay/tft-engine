@@ -92,6 +92,10 @@ DEFAULTS: dict[str, Assumption] = {
             "backline": {"hp": 0, "armor": 0, "mr": 0, "durability_pct": 0},
             # used instead of "ad"/"ap" when the champion's role is a tank
             "tank": {"hp": 1, "armor": 1, "mr": 1, "durability_pct": 1, "mana_regen": 1},
+            # used instead of "ad"/"ap" for utility champions (role Specialist): more casts
+            "utility": {"mana_regen": 2, "mana_effect": 2, "ap": 1},
+            # added for Marksmen: their damage comes from attacks
+            "marksman": {"as_pct": 1},
         },
         description="item fit rule weights by champion profile (rule-based, not statistics)",
     ),
