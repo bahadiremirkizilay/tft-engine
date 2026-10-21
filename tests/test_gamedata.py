@@ -91,6 +91,7 @@ def test_set18_loads_and_reports_provenance(set18):
     report = set18.provenance_report()
     # only what the owner saw in game on 18.4b is verified; this must stay honest
     assert sorted(report["verified"]) == [
+        "emblem_on_same_trait_counts",
         "interest_per_10_gold",
         "passive_xp_per_round",
         "reroll_cost",

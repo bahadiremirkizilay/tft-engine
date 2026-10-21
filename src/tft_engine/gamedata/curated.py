@@ -179,8 +179,10 @@ def apply_curated(
             champ = records.get("champions", {}).get(r["id"])
             if champ is None:
                 raise SchemaError(f"{where}: no such champion")
-            champ["role"] = r["role"]
-            champ["role_source_ids"] = list(r["source_ids"])
+            for c in records["champions"].values():
+                if c["id"] == r["id"] or c.get("variant_of") == r["id"]:
+                    c["role"] = r["role"]
+                    c["role_source_ids"] = list(r["source_ids"])
         if doc["records"]:
             notes.append(f"roles for {len(doc['records'])} champions from curated/champion_roles")
     return notes

@@ -136,8 +136,9 @@
     },
     "emblem_on_same_trait_counts": {
       "value": false,
-      "status": "unverified",
-      "source": "long-standing TFT rule: an emblem on a champion that already has its trait adds nothing; not checked for Set 18",
+      "status": "verified",
+      "source": "owner (in game, 2026-10-21): an emblem cannot be put on a champion that already has its trait; it has to go on another champion",
+      "source_ids": ["owner-ingame-2026-10-20"],
       "note": "Used by rules/traits.py when counting active traits."
     },
     "player_damage": {

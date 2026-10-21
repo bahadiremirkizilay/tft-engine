@@ -1,6 +1,511 @@
 {
-  "set": "set18",
-  "kind": "champion_roles",
-  "note": "Champion roles (Tank, Fighter, Marksman, Caster, Assassin, Specialist ...). The CommunityDragon export has a role for only 2 of the 65 Set 18 champions (Alune APCaster, Kobuko APTank). Roles affect items such as Adaptive Helm and the item-fit rules. Waiting for the owner's list (game client or MetaTFT unit page); each record needs source_ids.",
-  "records": []
+ "set": "set18",
+ "kind": "champion_roles",
+ "note": "Champion roles in the export's format (AD/AP + Tank, Fighter, Assassin, Marksman, Caster). The CommunityDragon export has roles only for Alune (APCaster) and Kobuko (APTank); those two are kept from the game data. The other 63 are estimates (source role-estimate-2026-10-21): League of Legends class, range, Health, starting mana and traits; the owner asked for estimates and corrects wrong ones. Lux forms take the base Lux role.",
+ "records": [
+  {
+   "id": "DA_18_Akali_AD",
+   "role": "ADAssassin",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Camille",
+   "role": "ADFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Cinderling18",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Karma18",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Leona",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Ornn",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Sentry",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Rakan",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_RekSai",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Varus",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Veigar",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Xayah",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Yorick",
+   "role": "ADFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Alistar",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Caitlyn",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Elise",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Gromp18_AP",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Kayle",
+   "role": "APMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_LeBlanc",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Murkwolf18",
+   "role": "ADFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Scuttlecrab18",
+   "role": "ADTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Sejuani",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Shen",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Teemo",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Warwick",
+   "role": "ADFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Yunara",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Azir",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Cassiopeia",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Diana",
+   "role": "APFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Fiddlesticks18",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Hecarim",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_KhaZix",
+   "role": "APAssassin",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_KogMaw18_AD",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Krug18",
+   "role": "ADTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_CrimsonRaptor18",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_MasterYi_AD",
+   "role": "ADAssassin",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Rammus",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Rengar",
+   "role": "ADAssassin",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Tristana",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Vi18",
+   "role": "APFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Ahri",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Amumu18",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Aphelios",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Brambleback18",
+   "role": "ADFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Ezreal",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Lillia",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Malphite",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Morgana",
+   "role": "APFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Nidalee18_AP",
+   "role": "ADAssassin",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Sentinel18",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Sett",
+   "role": "ADTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Sivir",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Soraka",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Zyra",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Ashe",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Draven18",
+   "role": "ADMarksman",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_ElderDragon",
+   "role": "ADFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_GnarSmall",
+   "role": "ADFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Ivern",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Kennen",
+   "role": "APFighter",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Lux18_Base",
+   "role": "APCaster",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_18_Maokai",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  },
+  {
+   "id": "DA_Taric18",
+   "role": "APTank",
+   "status": "unverified",
+   "source_ids": [
+    "role-estimate-2026-10-21"
+   ]
+  }
+ ]
 }

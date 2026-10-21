@@ -97,7 +97,7 @@ def test_emblems_add_a_trait_unless_the_holder_has_it():
     counts, notes = trait_counts(KB, [champ("Ornn")], {champ("Ornn"): [blossom]})
     assert counts["DA_18_Blossom"] == 1 and not notes
     counts, notes = trait_counts(KB, [champ("Sett")], {champ("Sett"): [blossom]})
-    assert counts["DA_18_Blossom"] == 1 and "adds nothing" in notes[0]
+    assert counts["DA_18_Blossom"] == 1 and "cannot go on" in notes[0]
     counts, _ = trait_counts(KB, [champ("Sett")], {champ("Sett"): [blossom]}, True)
     assert counts["DA_18_Blossom"] == 2
     with pytest.raises(ValueError, match="not on the board"):
@@ -128,7 +128,8 @@ def test_rows_with_the_same_minimum_are_told_apart_by_their_maximum():
 def test_profiles_come_from_ability_text_and_range():
     assert profile(KB, champ("Ahri")).tags == ("ap", "backline")
     assert profile(KB, champ("Draven")).tags == ("ad", "backline")
-    assert profile(KB, champ("Sett")).tags == ("ad", "frontline")
+    assert profile(KB, champ("Warwick")).tags == ("ad", "frontline")  # ADFighter
+    assert profile(KB, champ("Sett")).tags == ("tank", "frontline")  # estimated ADTank
     assert profile(KB, "DA_18_Kobuko").tags == ("tank", "frontline")  # role APTank in the export
 
 

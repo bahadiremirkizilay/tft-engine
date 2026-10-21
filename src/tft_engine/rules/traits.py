@@ -6,8 +6,8 @@ Counting rules, each with its source:
     the trait texts' "(N)" rows);
   * an Avatar (Set 18 Lux) counts its chosen trait twice (DA_18_LuxUniqueTrait
     text: "An Avatar's chosen Trait is counted twice for Trait bonuses");
-  * an emblem adds its trait to its holder; on a holder that already has the
-    trait it adds nothing (game data parameter ``emblem_on_same_trait_counts``).
+  * an emblem adds its trait to its holder; a champion that already has the trait
+    cannot hold it (owner, in game; game data parameter ``emblem_on_same_trait_counts``).
 Breakpoint values come from the knowledge base (with patch overrides).
 """
 
@@ -75,7 +75,10 @@ def trait_counts(
                 notes.append(f"{iid}: not an emblem of a known trait")
                 continue
             if t in own and not emblem_on_same_trait_counts:
-                notes.append(f"{kb.items[iid]['name']} on {holder} adds nothing (already has it)")
+                notes.append(
+                    f"{kb.items[iid]['name']} cannot go on {holder} (already has the trait); "
+                    "give it to another champion"
+                )
                 continue
             counts[t] = counts.get(t, 0) + 1
             own.add(t)

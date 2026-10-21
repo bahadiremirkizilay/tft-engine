@@ -30,6 +30,7 @@ SOURCE_TYPES = (
     "community_table",  # third-party odds/xp/pool tables
     "observation",  # the owner's in-game checks
     "player_report",  # something the owner said, not yet checked
+    "estimate",  # filled in by Claude from general game knowledge at the owner's request
 )
 COLLECTED_BY = ("auto", "manual")
 # Sources whose numbers depend on the site's own filters and patch window.
