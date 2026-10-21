@@ -234,11 +234,21 @@
     {
       "id": "owner-guide-comps-2026-10-21",
       "type": "guide_site",
-      "title": "Comp guide screenshots sent by the owner (Azir Rammus, Kha'Zix, Riftbeast Reroll, Draven Ezreal 9)",
+      "title": "TFT Academy comp guide screenshots sent by the owner (Azir Rammus, Kha'Zix, Riftbeast Reroll, Draven Ezreal 9)",
       "url": "https://github.com/bahadiremirkizilay/tft-engine",
       "retrieved_at": "2026-10-21",
       "collected_by": "manual",
       "note": "Guide pages with tier, playstyle, augments, early and flex units, item priority, positioning, alt builds, tips and stage-by-stage plans; some pages in Turkish. The site and page patch are not named in the screenshots; taken on the 18.5 release day."
+    },
+    {
+      "id": "tftacademy-comps-2026-10-21",
+      "type": "guide_site",
+      "title": "TFT Academy Set 18 comp tier list and comp pages (patch 18.4b)",
+      "url": "https://tftacademy.com/tierlist/comps",
+      "retrieved_at": "2026-10-21",
+      "collected_by": "manual",
+      "site_patch": "18.4b",
+      "note": "Read one page at a time on request (manual note, not scraping). The list page has 35 comps with tiers and trend badges; unit and item details are images, item names come from image file names; star markers on comp pages do not map cleanly, the owner's screenshots are used for stars."
     },
     {
       "id": "tactics-tools-units",

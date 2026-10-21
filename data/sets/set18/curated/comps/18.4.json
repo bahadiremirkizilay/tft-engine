@@ -81,11 +81,40 @@
    ],
    "source_ids": [
     "owner-guide-comps-2026-10-21",
-    "tactics-tools-comps-2026-10-21"
+    "tactics-tools-comps-2026-10-21",
+    "tftacademy-comps-2026-10-21"
    ],
    "status": "third_party_unverified",
    "last_reviewed": "2026-10-21",
-   "note": "Guide screenshot (tier S). 7 units at level 7. Carry items not read: the icons are too small."
+   "note": "TFT Academy (tier S, 3-cost reroll, easy, patch 18.4b). Stars from the owner's screenshot (the page's star markers did not map cleanly); carry items from the page's image file names (Zyra's Void Staff and Morellonomicon not clearly assigned, left out).",
+   "carry_items": [
+    {
+     "unit": "DA_18_Azir",
+     "builds": [
+      [
+       "DA_GuinsoosRageblade",
+       "DA_RabadonsDeathcap",
+       "DA_HextechGunblade"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Rammus",
+     "builds": [
+      [
+       "DA_Crownguard",
+       "DA_GargoyleStoneplate",
+       "DA_GargoyleStoneplate"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_GargoyleStoneplate",
+    "DA_Component_NeedlesslyLargeRod",
+    "DA_Component_RecurveBow",
+    "DA_Component_BFSword"
+   ]
   },
   {
    "id": "set18-18.4-elderwood-khazix-hecarim",

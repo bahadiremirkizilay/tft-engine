@@ -2,13 +2,13 @@
  "set": "set18",
  "kind": "meta_stats",
  "source_id": "owner-guide-comps-2026-10-21",
- "site": "guide (not named)",
- "patch": "18.4",
+ "site": "TFT Academy",
+ "patch": "18.4b",
  "rank_filter": "none (editorial)",
  "window": "guide page on 2026-10-21",
  "collected_at": "2026-10-21",
  "collected_by": "manual",
- "definition": "tier: the guide's own editorial label (S best, then A ...), an opinion, not a statistic; no games or placements.",
+ "definition": "tier: TFT Academy's editorial label (S, A, B, C), an opinion, not a statistic; no games or placements. Owner (2026-10-21): the tier mixes power with how hard the comp is to reach and is not a head-to-head ranking; e.g. Draven Ezreal 9 is A because finishing it (2-star 5-costs at level 9) is hard, but a finished board beats the S comps.",
  "comps": [],
  "tiers": [
   {

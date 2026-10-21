@@ -93,7 +93,8 @@ def test_owned_units_beat_a_single_matching_component():
     owned = [KB.champion_by_name(n)["id"] for n in ("Azir", "Teemo", "Veigar")]
     ranked = match_comps(KB, COMPS, owned, [item("Needlessly Large Rod")], A, BOOK)
     assert ranked[0].comp_id == "set18-18.4-sprykin-azir-rammus"
-    assert not ranked[0].items_known  # carry items not entered yet
+    assert ranked[0].items_known  # Azir's items from the TFT Academy page
+    assert any("Azir" in use for use in ranked[0].item_uses)  # the Rod goes to Azir
     assert ranked[0].tiers[0]["tier"] == "S" and "opinion" in ranked[0].tiers[0]["definition"]
 
 
