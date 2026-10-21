@@ -140,6 +140,15 @@ DEFAULTS: dict[str, Assumption] = {
     "sim_shop_trait_weight": Assumption(
         2.0, 1.0, 3.0, "extra weight of breakpoints that change the shop (5 Riftbeast, 5 Blossom)"
     ),
+    "sim_components_per_monster_round": Assumption(
+        2, 1, 3, "components dropped by each x-7 monster round (owner: many items drop)"
+    ),
+    "sim_carousel_round": Assumption(
+        4, description="round x-4 is a carousel giving one component (no champion modelled)"
+    ),
+    "sim_carry_needs_items_value": Assumption(
+        0.5, 0.25, 1.0, "share of a 4-5 cost carry's value when the held items do not suit it"
+    ),
     "sim_idle_holder_factor": Assumption(
         0.6, 0.4, 1.0, "item fit multiplier for a holder that adds to no active trait"
     ),

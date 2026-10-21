@@ -6,8 +6,9 @@ Simplified (assumptions, see ``assumptions.py`` sim_*):
   * combat: each board gets a power number (unit cost and stars, active trait
     steps, completed items) and wins with ``strength.win_prob``; the loser takes
     the set's player damage with a survivor count from the power gap;
-  * rounds x-1..x-6 are player combats, x-7 is a monster round that drops one
-    component; no carousel, no augments, no Wisps, no positioning;
+  * rounds x-1..x-6 are player combats, x-7 is a monster round that drops
+    components (sim_components_per_monster_round); x-4 is a carousel that only
+    gives one component; no augments, no Wisps, no positioning;
   * every player uses the same policy: build the best board from what it owns,
     buy units that improve it or complete a star-up (shop copies included), save
     gold on an early loss streak or with Coven, level on a curve, slow roll above
@@ -24,7 +25,7 @@ from dataclasses import dataclass, field, replace
 from typing import Any
 
 from tft_engine.decision.assumptions import AssumptionSet
-from tft_engine.decision.item_fit import item_fit
+from tft_engine.decision.item_fit import item_fit, profile
 from tft_engine.decision.strength import win_prob
 from tft_engine.gamedata import load_gamedata
 from tft_engine.gamedata.entities import load_knowledge
@@ -239,16 +240,35 @@ class GameSim:
         trait_value = (
             self.a["sim_trait_progress"] * self.a["sim_trait_bonus"] * max(before, 3.0) * progress
         )
+        carry_note = ""
+        if after > before + 1e-9 and not self._items_suit(p, uid):
+            # a 4-5 cost carry is only worth it when the held items can be built for it
+            after = before + (after - before) * self.a["sim_carry_needs_items_value"]
+            carry_note = "; held items do not suit it"
         if after > before + 1e-9 or trait_value > 0:
             parts = []
             if after > before + 1e-9:
                 parts.append(f"board power {before:.1f} -> {after:.1f}")
             if trait_value > 0:
                 parts.append(f"trait progress +{progress:g}")
-            return max(after - before, 0.0) + trait_value, "; ".join(parts)
+            return max(after - before, 0.0) + trait_value, "; ".join(parts) + carry_note
         if copies and copies % 3:
             return 0.3 * self.cost[uid], f"pair toward a star-up ({copies} copies)"
         return 0.0, ""
+
+    def _items_suit(self, p: Player, uid: str) -> bool:
+        """True unless uid is a 4-5 cost damage carry and nothing held can be built for it."""
+        tags = profile(self.kb, uid).tags
+        if self.cost[uid] < 4 or "tank" in tags or "utility" in tags:
+            return True
+        if len(p.components) + len(p.free_items) < 2:
+            return True  # too few items to judge yet
+        candidates = list(p.free_items) + [
+            o.item
+            for o in self.book.options(p.components)
+            if self.kb.items[o.item]["kind"] == "completed"
+        ]
+        return any(self.fit(uid, i) >= self.a["sim_item_min_fit"] for i in candidates)
 
     def _bench_count(self, p: Player) -> int:
         return len(p.state.units) - len(p.board)
@@ -566,10 +586,15 @@ class GameSim:
                 rec["players"][p.pid] = self.plan_round(p)
             pve = major == 1 or minor == PVE_ROUND
             nxt = self.next_stage(stage)
-            if pve:
+            if major >= 2 and minor == self.a["sim_carousel_round"]:
                 for p in alive:
                     comp = self._drop_component(p)
-                    rec["players"][p.pid]["combat"] = f"monster round: got {self.book.name(comp)}"
+                    rec["players"][p.pid]["carousel"] = self.book.name(comp)
+            if pve:
+                drops = 1 if major == 1 else int(self.a["sim_components_per_monster_round"])
+                for p in alive:
+                    got = [self.book.name(self._drop_component(p)) for _ in range(drops)]
+                    rec["players"][p.pid]["combat"] = f"monster round: got {', '.join(got)}"
                     self._income_pve(p, nxt)
             else:
                 order = [alive[i] for i in self.rng.permutation(len(alive))]
