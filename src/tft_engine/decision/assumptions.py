@@ -106,6 +106,18 @@ DEFAULTS: dict[str, Assumption] = {
         "unit_cost_exp) and share of held components (counted as at least min_components) "
         "that its carries' items use",
     ),
+    # --- simple game simulation (sim/), not real TFT combat -----------------
+    "sim_trait_bonus": Assumption(
+        0.06, 0.03, 0.10, "board power bonus per active trait breakpoint step (simulation)"
+    ),
+    "sim_item_bonus": Assumption(0.12, 0.06, 0.2, "power bonus per completed item on a unit"),
+    "sim_level_curve": Assumption(
+        {"2-1": 4, "2-5": 5, "3-2": 6, "3-5": 7, "4-2": 8, "5-2": 9},
+        description="stage at which the simulated player levels to at least this level",
+    ),
+    "sim_slow_roll_floor": Assumption(50, 30, 50, "slow roll stays above this gold"),
+    "sim_low_hp": Assumption(40, 25, 55, "below this HP the simulated player rolls deep"),
+    "sim_deep_roll_floor": Assumption(10, 0, 20, "gold kept when rolling deep"),
     # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
     "wisp_shop_prob": Assumption(
         None, 0.25, 1.0, "chance a shop shows a Wisp (None = set data: every other shop)"

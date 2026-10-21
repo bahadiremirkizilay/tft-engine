@@ -280,6 +280,20 @@ def _cmd_trio(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_sim(args: argparse.Namespace) -> int:
+    """Simulate one 8-player game where every player uses the engine's simple policy."""
+    from tft_engine.sim import simulate_game
+
+    result = simulate_game(args.seed, args.set, args.patch)
+    if args.out:
+        Path(args.out).write_text(
+            json.dumps(result, ensure_ascii=False, indent=1), encoding="utf-8"
+        )
+    places = ", ".join(f"P{p}: {n}" for p, n in sorted(result["placements"].items()))
+    print(f"seed {args.seed}: {len(result['rounds'])} rounds; placements {places}")
+    return 0
+
+
 def _cmd_data_diff(args: argparse.Namespace) -> int:
     old = load_knowledge(args.set, args.old)
     new = load_knowledge(args.set, args.new)
@@ -381,6 +395,13 @@ def main(argv: list[str] | None = None) -> int:
     p_trio.add_argument("--items", help="held completed items")
     p_trio.add_argument("--top", type=int, default=5)
     p_trio.set_defaults(func=_cmd_trio)
+
+    p_sim = sub.add_parser("sim", help="simulate one simple 8-player game (not real combat)")
+    p_sim.add_argument("--set", default="set18")
+    p_sim.add_argument("--patch", default="18.4")
+    p_sim.add_argument("--seed", type=int, default=0)
+    p_sim.add_argument("--out", help="write the round-by-round log as JSON")
+    p_sim.set_defaults(func=_cmd_sim)
 
     p_data = sub.add_parser("data", help="knowledge base: check or compare patches")
     data_sub = p_data.add_subparsers(dest="data_cmd", required=True)
