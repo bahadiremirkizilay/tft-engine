@@ -15,7 +15,7 @@ Son güncelleme: 2026-10-21 (akşam). Plan: [PLAN.md](PLAN.md) (v0.5, bilgi alty
 | **B3: modifier ve olay sistemi** | **Bitti (2026-10-21).** Ayrıntı aşağıda |
 | **B4: item ve trait yapısı** | **Bitti (2026-10-21).** Ayrıntı aşağıda; roller senden bekleniyor |
 | **B5: komp şablonları ve meta** | **Altyapı bitti (2026-10-21)**, 18.4 test verisiyle. 18.5 kompları ve istatistikleri veri oturunca (2–3 gün) girilecek |
-| B6: savaş ve dizilim arayüzü | Sıradaki |
+| **B6: tahta gücü ve savaş** | **İlk adım bitti (2026-10-21):** trait ve item'larla birim istatistikleri, istatistikten tahta gücü. Sıradaki: yetenek değerleri, dizilim |
 | B7: yama döngüsü + Set 19 provası | Başlamadı |
 | Ertelenenler: G0/M2 (Riot API), M4+ (ML), maç kayıtları, canlı kullanım | PLAN bölüm 9 |
 
@@ -84,6 +84,14 @@ Son güncelleme: 2026-10-21 (akşam). Plan: [PLAN.md](PLAN.md) (v0.5, bilgi alty
 - **Komutlar:** `tft-engine comps --units "Krug,Pebbles" --have "Recurve Bow"`, `tft-engine trio Pebbles --have "..." --items "..."`. `data check` şablon ve meta referanslarını da denetliyor.
 - **18.4 test verisi:** tactics.tools'tan 3 komp (18.4b, Diamond+; sayfa varsayılanı, senin kuralın Master+). Sayfa item'ları birimlere bağlamıyor; birim kartlarındaki 3 item kaydedildi, etiketsiz sayılar alınmadı.
 - **Bekleyen:** 18.5 kompları ve gerçek üçlü istatistikleri (MetaTFT, Master+), veri oturunca.
+
+## 18.5 ve B6'nın ilk adımı (2026-10-21)
+
+- **18.5:** CommunityDragon 16.21 içeri alındı (shop olasılıkları ve havuz 16.20 ile aynı). Dosya 18.4 notlarına yetişmiş; 18.5'ten eksik 22 değer `curated/overrides/18.5.json` içinde (Vadi Canavarı 7 %5, Taric zırh 70, Investment Strategy, Challenger's Grace …). Omega Riftbeast notla dosya arasında çelişkili (bekleyenler listesinde). Item istatistikleri (Radiant Blue Buff, Radiant Adaptive Helm) ve augment tier'ları 18.5 için üretildi.
+- **Birim istatistikleri** (`rules/board_stats.py`): temel istatistik × yıldız (`star_multipliers`, can ×1.8/3.24, AD ×1.5/2.25) + item'lar + trait değerleri. Trait'lerin istatistiğe eşlenmesi `curated/effects/traits.json` içinde (36 trait: modellenen, kısmen, modellenmeyen; zamana bağlı etkiler için ortalama varsayımı yazılı).
+- **Tahta gücü** (`decision/board_power.py`, varsayım): hasar/sn (saldırı + yetenek) ve dayanıklılık; güç = √(hasar × dayanıklılık). Yetenek hasarı yetenek değerleri gelene kadar maliyete göre tahmin. Tahta kurucu ve simülasyon bunu kullanıyor; karar motoru (P1) henüz eski sezgisel hesabı kullanıyor.
+- **Yetenek değerleri:** oyun dosyalarında yok (16.21 dahil). tactics.tools'un birim sayfası 18.1 değerlerinde kalmış; sahibin gönderdiği 12 şampiyonun değerleri `curated/abilities/18.4.json` içinde.
+- **Görülen:** amblem komplarında yüksek yüzde veren trait'ler (Adaptör, Tahripkâr) ve ucuz 2★ birimler öne çıkıyor; Cadılar Meclisi, Kadim Orman, İlkel, Zıpırgil gibi modellenmemiş trait'lerin amblemleri tahtaya bir şey katmıyor.
 
 ## Simülasyon ve tahta kurucu (2026-10-21, plan dışı deneme)
 
