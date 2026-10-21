@@ -116,7 +116,7 @@ def check_knowledge(
             ids = r.get("source_ids") or []
             if not ids:
                 rep.errors.append(f"{where}: no source_ids")
-            extra = list(r.get("stats_source_ids", []))
+            extra = list(r.get("stats_source_ids", [])) + list(r.get("role_source_ids", []))
             if isinstance(r.get("tier"), dict):
                 extra += r["tier"].get("source_ids", [])
             for o in r.get("overrides", []):

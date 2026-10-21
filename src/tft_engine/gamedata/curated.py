@@ -13,6 +13,7 @@ One set-level file describes how augments change the rules (B3); it holds no
 numbers of its own, only references to augment effect values:
 
     curated/effects/augments.json       augment models (modifiers and events)
+    curated/champion_roles.json         champion roles (Tank, Fighter, ...), missing in the export
 
 An override states the value it replaces (``old``). If the generated data does
 not hold that value, loading fails: either the notes were already applied by a
@@ -169,6 +170,19 @@ def apply_curated(
                 | {"note": r.get("note", "")}
             )
         notes.append(f"{len(doc['records'])} values replaced from curated/overrides/{patch}")
+
+    doc = _read(folder / "champion_roles.json")
+    if doc:
+        for r in doc["records"]:
+            where = f"champion_roles {r.get('id')}"
+            _check_record(r, where)
+            champ = records.get("champions", {}).get(r["id"])
+            if champ is None:
+                raise SchemaError(f"{where}: no such champion")
+            champ["role"] = r["role"]
+            champ["role_source_ids"] = list(r["source_ids"])
+        if doc["records"]:
+            notes.append(f"roles for {len(doc['records'])} champions from curated/champion_roles")
     return notes
 
 

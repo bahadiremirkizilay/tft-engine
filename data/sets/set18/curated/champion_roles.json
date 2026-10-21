@@ -1,0 +1,6 @@
+{
+  "set": "set18",
+  "kind": "champion_roles",
+  "note": "Champion roles (Tank, Fighter, Marksman, Caster, Assassin, Specialist ...). The CommunityDragon export has a role for only 2 of the 65 Set 18 champions (Alune APCaster, Kobuko APTank). Roles affect items such as Adaptive Helm and the item-fit rules. Waiting for the owner's list (game client or MetaTFT unit page); each record needs source_ids.",
+  "records": []
+}

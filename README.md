@@ -95,6 +95,16 @@ tft-engine data diff --set set18 18.4 18.5           # iki yama arasındaki fark
 - `data/sources.json`: Her kaynağın adresi, alınma tarihi ve (dosyalar için) sha256'sı. Importer, dosya kayıttaki hash'ten farklıysa çalışmaz.
 - `data/sets/<set>/calendar.json`: Yama notlarının tarihleri ve CommunityDragon sürümü ↔ yama eşlemesi. Başka bir yamanın döneminde alınmış veri o yamaya atanırsa kontrol uyarı verir.
 
+## Item ve trait sorguları (B4)
+
+```powershell
+tft-engine items --set set18 --patch 18.4 --have "B.F. Sword,B.F. Sword,Recurve Bow"   # bileşenlerle ne yapılır
+tft-engine traits --set set18 --patch 18.4 --board "Ahri,Sett,Lux (Blossom)" --emblem "Ornn:Blossom Emblem"
+tft-engine items-for Ahri --set set18 --patch 18.4                                       # kurala göre uygun item'lar
+```
+
+Item istatistikleri üçüncü taraf kaynaklı (tactics.tools, MetaTFT). Item uyumu bir kural tahminidir (varsayım), oyuncu istatistiği değildir.
+
 ## Yama verisi
 
 Her set için `data/sets/<set>/base.json` ve her yama için `data/sets/<set>/patches/<yama>.json` vardır. Yama dosyası sadece değişiklikleri (buff, nerf vb.) kaynağıyla birlikte içerir. Dosyası olmayan bir yama yüklenmez.

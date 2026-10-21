@@ -13,8 +13,8 @@ Son güncelleme: 2026-10-21. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 | **B1: kaynak kaydı + CommunityDragon importer** | **Bitti (2026-10-20)**, 18.4 için. Ayrıntı aşağıda |
 | **B2: ekonomi ve shop'u tamamlama** | **Bitti (2026-10-20).** Ayrıntı aşağıda |
 | **B3: modifier ve olay sistemi** | **Bitti (2026-10-21).** Ayrıntı aşağıda |
-| B4: item ve trait yapısı | Sıradaki |
-| B5: komp şablonları ve meta | Başlamadı |
+| **B4: item ve trait yapısı** | **Bitti (2026-10-21).** Ayrıntı aşağıda; roller senden bekleniyor |
+| B5: komp şablonları ve meta | Sıradaki |
 | B6: savaş ve dizilim arayüzü | Başlamadı |
 | B7: yama döngüsü + Set 19 provası | Başlamadı |
 | Ertelenenler: G0/M2 (Riot API), M4+ (ML), maç kayıtları, canlı kullanım | PLAN bölüm 9 |
@@ -65,6 +65,16 @@ Son güncelleme: 2026-10-21. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Senaryolarda:** Augment teklifi gerçek id ile verilebiliyor (`{"augment": "DA_LevelUp"}`). Sahip olunan augment'ler `state.augments`, bedava reroll'lar `state.free_rerolls`, aktif trait'ler `active_traits` alanında. Yeni senaryolar: `b3_real_augments_3_2`, `b3_wisp_first_three_star`.
 - **P1'e etkisi:** Kararların harfi hiçbir senaryoda değişmedi. Yeni Wisp modeli yüzünden o1 ve o5'te en iyi seçenek artık "önce Wisp al, sonra roll at"; n3'te roll seçeneği 3. sıradan 2. sıraya çıktı (hedefe ulaşma %37,8 → %44,0). Hasar düzeltmesi puanları değiştirmedi (aşama 2–6 hasarları aynı kaldı).
 
+## B4 sonucu (2026-10-21)
+
+- **Tarif tablosu** (`rules/items.py`): 10 bileşenin 55 çifti, her biri tek bir item veya amblem. "Bu bileşenlerle ne yapılır", "bütün bileşenleri hangi item'lara çevirebilirim", "bu item için ne eksik" sorguları. 21 amblemin trait'i adından eşleşiyor (Ravager Emblem → Ravager, `DA_18_Slayer`).
+- **Aktif trait hesabı** (`rules/traits.py`): Aynı şampiyon tek sayılır; Avatar (Lux) trait'ini iki kez sayar (trait metni); amblem, trait'i zaten olan şampiyonda bir şey eklemez (veride `emblem_on_same_trait_counts`, doğrulanmadı). Eşik değerleri yama düzeltmeleriyle (ör. Lunar 18.4). Senaryodaki birimler gerçek şampiyonsa aktif trait'ler artık tahtadan hesaplanıyor (ör. 5 Blossom → her shop'ta Wisp).
+- **Item istatistik toplamı:** Item'ların bonusları toplanır, en zayıf kaynak durumu gösterilir. Savaş hesabı yok, yüzdeler yüzde olarak kalır.
+- **Item uyumu** (`decision/item_fit.py`, varsayım): Şampiyon profili yetenek metnindeki AD/AP ikonundan ve menzilden çıkar (ön/arka sıra); rol tank ise tank profili. Ağırlıklar `assumptions.item_fit_weights`. Kural tahmini; oyuncu istatistiği değil.
+- **Komutlar:** `tft-engine items --have "B.F. Sword,Recurve Bow"`, `tft-engine traits --board "Ahri,Sett" --emblem "Ornn:Blossom Emblem"`, `tft-engine items-for Ahri`.
+- **Eksikler:** Roller (`curated/champion_roles.json` boş, senden bekleniyor). Yetenek sayıları oyun dosyalarında yok (KAYNAKLAR bölüm 2), `unknown`.
+- P1 senaryoları değişmedi.
+
 ## Araştırmanın önemli sonuçları (ayrıntı: KAYNAKLAR.md)
 
 - **Seviye 7 shop olasılığı:** Oyun içi tooltip 16/30/43/10/1 gösteriyor, repo bunu kullanıyor. Oyun dosyası (map22) ve resmi 17.1 notu 19/30/40/10/1 diyor; çelişki kaydı. Gerçek roll'ların hangisine uyduğu ancak çok sayıda shop sayılarak kanıtlanabilir.
@@ -75,7 +85,8 @@ Son güncelleme: 2026-10-21. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 
 ## Senden beklenenler
 
-1. **Tek maçlık oyun içi kontrol:** [templates/oyun_ici_kontrol.md](../templates/oyun_ici_kontrol.md) formunu doldur.
+1. **Şampiyon rolleri:** 65 Set 18 şampiyonunun rolü (Tank, Dövüşçü, Nişancı, Büyücü, Suikastçı ...). MetaTFT birim listesinden ekran görüntüsü yeterli.
+2. **Tek maçlık oyun içi kontrol:** [templates/oyun_ici_kontrol.md](../templates/oyun_ici_kontrol.md) formunu doldur.
 2. **Veri incelemesi:** İnceleme sayfasında (Set 18 Veri İncelemesi, claude.ai artifact) yanlış gördüğün augment, item, Wisp, şampiyon veya trait'i işaretle ve not bırak. Notları okuyup kaynaklı düzeltme olarak işlerim.
 3. **B5'te komp şablonlarını gözden geçirme:** Sitelerden girilen 10–15 kompun senin bilginle uyuşup uyuşmadığına bakman gerekecek.
 4. Etiketli senaryolar ve maç kayıtları şimdilik beklemede.

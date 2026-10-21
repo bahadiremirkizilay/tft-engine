@@ -75,6 +75,26 @@ DEFAULTS: dict[str, Assumption] = {
         },
         description="share of other copies per cost held by unseen boards, by stage",
     ),
+    # --- item fit (B4): how much each item stat suits a champion profile ------
+    "item_fit_weights": Assumption(
+        {
+            # profile -> stat -> weight; a stat counts when the item has it at all
+            "ad": {"ad_pct": 2, "as_pct": 1, "crit_pct": 1, "damage_amp_pct": 1, "ap": 0},
+            "ap": {"ap": 2, "mana_regen": 1, "damage_amp_pct": 1, "ad_pct": -1, "as_pct": 0},
+            "frontline": {
+                "hp": 1,
+                "armor": 1,
+                "mr": 1,
+                "durability_pct": 1,
+                "damage_reduction_pct": 1,
+                "omnivamp_pct": 1,
+            },
+            "backline": {"hp": 0, "armor": 0, "mr": 0, "durability_pct": 0},
+            # used instead of "ad"/"ap" when the champion's role is a tank
+            "tank": {"hp": 1, "armor": 1, "mr": 1, "durability_pct": 1, "mana_regen": 1},
+        },
+        description="item fit rule weights by champion profile (rule-based, not statistics)",
+    ),
     # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
     "wisp_shop_prob": Assumption(
         None, 0.25, 1.0, "chance a shop shows a Wisp (None = set data: every other shop)"

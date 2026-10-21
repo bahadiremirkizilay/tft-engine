@@ -134,6 +134,12 @@
       "source_ids": ["wiki-tft-gold"],
       "note": "Key = cost, list = gold for 1/2/3-star. Derived from the rule, not read from the game. The wiki's own example (3-star 1-cost sells for 5) contradicts the rule; check 2-star and 3-star values in game."
     },
+    "emblem_on_same_trait_counts": {
+      "value": false,
+      "status": "unverified",
+      "source": "long-standing TFT rule: an emblem on a champion that already has its trait adds nothing; not checked for Set 18",
+      "note": "Used by rules/traits.py when counting active traits."
+    },
     "player_damage": {
       "value": {
         "stage_damage": {"1": 0, "2": 2, "3": 5, "4": 8, "5": 10, "6": 12, "7": 17, "8": 150},

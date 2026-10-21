@@ -17,11 +17,15 @@ import sys
 from pathlib import Path
 
 from tft_engine.decision import Evaluator, load_scenario
+from tft_engine.decision.assumptions import AssumptionSet
+from tft_engine.decision.item_fit import best_items, profile
 from tft_engine.decision.report import render
 from tft_engine.experiments import load_records, replay, run_experiment
 from tft_engine.gamedata import load_gamedata
 from tft_engine.gamedata.entities import check_all, diff_knowledge, load_knowledge
 from tft_engine.prob import IndependentShopModel, RollQuery, Target, roll_down_exact
+from tft_engine.rules.items import RecipeBook
+from tft_engine.rules.traits import active_traits, trait_counts
 from tft_engine.state import PoolBelief, PoolState
 
 
@@ -140,6 +144,86 @@ def _cmd_data_augments(args: argparse.Namespace) -> int:
     return 0
 
 
+def _champion_id(kb, name_or_id: str) -> str:
+    if name_or_id in kb.champions:
+        return name_or_id
+    key = name_or_id.strip().lower()
+    hits = [c["id"] for c in kb.champions.values() if c["name"].lower() == key]
+    if len(hits) > 1:  # a name shared with variants: prefer the base champion
+        hits = [h for h in hits if not kb.champions[h].get("variant_of")]
+    if len(hits) != 1:
+        raise SystemExit(f"no single champion named {name_or_id!r}")
+    return hits[0]
+
+
+def _split(text: str) -> list[str]:
+    return [x.strip() for x in text.split(",") if x.strip()]
+
+
+def _cmd_items(args: argparse.Namespace) -> int:
+    """What the held components can build."""
+    kb = load_knowledge(args.set, args.patch)
+    book = RecipeBook(kb)
+    try:
+        have = [book.item_id(x) for x in _split(args.have)]
+    except KeyError as e:
+        raise SystemExit(str(e)) from None
+    print("held: " + ", ".join(book.name(c) for c in have))
+    print("one pair can make:")
+    for b in book.options(have):
+        stats = kb.items[b.item].get("stats", {})
+        stat_text = ", ".join(f"{k} {v:g}" for k, v in stats.items())
+        recipe = f"{book.name(b.pair[0])} + {book.name(b.pair[1])}"
+        print(f"  {book.name(b.item)} = {recipe}  [{stat_text}]")
+    builds = book.full_builds(have)
+    if len(have) > 2 and builds:
+        print("using every component:")
+        for items in builds:
+            print("  " + " + ".join(book.name(i) for i in items))
+    print("stats: third-party values (tactics.tools, MetaTFT), not checked in game")
+    return 0
+
+
+def _cmd_traits(args: argparse.Namespace) -> int:
+    """Active traits of a board."""
+    kb = load_knowledge(args.set, args.patch)
+    data = load_gamedata(args.set, args.patch)
+    book = RecipeBook(kb)
+    board = [_champion_id(kb, x) for x in _split(args.board)]
+    emblems: dict[str, list[str]] = {}
+    for spec in args.emblem:
+        holder, item = spec.split(":", 1)
+        emblems.setdefault(_champion_id(kb, holder), []).append(book.item_id(item))
+    same = data.param("emblem_on_same_trait_counts")
+    counts, notes = trait_counts(kb, board, emblems, bool(same.get()))
+    for t in active_traits(kb, counts):
+        if t.active:
+            nxt = f", next at {t.next_breakpoint}" if t.next_breakpoint else ""
+            print(f"  {t.name} {t.count} (active at {t.breakpoint}{nxt})")
+        else:
+            print(f"  {t.name} {t.count} (inactive, needs {t.next_breakpoint})")
+    for n in notes:
+        print(f"note: {n}")
+    print(f"emblem rule ({same.status}): {same.source}")
+    return 0
+
+
+def _cmd_items_for(args: argparse.Namespace) -> int:
+    """Items that suit a champion, by rule (assumption)."""
+    kb = load_knowledge(args.set, args.patch)
+    cid = _champion_id(kb, args.champion)
+    a = AssumptionSet()
+    prof = profile(kb, cid)
+    print(f"{kb.champions[cid]['name']}: {', '.join(prof.tags)} ({'; '.join(prof.reasons)})")
+    if prof.role is None:
+        print("  role unknown (not in the game data yet); tanks may get damage items")
+    done = [i["id"] for i in kb.items.values() if i["kind"] == "completed" and i["family"] == "DA"]
+    for f in best_items(kb, cid, a, done, args.top):
+        print(f"  {kb.items[f.item]['name']:24} {f.score:+.0f}  {'; '.join(f.reasons)}")
+    print("trust: assumption (rule weights in decision/assumptions.py item_fit_weights)")
+    return 0
+
+
 def _cmd_data_diff(args: argparse.Namespace) -> int:
     old = load_knowledge(args.set, args.old)
     new = load_knowledge(args.set, args.new)
@@ -198,6 +282,32 @@ def main(argv: list[str] | None = None) -> int:
     p_dec.add_argument("scenario", help="scenario JSON file")
     p_dec.add_argument("--no-sensitivity", action="store_true")
     p_dec.set_defaults(func=_cmd_decide)
+
+    p_items = sub.add_parser("items", help="what held components can build")
+    p_items.add_argument("--set", required=True)
+    p_items.add_argument("--patch", required=True)
+    p_items.add_argument(
+        "--have", required=True, help='component names, e.g. "B.F. Sword,Recurve Bow"'
+    )
+    p_items.set_defaults(func=_cmd_items)
+
+    p_traits = sub.add_parser("traits", help="active traits of a board")
+    p_traits.add_argument("--set", required=True)
+    p_traits.add_argument("--patch", required=True)
+    p_traits.add_argument(
+        "--board", required=True, help='champion names, e.g. "Ahri,Sett,Lux (Elderwood)"'
+    )
+    p_traits.add_argument(
+        "--emblem", action="append", default=[], help='holder:emblem, e.g. "Sett:Blossom Emblem"'
+    )
+    p_traits.set_defaults(func=_cmd_traits)
+
+    p_fit = sub.add_parser("items-for", help="items that suit a champion (rule-based)")
+    p_fit.add_argument("champion")
+    p_fit.add_argument("--set", required=True)
+    p_fit.add_argument("--patch", required=True)
+    p_fit.add_argument("--top", type=int, default=8)
+    p_fit.set_defaults(func=_cmd_items_for)
 
     p_data = sub.add_parser("data", help="knowledge base: check or compare patches")
     data_sub = p_data.add_subparsers(dest="data_cmd", required=True)

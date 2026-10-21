@@ -39,6 +39,7 @@ from tft_engine.prob import (
 from tft_engine.repro import derive_seed
 from tft_engine.rules import Rules
 from tft_engine.rules.modifiers import ModifierSet
+from tft_engine.rules.traits import trait_counts
 from tft_engine.state import GameState, PoolBelief, PoolState, UnitInstance
 
 EXACT, ASSUMPTION = "exact", "assumption"
@@ -153,6 +154,9 @@ class Evaluator:
         self.cp = {int(k): v for k, v in cp.items()}
         self.cc = {int(k): v for k, v in cc.items()}
         self.comp_units = [c.units for c in scenario.comps]
+        # active traits from the board when its units are real champions; the scenario's
+        # own active_traits (for placeholder units) take precedence
+        self.active_traits = dict(scenario.active_traits) or self._board_traits(scenario.state)
         # augments already picked keep changing the rules for every candidate
         self.owned = ModifierSet()
         self.owned_notes: list[str] = []
@@ -161,6 +165,17 @@ class Evaluator:
             if offer.evaluable:
                 self.owned = self.owned.merged(offer.modifiers)
             self.owned_notes += [f"owned {offer.id}: {n}" for n in offer.notes]
+
+    def _board_traits(self, state: GameState) -> dict[str, int]:
+        kb = _knowledge(self.sc.set_id, self.sc.patch)
+        if kb is None:
+            return {}
+        real = [u.unit_id for u in state.units if u.unit_id in kb.champions]
+        if not real:
+            return {}
+        same = bool(self.data.param("emblem_on_same_trait_counts").get())
+        counts, _ = trait_counts(kb, real, None, same)
+        return counts
 
     def offer(self, e) -> AugmentOffer:
         """An offer (hand-written Effect or real augment) in the common shape."""
@@ -216,7 +231,7 @@ class Evaluator:
         return IndependentShopModel.from_gamedata(
             self.data,
             wisp_prob=a["wisp_shop_prob"],
-            active_traits=self.sc.active_traits,
+            active_traits=self.active_traits,
             wisp_bought=wisp_bought,
         )
 
