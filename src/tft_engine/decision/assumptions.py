@@ -96,6 +96,8 @@ DEFAULTS: dict[str, Assumption] = {
             "utility": {"mana_regen": 2, "mana_effect": 2, "ap": 1},
             # added for Marksmen: their damage comes from attacks
             "marksman": {"as_pct": 1},
+            # fighters get damage stats at this share (owner: Nashor's belongs on a carry)
+            "fighter_damage_scale": 0.6,
         },
         description="item fit rule weights by champion profile (rule-based, not statistics)",
     ),
@@ -108,7 +110,7 @@ DEFAULTS: dict[str, Assumption] = {
     ),
     # --- simple game simulation (sim/), not real TFT combat -----------------
     "sim_trait_bonus": Assumption(
-        0.06, 0.03, 0.10, "board power bonus per active trait breakpoint step (simulation)"
+        0.10, 0.05, 0.15, "board power bonus per active trait breakpoint step (simulation)"
     ),
     "sim_item_bonus": Assumption(0.12, 0.06, 0.2, "power bonus per completed item on a unit"),
     "sim_level_curve": Assumption(
@@ -132,6 +134,15 @@ DEFAULTS: dict[str, Assumption] = {
     ),
     "sim_rolldown_floor": Assumption(20, 10, 30, "gold kept in the level 8 roll-down (from 4-2)"),
     "sim_excess_gold": Assumption(60, 50, 80, "above this gold, spend the excess on XP or rolls"),
+    "sim_trait_progress": Assumption(
+        1.0, 0.5, 2.0, "weight of trait progress among all owned units when buying"
+    ),
+    "sim_shop_trait_weight": Assumption(
+        2.0, 1.0, 3.0, "extra weight of breakpoints that change the shop (5 Riftbeast, 5 Blossom)"
+    ),
+    "sim_idle_holder_factor": Assumption(
+        0.6, 0.4, 1.0, "item fit multiplier for a holder that adds to no active trait"
+    ),
     # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
     "wisp_shop_prob": Assumption(
         None, 0.25, 1.0, "chance a shop shows a Wisp (None = set data: every other shop)"

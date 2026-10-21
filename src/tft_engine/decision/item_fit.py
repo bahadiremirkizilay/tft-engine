@@ -107,6 +107,8 @@ def item_fit(kb, champion_id: str, item_id: str, a: AssumptionSet) -> Fit:
         return Fit(item_id, 0.0, ("no stat record for this item",))
     typical = _typical(kb)
     score, reasons = 0.0, []
+    fighter = "fighter" in (prof.role or "").lower()
+    damage_stats = {"ad_pct", "ap", "as_pct", "crit_pct", "damage_amp_pct", "mana_regen"}
     for tag in prof.tags:
         for stat, value in stats.items():
             w = weights.get(tag, {}).get(stat, 0)
@@ -114,6 +116,8 @@ def item_fit(kb, champion_id: str, item_id: str, a: AssumptionSet) -> Fit:
                 continue
             ref = typical.get(stat) or abs(value) or 1.0
             scale = min(SCALE_MAX, max(SCALE_MIN, abs(value) / ref))
+            if fighter and stat in damage_stats and w > 0:
+                scale *= weights.get("fighter_damage_scale", 1.0)
             score += w * scale
             reasons.append(f"{stat} {w * scale:+.1f} ({tag})")
     return Fit(item_id, round(score, 2), tuple(reasons))

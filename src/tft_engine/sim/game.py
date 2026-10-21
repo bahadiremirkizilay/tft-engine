@@ -46,6 +46,7 @@ class Player:
     state: GameState
     items: dict[str, list[str]] = field(default_factory=dict)  # unit id -> completed items
     components: list[str] = field(default_factory=list)
+    free_items: list[str] = field(default_factory=list)  # completed items back from a sale
     board: list[str] = field(default_factory=list)  # unit ids on the board
     rolled_down: bool = False  # the level 8 roll-down is done
     alive: bool = True
@@ -75,6 +76,16 @@ class GameSim:
         ]
         self.log: list[dict[str, Any]] = []
         self._fit: dict[tuple[str, str], float] = {}
+        self._bp_cache: dict[tuple, tuple[float, list]] = {}
+        # breakpoints that change the shop, from the game data (wisp_slot, riftbeast_shop)
+        self.shop_breakpoints: dict[str, int] = {}
+        wisp = self.data.shop_rules.get("wisp_slot")
+        every = (wisp.value or {}).get("every_shop_with") if wisp is not None else None
+        if every:
+            self.shop_breakpoints[every["trait"]] = every["min_units"]
+        rift = self.data.shop_rules.get("riftbeast_shop")
+        if rift is not None and rift.value:
+            self.shop_breakpoints["DA_Riftbeast18"] = rift.value["min_trait_level"]
         self.unique_traits = {
             t["id"]
             for t in self.kb.traits.values()
@@ -127,6 +138,19 @@ class GameSim:
         return u.cost * STAR_POWER[u.star] * (1 + bonus)
 
     def board_power(self, p: Player, board: list[str]) -> tuple[float, list]:
+        key = (
+            tuple(sorted(board)),
+            tuple(sorted((u.unit_id, u.star) for u in p.state.units if u.unit_id in board)),
+            tuple(sorted((u, tuple(i)) for u, i in p.items.items() if u in board)),
+        )
+        hit = self._bp_cache.get(key)
+        if hit is None:
+            if len(self._bp_cache) > 200_000:
+                self._bp_cache.clear()
+            hit = self._bp_cache[key] = self._board_power(p, board)
+        return hit
+
+    def _board_power(self, p: Player, board: list[str]) -> tuple[float, list]:
         best: dict[str, UnitInstance] = {}
         for u in p.state.units:
             if u.unit_id in board and (u.unit_id not in best or u.star > best[u.unit_id].star):
@@ -148,14 +172,54 @@ class GameSim:
             steps += bps.index(t.breakpoint) + 1 if t.breakpoint in bps else 1
         return power * (1 + self.a["sim_trait_bonus"] * steps), traits
 
+    def _potential(self, counts: dict[str, int]) -> float:
+        """Trait steps reached among owned units, half a step one unit short of the next."""
+        total = 0.0
+        for tid, n in counts.items():
+            if tid in self.unique_traits:
+                continue
+            bps = sorted(
+                {b["min_units"] for b in self.kb.traits[tid]["breakpoints"] if b["min_units"]}
+            )
+            reached = [b for b in bps if b <= n]
+            nxt = [b for b in bps if b > n]
+            weight = 1.0
+            shop_bp = self.shop_breakpoints.get(tid)
+            for i, b in enumerate(reached):
+                w = self.a["sim_shop_trait_weight"] if shop_bp and b >= shop_bp else weight
+                total += w if i else weight
+            if nxt and n >= 2 and n == nxt[0] - 1:  # a lone unit is not "one away"
+                w = self.a["sim_shop_trait_weight"] if shop_bp and nxt[0] >= shop_bp else weight
+                total += 0.5 * w
+        return total
+
+    def _owned_counts(self, units: list[str]) -> dict[str, int]:
+        return trait_counts(self.kb, list(dict.fromkeys(units)), None, self.same_trait)[0]
+
     def best_board(self, p: Player) -> list[str]:
-        """Greedy: add the unit that raises board power most, up to the level."""
+        """Greedy fill up to the level, then swap board and bench units while power rises.
+
+        The swaps find traits that only open with two units together.
+        """
         owned = list(dict.fromkeys(u.unit_id for u in p.state.units))
         board: list[str] = []
         while len(board) < p.state.level and len(board) < len(owned):
             cand = [u for u in owned if u not in board]
             scored = [(self.board_power(p, board + [u])[0], u) for u in cand]
             board.append(max(scored)[1])
+        best = self.board_power(p, board)[0]
+        for _ in range(12):
+            bench = [u for u in owned if u not in board]
+            move = None
+            for i in range(len(board)):
+                for inn in bench:
+                    trial = board[:i] + [inn] + board[i + 1 :]
+                    power = self.board_power(p, trial)[0]
+                    if power > best + 1e-9:
+                        best, move = power, trial
+            if move is None:
+                break
+            board = move
         return board
 
     # --- the policy -------------------------------------------------------------
@@ -168,8 +232,20 @@ class GameSim:
         tp = Player(p.pid, trial, p.items, p.components)
         after = self.board_power(tp, self.best_board(tp))[0]
         copies = sum(u.copies for u in p.state.units if u.unit_id == uid)
-        if after > before + 1e-9:
-            return after - before, f"board power {before:.1f} -> {after:.1f}"
+        owned = [u.unit_id for u in p.state.units]
+        progress = self._potential(self._owned_counts(owned + [uid])) - self._potential(
+            self._owned_counts(owned)
+        )
+        trait_value = (
+            self.a["sim_trait_progress"] * self.a["sim_trait_bonus"] * max(before, 3.0) * progress
+        )
+        if after > before + 1e-9 or trait_value > 0:
+            parts = []
+            if after > before + 1e-9:
+                parts.append(f"board power {before:.1f} -> {after:.1f}")
+            if trait_value > 0:
+                parts.append(f"trait progress +{progress:g}")
+            return max(after - before, 0.0) + trait_value, "; ".join(parts)
         if copies and copies % 3:
             return 0.3 * self.cost[uid], f"pair toward a star-up ({copies} copies)"
         return 0.0, ""
@@ -177,15 +253,55 @@ class GameSim:
     def _bench_count(self, p: Player) -> int:
         return len(p.state.units) - len(p.board)
 
-    def _sell_weakest_bench(self, p: Player, notes: list[str]) -> None:
-        bench = [u for u in p.state.units if u.unit_id not in p.board]
+    def _sellable(self, p: Player) -> list[UnitInstance]:
+        """Bench 1-stars with no pair that add nothing to the board's active traits."""
+        copies = Counter(x.unit_id for x in p.state.units)
+        on_board = {
+            t.trait_id
+            for t in active_traits(self.kb, self._owned_counts(p.board))
+            if t.active and t.trait_id not in self.unique_traits
+        }
+        return [
+            u
+            for u in p.state.units
+            if u.unit_id not in p.board
+            and u.star == 1
+            and copies[u.unit_id] == 1
+            and not set(self.kb.champions[u.unit_id]["traits"]) & on_board
+        ]
+
+    def _sell_weakest_bench(self, p: Player, notes: list[str]) -> bool:
+        """Free a bench slot; False when every bench unit is worth keeping."""
+        bench = self._sellable(p)
         if not bench:
+            return False
+        weakest = min(bench, key=lambda u: (u.cost, u.unit_id))
+        self._sell(p, weakest, notes, "bench full")
+        return True
+
+    def _sell(self, p: Player, u: UnitInstance, notes: list[str], why: str) -> None:
+        """Sell one unit; when its last copy goes, its items return to the bench."""
+        p.state = self.rules.sell_unit(p.state, u.unit_id, u.star)
+        self._give_back(u.unit_id, u.star)
+        back = ""
+        if not any(x.unit_id == u.unit_id for x in p.state.units) and p.items.get(u.unit_id):
+            p.free_items += p.items.pop(u.unit_id)
+            back = "; its items return to the bench"
+        notes.append(f"sold {self.kb.champions[u.unit_id]['name']} {u.star}* ({why}{back})")
+
+    def _sell_for_interest(self, p: Player, notes: list[str]) -> None:
+        """Sell bench units with no pair and no trait partner when that reaches an interest step."""
+        reserve_cap = 50
+        if p.state.gold >= reserve_cap or p.state.stage.startswith("1-"):
             return
-        copies = Counter(u.unit_id for u in p.state.units)
-        weakest = min(bench, key=lambda u: (copies[u.unit_id] > 1, u.cost * STAR_POWER[u.star]))
-        p.state = self.rules.sell_unit(p.state, weakest.unit_id, weakest.star)
-        self._give_back(weakest.unit_id, weakest.star)
-        notes.append(f"sold {self.kb.champions[weakest.unit_id]['name']} {weakest.star}*")
+        junk = self._sellable(p)
+        value = sum(self.rules.sell_value(u.cost, u.star) for u in junk)
+        target = (p.state.gold // 10 + 1) * 10
+        if junk and p.state.gold + value >= target:
+            for u in sorted(junk, key=lambda x: x.cost):
+                if p.state.gold >= target:
+                    break
+                self._sell(p, u, notes, f"no pair, no trait partner; to reach {target} gold")
 
     def _econ_reserve(self, p: Player) -> int:
         """Gold to keep: the interest step already reached, up to the cap (50)."""
@@ -222,10 +338,17 @@ class GameSim:
             if value <= 0 or p.state.gold - self.cost[uid] < keep:
                 left.append(uid)
                 continue
+            if not (star_up or why.startswith("board power")) and self._bench_count(p) >= BENCH - 2:
+                left.append(uid)  # keep two bench slots for star-ups
+                continue
             if star_up:
                 why = "completes a star-up"
             if self._bench_count(p) >= BENCH:
-                self._sell_weakest_bench(p, notes)
+                # a full bench only makes room for a star-up or a stronger board
+                stronger = why.startswith("board power")
+                if not (star_up or stronger) or not self._sell_weakest_bench(p, notes):
+                    left.append(uid)
+                    continue
             got = self._take(uid)
             p.state = self.rules.buy_unit(p.state, got, self.cost[uid])
             p.board = self.best_board(p)
@@ -251,6 +374,26 @@ class GameSim:
             u: max(x.cost * STAR_POWER[x.star] for x in p.state.units if x.unit_id == u)
             for u in p.board
         }
+        counts = self._owned_counts(p.board)
+        active = {
+            t.trait_id
+            for t in active_traits(self.kb, counts)
+            if t.active and t.trait_id not in self.unique_traits
+        }
+        factor = {
+            u: 1.0
+            if set(self.kb.champions[u]["traits"]) & active
+            else self.a["sim_idle_holder_factor"]
+            for u in p.board
+        }
+        for item in list(p.free_items):  # items back from sold units go on first
+            spots = [u for u in p.board if len(p.items.get(u, [])) < 3]
+            if not spots:
+                break
+            holder = max(spots, key=lambda u: (self.fit(u, item) * factor[u], weight[u], u))
+            p.free_items.remove(item)
+            p.items.setdefault(holder, []).append(item)
+            notes.append(f"moved {self.book.name(item)} to {self.kb.champions[holder]['name']}")
         while len(p.components) >= 2:
             opts = [
                 o
@@ -258,7 +401,12 @@ class GameSim:
                 if self.kb.items[o.item]["kind"] == "completed"
             ]
             pairs = [
-                (self.fit(u, o.item) + 0.1 * weight[u], self.fit(u, o.item), o, u)
+                (
+                    self.fit(u, o.item) * factor[u] + 0.1 * weight[u],
+                    self.fit(u, o.item) * factor[u],
+                    o,
+                    u,
+                )
                 for o in opts
                 for u in p.board
                 if len(p.items.get(u, [])) < 3
@@ -350,6 +498,8 @@ class GameSim:
                 rolls += 1
             if rolls:
                 notes.append(f"rolled {rolls}x ({why})")
+        p.board = self.best_board(p)
+        self._sell_for_interest(p, notes)
         p.board = self.best_board(p)
         self._items(p, notes)
         power, traits = self.board_power(p, p.board)
