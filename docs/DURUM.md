@@ -1,6 +1,6 @@
 # Proje durumu
 
-Son güncelleme: 2026-10-21. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; kararlar en üstte). Kaynaklar: [KAYNAKLAR.md](KAYNAKLAR.md). Veri erişim ve izin raporu: [VERI_KAYNAKLARI.md](VERI_KAYNAKLARI.md). Önceki plan: [PLAN_v0.4.md](PLAN_v0.4.md).
+Son güncelleme: 2026-10-21 (akşam). Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; kararlar en üstte). Kaynaklar: [KAYNAKLAR.md](KAYNAKLAR.md). Veri erişim ve izin raporu: [VERI_KAYNAKLARI.md](VERI_KAYNAKLARI.md). Önceki plan: [PLAN_v0.4.md](PLAN_v0.4.md).
 
 ## Neredeyiz
 
@@ -84,6 +84,13 @@ Son güncelleme: 2026-10-21. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Komutlar:** `tft-engine comps --units "Krug,Pebbles" --have "Recurve Bow"`, `tft-engine trio Pebbles --have "..." --items "..."`. `data check` şablon ve meta referanslarını da denetliyor.
 - **18.4 test verisi:** tactics.tools'tan 3 komp (18.4b, Diamond+; sayfa varsayılanı, senin kuralın Master+). Sayfa item'ları birimlere bağlamıyor; birim kartlarındaki 3 item kaydedildi, etiketsiz sayılar alınmadı.
 - **Bekleyen:** 18.5 kompları ve gerçek üçlü istatistikleri (MetaTFT, Master+), veri oturunca.
+
+## Simülasyon ve tahta kurucu (2026-10-21, plan dışı deneme)
+
+- **Basit oyun simülasyonu** (`sim/`, `tft-engine sim --seed N --out log.json`): 8 oyuncu, gerçek havuz ve shop olasılıkları, ekonomi, yıldızlar, trait eşikleri, item tarifleri; savaş sezgisel. Politika sahibin tekrar yorumlarıyla geliştirildi (1. aşamada item yok, item en uygun birime, satınca item geri döner, kayıp serisi / Cadılar Meclisi ekonomisi, trait ilerlemesi ve shop'u değiştiren eşikler, faiz için satış, level 8 roll turu, item'a göre pahalı carry). Tekrar sayfası: TFT Motor Simülasyonu (claude.ai artifact).
+- **Tahta kurucu** (`decision/board_builder.py`): level ve amblem(ler) için motorun kendi kurallarıyla en güçlü tahtayı arar. Her amblem için sonuç sayfası: Amblem Kompları (claude.ai artifact).
+- **En büyük eksik:** Trait değerleri veride var ama güce çevrilmiyor; her eşik eşit sayılıyor. Bu yüzden komplar dağınık (birçok trait 2'de).
+- Sahibin gönderdiği Cadılar Meclisi / Mürver ağacı görüntüleri bir siteden: değerler 18.4 oyun dosyasından farklı (kayıp başına 20/25/35/70, ağaç +100 can); 18.5 notları bunları değiştirmiyor. Not olarak tutuldu, oyun dosyası değerleri geçerli.
 
 ## Araştırmanın önemli sonuçları (ayrıntı: KAYNAKLAR.md)
 
