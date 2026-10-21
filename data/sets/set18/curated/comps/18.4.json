@@ -2,11 +2,11 @@
  "set": "set18",
  "patch": "18.4",
  "kind": "comp_templates",
- "note": "Comp templates (B5). 18.4 data: unit lists, 3-star targets, early and flex units, level plans and tips from guide screenshots the owner sent on 2026-10-21 (site not named; page patch not shown, taken on the 18.5 release day); three comps also appear on tactics.tools (18.4b, Diamond+) with stats in curated/meta/18.4/tactics-tools.json. Carry items are left out until the owner names them (icons too small to read). Guide tiers live in curated/meta/18.4/guide.json, not here.",
+ "note": "Comp templates (B5) for 18.4: the S and A comps of the TFT Academy tier list (patch 18.4b), read one page at a time on 2026-10-21 under the owner's decision of that day; four of them also from the owner's screenshots, three also on tactics.tools (stats in curated/meta/18.4/tactics-tools.json). TFT Academy does not label which unit holds which item: holders follow the icon order. Stars: from the owner's screenshots or the page's per-unit star icons, else left out. Tiers live in curated/meta/18.4/guide.json.",
  "records": [
   {
    "id": "set18-18.4-sprykin-azir-rammus",
-   "name": "Azir Rammus (Sprykin Azir & Rammus)",
+   "name": "Azir Rammus",
    "style": "reroll_7",
    "reroll_cost": 3,
    "units": [
@@ -42,51 +42,6 @@
      "role": "core"
     }
    ],
-   "early_units": [
-    "DA_Karma18",
-    "DA_18_Yorick",
-    "DA_18_Yunara",
-    "DA_18_Azir"
-   ],
-   "flex_units": [
-    {
-     "id": "DA_18_Kennen",
-     "at_level": 8
-    },
-    {
-     "id": "DA_Lux18_Base",
-     "at_level": 9
-    }
-   ],
-   "level_plan": [
-    {
-     "stage": "3",
-     "action": "econ to level 7; roll a little at 6 only with key pairs"
-    },
-    {
-     "stage": "4-1",
-     "level": 7,
-     "action": "have 2* Azir and Rammus, then slow roll above 50 gold for 3 stars"
-    },
-    {
-     "stage": "after 3 stars",
-     "action": "level for more Summoner / Executioner"
-    }
-   ],
-   "tips": [
-    "Needs many Needlessly Large Rods: take item augments early, take rods from carousel.",
-    "Blackthorn sacrifice hex scales with gold value: 3* Teemo > 2* AP 4-cost without items > 2* Teemo > 2* Veigar.",
-    "Blackthorn Lux is a strong win condition.",
-    "Stage 2: angle with early Azir, ideally a Blossom opener for better Wisps."
-   ],
-   "source_ids": [
-    "owner-guide-comps-2026-10-21",
-    "tactics-tools-comps-2026-10-21",
-    "tftacademy-comps-2026-10-21"
-   ],
-   "status": "third_party_unverified",
-   "last_reviewed": "2026-10-21",
-   "note": "TFT Academy (tier S, 3-cost reroll, easy, patch 18.4b). Stars from the owner's screenshot (the page's star markers did not map cleanly); carry items from the page's image file names (Zyra's Void Staff and Morellonomicon not clearly assigned, left out).",
    "carry_items": [
     {
      "unit": "DA_18_Azir",
@@ -114,11 +69,59 @@
     "DA_Component_NeedlesslyLargeRod",
     "DA_Component_RecurveBow",
     "DA_Component_BFSword"
-   ]
+   ],
+   "early_units": [
+    "DA_Karma18",
+    "DA_18_Yorick",
+    "DA_18_Yunara",
+    "DA_18_Azir"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_18_Kennen",
+     "at_level": 8
+    },
+    {
+     "id": "DA_Lux18_Base",
+     "at_level": 9
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "angle with early Azir, ideally a Blossom opener; take rods from carousel"
+    },
+    {
+     "stage": "3",
+     "action": "econ to 7; roll a little at 6 only with key pairs"
+    },
+    {
+     "stage": "4-1",
+     "level": 7,
+     "action": "have 2* Azir and Rammus, then slow roll above 50 gold for 3 stars"
+    },
+    {
+     "stage": "after 3 stars",
+     "action": "level for more Summoner / Executioner"
+    }
+   ],
+   "tips": [
+    "Needs many rods: take item augments early.",
+    "Blackthorn sacrifice scales with gold value: 3* Teemo > 2* AP 4-cost without items > 2* Teemo > 2* Veigar.",
+    "Blackthorn Lux is a strong win condition."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21",
+    "owner-guide-comps-2026-10-21",
+    "tactics-tools-comps-2026-10-21"
+   ],
+   "note": "TFT Academy, 3-cost reroll (easy). Stars from the owner's screenshot. Zyra's Void Staff and Morellonomicon not clearly assigned, left out.",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
   },
   {
    "id": "set18-18.4-elderwood-khazix-hecarim",
-   "name": "Kha'Zix reroll (Elderwood Kha'Zix & Hecarim)",
+   "name": "Lunarwood Kha'Zix",
    "style": "reroll_7",
    "reroll_cost": 3,
    "units": [
@@ -158,6 +161,54 @@
      "role": "core"
     }
    ],
+   "carry_items": [
+    {
+     "unit": "DA_18_KhaZix",
+     "builds": [
+      [
+       "DA_HandOfJustice",
+       "DA_HandOfJustice",
+       "DA_RabadonsDeathcap"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Diana",
+     "builds": [
+      [
+       "DA_JeweledGauntlet",
+       "DA_HandOfJustice",
+       "DA_IonicSpark"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Hecarim",
+     "builds": [
+      [
+       "DA_WarmogsArmor",
+       "DA_GargoyleStoneplate",
+       "DA_SpiritVisage"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Ezreal",
+     "builds": [
+      [
+       "DA_RedBuff",
+       "DA_SpearOfShojin",
+       "DA_Deathblade"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_HandOfJustice",
+    "DA_Component_NeedlesslyLargeRod",
+    "DA_Component_TearOfTheGoddess",
+    "DA_Component_GiantsBelt"
+   ],
    "early_units": [
     "DA_18_Ornn",
     "DA_18_Alistar",
@@ -170,8 +221,7 @@
      "at_level": 9
     },
     {
-     "id": "DA_18_GnarSmall",
-     "at_level": 8
+     "id": "DA_18_GnarSmall"
     },
     {
      "id": "DA_Taric18",
@@ -181,35 +231,35 @@
    "level_plan": [
     {
      "stage": "2",
-     "action": "slam items aggressively on Kha'Zix, move them later"
+     "action": "slam items on Kha'Zix (Spark, Shojin are fine early), move them later"
     },
     {
      "stage": "3",
-     "action": "econ to level 7; roll a little at 6 only with key pairs"
+     "action": "econ to 7; roll a little at 6 only with key pairs"
     },
     {
      "stage": "4",
      "level": 7,
-     "action": "slow roll at 7 for the 3-cost 3 stars"
+     "action": "slow roll on 7 for the 3-cost 3 stars"
     }
    ],
    "tips": [
-    "With Hand of Justice first go Executioner > Ravager; with AP / Mana / tempo items go Ravager > Executioner; then Spellweaver > Rapidfire with the last evolutions.",
+    "HoJ first: Executioner > Ravager; AP / Mana / tempo items: Ravager > Executioner; then Spellweaver > Rapidfire.",
     "3rd Executioner / Lux / Ivern as the level cap.",
-    "Give leftover AP items to Diana.",
-    "Elderwood plants (Lifebloom, Stonebark Tree) on the board."
+    "Leftover AP items to Diana."
    ],
    "source_ids": [
+    "tftacademy-comps-2026-10-21",
     "owner-guide-comps-2026-10-21",
     "tactics-tools-comps-2026-10-21"
    ],
+   "note": "TFT Academy, 3-cost reroll (medium). Stars from the owner's screenshot. Item holders follow the icon order on the page (not labeled there).",
    "status": "third_party_unverified",
-   "last_reviewed": "2026-10-21",
-   "note": "Guide screenshot (tier S, Turkish page title 'Ay Ağacı Kha'Zix'). Carry items not read: the icons are too small."
+   "last_reviewed": "2026-10-21"
   },
   {
    "id": "set18-18.4-riftbeast-pebbles-krug",
-   "name": "Riftbeast Reroll (Pebbles & Krug)",
+   "name": "Riftbeast Reroll",
    "style": "reroll_7",
    "reroll_cost": 1,
    "units": [
@@ -250,6 +300,44 @@
      "role": "core"
     }
    ],
+   "carry_items": [
+    {
+     "unit": "DA_Cinderling18",
+     "builds": [
+      [
+       "DA_InfinityEdge",
+       "DA_BlueBuff",
+       "DA_LastWhisper"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Sentry",
+     "builds": [
+      [
+       "DA_BlueBuff",
+       "DA_RabadonsDeathcap",
+       "DA_JeweledGauntlet"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_Krug18",
+     "builds": [
+      [
+       "DA_WarmogsArmor",
+       "DA_GargoyleStoneplate",
+       "DA_SpiritVisage"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_LastWhisper",
+    "DA_Component_BFSword",
+    "DA_Component_TearOfTheGoddess",
+    "DA_Component_GiantsBelt"
+   ],
    "early_units": [
     "DA_Cinderling18",
     "DA_18_Sentry",
@@ -273,12 +361,12 @@
     {
      "stage": "3-5",
      "level": 7,
-     "action": "save econ and go 7 for 7 Riftbeast (4-1 if poor); use the 5-Riftbeast shops to finish 3 stars"
+     "action": "go 7 for 7 Riftbeast (4-1 if poor); finish 3 stars with the 5-Riftbeast shops"
     },
     {
      "stage": "4",
      "level": 8,
-     "action": "after the 3 stars, level to 8 and field 7 Riftbeast; at 9 replace 1* Ravagers with Elder Dragon"
+     "action": "after the 3 stars level to 8; at 9 replace 1* Ravagers with Elder Dragon"
     }
    ],
    "tips": [
@@ -287,12 +375,13 @@
     "Alpha Mark: Cinderling early, Scuttlecrab late."
    ],
    "source_ids": [
+    "tftacademy-comps-2026-10-21",
     "owner-guide-comps-2026-10-21",
     "tactics-tools-comps-2026-10-21"
    ],
+   "note": "TFT Academy, 1-cost reroll (easy). Stars from the owner's screenshot. Brambleback holds Thief's Gloves. Item holders follow the icon order on the page (not labeled there).",
    "status": "third_party_unverified",
-   "last_reviewed": "2026-10-21",
-   "note": "Guide screenshot (tier A, 1-cost reroll, easy). Carry items not read: the icons are too small."
+   "last_reviewed": "2026-10-21"
   },
   {
    "id": "set18-18.4-draven-ezreal-9",
@@ -336,6 +425,44 @@
      "role": "core"
     }
    ],
+   "carry_items": [
+    {
+     "unit": "DA_Draven18",
+     "builds": [
+      [
+       "DA_KrakensFury",
+       "DA_GuinsoosRageblade",
+       "DA_Deathblade"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Ezreal",
+     "builds": [
+      [
+       "DA_SpearOfShojin",
+       "DA_LastWhisper",
+       "DA_Deathblade"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Maokai",
+     "builds": [
+      [
+       "DA_WarmogsArmor",
+       "DA_GargoyleStoneplate",
+       "DA_BrambleVest"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_GuinsoosRageblade",
+    "DA_LastWhisper",
+    "DA_KrakensFury",
+    "DA_Component_GiantsBelt"
+   ],
    "early_units": [
     "DA_18_RekSai",
     "DA_18_Alistar",
@@ -374,14 +501,963 @@
    ],
    "tips": [
     "Only from an early win streak and lots of gold.",
-    "Best Draven quests: damage for gold; avoid the 10k damage in one round (can get trapped)."
+    "Best Draven quests: damage for gold; avoid the 10k damage in one round (can get trapped).",
+    "Owner: tier A because it is hard to finish; with the 5-costs at 2 stars on level 9 it beats the S comps."
    ],
    "source_ids": [
+    "tftacademy-comps-2026-10-21",
     "owner-guide-comps-2026-10-21"
    ],
+   "note": "TFT Academy, fast 9 (hard). Gnar and Kennen hold Thief's Gloves. Item holders follow the icon order on the page (not labeled there).",
    "status": "third_party_unverified",
-   "last_reviewed": "2026-10-21",
-   "note": "Guide screenshot (tier A, fast 9, hard). Carry items not read: the icons are too small."
+   "last_reviewed": "2026-10-21"
+  },
+  {
+   "id": "set18-18.4-ahri-morgana",
+   "name": "Ahri Morgana",
+   "style": "fast8",
+   "units": [
+    {
+     "id": "DA_18_Ahri",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Morgana",
+     "role": "carry"
+    },
+    {
+     "id": "DA_Sentinel18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Sett",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Krug18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Karma18",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Sentry",
+     "role": "core"
+    },
+    {
+     "id": "DA_Taric18",
+     "role": "tank"
+    }
+   ],
+   "carry_items": [
+    {
+     "unit": "DA_18_Ahri",
+     "builds": [
+      [
+       "DA_JeweledGauntlet",
+       "DA_StrikersFlail",
+       "DA_SpearOfShojin"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_Sentinel18",
+     "builds": [
+      [
+       "DA_DragonsClaw",
+       "DA_BrambleVest",
+       "DA_WarmogsArmor"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_SpearOfShojin",
+    "DA_JeweledGauntlet",
+    "DA_Component_GiantsBelt",
+    "DA_Component_TearOfTheGoddess"
+   ],
+   "early_units": [
+    "DA_18_Rakan",
+    "DA_18_Yorick",
+    "DA_Karma18",
+    "DA_18_Yunara"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_18_Hecarim"
+    },
+    {
+     "id": "DA_18_Alune"
+    },
+    {
+     "id": "DA_18_Ashe",
+     "at_level": 9
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "3 Blossom early, win streak; Karma holds Ahri's items; itemize Yorick or another 2* tank"
+    },
+    {
+     "stage": "3",
+     "action": "flex in Blossom / Spellweavers; any frontline (Juggernaut, Defender, Vanguard)"
+    },
+    {
+     "stage": "4",
+     "level": 8,
+     "action": "level and roll for Ahri, Morgana and the frontline; once stable go 9 for Lux"
+    }
+   ],
+   "tips": [
+    "Morgana holds utility items (Void Staff, Morellonomicon).",
+    "Tank Sentinel or Sett.",
+    "Best emblem: Invoker on Ahri.",
+    "Late game cap with Ashe + Alune over Karma."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21"
+   ],
+   "note": "TFT Academy, 4-cost fast 8 (medium). Morgana's two items (Void Staff, Morellonomicon) are not a full trio, left out. Item holders follow the icon order on the page (not labeled there).",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
+  },
+  {
+   "id": "set18-18.4-elderwood-executioners",
+   "name": "Elderwood Executioners",
+   "style": "fast8",
+   "units": [
+    {
+     "id": "DA_18_Ezreal",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Soraka",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Hecarim",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Ornn",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Fiddlesticks18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Kennen",
+     "role": "core"
+    },
+    {
+     "id": "DA_Taric18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_GnarSmall",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Lux_Elderwood",
+     "role": "core"
+    }
+   ],
+   "carry_items": [
+    {
+     "unit": "DA_18_Ezreal",
+     "builds": [
+      [
+       "DA_SpearOfShojin",
+       "DA_LastWhisper",
+       "DA_Deathblade"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Soraka",
+     "builds": [
+      [
+       "DA_SpearOfShojin",
+       "DA_RabadonsDeathcap",
+       "DA_18_EmblemElderwood"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Hecarim",
+     "builds": [
+      [
+       "DA_DragonsClaw",
+       "DA_BrambleVest",
+       "DA_SunfireCape"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_SpearOfShojin",
+    "DA_Component_BFSword",
+    "DA_Component_SparringGloves",
+    "DA_Component_RecurveBow"
+   ],
+   "early_units": [
+    "DA_18_Ornn",
+    "DA_18_Xayah",
+    "DA_18_Shen",
+    "DA_18_LeBlanc"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_18_LeBlanc"
+    },
+    {
+     "id": "DA_18_Ivern"
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "upgraded Elderwood opener, slam items on LeBlanc or Xayah (LeBlanc farms copies)"
+    },
+    {
+     "stage": "3",
+     "action": "add Elderwood with Spellweavers; AD items to Xayah / Rapidfires"
+    },
+    {
+     "stage": "4",
+     "level": 8,
+     "action": "level to 8 for Ezreal and Soraka with 7 Elderwood; do not roll to 0, keep gold for 9"
+    }
+   ],
+   "tips": [
+    "Mainly strong with the Elderwood emblem; look for Elderwood Lux.",
+    "3 Executioner is a big spike.",
+    "With Elderwood Lux you can chase 9 Elderwood."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21"
+   ],
+   "note": "TFT Academy, 4-cost fast 8 (medium); Lux is the Elderwood form. Gnar holds Thief's Gloves. Item holders follow the icon order on the page (not labeled there).",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
+  },
+  {
+   "id": "set18-18.4-aphelios-nidalee",
+   "name": "Aphelios Nidalee",
+   "style": "fast8",
+   "units": [
+    {
+     "id": "DA_18_Aphelios",
+     "role": "carry"
+    },
+    {
+     "id": "DA_Nidalee18_AP",
+     "role": "carry"
+    },
+    {
+     "id": "DA_Sentinel18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Amumu18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Varus",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Diana",
+     "role": "core"
+    },
+    {
+     "id": "DA_KogMaw18_AD",
+     "role": "core"
+    },
+    {
+     "id": "DA_Vi18",
+     "role": "core"
+    }
+   ],
+   "carry_items": [
+    {
+     "unit": "DA_18_Aphelios",
+     "builds": [
+      [
+       "DA_InfinityEdge",
+       "DA_GuinsoosRageblade",
+       "DA_KrakensFury"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_Nidalee18_AP",
+     "builds": [
+      [
+       "DA_SpearOfShojin",
+       "DA_SteraksGage",
+       "DA_InfinityEdge"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_Sentinel18",
+     "builds": [
+      [
+       "DA_ProtectorsVow",
+       "DA_ProtectorsVow",
+       "DA_WarmogsArmor"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_Component_BFSword",
+    "DA_Component_SparringGloves",
+    "DA_Component_ChainVest",
+    "DA_Component_RecurveBow"
+   ],
+   "early_units": [
+    "DA_18_Akali_AD",
+    "DA_18_Camille",
+    "DA_18_Leona",
+    "DA_18_Shen"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_Scuttlecrab18"
+    },
+    {
+     "id": "DA_Brambleback18"
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "AD tempo win streak around Rapidfires; slam aggressively"
+    },
+    {
+     "stage": "3",
+     "action": "take an item augment if none yet; Mama Beak can carry with Riftbeasts"
+    },
+    {
+     "stage": "4",
+     "level": 8,
+     "action": "level to 8 and roll heavily for Aphelios and the 4-costs; 9 only once they are upgraded"
+    }
+   ],
+   "tips": [
+    "Nidalee on the weak side for a quick kill, then jump the backline.",
+    "Amumu or Sentinel 2* main tank (often contested: whichever upgrades).",
+    "Kog'Maw gives free Shred and Sunder."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21"
+   ],
+   "note": "TFT Academy, 4-cost fast 8 (medium). Item holders follow the icon order on the page (not labeled there).",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
+  },
+  {
+   "id": "set18-18.4-solar-karma-reroll",
+   "name": "Solar Karma Reroll",
+   "style": "reroll_6",
+   "reroll_cost": 2,
+   "units": [
+    {
+     "id": "DA_Karma18",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Yunara",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Sejuani",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_LeBlanc",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Leona",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Azir",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Kayle",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Yorick",
+     "role": "core"
+    }
+   ],
+   "carry_items": [
+    {
+     "unit": "DA_Karma18",
+     "builds": [
+      [
+       "DA_BlueBuff",
+       "DA_RabadonsDeathcap",
+       "DA_JeweledGauntlet"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Yunara",
+     "builds": [
+      [
+       "DA_Deathblade",
+       "DA_SpearOfShojin",
+       "DA_LastWhisper"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Sejuani",
+     "builds": [
+      [
+       "DA_GargoyleStoneplate",
+       "DA_WarmogsArmor",
+       "DA_GargoyleStoneplate"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_JeweledGauntlet",
+    "DA_GargoyleStoneplate",
+    "DA_Component_TearOfTheGoddess",
+    "DA_Component_RecurveBow"
+   ],
+   "early_units": [
+    "DA_Karma18",
+    "DA_18_Yorick",
+    "DA_18_LeBlanc",
+    "DA_18_Yunara"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_Fiddlesticks18"
+    },
+    {
+     "id": "DA_18_Soraka"
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "slam items for Karma, win streak with Blossom; tank Yorick / Juggernaut until Sejuani 2"
+    },
+    {
+     "stage": "3",
+     "action": "look for an econ/XP Wisp every round when rolling; Karma 3 > Sejuani 3 > Yorick 3 > LeBlanc / Yunara 3"
+    },
+    {
+     "stage": "4",
+     "action": "finish the 3 stars, then level for 3 Solar; leftover AP items on LeBlanc"
+    }
+   ],
+   "tips": [
+    "3* Karma + 3 Blossom + LeBlanc early for clone copies.",
+    "Add 3 Solar after the 3 stars (Leona / Kayle optional)."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21"
+   ],
+   "note": "TFT Academy (page slug solara-yunara), 2-cost reroll (medium); the roll level is not stated, 6 is assumed for a 2-cost reroll. Karma 3* per the tips. Item holders follow the icon order on the page (not labeled there).",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
+  },
+  {
+   "id": "set18-18.4-defender-cassio",
+   "name": "Defender Cassio",
+   "style": "reroll_7",
+   "reroll_cost": 3,
+   "units": [
+    {
+     "id": "DA_18_Cassiopeia",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_Fiddlesticks18",
+     "role": "tank",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Rammus",
+     "role": "tank",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Leona",
+     "role": "core",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Shen",
+     "role": "core",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Ornn",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Lillia",
+     "role": "tank"
+    }
+   ],
+   "carry_items": [
+    {
+     "unit": "DA_18_Cassiopeia",
+     "builds": [
+      [
+       "DA_SpearOfShojin",
+       "DA_HextechGunblade",
+       "DA_ArchangelsStaff"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_Fiddlesticks18",
+     "builds": [
+      [
+       "DA_TitansResolve",
+       "DA_AdaptiveHelm",
+       "DA_Crownguard"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Rammus",
+     "builds": [
+      [
+       "DA_IonicSpark",
+       "DA_SunfireCape",
+       "DA_SteadfastHeart"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_SpearOfShojin",
+    "DA_HextechGunblade",
+    "DA_Component_ChainVest",
+    "DA_Component_NeedlesslyLargeRod"
+   ],
+   "early_units": [
+    "DA_Karma18",
+    "DA_18_Leona",
+    "DA_18_Ornn",
+    "DA_18_LeBlanc"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_18_Rengar"
+    },
+    {
+     "id": "DA_18_Soraka",
+     "at_level": 8
+    },
+    {
+     "id": "DA_18_Alune",
+     "at_level": 8
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "strong AP opener (Invokers), or Coven lose streak"
+    },
+    {
+     "stage": "3",
+     "action": "win streak: 6 at 3-2, 7 at 3-5 and save; lose streak with Coven: kill units to keep HP"
+    },
+    {
+     "stage": "4",
+     "level": 7,
+     "action": "cash out / roll on 7 for Cassio 2 and Fiddle 2, then econ and slow roll above 50 for 3 stars"
+    },
+    {
+     "stage": "after 3 stars",
+     "level": 8,
+     "action": "level to 8 for a duo carry (any 4 or 5-cost AP carry)"
+    }
+   ],
+   "tips": [
+    "Very BIS dependent; can play from Coven cashout or Ornn 3 for Artifacts.",
+    "Always play 6 Defender.",
+    "Titan's on Fiddlesticks (no other use for Recurve Bow)."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21"
+   ],
+   "note": "TFT Academy, 3-cost reroll (easy). Stars from the page's per-unit star icons. Lillia holds Thief's Gloves. Item holders follow the icon order on the page (not labeled there).",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
+  },
+  {
+   "id": "set18-18.4-elderwood-veigar",
+   "name": "Elderwood Veigar",
+   "style": "reroll_6",
+   "reroll_cost": 1,
+   "units": [
+    {
+     "id": "DA_18_Veigar",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Ornn",
+     "role": "tank",
+     "star": 3
+    },
+    {
+     "id": "DA_18_RekSai",
+     "role": "tank",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Alistar",
+     "role": "tank",
+     "star": 3
+    },
+    {
+     "id": "DA_18_LeBlanc",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Cassiopeia",
+     "role": "core"
+    },
+    {
+     "id": "DA_Fiddlesticks18",
+     "role": "tank"
+    }
+   ],
+   "carry_items": [
+    {
+     "unit": "DA_18_Veigar",
+     "builds": [
+      [
+       "DA_JeweledGauntlet",
+       "DA_BlueBuff",
+       "DA_HextechGunblade"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Ornn",
+     "builds": [
+      [
+       "DA_WarmogsArmor",
+       "DA_Crownguard",
+       "DA_GargoyleStoneplate"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_BlueBuff",
+    "DA_JeweledGauntlet",
+    "DA_GargoyleStoneplate",
+    "DA_Component_GiantsBelt"
+   ],
+   "early_units": [
+    "DA_18_Kobuko",
+    "DA_18_RekSai",
+    "DA_18_Veigar",
+    "DA_18_Teemo"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_18_Kobuko",
+     "at_level": 8
+    },
+    {
+     "id": "DA_18_Ahri",
+     "at_level": 8
+    },
+    {
+     "id": "DA_18_Alune",
+     "at_level": 8
+    },
+    {
+     "id": "DA_18_GnarSmall",
+     "at_level": 9
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "only with early upgrades so Veigar snowballs stacks; Veigar items first"
+    },
+    {
+     "stage": "3",
+     "action": "7+ copies of Veigar and Ornn: roll until 3 stars; 3-4 copies: slow roll above 50"
+    },
+    {
+     "stage": "4",
+     "level": 6,
+     "action": "after Ornn 3 and Veigar 3, slow roll on 6 for LeBlanc + Alistar 3, else push levels"
+    },
+    {
+     "stage": "after hitting",
+     "level": 9,
+     "action": "rush 9 for Kobuko + Gnar"
+    }
+   ],
+   "tips": [
+    "Play with many Ornn and Veigar copies, hit fast to start scaling.",
+    "Sacrifice the Lifebloom plant to Blackthorn early.",
+    "Late: sacrifice LeBlanc 3 for stats and move her items to another Spellweaver.",
+    "After the first Ornn artifact cashout, move Ornn's items to Alistar."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21"
+   ],
+   "note": "TFT Academy (page slug veigar-consuming-flora-copy), 1-cost reroll (easy). Stars from the page's per-unit star icons; slow roll level 6 from the stage 4 tip. LeBlanc holds Void Staff and Morellonomicon. Item holders follow the icon order on the page (not labeled there).",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
+  },
+  {
+   "id": "set18-18.4-coven-elise",
+   "name": "Coven Elise",
+   "style": "reroll_6",
+   "reroll_cost": 2,
+   "situational": true,
+   "units": [
+    {
+     "id": "DA_18_Elise",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Cassiopeia",
+     "role": "carry",
+     "star": 3
+    },
+    {
+     "id": "DA_18_Morgana",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Diana",
+     "role": "core"
+    },
+    {
+     "id": "DA_18_Hecarim",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Sentinel18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Alune",
+     "role": "core"
+    }
+   ],
+   "carry_items": [
+    {
+     "unit": "DA_18_Elise",
+     "builds": [
+      [
+       "DA_TitansResolve",
+       "DA_GuinsoosRageblade",
+       "DA_GargoyleStoneplate"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Cassiopeia",
+     "builds": [
+      [
+       "DA_SpearOfShojin",
+       "DA_HextechGunblade",
+       "DA_ArchangelsStaff"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Morgana",
+     "builds": [
+      [
+       "DA_VoidStaff",
+       "DA_Morellonomicon",
+       "DA_JeweledGauntlet"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_GuinsoosRageblade",
+    "DA_TitansResolve",
+    "DA_Component_NegatronCloak",
+    "DA_Component_ChainVest"
+   ],
+   "early_units": [
+    "DA_18_Camille",
+    "DA_18_Caitlyn",
+    "DA_18_Elise",
+    "DA_18_Diana"
+   ],
+   "flex_units": [
+    {
+     "id": "DA_18_Morgana"
+    }
+   ],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "open Coven and gather Essence; winning early beats forcing a lose streak"
+    },
+    {
+     "stage": "3",
+     "level": 6,
+     "action": "level 6 and roll for Elise 2, Covens, Vanguards; cash out with 2-3 lives (25-30 HP)"
+    },
+    {
+     "stage": "4",
+     "action": "finish Elise 3 / Cassio 3, then level for Vanguards or Lunar; 2 itemized Morganas if extra"
+    }
+   ],
+   "tips": [
+    "Play with the Dark Ritual augment to turn the cashout into AP.",
+    "Aim for a 250+ cashout for AP first, then take 40s for more stacking."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21"
+   ],
+   "note": "TFT Academy situational comp (A), 2-cost reroll (medium); needs Coven / Dark Ritual. Elise 3 and Cassio 3 from the stage 4 tip. Item holders follow the icon order on the page (not labeled there).",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
+  },
+  {
+   "id": "set18-18.4-bronze-for-life-ahri",
+   "name": "Bronze For Life Ahri",
+   "style": "fast8",
+   "situational": true,
+   "units": [
+    {
+     "id": "DA_18_Ahri",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Zyra",
+     "role": "carry"
+    },
+    {
+     "id": "DA_18_Sett",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Lillia",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Rakan",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_Yorick",
+     "role": "core"
+    },
+    {
+     "id": "DA_Fiddlesticks18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_Taric18",
+     "role": "tank"
+    },
+    {
+     "id": "DA_18_GnarSmall",
+     "role": "core"
+    }
+   ],
+   "carry_items": [
+    {
+     "unit": "DA_18_Ahri",
+     "builds": [
+      [
+       "DA_JeweledGauntlet",
+       "DA_StrikersFlail",
+       "DA_SpearOfShojin"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Zyra",
+     "builds": [
+      [
+       "DA_VoidStaff",
+       "DA_Morellonomicon",
+       "DA_SpearOfShojin"
+      ]
+     ]
+    },
+    {
+     "unit": "DA_18_Sett",
+     "builds": [
+      [
+       "DA_WarmogsArmor",
+       "DA_BrambleVest",
+       "DA_SpiritVisage"
+      ]
+     ]
+    }
+   ],
+   "item_priority": [
+    "DA_SpearOfShojin",
+    "DA_JeweledGauntlet",
+    "DA_Component_GiantsBelt",
+    "DA_Component_TearOfTheGoddess"
+   ],
+   "early_units": [
+    "DA_Karma18",
+    "DA_18_Rakan",
+    "DA_18_Yorick",
+    "DA_18_Yunara"
+   ],
+   "flex_units": [],
+   "level_plan": [
+    {
+     "stage": "2",
+     "action": "3 Blossom early, win streak; Karma holds Ahri's items; itemize a 2* tank"
+    },
+    {
+     "stage": "3",
+     "action": "flex in Spellweavers and frontline"
+    },
+    {
+     "stage": "4",
+     "level": 8,
+     "action": "level and roll for Ahri, Zyra and 4 Spellweavers; Cassio or LeBlanc until Alune"
+    }
+   ],
+   "tips": [
+    "Play when you hit Zyra 2 on the Ahri roll-down instead of Morgana.",
+    "5 Blossom at 8 with Karma + 1, then try 9 for the 5-costs; itemize Alune 2 late."
+   ],
+   "source_ids": [
+    "tftacademy-comps-2026-10-21"
+   ],
+   "note": "TFT Academy situational comp (A), 4-cost fast 8 (medium); built around the Bronze For Life augments. Lillia holds Protector's Vow, Gnar Thief's Gloves. Item holders follow the icon order on the page (not labeled there).",
+   "status": "third_party_unverified",
+   "last_reviewed": "2026-10-21"
   }
  ]
 }

@@ -72,17 +72,20 @@ def test_trio_uses_known_builds_first_then_rules():
     pebbles = best_trio(KB, COMPS, KB.champion_by_name("Pebbles")["id"], have, A, book=BOOK)
     assert pebbles[0].basis.startswith("meta: tactics.tools")
     rods = [item("Needlessly Large Rod")] * 2 + [item("Tear of the Goddess")] * 2
+    # Alune has no known build: rule-based options
+    alune = best_trio(KB, COMPS, KB.champion_by_name("Alune")["id"], rods, A, book=BOOK)
+    assert alune[0].basis == "rule" and alune[0].score > 0
+    assert len(alune[0].items) == 3
     ahri = best_trio(KB, COMPS, KB.champion_by_name("Ahri")["id"], rods, A, book=BOOK)
-    assert ahri[0].basis == "rule" and ahri[0].score > 0
-    assert len(ahri[0].items) == 3
+    assert ahri[0].basis.startswith("template ")  # TFT Academy build
 
 
 def test_commands(capsys):
     args = ["--set", "set18", "--patch", "18.4"]
     assert main(["comps", *args, "--units", "Krug,Pebbles", "--have", "Recurve Bow"]) == 0
     out = capsys.readouterr().out
-    assert out.splitlines()[0].startswith("Riftbeast Reroll (Pebbles & Krug)")
-    assert "tier A" in out
+    assert out.splitlines()[0].startswith("Riftbeast Reroll")
+    assert "tier A (TFT Academy)" in out
     assert "site stats (tactics.tools 18.4b Diamond+)" in out
     assert main(["trio", "Pebbles", *args, "--have", "Needlessly Large Rod,Recurve Bow"]) == 0
     assert "missing:" in capsys.readouterr().out
@@ -103,3 +106,16 @@ def test_templates_carry_guide_plans():
     stars = {u["id"]: u.get("star") for u in t["units"]}
     assert stars["DA_18_Azir"] == 3 and t["reroll_cost"] == 3
     assert any(p.get("level") == 7 for p in t["level_plan"])
+
+
+def test_tftacademy_templates_are_complete_enough():
+    assert len(COMPS.templates) >= 12
+    for t in COMPS.templates.values():
+        assert t["carry_items"], t["id"]
+        assert all(len(b) == 3 for c in t["carry_items"] for b in c["builds"]), t["id"]
+        assert len(t["item_priority"]) == 4 and t["level_plan"], t["id"]
+    situational = [t for t in COMPS.templates.values() if t.get("situational")]
+    assert {t["id"] for t in situational} == {
+        "set18-18.4-coven-elise",
+        "set18-18.4-bronze-for-life-ahri",
+    }

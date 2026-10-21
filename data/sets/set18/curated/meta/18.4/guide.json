@@ -1,7 +1,7 @@
 {
  "set": "set18",
  "kind": "meta_stats",
- "source_id": "owner-guide-comps-2026-10-21",
+ "source_id": "tftacademy-comps-2026-10-21",
  "site": "TFT Academy",
  "patch": "18.4b",
  "rank_filter": "none (editorial)",
@@ -26,6 +26,40 @@
   {
    "comp": "set18-18.4-draven-ezreal-9",
    "tier": "A"
+  },
+  {
+   "comp": "set18-18.4-ahri-morgana",
+   "tier": "A"
+  },
+  {
+   "comp": "set18-18.4-elderwood-executioners",
+   "tier": "A"
+  },
+  {
+   "comp": "set18-18.4-aphelios-nidalee",
+   "tier": "A"
+  },
+  {
+   "comp": "set18-18.4-solar-karma-reroll",
+   "tier": "A"
+  },
+  {
+   "comp": "set18-18.4-defender-cassio",
+   "tier": "A"
+  },
+  {
+   "comp": "set18-18.4-elderwood-veigar",
+   "tier": "A"
+  },
+  {
+   "comp": "set18-18.4-coven-elise",
+   "tier": "A",
+   "section": "situational"
+  },
+  {
+   "comp": "set18-18.4-bronze-for-life-ahri",
+   "tier": "A",
+   "section": "situational"
   }
  ]
 }
