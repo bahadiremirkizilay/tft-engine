@@ -1,0 +1,39 @@
+{
+  "generator": "tft_engine.gamedata.cdragon/1",
+  "patch": "18.5",
+  "patch_mapping": {
+    "evidence": "content-metadata.json of the 16.21 folder was created 2026-10-21, the day after the 18.5 notes (2026-10-20); to be checked against the 18.5 note values in the diff.",
+    "patch": "18.5",
+    "status": "unverified"
+  },
+  "set": "set18",
+  "source_id": "cdragon-16.21",
+  "summary": {
+    "augment_names": 410,
+    "augments": 595,
+    "champion_forms": 9,
+    "champions_missing_ability_values": 72,
+    "champions_per_cost": {
+      "1": 14,
+      "2": 13,
+      "3": 14,
+      "4": 14,
+      "5": 10
+    },
+    "hashed_tags_left": 2964,
+    "items_by_kind": {
+      "artifact": 80,
+      "completed": 78,
+      "component": 20,
+      "consumable": 58,
+      "emblem": 21,
+      "other": 82,
+      "radiant": 72,
+      "support": 16
+    },
+    "trait_unresolved_hashes": 2,
+    "traits": 36,
+    "wisp_names": 165,
+    "wisps": 349
+  }
+}

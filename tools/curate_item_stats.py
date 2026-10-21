@@ -147,6 +147,25 @@ METATFT = "metatft-items-2026-10-20"
 TOKENS = {"SHOTS": SHOTS, "METATFT": METATFT}
 
 # The owner's screenshots come from a site whose tooltips leave out some stats
+# Item changes from one patch's notes: patch -> name -> (stats, effect, source, note).
+# None keeps the transcribed value. Only the patch listed gets the change.
+PATCH_CHANGES = {
+    "18.5": {
+        "Radiant Adaptive Helm": (
+            "40 MR, 6 Mana Regen",
+            "+30% Mana gain. Tanks and Fighters gain 80 Armor and MR; others gain 35% AD and AP.",
+            "riot-notes-18.5",
+            "18.5: Mana Regen 7 => 6, non Tank/Fighter AD/AP 40 => 35",
+        ),
+        "Radiant Blue Buff": (
+            "25% AD, 25 AP, 10 Mana Regen",
+            None,
+            "riot-notes-18.5",
+            "18.5: Base AD/AP 30% => 25%",
+        ),
+    }
+}
+
 # (Health on Gargoyle Stoneplate, Steadfast Heart, Sunfire Cape ...; every Damage
 # Amp line; the whole stat line on Bloodthirster, Guinsoo's Rageblade ...). For all
 # 19 craftable items where it differs, the older game-file copy has exactly the
@@ -384,6 +403,18 @@ def build(set_id: str, patch: str) -> dict:
                 "note": note,
             }
         )
+    for name, (stats, effect, src, note) in PATCH_CHANGES.get(patch, {}).items():
+        rec = next((r for r in records if r["name"] == name), None)
+        if rec is None:
+            missing.append(f"{name}: patch change for an item not transcribed")
+            continue
+        if stats is not None:
+            rec["stats"] = parse_stats(stats)
+        if effect is not None:
+            rec["effect"] = effect
+        rec["source_ids"] = rec["source_ids"] + [src]
+        rec["note"] = (rec.get("note", "") + "; " if rec.get("note") else "") + note
+        rec.pop("older_copy_check", None)
     if missing:
         raise SystemExit("unmatched names:\n  " + "\n  ".join(missing))
     return {

@@ -100,3 +100,20 @@ def test_set18_curated_layers():
         "gold": True,
         "prismatic": True,
     }
+
+
+def test_set18_patch_18_5_layers():
+    kb, rep = check_all("set18", "18.5")
+    assert rep.ok, rep.errors
+    # 18.5 notes the 16.21 export does not carry yet (curated/overrides/18.5.json)
+    assert kb.augments["DA_InvestmentStrategyI"]["effects"]["InstantGold"] == 3
+    assert kb.traits["DA_Riftbeast18"]["breakpoints"][2]["values"]["CapstoneAD"] == 0.05
+    assert kb.champions["DA_Taric18"]["stats"]["armor"] == 70
+    # the export caught up with the 18.4 notes on its own
+    assert kb.augments["DA_LevelUp"]["effects"]["InstantXP"] == 10
+    assert (
+        next(i for i in kb.items.values() if i["name"] == "Radiant Blue Buff" and "stats" in i)[
+            "stats"
+        ]["ad_pct"]
+        == 25
+    )  # 18.5 radiant change

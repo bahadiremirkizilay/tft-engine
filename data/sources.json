@@ -38,6 +38,16 @@
       "site_patch": "18.4"
     },
     {
+      "id": "riot-notes-18.5",
+      "type": "official_notes",
+      "title": "Teamfight Tactics patch 18.5 notes",
+      "url": "https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-5/",
+      "retrieved_at": "2026-10-21",
+      "collected_by": "manual",
+      "site_patch": "18.5",
+      "note": "Published 2026-10-20T18:00Z."
+    },
+    {
       "id": "esportsgg-patch-schedule-2026",
       "type": "community_table",
       "title": "TFT patch schedule 2026 (esports.gg)",
@@ -72,6 +82,33 @@
         "map22.bin.json": "6c4819cda6ac8211d0c154df9e7011746deeca812a46b2c9b66e1a5b957590ca"
       },
       "note": "Entry Maps/Shipping/Map22/Sets/TFTSet18: DropRateTables.Shop {1ee21754} (odds by level 1-11), ShopContentData {9ce996ca} TierBags (copies per champion and which champions are in the pool). Last-Modified 2026-10-19."
+    },
+    {
+      "id": "cdragon-16.21",
+      "type": "game_file",
+      "title": "CommunityDragon TFT export 16.21 (cdragon/tft/en_us.json)",
+      "url": "https://raw.communitydragon.org/16.21/cdragon/tft/en_us.json",
+      "retrieved_at": "2026-10-21",
+      "collected_by": "auto",
+      "version": "16.21.8298620",
+      "sha256": {
+        "content-metadata.json": "115f1a8c0af5f3e87ffa258586f7c09c16b428b1ef4aa817e830308c92ec8a9b",
+        "en_us.json": "f7db19a4b20a15093d4cfa4631277385caa80a82185e32c181ba1ea2dcff0477"
+      },
+      "note": "Unofficial export of Riot game files. content-metadata.json Last-Modified 2026-10-21 06:59 GMT, the day after the 18.5 notes."
+    },
+    {
+      "id": "cdragon-16.21-map22",
+      "type": "game_file",
+      "title": "CommunityDragon game file map22.bin.json 16.21 (TFTSet18 shop tables)",
+      "url": "https://raw.communitydragon.org/16.21/game/data/maps/shipping/map22/map22.bin.json",
+      "retrieved_at": "2026-10-21",
+      "collected_by": "auto",
+      "version": "16.21.8298620",
+      "sha256": {
+        "map22.bin.json": "79ddebf0e20604f1e184d019fbef4ac5f4a71199542ca9fd83f7e5c61825d98d"
+      },
+      "note": "The TFTSet18 entry, the shop drop rate table {1ee21754} and the shop content {9ce996ca} are identical to 16.20: no change to shop odds or pool sizes."
     },
     {
       "id": "riot-notes-17.1",

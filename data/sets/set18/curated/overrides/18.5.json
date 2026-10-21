@@ -1,0 +1,261 @@
+{
+ "set": "set18",
+ "patch": "18.5",
+ "kind": "overrides",
+ "note": "Values the official 18.5 notes (2026-10-20) changed but the CommunityDragon 16.21 export still shows at the old value, plus the 18.3 Hunter value the export never picked up. The 16.21 export already carries the 18.4 note values (Level Up!, Hecarim, Varus, Mama Beak ...) and part of 18.5 (Alune, Master Yi, Tristana, Taric MR, Fae, Flora Fatalis, Rapidfire, Blackthorn 6, Pandora's Items II). Each record checks the old value before replacing it.",
+ "records": [
+  {
+   "kind": "traits",
+   "id": "DA_18_Hunter",
+   "field": "breakpoints.2.values.HunterAD",
+   "old": 0.45,
+   "new": 0.4,
+   "source_ids": [
+    "riot-notes-18.3"
+   ],
+   "note": "18.3: Hunter Bonus AD 20/30/45/65% => 20/30/40/60%; still 45 in the 16.21 export"
+  },
+  {
+   "kind": "traits",
+   "id": "DA_Riftbeast18",
+   "field": "breakpoints.2.values.CapstoneAD",
+   "old": 0.06,
+   "new": 0.05,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Riftbeast (7) AD/AP: 6% => 5%"
+  },
+  {
+   "kind": "traits",
+   "id": "DA_Riftbeast18",
+   "field": "breakpoints.2.values.CapstoneAP",
+   "old": 0.06,
+   "new": 0.05,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Riftbeast (7) AD/AP: 6% => 5%"
+  },
+  {
+   "kind": "champions",
+   "id": "DA_Taric18",
+   "field": "stats.armor",
+   "old": 65,
+   "new": 70,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Taric Resists: 65 => 70 (the export has MR 70 but Armor 65)"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_BronzeForLifeII",
+   "field": "effects.Armor",
+   "old": 3,
+   "new": 2.5,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Bronze for Life II Resists per Trait: 3 => 2.5"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_BuildABud",
+   "field": "effects.NumGold",
+   "old": 6,
+   "new": 9,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Build-A-Bud Gold Granted: 6 => 9"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_ChallengersGrace",
+   "field": "effects.AttackSpeedMultiplier",
+   "old": 0.25,
+   "new": 0.3,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Challenger's Grace AS Buff: 25% => 30%"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_CookingPot",
+   "field": "effects.HealthIncrease",
+   "old": 60,
+   "new": 70,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Cooking Pot HP per Emblem: 60 => 70"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_18_FloraFatalisAugment",
+   "field": "effects.ExtraEffectiveness",
+   "old": 0.5,
+   "new": 0.7,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Consuming Flora Bonus Effectiveness: 50% => 70%"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_18_FaeTraitAugment",
+   "field": "effects.UpfrontADAP",
+   "old": 0.1,
+   "new": 0.18,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Embiggen Base AD/AP Bonus: 10% => 18%"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_FlowingTears",
+   "field": "effects.CompletionManaRequired",
+   "old": 6500,
+   "new": 7000,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Flowing Tears Mana Threshold for Cashout: 6500 => 7000"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_InvestmentStrategyI",
+   "field": "effects.InstantGold",
+   "old": 6,
+   "new": 3,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Investment Strategy I Initial Gold: 6 => 3"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_InvestmentStrategy",
+   "field": "effects.InstantGold",
+   "old": 10,
+   "new": 6,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Investment Strategy II Initial Gold: 10 => 6"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_MaliciousMonetization",
+   "field": "effects.InstantGold",
+   "old": 4,
+   "new": 6,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Malicious Monetization Initial Gold Granted: 4 => 6"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_NestingAnvils",
+   "field": "effects.Gold",
+   "old": 4,
+   "new": 6,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Nesting Anvils Gold Granted: 4 => 6"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_PandorasBench",
+   "field": "effects.GoldGain",
+   "old": 4,
+   "new": 1,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Pandora's Bench Gold Granted: 4 => 1"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_PatienceIsAVirtue",
+   "field": "effects.RerollsUpfront",
+   "old": 4,
+   "new": 5,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Patience is a Virtue Initial Rerolls: 4 => 5"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_PrismaticDestiny",
+   "field": "effects.Gold",
+   "old": 4,
+   "new": 2,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Prismatic Destiny Gold Granted: 4 => 2"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_PromisedProtection",
+   "field": "effects.FlatHP",
+   "old": 200,
+   "new": 175,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Promised Protection HP Granted: 200 => 175"
+  },
+  {
+   "kind": "augments",
+   "id": "DA_SeraphimsStaff",
+   "field": "effects.APThreshold",
+   "old": 0.9,
+   "new": 1.1,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Seraphim's Staff AP Threshold: 90% => 110%"
+  },
+  {
+   "kind": "wisps",
+   "id": "DA_BeggarsWisp18",
+   "field": "effects.Gold",
+   "old": 3,
+   "new": 2,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Beggar's Wisp Gold: 3/5 => 2/3"
+  },
+  {
+   "kind": "wisps",
+   "id": "DA_BeggarsWisp18_Upgrade",
+   "field": "effects.GoldUpgrade",
+   "old": 5,
+   "new": 3,
+   "source_ids": [
+    "riot-notes-18.5"
+   ],
+   "note": "Beggar's Wisp Gold: 3/5 => 2/3"
+  }
+ ],
+ "pending": [
+  "Omega Riftbeast Bonus HP / AS: notes 10% => 8%, but the 16.21 export has BonusHP 0.15 and BonusAS 0.12 (old value differs from the notes; meaning unclear)",
+  "Blackthorn base AP sacrifice 12% Damage Amp => 10% and 6-piece enhanced bonus 60% => 50% (the export has StatMultiplier 0.5 at 6): the sacrifice values are not in the export",
+  "Elderwood (9) Summon Bonus Health 140% => 125%: the value names are hashed ({0f90e7a4}, {4013f48e})",
+  "Fae Pixie thresholds (4th 30000 => 25000, 5th 70000 => 60000, 6th 110000 => 100000): not in the export",
+  "Unit ability changes (Caitlyn, Azir, Kha'Zix, Mama Beak, Master Yi AP, Tristana, Brambleback, Malphite, Morgana, Sentinel, Sett, Sivir, Soraka, Alune, Ashe, Taric): Set 18 ability values are missing from the export",
+  "Radiant Adaptive Helm (Mana Regen 7 => 6, non Tank/Fighter AD/AP 40 => 35) and Radiant Blue Buff (base AD/AP 30% => 25%): curated item_stats/18.5",
+  "Cry Me a River, Dark Ritual AP table, Expected Unexpectedness rewards, Item Extraction (no Veigar), Cooking Pot / U.R.F. exclusions, Pandora's Items exclusivity: not modelled or no field",
+  "Heart of Steel disabled again (bug); augments that suit AD or AP comps appear less often for the other line",
+  "Wisps: Abandon Ship cost 0 => 2, Blood and Iron cost 3 => 4, Hand of Baron cost 6 => 4 and stats, Heroic Sacrifice Health 1200/1500 => 1000/1250, Returning Friend and Grove Armor added to stage 3: costs and these values are not in the export"
+ ]
+}

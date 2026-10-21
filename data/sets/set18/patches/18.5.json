@@ -1,0 +1,6 @@
+{
+  "patch": "18.5",
+  "status": "reviewed",
+  "note": "Reviewed 2026-10-21 against the official 18.5 notes (published 2026-10-20): no change to XP, XP purchase, passive XP, base income, interest, streaks, reroll cost, shop odds, pool sizes (map22 16.21 tables identical to 16.20), sell values or player damage. New rule: augments that suit AD or AP comps appear less often for the other line (not modelled). Trait, unit, item, augment and Wisp changes come from the 16.21 export plus curated/overrides/18.5.json.",
+  "changes": []
+}

@@ -2,18 +2,53 @@
   "set": "set18",
   "note": "Dates are when the official notes were published, not the exact hour a patch went live. A record taken on a notes day is flagged as ambiguous.",
   "patches": [
-    {"patch": "18.1", "notes_published": "2026-08-26", "status": "released", "source_id": "riot-notes-18.1"},
-    {"patch": "18.2", "notes_published": "2026-09-09", "status": "released", "source_id": "riot-notes-18.2"},
-    {"patch": "18.2b", "notes_published": "2026-09-14", "status": "released", "source_id": "riot-notes-18.2"},
-    {"patch": "18.3", "notes_published": "2026-09-22", "status": "released", "source_id": "riot-notes-18.3"},
-    {"patch": "18.4", "notes_published": "2026-10-06", "status": "released", "source_id": "riot-notes-18.4"},
-    {"patch": "18.5", "notes_published": "2026-10-21", "status": "planned", "source_id": "esportsgg-patch-schedule-2026"}
+    {
+      "patch": "18.1",
+      "notes_published": "2026-08-26",
+      "status": "released",
+      "source_id": "riot-notes-18.1"
+    },
+    {
+      "patch": "18.2",
+      "notes_published": "2026-09-09",
+      "status": "released",
+      "source_id": "riot-notes-18.2"
+    },
+    {
+      "patch": "18.2b",
+      "notes_published": "2026-09-14",
+      "status": "released",
+      "source_id": "riot-notes-18.2"
+    },
+    {
+      "patch": "18.3",
+      "notes_published": "2026-09-22",
+      "status": "released",
+      "source_id": "riot-notes-18.3"
+    },
+    {
+      "patch": "18.4",
+      "notes_published": "2026-10-06",
+      "status": "released",
+      "source_id": "riot-notes-18.4"
+    },
+    {
+      "patch": "18.5",
+      "notes_published": "2026-10-20",
+      "status": "released",
+      "source_id": "riot-notes-18.5"
+    }
   ],
   "cdragon_versions": {
     "16.20": {
       "patch": "18.4",
       "status": "unverified",
       "evidence": "content-metadata.json of the 16.20 folder was created 2026-10-07, the day after the 18.4 notes; the export contains the Wisps added in 18.4 (Drizzle, Grove Armor). But many 18.4 number changes are missing (Level Up! 6 XP, Future Focused 8 gold): balance numbers in the export can lag the notes, see curated/overrides/18.4.json"
+    },
+    "16.21": {
+      "patch": "18.5",
+      "status": "unverified",
+      "evidence": "content-metadata.json of the 16.21 folder was created 2026-10-21, the day after the 18.5 notes (2026-10-20); to be checked against the 18.5 note values in the diff."
     }
   }
 }
