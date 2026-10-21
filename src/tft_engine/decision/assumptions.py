@@ -152,6 +152,23 @@ DEFAULTS: dict[str, Assumption] = {
     "sim_idle_holder_factor": Assumption(
         0.6, 0.4, 1.0, "item fit multiplier for a holder that adds to no active trait"
     ),
+    # --- board power from unit stats (B6), until ability values and combat exist ---
+    "power_fight_seconds": Assumption(20, 15, 30, "length of a typical player combat"),
+    "power_mana_per_attack": Assumption(10, 5, 10, "mana gained per attack (not in the game data)"),
+    "power_ability_base": Assumption(
+        {1: 250, 2: 330, 3: 420, 4: 550, 5: 750},
+        description="ability damage per cast of a 1-star carry at base AD/AP, by cost "
+        "(stand-in until ability values are recorded)",
+    ),
+    "power_ability_star": Assumption(
+        {1: 1.0, 2: 1.5, 3: 2.5}, description="ability value per star relative to 1-star"
+    ),
+    "power_tank_ability_share": Assumption(
+        0.6, 0.3, 1.0, "share of a tank's ability value counted as extra Health (shields, heals)"
+    ),
+    "power_resist_weight": Assumption(
+        1.0, 0.7, 1.3, "how much average Armor/MR raise effective Health: hp x (1 + w x resist/100)"
+    ),
     # --- board builder (best board for a level, from the engine's own rules) ---
     "build_cost_caps": Assumption(
         {7: {4: 2, 5: 0}, 8: {4: 4, 5: 1}, 9: {4: 5, 5: 3}},

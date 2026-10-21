@@ -1,0 +1,114 @@
+{
+  "set": "set18",
+  "kind": "trait_models",
+  "note": "How each Set 18 trait's breakpoint values turn into unit stats (B6). Numbers are never written here: 'value' names a breakpoint value of the trait record (with patch overrides) and 'scale' converts its unit (AP is stored in points, so a 0.12 ADAP becomes 12 AP). 'to': trait = units with the trait, team = every unit on the board, others = units without the trait, rider = the one strongest unit with the trait. 'factor' is an assumption for effects that depend on time or state in combat (ramping stacks, conditions); it is listed in 'assumption'. Stats: hp_flat, hp_pct, ad_pct, ap, as_pct, armor, mr, durability, damage_amp, omnivamp, crit, mana_regen, adaptive (AD % or AP points, whichever the unit uses). model_status: modelled / partial (the note says what is missing) / not_modelled (no stat effect the engine can count). Source: CommunityDragon trait texts and values.",
+  "records": [
+    {"id": "DA_18_Adaptor", "model_status": "modelled", "effects": [
+      {"to": "trait", "stat": "adaptive", "value": "ADAPGain"}]},
+    {"id": "DA_AluneUniqueTrait18", "model_status": "partial", "effects": [
+      {"to": "team", "stat": "durability", "value": "Durability", "factor": 0.5},
+      {"to": "team", "stat": "damage_amp", "value": "DamageAmp", "factor": 0.5}],
+      "assumption": "the moon phase alternates: each bonus counts half the time"},
+    {"id": "DA_18_Blackthorn", "model_status": "partial", "effects": [
+      {"to": "team", "stat": "hp_flat", "value": "Health"}],
+      "note": "Not modelled: the sacrificed unit and the stats Blackthorn champions gain from it."},
+    {"id": "DA_18_Blossom", "model_status": "partial", "effects": [
+      {"to": "trait", "stat": "ad_pct", "value": "ADAP"},
+      {"to": "trait", "stat": "ap", "value": "ADAP", "scale": 100},
+      {"to": "trait", "stat": "hp_pct", "value": "BonusHealth"}],
+      "note": "Not modelled: Wisp effects (the shop part is in the shop model)."},
+    {"id": "DA_18_Brawler", "model_status": "modelled", "effects": [
+      {"to": "team", "stat": "hp_flat", "value": "BrawlerTeamHealth"},
+      {"to": "trait", "stat": "hp_pct", "value": "BrawlerHealthPercent"}]},
+    {"id": "DA_18_Caustic", "model_status": "partial", "effects": [
+      {"to": "team", "stat": "damage_amp", "value": "ShredPercent", "scale": 0.01, "factor": 0.3}],
+      "assumption": "30% Shred and Sunder on the targets is counted as a small team damage gain (factor 0.3)"},
+    {"id": "DA_18_Coven", "model_status": "not_modelled", "effects": [],
+      "note": "Essence and cashout rewards (the reward list is not in the game files)."},
+    {"id": "DA_18_Defender", "model_status": "modelled", "effects": [
+      {"to": "others", "stat": "armor", "value": "NonDefenderDefenseGain"},
+      {"to": "others", "stat": "mr", "value": "NonDefenderDefenseGain"},
+      {"to": "trait", "stat": "armor", "value": "DefenderDefenseGain"},
+      {"to": "trait", "stat": "mr", "value": "DefenderDefenseGain"}]},
+    {"id": "DA_18_Eclipse", "model_status": "not_modelled", "effects": [], "note": "Executes the lowest Health enemy on a timer."},
+    {"id": "DA_18_Elderwood", "model_status": "not_modelled", "effects": [],
+      "note": "Plants (Stonebark Tree, Lifebloom, Deepwood Protector): their stats are not in the game files."},
+    {"id": "DA_18_Executioner", "model_status": "modelled", "effects": [
+      {"to": "trait", "stat": "crit", "value": "CritChance"},
+      {"to": "trait", "stat": "damage_amp", "value": "BonusBleedPercent"}],
+      "assumption": "the bonus bleed is counted as damage amp on the Executioners' damage"},
+    {"id": "DA_18_Fae", "model_status": "partial", "effects": [
+      {"to": "trait", "stat": "ad_pct", "value": "ADAP", "scale": 0.01, "factor": 4},
+      {"to": "trait", "stat": "ap", "value": "ADAP", "factor": 4}],
+      "assumption": "4 Pixies on average in a fight", "note": "Not modelled: the heal per Pixie and Golden Pixies."},
+    {"id": "DA_FloraFatalis18", "model_status": "not_modelled", "effects": [], "note": "Mana and heals on takedowns."},
+    {"id": "DA_18_Hunter", "model_status": "modelled", "effects": [
+      {"to": "trait", "stat": "ad_pct", "value": "HunterAD"},
+      {"to": "trait", "stat": "damage_amp", "value": "DamageAmp", "factor": 0.5}],
+      "assumption": "the damage amp (no target swap for 3 s) holds half the time"},
+    {"id": "DA_18_Inferno", "model_status": "partial", "effects": [
+      {"to": "trait", "stat": "damage_amp", "value": "HPBurnPerSecond", "scale": 0.01, "factor": 3}],
+      "assumption": "Burn (% max Health per second) counted as damage amp x3", "note": "The shop part is in the shop model; Wound not modelled."},
+    {"id": "DA_18_Invoker", "model_status": "modelled", "effects": [
+      {"to": "others", "stat": "mana_regen", "value": "TeamManaRegen"},
+      {"to": "trait", "stat": "mana_regen", "value": "InvokerManaBonus"}]},
+    {"id": "DA_Juggernaut18", "model_status": "modelled", "effects": [
+      {"to": "others", "stat": "durability", "value": "TeamDurability"},
+      {"to": "trait", "stat": "durability", "value": "JuggernautDurability"}]},
+    {"id": "DA_18_Lunar", "model_status": "modelled", "effects": [
+      {"to": "trait", "stat": "as_pct", "value": "AttackSpeed", "factor": 2},
+      {"to": "trait", "stat": "ap", "value": "AbilityPower", "scale": 100, "factor": 2},
+      {"to": "others", "stat": "as_pct", "value": "AttackSpeed", "factor": 0.5},
+      {"to": "others", "stat": "ap", "value": "AbilityPower", "scale": 100, "factor": 0.5}],
+      "assumption": "Lunar units get the bonus twice (LunarMultiplier 100%); about half of the other units stand next to one"},
+    {"id": "DA_18_Battlemage", "model_status": "modelled", "effects": [
+      {"to": "trait", "stat": "armor", "value": "Resists", "factor": 2},
+      {"to": "trait", "stat": "mr", "value": "Resists", "factor": 2}],
+      "assumption": "2 enemies target the Monolith on average"},
+    {"id": "DA_Primal18", "model_status": "not_modelled", "effects": [], "note": "A chosen blessing; values not in the game files."},
+    {"id": "DA_18_Rapidfire", "model_status": "modelled", "effects": [
+      {"to": "team", "stat": "as_pct", "value": "TeamAS"},
+      {"to": "trait", "stat": "as_pct", "value": "ASperAttack", "factor": 6}],
+      "assumption": "6 of the 10 stacks on average over a fight"},
+    {"id": "DA_18_Slayer", "model_status": "modelled", "effects": [
+      {"to": "trait", "stat": "omnivamp", "value": "Omnivamp"},
+      {"to": "trait", "stat": "damage_amp", "value": "BonusDamagePercentBase", "factor": 1.4}],
+      "assumption": "bonus damage doubled against targets below 50% Health about 40% of the time"},
+    {"id": "DA_Riftbeast18", "model_status": "partial", "effects": [
+      {"to": "trait", "stat": "ad_pct", "value": "CapstoneAD", "factor": 3},
+      {"to": "trait", "stat": "ap", "value": "CapstoneAP", "scale": 100, "factor": 3},
+      {"to": "trait", "stat": "as_pct", "value": "CapstoneAspd", "factor": 3},
+      {"to": "trait", "stat": "armor", "value": "CapstoneArmor", "factor": 3},
+      {"to": "trait", "stat": "mr", "value": "CapstoneMR", "factor": 3},
+      {"to": "trait", "stat": "hp_flat", "value": "CapstoneHealth", "factor": 3},
+      {"to": "trait", "stat": "mana_regen", "value": "CapstoneManaRegen", "factor": 3}],
+      "assumption": "3 growth stacks on average (combat start and every 5 s)", "note": "Not modelled: Alpha Mark buffs, the overrun shop (shop model), +2 team size at 10."},
+    {"id": "DA_18_Rival", "model_status": "not_modelled", "effects": [], "note": "Takedown evolutions of Kha'Zix and Rengar."},
+    {"id": "DA_18_Solar", "model_status": "partial", "effects": [
+      {"to": "team", "stat": "hp_pct", "value": "ShieldRatio"},
+      {"to": "team", "stat": "damage_amp", "value": "BonusMagicDamage"}],
+      "note": "The 3-star bonuses (attack speed, resists, true damage) need the count of 3-star units; not modelled."},
+    {"id": "DA_18_Spellweaver", "model_status": "modelled", "effects": [
+      {"to": "others", "stat": "ap", "value": "TeamwideAP", "scale": 100},
+      {"to": "trait", "stat": "ap", "value": "SpellweaverAP", "scale": 100},
+      {"to": "trait", "stat": "ap", "value": "APPerCast", "scale": 100, "factor": 3}],
+      "assumption": "3 Spellweaver casts per fight on average"},
+    {"id": "DA_18_Sprykin", "model_status": "partial", "effects": [
+      {"to": "rider", "stat": "hp_pct", "value": "HealthIncrease"},
+      {"to": "rider", "stat": "as_pct", "value": "AttackSpeedIncrease"}],
+      "note": "Not modelled: the Big Furry Friend's ability and its teamwide share."},
+    {"id": "DA_18_Summoner", "model_status": "not_modelled", "effects": [], "note": "Empowers summons (Yorick, Azir, Mama Beak, Zyra); summons are not modelled."},
+    {"id": "DA_18_ZyraUniqueTrait", "model_status": "modelled", "effects": [
+      {"to": "team", "stat": "durability", "value": "BaseDurability"}]},
+    {"id": "DA_18_Vanguard", "model_status": "modelled", "effects": [
+      {"to": "trait", "stat": "hp_pct", "value": "MaxHealthShield", "factor": 1.5},
+      {"to": "trait", "stat": "durability", "value": "DurabilityIncrease", "factor": 0.5}],
+      "assumption": "the shield comes at combat start and again below 50% Health (x1.5); the durability holds while shielded (half the time)"},
+    {"id": "DA_18_ApexPredator", "model_status": "not_modelled", "effects": [], "note": "Elder Dragon: 2 team slots, +2 Riftbeast."},
+    {"id": "DA_18_LuxUniqueTrait", "model_status": "not_modelled", "effects": [], "note": "Avatar: counts its trait twice (in the trait counter)."},
+    {"id": "DA_DravenUniqueTrait18", "model_status": "not_modelled", "effects": [], "note": "Draven's bounties."},
+    {"id": "DA_Emerald18", "model_status": "not_modelled", "effects": [], "note": "Taric's paired ally."},
+    {"id": "DA_18_Greenfather", "model_status": "not_modelled", "effects": [], "note": "Ivern's seed hexes."},
+    {"id": "DA_18_Maokai_UniqueTrait", "model_status": "not_modelled", "effects": [], "note": "Permanent Health from nearby deaths."}
+  ]
+}

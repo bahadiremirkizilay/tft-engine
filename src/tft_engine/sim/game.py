@@ -25,12 +25,14 @@ from dataclasses import dataclass, field, replace
 from typing import Any
 
 from tft_engine.decision.assumptions import AssumptionSet
+from tft_engine.decision.board_power import board_power
 from tft_engine.decision.item_fit import item_fit, profile
 from tft_engine.decision.strength import win_prob
 from tft_engine.gamedata import load_gamedata
 from tft_engine.gamedata.entities import load_knowledge
 from tft_engine.repro import make_rng
 from tft_engine.rules import Rules
+from tft_engine.rules.board_stats import BoardStats
 from tft_engine.rules.items import RecipeBook
 from tft_engine.rules.traits import active_traits, trait_counts
 from tft_engine.state import GameState, UnitInstance
@@ -78,6 +80,7 @@ class GameSim:
         self.log: list[dict[str, Any]] = []
         self._fit: dict[tuple[str, str], float] = {}
         self._bp_cache: dict[tuple, tuple[float, list]] = {}
+        self.stats = BoardStats(self.kb, self.data)
         # breakpoints that change the shop, from the game data (wisp_slot, riftbeast_shop)
         self.shop_breakpoints: dict[str, int] = {}
         wisp = self.data.shop_rules.get("wisp_slot")
@@ -152,26 +155,16 @@ class GameSim:
         return hit
 
     def _board_power(self, p: Player, board: list[str]) -> tuple[float, list]:
-        best: dict[str, UnitInstance] = {}
+        """Board power from unit stats with traits and items (decision/board_power.py)."""
+        best: dict[str, int] = {}
         for u in p.state.units:
-            if u.unit_id in board and (u.unit_id not in best or u.star > best[u.unit_id].star):
-                best[u.unit_id] = u
-        power = sum(self.unit_power(u, p.items.get(u.unit_id, [])) for u in best.values())
-        counts, _ = trait_counts(self.kb, list(best), None, self.same_trait)
-        traits = [t for t in active_traits(self.kb, counts) if t.active]
-        steps = 0
-        for t in traits:
-            if t.trait_id in self.unique_traits:  # one-unit traits: their power is the unit
-                continue
-            bps = sorted(
-                {
-                    b["min_units"]
-                    for b in self.kb.traits[t.trait_id]["breakpoints"]
-                    if b["min_units"]
-                }
-            )
-            steps += bps.index(t.breakpoint) + 1 if t.breakpoint in bps else 1
-        return power * (1 + self.a["sim_trait_bonus"] * steps), traits
+            if u.unit_id in board:
+                best[u.unit_id] = max(best.get(u.unit_id, 0), u.star)
+        if not best:
+            return 0.0, []
+        items = {u: p.items[u] for u in best if p.items.get(u)}
+        bp = board_power(self.stats, list(best.items()), items, None, self.a)
+        return bp.power, list(bp.traits)
 
     def _potential(self, counts: dict[str, int]) -> float:
         """Trait steps reached among owned units, half a step one unit short of the next."""

@@ -17,7 +17,10 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from tft_engine.decision.assumptions import AssumptionSet
+from tft_engine.decision.board_power import board_power
 from tft_engine.decision.item_fit import item_fit, profile
+from tft_engine.gamedata import load_gamedata
+from tft_engine.rules.board_stats import BoardStats
 from tft_engine.rules.items import emblem_trait
 from tft_engine.rules.traits import active_traits, trait_counts
 
@@ -36,10 +39,14 @@ class BuiltBoard:
 
 
 class BoardBuilder:
-    def __init__(self, kb, a: AssumptionSet | None = None, emblem_same_trait: bool = False):
+    def __init__(
+        self, kb, a: AssumptionSet | None = None, emblem_same_trait: bool = False, data=None
+    ):
         self.kb = kb
         self.a = a or AssumptionSet()
         self.same = emblem_same_trait
+        self.data = data or load_gamedata(kb.set_id, kb.patch)
+        self.stats = BoardStats(kb, self.data)
         self.unique = {
             t["id"]
             for t in kb.traits.values()
@@ -81,18 +88,11 @@ class BoardBuilder:
         return total, traits
 
     def value(self, units: list[str], level: int, emblems: dict[str, list[str]], items=None):
-        items = items or {}
-        good = self.a["sim_item_good_fit"]
-        power = 0.0
-        for u in units:
-            bonus = sum(
-                self.a["sim_item_bonus"] * min(1.0, max(0.2, self.fit(u, i) / good))
-                for i in items.get(u, [])
-            )
-            power += self.kb.champions[u]["cost"] * STAR_POWER[self.star(u, level)] * (1 + bonus)
-        counts, _ = trait_counts(self.kb, units, emblems, self.same)
-        steps, traits = self.steps(counts)
-        return power * (1 + self.a["sim_trait_bonus"] * steps), traits
+        """Board power from unit stats with traits and items (decision/board_power.py)."""
+        bp = board_power(
+            self.stats, [(u, self.star(u, level)) for u in units], items, emblems, self.a
+        )
+        return bp.power, list(bp.traits)
 
     # --- constraints -------------------------------------------------------------
 

@@ -26,6 +26,7 @@ from tft_engine.gamedata import load_gamedata
 from tft_engine.gamedata.entities import check_all, diff_knowledge, load_knowledge
 from tft_engine.gamedata.sources import load_sources
 from tft_engine.prob import IndependentShopModel, RollQuery, Target, roll_down_exact
+from tft_engine.rules.board_stats import check_trait_models, load_trait_models
 from tft_engine.rules.comps import check_comps, load_comps
 from tft_engine.rules.items import RecipeBook
 from tft_engine.rules.traits import active_traits, trait_counts
@@ -108,6 +109,7 @@ def _cmd_decide(args: argparse.Namespace) -> int:
 def _cmd_data_check(args: argparse.Namespace) -> int:
     kb, rep = check_all(args.set, args.patch)
     rep.errors += check_comps(kb, load_comps(args.set, args.patch), load_sources())
+    rep.errors += check_trait_models(kb, load_trait_models(args.set))
     print(f"{args.set} {args.patch}: " + ", ".join(f"{k} {len(v)}" for k, v in kb.records.items()))
     for w in rep.warnings[: args.max]:
         print(f"WARNING: {w}")

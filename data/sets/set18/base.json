@@ -134,6 +134,13 @@
       "source_ids": ["wiki-tft-gold"],
       "note": "Key = cost, list = gold for 1/2/3-star. Derived from the rule, not read from the game. The wiki's own example (3-star 1-cost sells for 5) contradicts the rule; check 2-star and 3-star values in game."
     },
+    "star_multipliers": {
+      "value": {"hp": [1, 1.8, 3.24], "ad": [1, 1.5, 2.25]},
+      "status": "third_party_unverified",
+      "source": "unit stats per star on a stats site the owner pasted (Sett Health 1200/2160/3888, Damage 80/120/180; Morgana 1100/1980/3564, 45/67/101; the other pasted units match)",
+      "source_ids": ["owner-ability-pastes-2026-10-21"],
+      "note": "Health and Attack Damage of a 1/2/3-star unit relative to its 1-star stats. Armor, MR, attack speed and mana do not change with stars on the same pages."
+    },
     "emblem_on_same_trait_counts": {
       "value": false,
       "status": "verified",
