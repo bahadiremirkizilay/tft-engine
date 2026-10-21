@@ -119,3 +119,13 @@ def test_tftacademy_templates_are_complete_enough():
         "set18-18.4-coven-elise",
         "set18-18.4-bronze-for-life-ahri",
     }
+
+
+def test_owner_corrections_are_in_the_templates():
+    t = COMPS.templates
+    azir = {u["id"]: u for u in t["set18-18.4-sprykin-azir-rammus"]["units"]}
+    assert azir["DA_18_Teemo"].get("star_optional") and not azir["DA_18_Azir"].get("star_optional")
+    solar = [u for u in t["set18-18.4-solar-karma-reroll"]["units"] if u.get("star") == 3]
+    assert len(solar) == 5  # the Solar bonus needs five 3-star units
+    util = t["set18-18.4-ahri-morgana"]["utility_items"][0]
+    assert util["unit"] == "DA_18_Morgana" and len(util["items"]) == 2

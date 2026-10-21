@@ -3,6 +3,11 @@
 Two kinds of files, kept apart on purpose (plan rule 10):
 
     curated/comps/<patch>.json          comp templates: units, carries, style, plan
+
+A template is the best board reachable at its level. ``star`` is the target star
+level; ``star_optional`` marks a 3-star that is a bonus (in reroll comps the main
+carry's and tank's 3 stars matter most). ``utility_items`` are items a unit holds
+for the team (Shred, Burn) so carries and tanks keep their own.
     curated/meta/<patch>/<site>.json    statistics from one site: comps, unit builds
 
 A template says what a comp is; a meta file says how a site measured it, with
@@ -104,6 +109,10 @@ def check_comps(kb, comps: CompSet, sources=None) -> list[str]:
         for uid in ids + others:
             if uid not in kb.champions:
                 errors.append(f"comp {cid}: unknown champion {uid}")
+        for util in r.get("utility_items", []):
+            if util["unit"] not in ids:
+                errors.append(f"comp {cid}: utility_items for {util['unit']}, not in the comp")
+            errors += [f"comp {cid}: unknown item {i}" for i in util["items"] if i not in kb.items]
         for carry in r.get("carry_items", []):
             if carry["unit"] not in ids:
                 errors.append(f"comp {cid}: carry_items for {carry['unit']}, not in the comp")

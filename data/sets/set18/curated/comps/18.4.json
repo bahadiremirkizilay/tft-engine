@@ -2,7 +2,7 @@
  "set": "set18",
  "patch": "18.4",
  "kind": "comp_templates",
- "note": "Comp templates (B5) for 18.4: the S and A comps of the TFT Academy tier list (patch 18.4b), read one page at a time on 2026-10-21 under the owner's decision of that day; four of them also from the owner's screenshots, three also on tactics.tools (stats in curated/meta/18.4/tactics-tools.json). TFT Academy does not label which unit holds which item: holders follow the icon order. Stars: from the owner's screenshots or the page's per-unit star icons, else left out. Tiers live in curated/meta/18.4/guide.json.",
+ "note": "Comp templates (B5) for 18.4: the S and A comps of the TFT Academy tier list (patch 18.4b), read one page at a time on 2026-10-21 under the owner's decision of that day; four of them also from the owner's screenshots, three also on tactics.tools (stats in curated/meta/18.4/tactics-tools.json). TFT Academy does not label which unit holds which item: holders follow the icon order. Stars: from the owner's screenshots or the page's per-unit star icons, else left out. Tiers live in curated/meta/18.4/guide.json. Owner (2026-10-21): a template is the best board reachable at that level; in reroll comps the main carry's and tank's 3 stars matter most, other 3 stars are a bonus (star_optional).",
  "records": [
   {
    "id": "set18-18.4-sprykin-azir-rammus",
@@ -23,7 +23,8 @@
     {
      "id": "DA_18_Teemo",
      "role": "core",
-     "star": 3
+     "star": 3,
+     "star_optional": true
     },
     {
      "id": "DA_18_Veigar",
@@ -108,12 +109,14 @@
    "tips": [
     "Needs many rods: take item augments early.",
     "Blackthorn sacrifice scales with gold value: 3* Teemo > 2* AP 4-cost without items > 2* Teemo > 2* Veigar.",
-    "Blackthorn Lux is a strong win condition."
+    "Blackthorn Lux is a strong win condition.",
+    "Owner: Azir 3* and Rammus 3* are the priority; Teemo 3* is good if it comes, not needed."
    ],
    "source_ids": [
-    "tftacademy-comps-2026-10-21",
     "owner-guide-comps-2026-10-21",
-    "tactics-tools-comps-2026-10-21"
+    "owner-ingame-2026-10-20",
+    "tactics-tools-comps-2026-10-21",
+    "tftacademy-comps-2026-10-21"
    ],
    "note": "TFT Academy, 3-cost reroll (easy). Stars from the owner's screenshot. Zyra's Void Staff and Morellonomicon not clearly assigned, left out.",
    "status": "third_party_unverified",
@@ -615,14 +618,26 @@
     "Morgana holds utility items (Void Staff, Morellonomicon).",
     "Tank Sentinel or Sett.",
     "Best emblem: Invoker on Ahri.",
-    "Late game cap with Ashe + Alune over Karma."
+    "Late game cap with Ashe + Alune over Karma.",
+    "Owner: Ahri is the carry and the tank is set; Morgana is there for area Shred and Burn."
    ],
    "source_ids": [
+    "owner-ingame-2026-10-20",
     "tftacademy-comps-2026-10-21"
    ],
    "note": "TFT Academy, 4-cost fast 8 (medium). Morgana's two items (Void Staff, Morellonomicon) are not a full trio, left out. Item holders follow the icon order on the page (not labeled there).",
    "status": "third_party_unverified",
-   "last_reviewed": "2026-10-21"
+   "last_reviewed": "2026-10-21",
+   "utility_items": [
+    {
+     "unit": "DA_18_Morgana",
+     "items": [
+      "DA_VoidStaff",
+      "DA_Morellonomicon"
+     ],
+     "note": "Owner: Morgana hits an area, so she holds the Shred (Void Staff) and Burn/Wound (Morellonomicon) items and the carry and the tank keep their own items; a third item is not needed. If these items do not come, give Burn / MR shred to the tank (e.g. Sunfire Cape) or another unit."
+    }
+   ]
   },
   {
    "id": "set18-18.4-elderwood-executioners",
@@ -853,12 +868,14 @@
    "tips": [
     "Nidalee on the weak side for a quick kill, then jump the backline.",
     "Amumu or Sentinel 2* main tank (often contested: whichever upgrades).",
-    "Kog'Maw gives free Shred and Sunder."
+    "Kog'Maw gives free Shred and Sunder.",
+    "Owner: Nidalee switches to AD form when given AD items; in this comp she is played AD (IE, Sterak's)."
    ],
    "source_ids": [
+    "owner-ingame-2026-10-20",
     "tftacademy-comps-2026-10-21"
    ],
-   "note": "TFT Academy, 4-cost fast 8 (medium). Item holders follow the icon order on the page (not labeled there).",
+   "note": "TFT Academy, 4-cost fast 8 (medium). Item holders follow the icon order on the page (not labeled there). Nidalee has one record (DA_Nidalee18_AP); her form follows her items (Adaptor).",
    "status": "third_party_unverified",
    "last_reviewed": "2026-10-21"
   },
@@ -875,15 +892,18 @@
     },
     {
      "id": "DA_18_Yunara",
-     "role": "carry"
+     "role": "carry",
+     "star": 3
     },
     {
      "id": "DA_18_Sejuani",
-     "role": "tank"
+     "role": "tank",
+     "star": 3
     },
     {
      "id": "DA_18_LeBlanc",
-     "role": "core"
+     "role": "core",
+     "star": 3
     },
     {
      "id": "DA_18_Leona",
@@ -899,7 +919,8 @@
     },
     {
      "id": "DA_18_Yorick",
-     "role": "core"
+     "role": "core",
+     "star": 3
     }
    ],
    "carry_items": [
@@ -970,9 +991,11 @@
    ],
    "tips": [
     "3* Karma + 3 Blossom + LeBlanc early for clone copies.",
-    "Add 3 Solar after the 3 stars (Leona / Kayle optional)."
+    "Add 3 Solar after the 3 stars (Leona / Kayle optional).",
+    "Owner: the Solar bonus needs five 3-star units; Yorick is picked as an easy 1-cost 3-star that helps open it."
    ],
    "source_ids": [
+    "owner-ingame-2026-10-20",
     "tftacademy-comps-2026-10-21"
    ],
    "note": "TFT Academy (page slug solara-yunara), 2-cost reroll (medium); the roll level is not stated, 6 is assumed for a 2-cost reroll. Karma 3* per the tips. Item holders follow the icon order on the page (not labeled there).",
