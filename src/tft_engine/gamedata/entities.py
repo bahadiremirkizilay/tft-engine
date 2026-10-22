@@ -15,7 +15,12 @@ from pathlib import Path
 from typing import Any
 
 from tft_engine.gamedata.cdragon import KINDS
-from tft_engine.gamedata.curated import apply_curated, effect_refs, read_augment_models
+from tft_engine.gamedata.curated import (
+    apply_curated,
+    effect_refs,
+    read_abilities,
+    read_augment_models,
+)
 from tft_engine.gamedata.loader import GameData, load_gamedata
 from tft_engine.gamedata.schema import STATUSES, SchemaError
 from tft_engine.gamedata.sources import (
@@ -36,11 +41,19 @@ class KnowledgeBase:
     headers: dict[str, dict[str, Any]]  # kind -> file header
     curated_notes: list[str] = field(default_factory=list)
     augment_models: dict[str, dict[str, Any]] = field(default_factory=dict)
+    abilities: dict[str, dict[str, Any]] = field(default_factory=dict)  # champion id -> record
 
     def __getattr__(self, kind: str) -> dict[str, dict[str, Any]]:
         if kind in KINDS:
             return self.records[kind]
         raise AttributeError(kind)
+
+    def ability(self, champion_id: str) -> dict[str, Any] | None:
+        """The ability record of a champion; variants (Lux forms) use their base's."""
+        if champion_id in self.abilities:
+            return self.abilities[champion_id]
+        base = self.records["champions"].get(champion_id, {}).get("variant_of")
+        return self.abilities.get(base) if base else None
 
     def champion_by_name(self, name: str) -> dict[str, Any]:
         hits = [
@@ -92,6 +105,7 @@ def load_knowledge(
     if curated:
         kb.curated_notes = apply_curated(records, folder.parent.parent / "curated", patch)
         kb.augment_models = read_augment_models(folder.parent.parent / "curated")
+        kb.abilities = read_abilities(folder.parent.parent / "curated", patch)
     return kb
 
 
@@ -156,6 +170,18 @@ def check_knowledge(
                 rep.errors.append(f"{where}: effect value {name!r} is not in the augment record")
         if sources is not None:
             for sid in m["source_ids"]:
+                if sid not in sources:
+                    rep.errors.append(f"{where}: unknown source {sid!r}")
+
+    # ability records: a real champion, known sources
+    for cid, r in kb.abilities.items():
+        where = f"ability {cid}"
+        if cid not in champs:
+            rep.errors.append(f"{where}: no such champion")
+        if sources is not None:
+            for sid in r["source_ids"] + [
+                s for c in r.get("conflicts", []) for s in c["source_ids"]
+            ]:
                 if sid not in sources:
                     rep.errors.append(f"{where}: unknown source {sid!r}")
 

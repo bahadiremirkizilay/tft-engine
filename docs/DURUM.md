@@ -15,7 +15,7 @@ Son güncelleme: 2026-10-22. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 | **B3: modifier ve olay sistemi** | **Bitti (2026-10-21).** Ayrıntı aşağıda |
 | **B4: item ve trait yapısı** | **Bitti (2026-10-21).** Ayrıntı aşağıda; roller senden bekleniyor |
 | **B5: komp şablonları ve meta** | **Altyapı bitti (2026-10-21)**, 18.4 test verisiyle. 18.5 kompları ve istatistikleri veri oturunca (2–3 gün) girilecek |
-| **B6: tahta gücü ve savaş** | **İlk adım bitti (2026-10-21):** trait ve item'larla birim istatistikleri, istatistikten tahta gücü. Sıradaki: yetenek değerleri, dizilim |
+| **B6: tahta gücü ve savaş** | **İlk adım bitti (2026-10-21):** trait ve item'larla birim istatistikleri, istatistikten tahta gücü. **Yetenek değerleri bağlandı (2026-10-22, 18.5).** Sıradaki: item uyumu, modellenmemiş trait'ler, dizilim |
 | B7: yama döngüsü + Set 19 provası | Başlamadı |
 | **Denetim sistemi** | **Kuruldu (2026-10-22).** Ayrıntı aşağıda |
 | Ertelenenler: G0/M2 (Riot API), M4+ (ML), maç kayıtları, canlı kullanım | PLAN bölüm 9 |
@@ -93,6 +93,15 @@ Son güncelleme: 2026-10-22. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Tahta gücü** (`decision/board_power.py`, varsayım): hasar/sn (saldırı + yetenek) ve dayanıklılık; güç = √(hasar × dayanıklılık). Yetenek hasarı yetenek değerleri gelene kadar maliyete göre tahmin. Tahta kurucu ve simülasyon bunu kullanıyor; karar motoru (P1) henüz eski sezgisel hesabı kullanıyor.
 - **Yetenek değerleri:** oyun dosyalarında yok (16.21 dahil). tactics.tools'un birim sayfası 18.1 değerlerinde kalmış; sahibin gönderdiği 12 şampiyonun değerleri `curated/abilities/18.4.json` içinde.
 - **Görülen:** amblem komplarında yüksek yüzde veren trait'ler (Adaptör, Tahripkâr) ve ucuz 2★ birimler öne çıkıyor; Cadılar Meclisi, Kadim Orman, İlkel, Zıpırgil gibi modellenmemiş trait'lerin amblemleri tahtaya bir şey katmıyor.
+
+## Yetenek değerleri (2026-10-22, 18.5)
+
+- **Kaynak:** Sahibin Blitz'ten yapıştırdığı birim sayfaları (Blitz otomatik okumaya kapalı). 65 şampiyon, 9 Lux formu, Adaptor AD formları. 18.5 notlarındaki 16 yetenek değişikliğinin hepsi tutuyor. Dosya: `curated/abilities/18.5.json` (hasar, kalkan, iyileştirme parçaları; hedef şekli; zamana yayılan hasar süresi).
+- **Tahta gücü** (`decision/board_power.py`) yetenek hasarını bu kayıtlardan alıyor: fiziksel AD artışıyla, büyü AP ile ölçekleniyor; kalkan ve iyileştirme dayanıklılığa ekleniyor. 18.4'te kayıt yok, eski maliyet tahmini sürüyor.
+- **Adaptor:** Nidalee AD (cougar statları Blitz'ten, oyun dosyasında yok), Gromp AP (sahip); Kog'Maw, Akali, Master Yi item'lara göre güçlü formu alıyor.
+- **Roller:** Blitz her şampiyonun rolünü gösteriyor; 16 tahmin düzeltildi, Ivern sahibin rolünde (Blitz'in "Caster" değeri çelişki kaydında).
+- **Açık kalanlar:** 6 yetenekte ölçekleme ikonu kayıp (Malphite, Rammus, Maokai, Ivern, Aphelios, Rakan); Murkwolf'un gösterilen hasarı formülüyle çelişiyor (değer bilinmiyor, yetenek kısmen sayılıyor); Taric manası Blitz 65, oyun dosyası 70.
+- **Görülen:** 18.5 level 8 "en güçlü 10 tahta" denemesinde Diana, Alune ve Cassiopeia çok öne çıkıyor; item dağıtımı hâlâ kaba (Diana'ya Ionic Spark + Spirit Visage). Sıradaki iş item uyumu.
 
 ## Simülasyon ve tahta kurucu (2026-10-21, plan dışı deneme)
 

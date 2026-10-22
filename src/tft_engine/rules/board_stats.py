@@ -84,6 +84,7 @@ class UnitStats:
     omnivamp: float
     range: float
     sources: list[str] = field(default_factory=list)  # what changed the stats, readable
+    form: str | None = None  # Adaptor form used ("ad" / "ap"), None for other units
 
 
 class BoardStats:
@@ -95,8 +96,16 @@ class BoardStats:
         self.same = bool(data.param("emblem_on_same_trait_counts").get())
         self.models = models if models is not None else load_trait_models(kb.set_id)
 
-    def _base(self, unit: str, star: int) -> dict[str, float]:
-        s = self.kb.champions[unit]["stats"]
+    def form_stats(self, unit: str, form: str | None) -> dict[str, Any]:
+        """Base stats of a unit in an Adaptor form (a form may replace some of them)."""
+        s = dict(self.kb.champions[unit]["stats"])
+        rec = self.kb.ability(unit) if form else None
+        if rec:
+            s.update((rec.get("forms") or {}).get(form, {}).get("stats", {}))
+        return s
+
+    def _base(self, unit: str, star: int, form: str | None = None) -> dict[str, float]:
+        s = self.form_stats(unit, form)
         return {
             "hp": (s.get("hp") or 0) * self.mult["hp"][star - 1],
             "ad": (s.get("damage") or 0) * self.mult["ad"][star - 1],
@@ -111,8 +120,11 @@ class BoardStats:
         units: list[tuple[str, int]],
         items: dict[str, list[str]] | None = None,
         emblems: dict[str, list[str]] | None = None,
+        forms: dict[str, str] | None = None,
     ) -> tuple[list[UnitStats], list]:
+        """forms: Adaptor form ("ad" or "ap") per unit; others follow their ability text."""
         items = items or {}
+        forms = forms or {}
         ids = [u for u, _ in units]
         counts, _ = trait_counts(self.kb, ids, emblems, self.same)
         traits = [t for t in active_traits(self.kb, counts) if t.active]
@@ -162,16 +174,20 @@ class BoardStats:
         out = []
         for u in ids:
             star = star_of[u]
-            b = self._base(u, star)
+            form = forms.get(u)
+            b = self._base(u, star, form)
             x = bonus[u]
-            ad_scaling = "scaleAD" in (self.kb.champions[u]["ability"].get("text") or "")
+            if form:
+                ad_scaling = form == "ad"
+            else:
+                ad_scaling = "scaleAD" in (self.kb.champions[u]["ability"].get("text") or "")
             ad_pct, ap = x["ad_pct"], x["ap"]
             if x["adaptive"]:
                 if ad_scaling:
                     ad_pct += x["adaptive"]
                 else:
                     ap += x["adaptive"] * 100
-            c = self.kb.champions[u]["stats"]
+            c = self.form_stats(u, form)
             out.append(
                 UnitStats(
                     unit=u,
@@ -191,6 +207,7 @@ class BoardStats:
                     omnivamp=x["omnivamp"],
                     range=c.get("range") or 1,
                     sources=notes[u],
+                    form=form,
                 )
             )
         return out, traits

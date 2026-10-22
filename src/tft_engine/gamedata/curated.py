@@ -15,6 +15,10 @@ numbers of its own, only references to augment effect values:
     curated/effects/augments.json       augment models (modifiers and events)
     curated/champion_roles.json         champion roles (Tank, Fighter, ...), missing in the export
 
+Ability values per patch (none in the Set 18 export):
+
+    curated/abilities/<patch>.json      damage, shields and heals per star, by champion
+
 An override states the value it replaces (``old``). If the generated data does
 not hold that value, loading fails: either the notes were already applied by a
 newer export, or the override targets the wrong field. Nothing is replaced
@@ -214,6 +218,75 @@ def read_augment_models(curated_folder: Path) -> dict[str, dict[str, Any]]:
             raise SchemaError(f"{where}: a text_only model has no modifiers or events")
         if r["model_status"] != "modelled" and not r.get("note"):
             raise SchemaError(f"{where}: a {r['model_status']} model must say what is missing")
+        out[r["id"]] = r
+    return out
+
+
+ABILITY_PART_KINDS = ("damage", "shield", "heal", "health", "attack_bonus", "attack_speed")
+DAMAGE_TYPES = ("magic", "physical", "true")
+ABILITY_HITS = ("single", "aoe", "line", "split")
+ABILITY_PER = ("cast", "second", "attack", "fight")
+ABILITY_STAT_KEYS = ("hp", "armor", "magicResist", "damage", "attackSpeed", "range")
+
+
+def _check_part(p: dict[str, Any], where: str) -> None:
+    kind = p.get("kind")
+    if kind not in ABILITY_PART_KINDS:
+        raise SchemaError(f"{where}: part kind must be one of {ABILITY_PART_KINDS}")
+    if kind in ("attack_bonus", "attack_speed"):
+        if not isinstance(p.get("value"), int | float):
+            raise SchemaError(f"{where}: {kind} needs a number value")
+        return
+    vals = p.get("values")
+    if not (isinstance(vals, list) and len(vals) == 3):
+        raise SchemaError(f"{where}: values must list 1/2/3-star numbers")
+    if kind == "damage" and p.get("type") not in DAMAGE_TYPES:
+        raise SchemaError(f"{where}: damage type must be one of {DAMAGE_TYPES}")
+    hits = p.get("hits", "single")
+    if hits not in ABILITY_HITS and not (isinstance(hits, int) and hits > 0):
+        raise SchemaError(f"{where}: hits must be one of {ABILITY_HITS} or a count")
+    if p.get("per", "cast") not in ABILITY_PER:
+        raise SchemaError(f"{where}: per must be one of {ABILITY_PER}")
+    over = p.get("over")
+    if over is not None and not (isinstance(over, int | float) and over > 0):
+        raise SchemaError(f"{where}: over is the seconds a damage-over-time part takes")
+    chance = p.get("chance")
+    if chance is not None and not isinstance(chance, int | float | str):
+        raise SchemaError(f"{where}: chance is a number or an assumption name")
+
+
+def read_abilities(curated_folder: Path, patch: str) -> dict[str, dict[str, Any]]:
+    """Ability records of one patch by champion id (empty when the patch has none).
+
+    Only files of kind ``abilities`` are read: the older 18.4 file holds pasted
+    notes in another layout and is kept as a record, not as engine input.
+    """
+    doc = _read(curated_folder / "abilities" / f"{patch}.json")
+    if not doc or doc.get("kind") != "abilities":
+        return {}
+    if doc.get("patch") != patch:
+        raise SchemaError(f"abilities/{patch}.json is filed under patch {doc.get('patch')}")
+    out: dict[str, dict[str, Any]] = {}
+    for r in doc["records"]:
+        where = f"abilities/{patch}.json {r.get('id')}"
+        _check_record(r, where)
+        if r["id"] in out:
+            raise SchemaError(f"{where}: duplicate id")
+        if r.get("model_status") not in ("modelled", "partial"):
+            raise SchemaError(f"{where}: model_status must be modelled or partial")
+        if r["model_status"] == "partial" and not r.get("note"):
+            raise SchemaError(f"{where}: a partial record must say what is not counted")
+        forms = r.get("forms") or {"": r}
+        if "parts" not in r and not r.get("forms"):
+            raise SchemaError(f"{where}: needs parts or forms")
+        for name, form in forms.items():
+            if name not in ("", "ap", "ad"):
+                raise SchemaError(f"{where}: forms are ap and ad")
+            for i, p in enumerate(form.get("parts", [])):
+                _check_part(p, f"{where} {name} part {i}")
+            for k in form.get("stats", {}):
+                if k not in ABILITY_STAT_KEYS:
+                    raise SchemaError(f"{where}: form stat {k!r} is not one of {ABILITY_STAT_KEYS}")
         out[r["id"]] = r
     return out
 

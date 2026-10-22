@@ -262,6 +262,41 @@ DEFAULTS: dict[str, Assumption] = {
         description="durability never reduces damage taken below this share (guard)",
         basis="guess; keeps effective Health finite",
     ),
+    "power_aoe_targets": Assumption(
+        2.0,
+        1.5,
+        3.0,
+        "enemies an area ability (radius, cone, adjacent) hits on average",
+        basis="guess (2026-10-22); ability records say only the shape",
+        validate_by="damage charts after fights, per ability",
+    ),
+    "power_line_targets": Assumption(
+        1.5,
+        1.0,
+        2.5,
+        "enemies a line or piercing ability hits on average, after its falloff",
+        basis="guess (2026-10-22); most lines lose 20-80% per enemy passed",
+        validate_by="damage charts after fights, per ability",
+    ),
+    "power_conditional_share": Assumption(
+        0.5,
+        0.25,
+        0.75,
+        "share of casts where an ability's stated condition holds (Soraka's extra stars)",
+        basis="guess (2026-10-22)",
+    ),
+    "power_sustain_weight": Assumption(
+        0.7,
+        0.5,
+        1.0,
+        "share of ability shields and heals counted as effective Health (overheal, expiry)",
+        basis="guess (2026-10-22)",
+    ),
+    "power_adaptor_form": Assumption(
+        {"DA_Nidalee18_AP": "ad", "DA_Gromp18_AP": "ap"},
+        description="Adaptor form per champion; champions not listed take the stronger form",
+        basis="owner 2026-10-21/22: Nidalee is played AD, Gromp AP",
+    ),
     # --- board builder (best board for a level, from the engine's own rules) ---
     "build_cost_caps": Assumption(
         {7: {4: 2, 5: 0}, 8: {4: 4, 5: 1}, 9: {4: 5, 5: 3}},

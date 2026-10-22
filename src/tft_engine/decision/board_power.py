@@ -1,13 +1,16 @@
 """How strong a board is, from its unit stats (assumption class, B6 first step).
 
 Per unit:
-  * damage per second = attacks (AD x attack speed x crit) + ability casts, both
-    raised by damage amp; ability damage per cast is a stand-in by cost and star
-    (``power_ability_base``) scaled by AP (AP abilities) or by AD gained (AD
-    abilities) until ability values are recorded;
+  * damage per second = attacks (AD x attack speed x crit) + ability damage, both
+    raised by damage amp;
   * effective Health = Health x (1 + resist weight x average Armor/MR / 100)
-    / (1 - durability), plus omnivamp healing; tanks turn part of their ability
-    value into effective Health instead of damage.
+    / (1 - durability), plus omnivamp healing and ability shields and heals.
+Ability values come from the patch's ability records (``kb.ability``): each part
+is scaled by AD gained (physical) or AP (magic), times targets hit, casts and
+attacks. Adaptor units take the form in ``power_adaptor_form`` or the stronger
+one. Without a record (patches before 18.5) the old stand-in is used: damage per
+cast by cost and star (``power_ability_base``), and tanks turn part of it into
+effective Health.
 Board power = sqrt(total damage per second x total effective Health): both halves
 matter and the number grows like a single unit's "fight value". Every input
 assumption sits in ``decision/assumptions.py``.
@@ -22,8 +25,6 @@ from tft_engine.decision.assumptions import AssumptionSet
 from tft_engine.decision.item_fit import profile
 from tft_engine.rules.board_stats import BoardStats, UnitStats
 
-# Set 18 units with a mana bar of 3 count attacks, not mana (Caitlyn: every third attack)
-
 
 @dataclass(frozen=True)
 class UnitPower:
@@ -31,6 +32,7 @@ class UnitPower:
     dps: float
     ehp: float
     casts: float
+    source: str = "stand-in"  # "record" when ability values come from the patch data
 
 
 @dataclass(frozen=True)
@@ -43,29 +45,44 @@ class BoardPower:
     stats: tuple[UnitStats, ...]
 
 
+# assumptions an ability record may name as the chance its condition holds
+CHANCE_ASSUMPTIONS = ("power_conditional_share",)
+
+
+def _casts(s: UnitStats, a: AssumptionSet, t: float) -> float:
+    if s.mana <= 0:
+        return 0.0  # passive ability (Kayle): its value is in the attacks
+    if s.mana <= a["power_attack_count_mana"]:
+        # a tiny mana bar counts attacks ("every third attack", Caitlyn, Master Yi)
+        return t * s.attack_speed / s.mana
+    gained = s.initial_mana + t * (s.attack_speed * a["power_mana_per_attack"] + s.mana_regen)
+    return min(gained / s.mana, t / a["power_min_cast_seconds"])
+
+
+def _targets(hits, a: AssumptionSet) -> float:
+    if isinstance(hits, int):
+        return float(hits)
+    shape = {"single": 1.0, "split": 1.0}
+    return shape.get(hits) or a["power_aoe_targets" if hits == "aoe" else "power_line_targets"]
+
+
+def _record_parts(kb, s: UnitStats) -> list[dict] | None:
+    rec = kb.ability(s.unit)
+    if rec is None:
+        return None
+    if rec.get("forms"):
+        form = s.form or next(iter(rec["forms"]))
+        return rec["forms"][form].get("parts", [])
+    return rec.get("parts", [])
+
+
 def unit_power(kb, s: UnitStats, a: AssumptionSet, star_ad: float = 1.0) -> UnitPower:
     """star_ad: the star multiplier on AD, so AD abilities grow only with bonus AD."""
     c = kb.champions[s.unit]
-    text = c["ability"].get("text") or ""
-    tank = "tank" in profile(kb, s.unit).tags
     t = a["power_fight_seconds"]
     crit_mult = (c["stats"].get("critMultiplier") or a["power_default_crit_mult"]) - 1
     attacks = s.ad * s.attack_speed * (1 + s.crit * crit_mult)
-    if s.mana <= 0:
-        casts = 0.0  # passive ability (Kayle): its value is in the attacks
-    elif s.mana <= a["power_attack_count_mana"]:
-        # a tiny mana bar counts attacks ("every third attack", Caitlyn, Master Yi)
-        casts = t * s.attack_speed / s.mana
-    else:
-        gained = s.initial_mana + t * (s.attack_speed * a["power_mana_per_attack"] + s.mana_regen)
-        casts = min(gained / s.mana, t / a["power_min_cast_seconds"])
-    base = a["power_ability_base"][c["cost"]] * a["power_ability_star"][s.star]
-    if "scaleAD" in text:
-        base_ad = (c["stats"].get("damage") or 0) * star_ad
-        scale = s.ad / base_ad if base_ad else 1.0
-    else:
-        scale = s.ap / 100
-    ability = base * scale * casts
+    casts = _casts(s, a, t)
     amp = 1 + s.damage_amp
     resist = (s.armor + s.mr) / 2
     ehp = (
@@ -73,6 +90,69 @@ def unit_power(kb, s: UnitStats, a: AssumptionSet, star_ad: float = 1.0) -> Unit
         * (1 + a["power_resist_weight"] * resist / 100)
         / max(1 - s.durability, a["power_min_damage_taken"])
     )
+    parts = _record_parts(kb, s)
+    if parts is None:
+        return _stand_in(kb, s, a, star_ad, t, attacks, casts, amp, ehp)
+    base_ad = (c["stats"].get("damage") or 0) * star_ad
+    if s.form:
+        form_ad = kb.ability(s.unit)["forms"][s.form].get("stats", {}).get("damage")
+        if form_ad:
+            base_ad = form_ad * star_ad
+    ad_ratio = s.ad / base_ad if base_ad else 1.0
+    ap_ratio = s.ap / 100
+    damage = sustain = attack_bonus = speed_bonus = 0.0
+    for p in parts:
+        kind = p["kind"]
+        if kind in ("attack_bonus", "attack_speed"):
+            d = p.get("duration")
+            uptime = min(1.0, d * casts / t) if d else 1.0
+            if kind == "attack_bonus":
+                attack_bonus += p["value"] * uptime
+            else:
+                speed_bonus += p["value"] * uptime
+            continue
+        per, d = p.get("per", "cast"), p.get("duration")
+        if per == "cast":
+            count = casts
+        elif per == "second":
+            count = d * casts if d else t
+        elif per == "attack":
+            count = s.attack_speed * (d * casts if d else t)
+        else:  # once a fight
+            count = 1.0
+        chance = p.get("chance", 1.0)
+        if isinstance(chance, str):  # a record may name the assumption for its condition
+            if chance not in CHANCE_ASSUMPTIONS:
+                raise KeyError(f"ability {s.unit}: chance {chance!r} is not a known assumption")
+            chance = a[chance]
+        amount = p["values"][s.star - 1] * p.get("times", 1) * chance * count
+        if kind == "damage":
+            scale = {"physical": ad_ratio, "magic": ap_ratio, "true": 1.0}[p["type"]]
+            # damage over time: casts and attacks are spread over the fight, so on average
+            # half the fight is left for it to land
+            landed = min(1.0, t / 2 / p["over"]) if p.get("over") else 1.0
+            damage += amount * _targets(p.get("hits", "single"), a) * scale * landed
+        elif kind == "health":
+            sustain += amount
+        else:  # shield, heal
+            sustain += amount * ap_ratio * a["power_sustain_weight"]
+    dps = (attacks * (1 + attack_bonus) * (1 + speed_bonus) + damage / t) * amp
+    ehp += sustain + s.omnivamp * dps * t
+    return UnitPower(s.unit, dps, ehp, casts, "record")
+
+
+def _stand_in(kb, s, a, star_ad, t, attacks, casts, amp, ehp) -> UnitPower:
+    """Ability by cost and star, for patches without ability records."""
+    c = kb.champions[s.unit]
+    text = c["ability"].get("text") or ""
+    tank = "tank" in profile(kb, s.unit).tags
+    base = a["power_ability_base"][c["cost"]] * a["power_ability_star"][s.star]
+    if "scaleAD" in text:
+        base_ad = (c["stats"].get("damage") or 0) * star_ad
+        scale = s.ad / base_ad if base_ad else 1.0
+    else:
+        scale = s.ap / 100
+    ability = base * scale * casts
     if tank:
         ehp += a["power_tank_ability_share"] * ability
         dps = attacks * amp
@@ -80,6 +160,24 @@ def unit_power(kb, s: UnitStats, a: AssumptionSet, star_ad: float = 1.0) -> Unit
         dps = (attacks + ability / t) * amp
     ehp += s.omnivamp * dps * t
     return UnitPower(s.unit, dps, ehp, casts)
+
+
+def adaptor_forms(kb, units: list[tuple[str, int]], a: AssumptionSet) -> tuple[dict, list]:
+    """Fixed forms (assumption or a single recorded form) and the units that pick the stronger."""
+    fixed: dict[str, str] = {}
+    open_: list[str] = []
+    for u, _ in units:
+        forms = (kb.ability(u) or {}).get("forms") or {}
+        if not forms:
+            continue
+        want = a["power_adaptor_form"].get(u)
+        if want in forms:
+            fixed[u] = want
+        elif len(forms) == 1:
+            fixed[u] = next(iter(forms))
+        else:
+            open_.append(u)
+    return fixed, open_
 
 
 def board_power(
@@ -90,8 +188,22 @@ def board_power(
     a: AssumptionSet | None = None,
 ) -> BoardPower:
     a = a or AssumptionSet()
-    unit_stats, traits = stats.compute(units, items, emblems)
-    parts = tuple(unit_power(stats.kb, s, a, stats.mult["ad"][s.star - 1]) for s in unit_stats)
+    kb = stats.kb
+    fixed, open_ = adaptor_forms(kb, units, a)
+
+    def run(form: str):
+        st, tr = stats.compute(units, items, emblems, {**fixed, **dict.fromkeys(open_, form)})
+        return st, tr, [unit_power(kb, x, a, stats.mult["ad"][x.star - 1]) for x in st]
+
+    unit_stats, traits, powers = run("ap")
+    if open_:  # a unit's form changes only its own stats, so pick per unit
+        ad_stats, _, ad_powers = run("ad")
+        for i, x in enumerate(unit_stats):
+            if x.unit in open_:
+                ap_p, ad_p = powers[i], ad_powers[i]
+                if ad_p.dps * ad_p.ehp > ap_p.dps * ap_p.ehp:
+                    unit_stats[i], powers[i] = ad_stats[i], ad_p
+    parts = tuple(powers)
     dps = sum(p.dps for p in parts)
     ehp = sum(p.ehp for p in parts)
     return BoardPower(math.sqrt(max(dps, 0) * max(ehp, 0)), dps, ehp, parts, tuple(traits),

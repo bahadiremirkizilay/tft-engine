@@ -1,0 +1,2065 @@
+{
+ "set": "set18",
+ "patch": "18.5",
+ "kind": "abilities",
+ "note": "Ability values per star (1/2/3) for Set 18 patch 18.5, from Blitz unit pages the owner pasted on 2026-10-22 (the CommunityDragon export has no Set 18 ability numbers). Values are tooltip numbers at 100% AD and 100% AP. The 16 ability changes in the official 18.5 notes all match. parts: kind damage/shield/heal/health/attack_bonus/attack_speed; hits single/aoe/line/split or a number of targets; times per cast; per cast (default), second (with duration: after each cast; without: all fight), attack (with duration: attacks during it after each cast), fight (once); chance names an assumption or gives a number; over: seconds a damage-over-time part takes to land (only the part that lands within the fight counts). forms: Adaptor AP and AD forms (stats replace base stats for that form). model_status partial: the note lists what is not counted.",
+ "records": [
+  {
+   "id": "DA_18_Alune",
+   "name": "Moonfall",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      58,
+      88,
+      500
+     ],
+     "hits": "single",
+     "times": 9
+    }
+   ],
+   "model_status": "partial",
+   "note": "9 moonshards split among the 3 nearest enemies. Not counted: the full-moon cast (2350/3600/7500 split among all enemies) that replaces it when the moon is full."
+  },
+  {
+   "id": "DA_18_Ashe",
+   "name": "Spirit Rift",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      465,
+      700,
+      1000
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      13,
+      19,
+      220
+     ],
+     "hits": "aoe",
+     "per": "second",
+     "duration": 3
+    }
+   ],
+   "model_status": "partial",
+   "note": "The arrow loses 80% per enemy hit (min 20%), counted as one target. Not counted: trail 1.5% max Health per second, 20% Slow, 70% mana refund on a miss."
+  },
+  {
+   "id": "DA_Draven18",
+   "name": "Whirling Death",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      150,
+      225,
+      3000
+     ],
+     "hits": "single",
+     "over": 12,
+     "per": "attack"
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      100,
+      150,
+      400
+     ],
+     "hits": "line",
+     "times": 2
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      30,
+      45,
+      100
+     ],
+     "hits": "line",
+     "times": 2
+    }
+   ],
+   "model_status": "partial",
+   "note": "Passive bleed on every attack (over 12 s). Not counted: 12% chance of 50% bonus damage and a double bleed, consuming bleeds on the axe hit, mana refund."
+  },
+  {
+   "id": "DA_18_ElderDragon",
+   "name": "Heat Without Equal",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      305,
+      465,
+      7200
+     ],
+     "hits": "line"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Flame Breath after the first cast (20% less per enemy passed, min 20%). Not counted: passive 75% splash to adjacent enemies, first-cast stun and ignite (2% max Health per second), 15% Omnivamp, execute below 12%."
+  },
+  {
+   "id": "DA_18_GnarSmall",
+   "name": "Rage Gene",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      380,
+      570,
+      9000
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      135,
+      205,
+      4500
+     ],
+     "hits": "line"
+    },
+    {
+     "kind": "health",
+     "values": [
+      400,
+      600,
+      15000
+     ],
+     "per": "fight"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Grab n' Throw after the first cast (Mega Gnar: +400/600/15000 Health once). Not counted: the first cast (100/150/2000 in 2 hexes, -15/20/250 Armor and MR, 1 s stun), Rage (5 per second and per attack) as extra mana."
+  },
+  {
+   "id": "DA_18_Ivern",
+   "name": "Triggerseed",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      185,
+      350,
+      3000
+     ],
+     "times": 2
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      155,
+      235,
+      2000
+     ],
+     "hits": "aoe",
+     "times": 2
+    }
+   ],
+   "model_status": "partial",
+   "note": "Shields 2 allies (counted as team effective Health). Not counted: 10% Damage Amp to them, shield crits, stacking Attack Speed after 6 casts."
+  },
+  {
+   "id": "DA_18_Kennen",
+   "name": "Firestorm",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      230,
+      300,
+      3000
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      80,
+      120,
+      1500
+     ],
+     "hits": "aoe"
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      475,
+      715,
+      5000
+     ],
+     "hits": "split"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: 15% AP per Burning enemy."
+  },
+  {
+   "id": "DA_Lux18_Base",
+   "name": "Final Spark",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      375,
+      565,
+      6500
+     ],
+     "hits": "line"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Laser loses 25% per enemy hit (min 40%). Lux forms share it. Not counted: 3/3/100 mana to allies sharing a trait, the form bonus."
+  },
+  {
+   "id": "DA_18_Maokai",
+   "name": "Sow the Seeds",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      69,
+      69,
+      1150
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "heal",
+     "values": [
+      330,
+      400,
+      2000
+     ]
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: +10% missing Health heal, saplings (80.5/80.5/862.5 per 650 damage blocked; scaling icon lost in the paste)."
+  },
+  {
+   "id": "DA_Taric18",
+   "name": "Emerald Radiance",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      275,
+      450,
+      3000
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      130,
+      200,
+      1000
+     ],
+     "hits": "single",
+     "times": 4
+    }
+   ],
+   "model_status": "partial",
+   "note": "Bonus damage on the next 2 attacks of Taric and his paired ally (4 hits). Not counted: passive 270/345/11300 shield to allies within 3 hexes once. Mana: Blitz 0/65, game file 0/70 (conflict kept in conflicts).",
+   "conflicts": [
+    {
+     "field": "mana",
+     "value": 65,
+     "source_ids": [
+      "blitz-2026-10-22"
+     ],
+     "note": "Blitz shows 0/65; the CommunityDragon 16.21 record has 70 and the 18.5 notes do not change it"
+    }
+   ]
+  },
+  {
+   "id": "DA_18_Ahri",
+   "name": "Spirit Bomb",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      455,
+      685,
+      3500
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "3 hex radius, 21% less per hex from the center."
+  },
+  {
+   "id": "DA_Amumu18",
+   "name": "Tantrum",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      12,
+      18,
+      150
+     ],
+     "hits": "aoe",
+     "per": "second"
+    },
+    {
+     "kind": "heal",
+     "values": [
+      33,
+      33.13,
+      56
+     ],
+     "per": "second"
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      100,
+      150,
+      2000
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Passive every second within 1 hex. Not counted: stun."
+  },
+  {
+   "id": "DA_18_Aphelios",
+   "name": "Moonlight's Onslaught",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      70,
+      105,
+      850
+     ],
+     "hits": "single",
+     "times": 5
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      490,
+      735,
+      5225
+     ],
+     "hits": "split"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: +1 swipe per 20% bonus Attack Speed."
+  },
+  {
+   "id": "DA_Brambleback18",
+   "name": "Crimson Fury",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "attack_bonus",
+     "value": 1.0,
+     "duration": 8
+    }
+   ],
+   "model_status": "partial",
+   "note": "+100% Attack Damage for 8 s. Not counted: 50/50/95% Armor ignore, leap 135/205/1000 on target death, Red Buff burn and heal."
+  },
+  {
+   "id": "DA_18_Ezreal",
+   "name": "Forest's Flurry",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      270,
+      405,
+      1200
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      385,
+      580,
+      2500
+     ],
+     "hits": "line",
+     "times": 0.25
+    },
+    {
+     "kind": "attack_speed",
+     "value": 0.3
+    }
+   ],
+   "model_status": "partial",
+   "note": "Every 4th cast fires the blast (counted as a quarter per cast). +30/30/100% Attack Speed per cast until the 4th; counted as a flat 30%."
+  },
+  {
+   "id": "DA_18_Lillia",
+   "name": "Lilting Lullaby",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      350,
+      525,
+      800
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      90,
+      135,
+      2000
+     ],
+     "hits": "single",
+     "times": 4
+    }
+   ],
+   "model_status": "partial",
+   "note": "4 butterflies at nearby enemies. Not counted: sleep, 10% max Health on waking."
+  },
+  {
+   "id": "DA_18_Malphite",
+   "name": "Petrified Bark",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      735,
+      885,
+      2000
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      82,
+      123,
+      3398.6
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Wave value at base Armor and MR (scales with AP, Armor and MR; icons lost in the paste)."
+  },
+  {
+   "id": "DA_18_Morgana",
+   "name": "Withering Curse",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      70,
+      105,
+      500
+     ],
+     "hits": 3
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      33,
+      50,
+      500
+     ],
+     "hits": "aoe",
+     "per": "second",
+     "duration": 4
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: passive 25% Omnivamp, 25/38/240 more damage per curse."
+  },
+  {
+   "id": "DA_Nidalee18_AP",
+   "name": "Javelin Toss",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "forms": {
+    "ap": {
+     "parts": [
+      {
+       "kind": "damage",
+       "type": "magic",
+       "values": [
+        185,
+        275,
+        2000
+       ],
+       "hits": "single",
+       "times": 2
+      },
+      {
+       "kind": "damage",
+       "type": "magic",
+       "values": [
+        330,
+        500,
+        3000
+       ],
+       "hits": "single"
+      }
+     ],
+     "note": "3 empowered attacks become javelins (+150% Attack Speed); the 3rd hits the furthest enemy with the fewest items."
+    },
+    "ad": {
+     "parts": [
+      {
+       "kind": "damage",
+       "type": "physical",
+       "values": [
+        200,
+        300,
+        3000
+       ],
+       "hits": "single"
+      },
+      {
+       "kind": "heal",
+       "values": [
+        300,
+        450,
+        2000
+       ],
+       "chance": 0.3333333333333333
+      }
+     ],
+     "stats": {
+      "hp": 1100,
+      "armor": 65,
+      "magicResist": 65,
+      "damage": 60,
+      "attackSpeed": 0.85,
+      "range": 1
+     },
+     "note": "Cougar form (melee); stats from Blitz, the game file has only the AP record. Owner: mana 0/45 as AP, scales with AD. Not counted: 60% Armor ignore, up to 125% missing-Health bonus every third cast, the leap."
+    }
+   },
+   "model_status": "partial",
+   "note": "Adaptor: two forms."
+  },
+  {
+   "id": "DA_Sentinel18",
+   "name": "Azure Shockwave",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      505,
+      605,
+      2130
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      100,
+      150,
+      3500
+     ],
+     "hits": "line"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: knock-up, Mana Reave 10, Blue Buff mana regen."
+  },
+  {
+   "id": "DA_18_Sett",
+   "name": "Haymaker",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      394,
+      444,
+      2144
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      222,
+      297,
+      5072
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Heal and damage include 12% and 6% of max Health at base Health. Not counted: +100 mana once below 40% Health."
+  },
+  {
+   "id": "DA_18_Sivir",
+   "name": "Boomerang Blade",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      235,
+      350,
+      1150
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      42.3,
+      63,
+      460
+     ],
+     "hits": "single",
+     "times": 8
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: 3 more bounces on a kill."
+  },
+  {
+   "id": "DA_18_Soraka",
+   "name": "Starcall",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      235,
+      355,
+      1000
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      110,
+      165,
+      1000
+     ],
+     "hits": "single",
+     "times": 3,
+     "chance": "power_conditional_share"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "The 3 extra stars fall only on a target a star hit before."
+  },
+  {
+   "id": "DA_18_Zyra",
+   "name": "Rampant Growth",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      35,
+      53,
+      225
+     ],
+     "hits": "single",
+     "times": 20
+    }
+   ],
+   "model_status": "modelled",
+   "note": "2 plants attack 10 times each."
+  },
+  {
+   "id": "DA_18_Azir",
+   "name": "Arise!",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      43,
+      65,
+      105
+     ],
+     "hits": "single",
+     "times": 12
+    },
+    {
+     "kind": "attack_speed",
+     "value": 1.5
+    }
+   ],
+   "model_status": "partial",
+   "note": "6 attacks become commands for 2 soldiers (+150% Attack Speed for them). Not counted: those 6 attacks deal no normal damage."
+  },
+  {
+   "id": "DA_18_Cassiopeia",
+   "name": "Noxious Blast",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      420,
+      630,
+      1020
+     ],
+     "hits": 2,
+     "over": 15
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Poison over 15 s; poisons stack."
+  },
+  {
+   "id": "DA_18_Diana",
+   "name": "Pale Barrier",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      150,
+      275,
+      500
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      75,
+      115,
+      180
+     ],
+     "hits": "single",
+     "times": 6
+    }
+   ],
+   "model_status": "modelled",
+   "note": "6 orbs spread among enemies within 2 hexes."
+  },
+  {
+   "id": "DA_Fiddlesticks18",
+   "name": "Harvest",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      410,
+      485,
+      850
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      70,
+      105,
+      170
+     ],
+     "hits": 3
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: -10 Magic Resist."
+  },
+  {
+   "id": "DA_18_Hecarim",
+   "name": "Spirit of Dread",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      375,
+      475,
+      685
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      80,
+      120,
+      195
+     ],
+     "hits": 3
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: +50 Armor and MR for 3 s, stun."
+  },
+  {
+   "id": "DA_18_KhaZix",
+   "name": "Taste Their Fear",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      250,
+      345,
+      500
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: isolated target 280/390/590 and +10 mana."
+  },
+  {
+   "id": "DA_KogMaw18_AD",
+   "name": "Raining Artillery",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "forms": {
+    "ap": {
+     "parts": [
+      {
+       "kind": "damage",
+       "type": "magic",
+       "values": [
+        160,
+        240,
+        415
+       ],
+       "hits": 2
+      },
+      {
+       "kind": "damage",
+       "type": "magic",
+       "values": [
+        48,
+        72,
+        115
+       ],
+       "hits": 2,
+       "over": 3
+      }
+     ]
+    },
+    "ad": {
+     "parts": [
+      {
+       "kind": "damage",
+       "type": "physical",
+       "values": [
+        165,
+        250,
+        425
+       ],
+       "hits": 2
+      }
+     ],
+     "note": "Not counted: 231/350/595 against enemies below 50% max Health."
+    }
+   },
+   "model_status": "modelled",
+   "note": "Adaptor: two forms."
+  },
+  {
+   "id": "DA_Krug18",
+   "name": "Rock and Roll",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "health",
+     "values": [
+      175,
+      225,
+      325
+     ],
+     "per": "fight"
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      223,
+      288,
+      423
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "health",
+     "values": [
+      364,
+      464,
+      624
+     ],
+     "per": "fight"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Max Health per cast counted once. On death 2 Kruglettes with 182/232/312 Health (counted as Health once). Not counted: Slate Buff shields."
+  },
+  {
+   "id": "DA_CrimsonRaptor18",
+   "name": "Flock Family",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      20,
+      30,
+      50
+     ],
+     "hits": "single",
+     "times": 4,
+     "per": "attack",
+     "duration": 5
+    }
+   ],
+   "model_status": "modelled",
+   "note": "4 Tiny Beaks attack with Mama Beak for 5 s. Not counted: Orange Buff Armor shred."
+  },
+  {
+   "id": "DA_18_MasterYi_AD",
+   "name": "Wuju Style",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "forms": {
+    "ap": {
+     "parts": [
+      {
+       "kind": "damage",
+       "type": "magic",
+       "values": [
+        135,
+        200,
+        320
+       ],
+       "hits": "single"
+      }
+     ],
+     "note": "Every third attack (mana 3) deals bonus magic damage. Not counted: heal 35%."
+    },
+    "ad": {
+     "parts": [
+      {
+       "kind": "attack_bonus",
+       "value": 0.3333333333333333
+      }
+     ],
+     "note": "Every third attack hits twice. Not counted: 15% stacking Attack Speed per Double Strike."
+    }
+   },
+   "model_status": "modelled",
+   "note": "Adaptor: two forms."
+  },
+  {
+   "id": "DA_18_Rammus",
+   "name": "Defensive Ball Curl",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      400,
+      550,
+      700
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      50,
+      75,
+      120
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: taunt, +60 Armor and MR for 4 s; break damage scales with Armor and MR (icons lost in the paste)."
+  },
+  {
+   "id": "DA_18_Rengar",
+   "name": "Savagery",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      255,
+      385,
+      650
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "heal",
+     "values": [
+      60,
+      90,
+      150
+     ]
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: heal up to double on low-Health targets."
+  },
+  {
+   "id": "DA_18_Tristana",
+   "name": "Explosive Charge",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      175,
+      265,
+      420
+     ],
+     "hits": "split"
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      12,
+      18,
+      28
+     ],
+     "hits": "single",
+     "per": "attack",
+     "duration": 4
+    },
+    {
+     "kind": "attack_speed",
+     "value": 0.6,
+     "duration": 4
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: infinite range."
+  },
+  {
+   "id": "DA_Vi18",
+   "name": "Furious Fists",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      22,
+      22,
+      22
+     ],
+     "per": "attack"
+    },
+    {
+     "kind": "heal",
+     "values": [
+      200,
+      265,
+      360
+     ]
+    },
+    {
+     "kind": "attack_speed",
+     "value": 0.85,
+     "duration": 3
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: 15% Durability and unstoppable for 3 s."
+  },
+  {
+   "id": "DA_18_Alistar",
+   "name": "Triumphant Roar",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      306,
+      376,
+      476
+     ]
+    },
+    {
+     "kind": "heal",
+     "values": [
+      80,
+      105,
+      130
+     ],
+     "times": 2
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      180,
+      270,
+      420
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Heals the two lowest-Health allies too. Not counted: cleanse, stun."
+  },
+  {
+   "id": "DA_18_Caitlyn",
+   "name": "Headshot",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      220,
+      330,
+      535
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Every third attack is a Headshot (mana 3)."
+  },
+  {
+   "id": "DA_18_Elise",
+   "name": "Spider Queen",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "health",
+     "values": [
+      375,
+      375,
+      375
+     ],
+     "per": "fight"
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      35,
+      50,
+      80
+     ],
+     "hits": "single",
+     "per": "attack"
+    },
+    {
+     "kind": "heal",
+     "values": [
+      55,
+      90,
+      170
+     ],
+     "per": "attack"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Spider Form from the first cast. Not counted: 175% decaying Attack Speed on later casts."
+  },
+  {
+   "id": "DA_Gromp18_AP",
+   "name": "Belchy Bubble",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "forms": {
+    "ap": {
+     "parts": [
+      {
+       "kind": "damage",
+       "type": "magic",
+       "values": [
+        225,
+        340,
+        535
+       ],
+       "hits": "single"
+      },
+      {
+       "kind": "damage",
+       "type": "magic",
+       "values": [
+        180,
+        270,
+        435
+       ],
+       "hits": "aoe",
+       "over": 3
+      }
+     ],
+     "note": "Not counted: Purple Buff +30% AP every 5 s."
+    }
+   },
+   "model_status": "modelled",
+   "note": "Adaptor: the owner plays Gromp AP only; the AD form is not recorded."
+  },
+  {
+   "id": "DA_18_Kayle",
+   "name": "Solar Judgement",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      65,
+      97,
+      110
+     ],
+     "hits": "single",
+     "per": "attack"
+    }
+   ],
+   "model_status": "partial",
+   "note": "1st Ascension. Not counted: later Ascensions (Shred, waves, range); the paste does not say when they come."
+  },
+  {
+   "id": "DA_18_LeBlanc",
+   "name": "Mirror Image",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      260,
+      390,
+      615
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      100,
+      150,
+      230
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: copy chance after combat."
+  },
+  {
+   "id": "DA_Murkwolf18",
+   "name": "Rending Claws",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      65,
+      100,
+      160
+     ],
+     "hits": "single",
+     "times": 2
+    }
+   ],
+   "model_status": "partial",
+   "note": "Next 2 attacks: +65/100/160 and 175% Attack Speed. Not counted: the leap; Blitz shows 500/1050/2250 but its own formula (100/150/225 AD + 20/30/45 AP) sums to 120/180/270, so the value is unknown. Grey Buff crit not counted."
+  },
+  {
+   "id": "DA_Scuttlecrab18",
+   "name": "Can You Dig It?",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      50,
+      75,
+      112.5
+     ],
+     "hits": "aoe",
+     "per": "attack"
+    },
+    {
+     "kind": "heal",
+     "values": [
+      325,
+      400,
+      675
+     ]
+    }
+   ],
+   "model_status": "partial",
+   "note": "Attacks are replaced by the dance (normal attack damage still counted). Not counted: 15% Durability, Green Buff."
+  },
+  {
+   "id": "DA_18_Sejuani",
+   "name": "Sun's Wrath",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      315,
+      340,
+      365
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      90,
+      135,
+      205
+     ],
+     "hits": "aoe"
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      120,
+      180,
+      270
+     ],
+     "hits": "line"
+    }
+   ],
+   "model_status": "modelled"
+  },
+  {
+   "id": "DA_18_Shen",
+   "name": "Ki Barrier",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      375,
+      450,
+      575
+     ]
+    },
+    {
+     "kind": "shield",
+     "values": [
+      225,
+      300,
+      400
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      35,
+      55,
+      80
+     ],
+     "hits": "single",
+     "times": 6
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Shen and a damaged ally: shields and 3 empowered attacks each (+40% Attack Speed)."
+  },
+  {
+   "id": "DA_18_Teemo",
+   "name": "Fungus Among Us",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      55,
+      82,
+      155
+     ],
+     "hits": 3,
+     "times": 2
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      135,
+      200,
+      310
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: foraged mushrooms (reroll, Health, XP)."
+  },
+  {
+   "id": "DA_18_Warwick",
+   "name": "Jaws of The Beast",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      230,
+      345,
+      535
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: heal 25% of damage, +20% Attack Speed per cast."
+  },
+  {
+   "id": "DA_18_Yunara",
+   "name": "Cultivation of Spirit",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      170,
+      255,
+      395
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      59.5,
+      89.25,
+      138.25
+     ],
+     "hits": "single",
+     "times": 2
+    }
+   ],
+   "model_status": "modelled"
+  },
+  {
+   "id": "DA_18_Akali_AD",
+   "name": "Kunai Strike",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "forms": {
+    "ap": {
+     "parts": [
+      {
+       "kind": "damage",
+       "type": "magic",
+       "values": [
+        140,
+        210,
+        365
+       ],
+       "hits": "single"
+      }
+     ],
+     "note": "Not counted: +50% against Tanks, recast at 70% on a kill."
+    },
+    "ad": {
+     "parts": [
+      {
+       "kind": "damage",
+       "type": "physical",
+       "values": [
+        155,
+        235,
+        405
+       ],
+       "hits": "single"
+      }
+     ],
+     "note": "Not counted: +35/52/80 against Burning targets, recast on a kill."
+    }
+   },
+   "model_status": "modelled",
+   "note": "Adaptor: two forms."
+  },
+  {
+   "id": "DA_18_Camille",
+   "name": "Defensive Sweep",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      160,
+      240,
+      425
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "shield",
+     "values": [
+      60,
+      60,
+      60
+     ]
+    }
+   ],
+   "model_status": "modelled"
+  },
+  {
+   "id": "DA_Cinderling18",
+   "name": "Razor Leaves",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      340,
+      510,
+      770
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: 20% Wound, 1% Burn, Scarlet Buff."
+  },
+  {
+   "id": "DA_Karma18",
+   "name": "Karmic Bond",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      280,
+      420,
+      630
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      125,
+      185,
+      300
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: 30% Slow."
+  },
+  {
+   "id": "DA_18_Kobuko",
+   "name": "Dance of Life",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      334,
+      384,
+      529
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      140,
+      175,
+      220
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "modelled"
+  },
+  {
+   "id": "DA_18_Leona",
+   "name": "Shield Bash",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      60,
+      108,
+      162
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: stun, starting +60/80/100 Armor and MR decaying over 12 s."
+  },
+  {
+   "id": "DA_18_Ornn",
+   "name": "Bellows Breath",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      400,
+      460,
+      550
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      200,
+      300,
+      450
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: Forge Power quest."
+  },
+  {
+   "id": "DA_18_Sentry",
+   "name": "Azure Laser",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      160,
+      240,
+      360
+     ],
+     "hits": "single",
+     "per": "second",
+     "duration": 2.86
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Channel spends 35% max mana per second (about 2.86 s). Not counted: -3 MR per second, Teal Buff."
+  },
+  {
+   "id": "DA_18_Rakan",
+   "name": "Entrancing Dance",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "shield",
+     "values": [
+      290,
+      340,
+      435
+     ]
+    }
+   ],
+   "model_status": "partial",
+   "note": "Not counted: 90/100/130% decaying Attack Speed to the top-damage ally."
+  },
+  {
+   "id": "DA_18_RekSai",
+   "name": "Uproot",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      17,
+      21,
+      27
+     ],
+     "per": "second"
+    },
+    {
+     "kind": "heal",
+     "values": [
+      34,
+      42,
+      54
+     ],
+     "per": "second",
+     "duration": 3
+    },
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      70,
+      105,
+      160
+     ],
+     "hits": "aoe"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Passive regen, tripled for 3 s after a cast. Not counted: stun."
+  },
+  {
+   "id": "DA_18_Varus",
+   "name": "Piercing Arrow",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      445,
+      670,
+      1070
+     ],
+     "hits": "line"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "40% less per enemy passed (min 40%)."
+  },
+  {
+   "id": "DA_18_Veigar",
+   "name": "Primordial Burst",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "magic",
+     "values": [
+      190,
+      285,
+      430
+     ],
+     "hits": "single"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: 285/430/640 below 30% Health, permanent AP on kills."
+  },
+  {
+   "id": "DA_18_Xayah",
+   "name": "Deadly Plumage",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      73,
+      108,
+      165
+     ],
+     "hits": "single",
+     "times": 5
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Not counted: +50% Attack Speed for those attacks, -2 Armor per feather."
+  },
+  {
+   "id": "DA_18_Yorick",
+   "name": "Last Rites",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "blitz-2026-10-22"
+   ],
+   "parts": [
+    {
+     "kind": "heal",
+     "values": [
+      280,
+      325,
+      435
+     ]
+    },
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": [
+      150,
+      225,
+      340
+     ],
+     "hits": "single"
+    },
+    {
+     "kind": "health",
+     "values": [
+      330,
+      530,
+      880
+     ],
+     "per": "fight"
+    }
+   ],
+   "model_status": "modelled",
+   "note": "Spirit Walker on death counted as Health once."
+  }
+ ]
+}

@@ -1,7 +1,7 @@
 {
  "set": "set18",
  "kind": "champion_roles",
- "note": "Champion roles in the export's format (AD/AP + Tank, Fighter, Assassin, Marksman, Caster). The CommunityDragon export has roles only for Alune (APCaster) and Kobuko (APTank); those two are kept from the game data. The other 63 are estimates (source role-estimate-2026-10-21): League of Legends class, range, Health, starting mana and traits; the owner asked for estimates and corrects wrong ones. Lux forms take the base Lux role.",
+ "note": "Champion roles in the export's format (AD/AP + Tank, Fighter, Assassin, Marksman, Caster). The CommunityDragon export has roles only for Alune (APCaster) and Kobuko (APTank); those two are kept from the game data. The other 63 are estimates (source role-estimate-2026-10-21): League of Legends class, range, Health, starting mana and traits; the owner asked for estimates and corrects wrong ones. Lux forms take the base Lux role. 2026-10-22: Blitz unit pages show every champion's role; 16 estimates changed to the Blitz role, the others are confirmed by it. AD-form records (Akali, Kog'Maw, Master Yi, Nidalee) keep the estimate because Blitz shows the AP form's role. Ivern keeps the owner's role, Blitz's is in conflicts.",
  "records": [
   {
    "id": "DA_18_Akali_AD",
@@ -16,23 +16,26 @@
    "role": "ADFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
    "id": "DA_Cinderling18",
-   "role": "ADMarksman",
+   "role": "ADCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADMarksman."
   },
   {
    "id": "DA_Karma18",
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -40,7 +43,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -48,7 +52,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -56,7 +61,8 @@
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -64,7 +70,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -72,23 +79,26 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
    "id": "DA_18_Varus",
-   "role": "ADMarksman",
+   "role": "ADCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADMarksman."
   },
   {
    "id": "DA_18_Veigar",
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -96,39 +106,44 @@
    "role": "ADMarksman",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
    "id": "DA_18_Yorick",
-   "role": "ADFighter",
+   "role": "ADTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADFighter."
   },
   {
    "id": "DA_18_Alistar",
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
    "id": "DA_18_Caitlyn",
-   "role": "ADMarksman",
+   "role": "ADSpecialist",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADMarksman."
   },
   {
    "id": "DA_18_Elise",
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -137,35 +152,37 @@
    "status": "unverified",
    "source_ids": [
     "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "owner-ability-pastes-2026-10-21",
+    "blitz-2026-10-22"
    ],
    "note": "Estimate consistent with the ability text and stats the owner pasted"
   },
   {
    "id": "DA_18_Kayle",
-   "role": "APMarksman",
+   "role": "APSpecialist",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "blitz-2026-10-22"
    ],
-   "note": "Consistent with the pasted ability: attacks deal bonus magic damage"
+   "note": "Consistent with the pasted ability: attacks deal bonus magic damage Blitz role; the estimate was APMarksman."
   },
   {
    "id": "DA_18_LeBlanc",
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
    "id": "DA_Murkwolf18",
-   "role": "ADFighter",
+   "role": "ADAssassin",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADFighter."
   },
   {
    "id": "DA_Scuttlecrab18",
@@ -181,7 +198,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -189,7 +207,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -197,7 +216,8 @@
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -205,31 +225,35 @@
    "role": "ADFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
    "id": "DA_18_Yunara",
-   "role": "ADMarksman",
+   "role": "ADCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADMarksman."
   },
   {
    "id": "DA_18_Azir",
-   "role": "APCaster",
+   "role": "APMarksman",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was APCaster."
   },
   {
    "id": "DA_18_Cassiopeia",
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -237,7 +261,8 @@
    "role": "APFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -245,7 +270,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -253,7 +279,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -262,7 +289,8 @@
    "status": "unverified",
    "source_ids": [
     "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "owner-ability-pastes-2026-10-21",
+    "blitz-2026-10-22"
    ],
    "note": "Estimate consistent with the ability text and stats the owner pasted"
   },
@@ -288,7 +316,8 @@
    "role": "ADMarksman",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -301,44 +330,47 @@
   },
   {
    "id": "DA_18_Rammus",
-   "role": "APTank",
+   "role": "ADTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was APTank."
   },
   {
    "id": "DA_18_Rengar",
-   "role": "ADAssassin",
+   "role": "ADFighter",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADAssassin."
   },
   {
    "id": "DA_18_Tristana",
    "role": "ADMarksman",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
    "id": "DA_Vi18",
-   "role": "APFighter",
+   "role": "ADTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "blitz-2026-10-22"
    ],
-   "note": "Consistent with the pasted ability: heals, attack speed, durability, Unstoppable"
+   "note": "Consistent with the pasted ability: heals, attack speed, durability, Unstoppable Blitz role; the estimate was APFighter."
   },
   {
    "id": "DA_18_Ahri",
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -346,7 +378,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -354,7 +387,8 @@
    "role": "ADMarksman",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -363,24 +397,27 @@
    "status": "unverified",
    "source_ids": [
     "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "owner-ability-pastes-2026-10-21",
+    "blitz-2026-10-22"
    ],
    "note": "Consistent with the pasted ability: +80% AD steroid, armor ignore"
   },
   {
    "id": "DA_18_Ezreal",
-   "role": "ADMarksman",
+   "role": "ADCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADMarksman."
   },
   {
    "id": "DA_18_Lillia",
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -388,7 +425,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -397,7 +435,8 @@
    "status": "unverified",
    "source_ids": [
     "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "owner-ability-pastes-2026-10-21",
+    "blitz-2026-10-22"
    ],
    "note": "Estimate consistent with the ability text and stats the owner pasted"
   },
@@ -414,7 +453,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -428,18 +468,20 @@
   },
   {
    "id": "DA_18_Sivir",
-   "role": "ADMarksman",
+   "role": "ADCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADMarksman."
   },
   {
    "id": "DA_18_Soraka",
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -447,23 +489,26 @@
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
    "id": "DA_18_Ashe",
-   "role": "ADMarksman",
+   "role": "ADCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADMarksman."
   },
   {
    "id": "DA_Draven18",
    "role": "ADMarksman",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -472,17 +517,19 @@
    "status": "unverified",
    "source_ids": [
     "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "owner-ability-pastes-2026-10-21",
+    "blitz-2026-10-22"
    ],
    "note": "Consistent with the pasted ability: large physical damage, Omnivamp, execute"
   },
   {
    "id": "DA_18_GnarSmall",
-   "role": "ADFighter",
+   "role": "ADSpecialist",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
-   ]
+    "blitz-2026-10-22"
+   ],
+   "note": "Blitz role; the estimate was ADFighter."
   },
   {
    "id": "DA_18_Ivern",
@@ -491,24 +538,33 @@
    "source_ids": [
     "owner-ingame-2026-10-20"
    ],
-   "note": "Owner: utility champion; usual items Blue Buff and Spear of Shojin, for more casts"
+   "note": "Owner: utility champion; usual items Blue Buff and Spear of Shojin, for more casts",
+   "conflicts": [
+    {
+     "value": "APCaster",
+     "source_ids": [
+      "blitz-2026-10-22"
+     ],
+     "note": "Blitz shows Magic Caster; the owner called Ivern a utility champion"
+    }
+   ]
   },
   {
    "id": "DA_18_Kennen",
-   "role": "APFighter",
+   "role": "APAssassin",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21",
-    "owner-ability-pastes-2026-10-21"
+    "blitz-2026-10-22"
    ],
-   "note": "Estimate consistent with the ability text and stats the owner pasted"
+   "note": "Estimate consistent with the ability text and stats the owner pasted Blitz role; the estimate was APFighter."
   },
   {
    "id": "DA_Lux18_Base",
    "role": "APCaster",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -516,7 +572,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   },
   {
@@ -524,7 +581,8 @@
    "role": "APTank",
    "status": "unverified",
    "source_ids": [
-    "role-estimate-2026-10-21"
+    "role-estimate-2026-10-21",
+    "blitz-2026-10-22"
    ]
   }
  ]

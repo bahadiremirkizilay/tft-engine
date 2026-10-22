@@ -36,7 +36,7 @@ Bir şeyi değiştirmeden önce buraya bak: o parametreyi, dosyayı ya da modül
 
 | Klasör / dosya | Yükleyen | Not |
 |---|---|---|
-| `abilities` | — | owner's ability values for 12 champions (sourced); board_power should use them |
+| `abilities` | gamedata/curated.py |  |
 | `augment_tiers` | gamedata/curated.py, tools/curate_augment_tiers.py |  |
 | `cdragon_rules` | tools/import_cdragon.py |  |
 | `champion_roles` | gamedata/curated.py |  |
