@@ -11,7 +11,8 @@ import json
 from dataclasses import asdict, dataclass, field, replace
 from typing import Any
 
-_COPIES_PER_STAR = {1: 1, 2: 3, 3: 9}
+# copies that make a unit of each star; the only copy in the code (scenario, sim use it)
+COPIES_PER_STAR = {1: 1, 2: 3, 3: 9}
 _OPTIONAL_DEFAULTS: dict[str, Any] = {"free_rerolls": 0, "augments": (), "event_counts": ()}
 
 
@@ -22,7 +23,7 @@ class UnitInstance:
     star: int = 1
 
     def __post_init__(self) -> None:
-        if self.star not in _COPIES_PER_STAR:
+        if self.star not in COPIES_PER_STAR:
             raise ValueError(f"{self.unit_id}: star must be 1, 2 or 3")
         if not 1 <= self.cost <= 5:
             raise ValueError(f"{self.unit_id}: cost must be 1..5")
@@ -30,7 +31,7 @@ class UnitInstance:
     @property
     def copies(self) -> int:
         """Pool copies this unit removed from the shared pool."""
-        return _COPIES_PER_STAR[self.star]
+        return COPIES_PER_STAR[self.star]
 
 
 @dataclass(frozen=True)

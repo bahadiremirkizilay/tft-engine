@@ -4,7 +4,7 @@
 
 Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assumption`: ölçülmedi, motorun tahmini. Aralıklı olanlar P1'in hassasiyet raporunda iki ucuyla yeniden hesaplanır.
 
-- **50 varsayım**, 36 tanesinin aralığı var, 4 tanesinin gerekçesi yazılı.
+- **59 varsayım**, 43 tanesinin aralığı var, 15 tanesinin gerekçesi yazılı.
 - P1'de en az bir senaryonun kararını çeviren: **12** varsayım.
 
 ## Kararı en çok çevirenler (P1 senaryoları)
@@ -50,12 +50,10 @@ Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assump
 | `item_fit_weights` | {"ad": {"ad_pct": 2, "as_pct": 1, "crit_pct": 1… | — | item fit rule weights by champion profile (rule-based, not statistics) | yazılmadı | — | decision/item_fit.py |
 | `comp_match_weights` | {"units": 1.0, "items": 0.3, "unit_cost_exp": 1… | — | comp match score: share of the comp's units owned (weighted by cost ** unit_cost_exp) and… | yazılmadı | — | decision/comp_match.py |
 | `sim_trait_bonus` | 0.1 | 0.05 – 0.15 | board power bonus per active trait breakpoint step (simulation) | yazılmadı | — | decision/board_builder.py, sim/game.py |
-| `sim_item_bonus` | 0.12 | 0.06 – 0.2 | power bonus per completed item on a unit | yazılmadı | — | sim/game.py |
 | `sim_level_curve` | {"2-1": 4, "2-5": 5, "3-2": 6, "3-5": 7, "4-2":… | — | stage at which the simulated player levels to at least this level | yazılmadı | — | sim/game.py |
 | `sim_slow_roll_floor` | 50 | 30 – 50 | slow roll stays above this gold | owner's habit: slow roll above 50, may drop to 30 | — | sim/game.py |
 | `sim_low_hp` | 40 | 25 – 55 | below this HP the simulated player rolls deep | yazılmadı | — | sim/game.py |
 | `sim_deep_roll_floor` | 10 | 0 – 20 | gold kept when rolling deep | yazılmadı | — | sim/game.py |
-| `sim_item_good_fit` | 4.0 | 2.0 – 6.0 | item fit score at which an item gives its full power bonus | yazılmadı | — | sim/game.py |
 | `sim_item_min_fit` | 2.0 | 1.0 – 3.0 | below this fit no holder suits the item: keep the components | yazılmadı | — | sim/game.py |
 | `sim_no_items_before` | 2-1 | — | no items are crafted before this round (owner: stage 1 is won anyway) | owner's review of a simulated game | — | sim/game.py |
 | `sim_lose_streak_hp` | 60 | 50 – 75 | early loss streak (or Coven) keeps saving gold while HP is at least this | yazılmadı | — | sim/game.py |
@@ -66,6 +64,13 @@ Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assump
 | `sim_components_per_monster_round` | 2 | 1 – 3 | components dropped by each x-7 monster round (owner: many items drop) | owner's review of a simulated game | count drops in a few real games (templates/oyun_ici_kontrol… | sim/game.py |
 | `sim_carousel_round` | 4 | — | round x-4 is a carousel giving one component (no champion modelled) | yazılmadı | — | sim/game.py |
 | `sim_carry_needs_items_value` | 0.5 | 0.25 – 1.0 | share of a 4-5 cost carry's value when the held items do not suit it | yazılmadı | — | sim/game.py |
+| `sim_one_short_step` | 0.5 | 0.25 – 0.75 | trait step value counted when one unit short of the next breakpoint | guess (simulation policy, 2026-10-21) | — | sim/game.py |
+| `sim_trait_value_floor` | 3.0 | 1.0 – 5.0 | board power floor used to value trait progress early in the game | guess (simulation policy, 2026-10-21) | — | sim/game.py |
+| `sim_pair_value` | 0.3 | 0.1 – 0.5 | value of a copy toward a star-up, as a share of the unit's cost | guess (simulation policy, 2026-10-21) | — | sim/game.py |
+| `sim_star_up_value` | 0.5 | 0.25 – 1.0 | least value of a buy that completes a star-up, share of the unit's cost | guess (simulation policy, 2026-10-21) | — | sim/game.py |
+| `sim_interest_break_gain` | 0.15 | 0.05 – 0.3 | gain (share of board power) worth dropping below an interest step | guess (simulation policy, 2026-10-21) | — | sim/game.py |
+| `sim_item_holder_weight` | 0.1 | 0.0 – 0.3 | weight of a holder's unit value next to item fit when crafting | guess (simulation policy, 2026-10-21) | — | sim/game.py |
+| `sim_survivor_share` | 0.3 | 0.2 – 0.5 | share of the winner's board alive after an even fight (simulation) | guess (simulation combat, 2026-10-21) | — | sim/game.py |
 | `sim_idle_holder_factor` | 0.6 | 0.4 – 1.0 | item fit multiplier for a holder that adds to no active trait | yazılmadı | — | sim/game.py |
 | `power_fight_seconds` | 20 | 15 – 30 | length of a typical player combat | yazılmadı | — | decision/board_power.py |
 | `power_mana_per_attack` | 10 | 5 – 10 | mana gained per attack (not in the game data) | yazılmadı | — | decision/board_power.py |
@@ -73,6 +78,10 @@ Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assump
 | `power_ability_star` | {"1": 1.0, "2": 1.5, "3": 2.5} | — | ability value per star relative to 1-star | yazılmadı | — | decision/board_power.py |
 | `power_tank_ability_share` | 0.6 | 0.3 – 1.0 | share of a tank's ability value counted as extra Health (shields, heals) | yazılmadı | — | decision/board_power.py |
 | `power_resist_weight` | 1.0 | 0.7 – 1.3 | how much average Armor/MR raise effective Health: hp x (1 + w x resist/100) | yazılmadı | — | decision/board_power.py |
+| `power_attack_count_mana` | 5 | 3 – 10 | a mana bar this small counts attacks (every third attack ...), not mana | guess from Caitlyn and Master Yi texts (2026-10-21) | in game: how often a 3-mana unit casts | decision/board_power.py |
+| `power_min_cast_seconds` | 1.5 | 1.0 – 2.5 | at most one cast every this many seconds (cast time, mana lock) | guess (2026-10-21) | — | decision/board_power.py |
+| `power_default_crit_mult` | 1.4 | — | crit damage multiplier when a champion record has none | guess; CommunityDragon records usually carry critMultiplier | — | decision/board_power.py |
+| `power_min_damage_taken` | 0.1 | — | durability never reduces damage taken below this share (guard) | guess; keeps effective Health finite | — | decision/board_power.py |
 | `build_cost_caps` | {"7": {"4": 2, "5": 0}, "8": {"4": 4, "5": 1}, … | — | most 4- and 5-cost units a board can hold at a level (from shop odds) | yazılmadı | — | decision/board_builder.py |
 | `build_stars` | {"7": {"1": 2, "2": 2, "3": 2, "4": 1, "5": 1},… | — | star level assumed per unit cost at a level | yazılmadı | — | decision/board_builder.py |
 | `build_item_slots` | [3, 3, 2] | — | items for the main carry, the main tank and a second carry | yazılmadı | — | decision/board_builder.py |

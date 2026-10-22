@@ -103,6 +103,11 @@ DEFAULTS: dict[str, Assumption] = {
             "marksman": {"as_pct": 1},
             # fighters get damage stats at this share (owner: Nashor's belongs on a carry)
             "fighter_damage_scale": 0.6,
+            # attack range up to this counts as frontline
+            "frontline_max_range": 2,
+            # an item's stat counts at value / typical value, kept within these bounds
+            "scale_min": 0.5,
+            "scale_max": 2.0,
         },
         description="item fit rule weights by champion profile (rule-based, not statistics)",
     ),
@@ -117,7 +122,6 @@ DEFAULTS: dict[str, Assumption] = {
     "sim_trait_bonus": Assumption(
         0.10, 0.05, 0.15, "board power bonus per active trait breakpoint step (simulation)"
     ),
-    "sim_item_bonus": Assumption(0.12, 0.06, 0.2, "power bonus per completed item on a unit"),
     "sim_level_curve": Assumption(
         {"2-1": 4, "2-5": 5, "3-2": 6, "3-5": 7, "4-2": 8, "5-2": 9},
         description="stage at which the simulated player levels to at least this level",
@@ -131,9 +135,6 @@ DEFAULTS: dict[str, Assumption] = {
     ),
     "sim_low_hp": Assumption(40, 25, 55, "below this HP the simulated player rolls deep"),
     "sim_deep_roll_floor": Assumption(10, 0, 20, "gold kept when rolling deep"),
-    "sim_item_good_fit": Assumption(
-        4.0, 2.0, 6.0, "item fit score at which an item gives its full power bonus"
-    ),
     "sim_item_min_fit": Assumption(
         2.0, 1.0, 3.0, "below this fit no holder suits the item: keep the components"
     ),
@@ -167,6 +168,55 @@ DEFAULTS: dict[str, Assumption] = {
     "sim_carry_needs_items_value": Assumption(
         0.5, 0.25, 1.0, "share of a 4-5 cost carry's value when the held items do not suit it"
     ),
+    "sim_one_short_step": Assumption(
+        0.5,
+        0.25,
+        0.75,
+        "trait step value counted when one unit short of the next breakpoint",
+        basis="guess (simulation policy, 2026-10-21)",
+    ),
+    "sim_trait_value_floor": Assumption(
+        3.0,
+        1.0,
+        5.0,
+        "board power floor used to value trait progress early in the game",
+        basis="guess (simulation policy, 2026-10-21)",
+    ),
+    "sim_pair_value": Assumption(
+        0.3,
+        0.1,
+        0.5,
+        "value of a copy toward a star-up, as a share of the unit's cost",
+        basis="guess (simulation policy, 2026-10-21)",
+    ),
+    "sim_star_up_value": Assumption(
+        0.5,
+        0.25,
+        1.0,
+        "least value of a buy that completes a star-up, share of the unit's cost",
+        basis="guess (simulation policy, 2026-10-21)",
+    ),
+    "sim_interest_break_gain": Assumption(
+        0.15,
+        0.05,
+        0.3,
+        "gain (share of board power) worth dropping below an interest step",
+        basis="guess (simulation policy, 2026-10-21)",
+    ),
+    "sim_item_holder_weight": Assumption(
+        0.1,
+        0.0,
+        0.3,
+        "weight of a holder's unit value next to item fit when crafting",
+        basis="guess (simulation policy, 2026-10-21)",
+    ),
+    "sim_survivor_share": Assumption(
+        0.3,
+        0.2,
+        0.5,
+        "share of the winner's board alive after an even fight (simulation)",
+        basis="guess (simulation combat, 2026-10-21)",
+    ),
     "sim_idle_holder_factor": Assumption(
         0.6, 0.4, 1.0, "item fit multiplier for a holder that adds to no active trait"
     ),
@@ -186,6 +236,31 @@ DEFAULTS: dict[str, Assumption] = {
     ),
     "power_resist_weight": Assumption(
         1.0, 0.7, 1.3, "how much average Armor/MR raise effective Health: hp x (1 + w x resist/100)"
+    ),
+    "power_attack_count_mana": Assumption(
+        5,
+        3,
+        10,
+        "a mana bar this small counts attacks (every third attack ...), not mana",
+        basis="guess from Caitlyn and Master Yi texts (2026-10-21)",
+        validate_by="in game: how often a 3-mana unit casts",
+    ),
+    "power_min_cast_seconds": Assumption(
+        1.5,
+        1.0,
+        2.5,
+        "at most one cast every this many seconds (cast time, mana lock)",
+        basis="guess (2026-10-21)",
+    ),
+    "power_default_crit_mult": Assumption(
+        1.4,
+        description="crit damage multiplier when a champion record has none",
+        basis="guess; CommunityDragon records usually carry critMultiplier",
+    ),
+    "power_min_damage_taken": Assumption(
+        0.1,
+        description="durability never reduces damage taken below this share (guard)",
+        basis="guess; keeps effective Health finite",
     ),
     # --- board builder (best board for a level, from the engine's own rules) ---
     "build_cost_caps": Assumption(

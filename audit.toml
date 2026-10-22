@@ -136,24 +136,9 @@ reason = "value is false: no such field in the Set 18 game file"
 # --- known debt (fix in the clean-up step; each fix gets a KARARLAR line) ------------
 
 [[accept]]
-key = "decision/board_builder.py:STAR_POWER"
+key = "state/game_state.py:COPIES_PER_STAR"
 kind = "debt"
-reason = "copy of star_multipliers.hp; read it from the data"
-
-[[accept]]
-key = "sim/game.py:STAR_POWER"
-kind = "debt"
-reason = "copy of star_multipliers.hp; read it from the data"
-
-[[accept]]
-key = "decision/scenario.py:_STAR_COPIES"
-kind = "debt"
-reason = "3 copies per star is a game rule; one data param, read in one place"
-
-[[accept]]
-key = "state/game_state.py:_COPIES_PER_STAR"
-kind = "debt"
-reason = "3 copies per star is a game rule; one data param, read in one place"
+reason = "the only copy now (scenario and sim import it); a game rule, so it moves to base.json once a source is recorded (matches sell_value.1 by chance)"
 
 [[accept]]
 key = "sim/game.py:BENCH"
@@ -171,51 +156,6 @@ kind = "debt"
 reason = "PvE round is a game rule; move to base.json with a source"
 
 [[accept]]
-key = "sim/game.py:_buy_from()"
-kind = "debt"
-reason = "simulation policy numbers; move to sim_* assumptions"
-
-[[accept]]
-key = "sim/game.py:_combat()"
-kind = "debt"
-reason = "simulation combat numbers; move to sim_* assumptions"
-
-[[accept]]
-key = "sim/game.py:_items()"
-kind = "debt"
-reason = "simulation item numbers; move to sim_* assumptions"
-
-[[accept]]
-key = "sim/game.py:_potential()"
-kind = "debt"
-reason = "simulation policy numbers; move to sim_* assumptions"
-
-[[accept]]
-key = "sim/game.py:_value_of_buy()"
-kind = "debt"
-reason = "simulation policy numbers; move to sim_* assumptions"
-
-[[accept]]
-key = "sim/game.py:unit_power()"
-kind = "debt"
-reason = "simulation item-fit floor; move to sim_* assumptions"
-
-[[accept]]
-key = "decision/board_power.py:ATTACK_COUNT_MANA"
-kind = "debt"
-reason = "model number; move to power_* assumptions"
-
-[[accept]]
-key = "decision/board_power.py:unit_power()"
-kind = "debt"
-reason = "crit fallback 1.4, durability floor 0.1, cast cap 1.5 s; data or power_* assumptions"
-
-[[accept]]
-key = "decision/item_fit.py:FRONTLINE_MAX_RANGE"
-kind = "debt"
-reason = "model number; move to the item_fit assumptions"
-
-[[accept]]
 key = "rules/board_stats.py:compute()"
 kind = "debt"
 reason = "durability cap 0.9 has no source; data (unknown until checked) or an assumption"
@@ -223,9 +163,9 @@ reason = "durability cap 0.9 has no source; data (unknown until checked) or an a
 [[accept]]
 key = "curated:abilities"
 kind = "debt"
-reason = "owner's ability values for 12 champions; board_power should use them"
+reason = "owner's ability values for 12 champions (sourced); board_power should use them"
 
 [[accept]]
 key = "module:tft_engine.decision.board_builder"
-kind = "debt"
-reason = "board builder has no CLI command; add one or mark it experimental"
+kind = "experimental"
+reason = "no CLI command yet; used by tests and the Amblem Komplari page scripts"

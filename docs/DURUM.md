@@ -1,6 +1,6 @@
 # Proje durumu
 
-Son güncelleme: 2026-10-21 (akşam). Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; kararlar en üstte). Kaynaklar: [KAYNAKLAR.md](KAYNAKLAR.md). Veri erişim ve izin raporu: [VERI_KAYNAKLARI.md](VERI_KAYNAKLARI.md). Önceki plan: [PLAN_v0.4.md](PLAN_v0.4.md).
+Son güncelleme: 2026-10-22. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; kararlar en üstte). Kaynaklar: [KAYNAKLAR.md](KAYNAKLAR.md). Veri erişim ve izin raporu: [VERI_KAYNAKLARI.md](VERI_KAYNAKLARI.md). Önceki plan: [PLAN_v0.4.md](PLAN_v0.4.md).
 
 ## Neredeyiz
 
@@ -17,6 +17,7 @@ Son güncelleme: 2026-10-21 (akşam). Plan: [PLAN.md](PLAN.md) (v0.5, bilgi alty
 | **B5: komp şablonları ve meta** | **Altyapı bitti (2026-10-21)**, 18.4 test verisiyle. 18.5 kompları ve istatistikleri veri oturunca (2–3 gün) girilecek |
 | **B6: tahta gücü ve savaş** | **İlk adım bitti (2026-10-21):** trait ve item'larla birim istatistikleri, istatistikten tahta gücü. Sıradaki: yetenek değerleri, dizilim |
 | B7: yama döngüsü + Set 19 provası | Başlamadı |
+| **Denetim sistemi** | **Kuruldu (2026-10-22).** Ayrıntı aşağıda |
 | Ertelenenler: G0/M2 (Riot API), M4+ (ML), maç kayıtları, canlı kullanım | PLAN bölüm 9 |
 
 ## B1 sonucu (18.4, CommunityDragon 16.20)
@@ -100,6 +101,15 @@ Son güncelleme: 2026-10-21 (akşam). Plan: [PLAN.md](PLAN.md) (v0.5, bilgi alty
 - **En büyük eksik:** Trait değerleri veride var ama güce çevrilmiyor; her eşik eşit sayılıyor. Bu yüzden komplar dağınık (birçok trait 2'de).
 - Sahibin gönderdiği Cadılar Meclisi / Mürver ağacı görüntüleri bir siteden: değerler 18.4 oyun dosyasından farklı (kayıp başına 20/25/35/70, ağaç +100 can); 18.5 notları bunları değiştirmiyor. Not olarak tutuldu, oyun dosyası değerleri geçerli.
 
+## Denetim sistemi (2026-10-22)
+
+- **`tft-engine audit`** (ücretsiz, ~2 sn): bütün yamaların veri kontrolü, kodda yazılı sayılar (veriden kopya, iki modülde aynı tablo, varsayım olması gereken sayı), çekirdekte ağ ve tohumsuz rastgelelik, kimsenin kullanmadığı parametre/dosya/modül/varsayım, kırık belge bağlantıları, eski DURUM tarihi. Kabul edilen istisnalar ve bilinen borçlar gerekçeleriyle `audit.toml`'da; düzelen borç kaydı kendiliğinden uyarı verir.
+- **Her commit'ten önce otomatik:** `tools/verify.py` (testler, ruff, denetim) git hook'uyla çalışır; Claude'un bunu atlaması engellendi.
+- **Altın çıktılar** (`tests/golden/`): 12 P1 senaryosunun kararı, bir simülasyon oyunu, bir amblem tahtası. Bir değişiklik sonucu oynatırsa test düşer; bilerek oynatıldıysa `docs/KARARLAR.md`'ye satır yazılmadan commit edilemez.
+- **Üretilen belgeler:** [VARSAYIMLAR.md](VARSAYIMLAR.md) (her varsayım, aralığı, gerekçesi, P1'de kararı çevirdiği senaryolar), [BAGLANTILAR.md](BAGLANTILAR.md) (kim neyi kullanıyor).
+- **`/denetim`:** üç salt okunur ajan (veri, tutarlılık, varsayım) değişen kısma bakar; aşama sonunda çalıştırılır.
+- **Temizlik:** bilinen borç 19'dan 6'ya indi (yıldız tablosu kopyaları veriden okunuyor, sim ve tahta gücü sayıları gerekçeli varsayımlar oldu, ölü `unit_power` silindi). Sonuçların hiçbiri değişmedi (altın çıktılar aynı). Kalan borç: sim'de bench/başlangıç canı/PvE turu (kaynak bekliyor), yıldız kopya tablosu, dayanıklılık üst sınırı 0,9, kullanılmayan yetenek değerleri.
+
 ## Araştırmanın önemli sonuçları (ayrıntı: KAYNAKLAR.md)
 
 - **Seviye 7 shop olasılığı:** Oyun içi tooltip 16/30/43/10/1 gösteriyor, repo bunu kullanıyor. Oyun dosyası (map22) ve resmi 17.1 notu 19/30/40/10/1 diyor; çelişki kaydı. Gerçek roll'ların hangisine uyduğu ancak çok sayıda shop sayılarak kanıtlanabilir.
@@ -112,14 +122,13 @@ Son güncelleme: 2026-10-21 (akşam). Plan: [PLAN.md](PLAN.md) (v0.5, bilgi alty
 
 1. **Şampiyon rolleri:** 65 Set 18 şampiyonunun rolü (Tank, Dövüşçü, Nişancı, Büyücü, Suikastçı ...). MetaTFT birim listesinden ekran görüntüsü yeterli.
 2. **Tek maçlık oyun içi kontrol:** [templates/oyun_ici_kontrol.md](../templates/oyun_ici_kontrol.md) formunu doldur.
-2. **Veri incelemesi:** İnceleme sayfasında (Set 18 Veri İncelemesi, claude.ai artifact) yanlış gördüğün augment, item, Wisp, şampiyon veya trait'i işaretle ve not bırak. Notları okuyup kaynaklı düzeltme olarak işlerim.
-3. **B5'te komp şablonlarını gözden geçirme:** Sitelerden girilen 10–15 kompun senin bilginle uyuşup uyuşmadığına bakman gerekecek.
-4. Etiketli senaryolar ve maç kayıtları şimdilik beklemede.
-5. Riot API kişisel anahtarı: MVP'den sonra (G0′).
+3. **Veri incelemesi:** İnceleme sayfasında (Set 18 Veri İncelemesi, claude.ai artifact) yanlış gördüğün augment, item, Wisp, şampiyon veya trait'i işaretle ve not bırak. Notları okuyup kaynaklı düzeltme olarak işlerim.
+4. **B5'te komp şablonlarını gözden geçirme:** Sitelerden girilen 10–15 kompun senin bilginle uyuşup uyuşmadığına bakman gerekecek.
+5. Etiketli senaryolar ve maç kayıtları şimdilik beklemede.
+6. Riot API kişisel anahtarı: MVP'den sonra (G0′).
 
 ## Bilinen açıklar
 
 - Set 18 verilerinin çoğu üçüncü taraf kaynaktan ve doğrulanmadı. Yeni durum tablosu KAYNAKLAR.md bölüm 3'te.
 - P1 belirsiz durumlarda altını korumaya yatkın. Satış kuralı artık veride ve `Rules` içinde var, ama P1'in değerlendirmesi henüz kısmi ilerlemeyi ve satış değerini kullanmıyor ([P1_SONUC.md](P1_SONUC.md)).
-- 18.5 notları 21 Ekim'de çıkacak. Gelince yeni CommunityDragon sürümü indirilip `data diff` ile karşılaştırılacak ve `patches/18.5.json` doldurulacak.
 - **İleride bakılacak: rakip shop'larında kilitli kopyalar.** Bir shop'ta görünen şampiyon, o shop yenilenene kadar havuzdan düşer (sahibin kuralı, 2026-10-22, `base.json` içinde `shop_holds_copies`). Roll hesabı bunu henüz düşmüyor, bu yüzden son 1–2 kopyayı bulma ihtimalini biraz fazla gösteriyor. Kaba tahmin: tek kopyası kalan 4 maliyetli bir rakip shop'unda %5–10, 5 maliyetli %1–2 ihtimalle kilitli. Model: rakiplerin 35 shop slotu, rakip level'ı ve tur başı roll sayısı varsayımlarıyla bir havuz inancı katmanı. Sahip şimdilik dışarıda bıraktı.

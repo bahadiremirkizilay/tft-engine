@@ -14,8 +14,7 @@ from typing import Any
 
 from tft_engine.decision.effects import AugmentRef, Effect, parse_offer
 from tft_engine.state import GameState, UnitInstance
-
-_STAR_COPIES = {1: 1, 2: 3, 3: 9}
+from tft_engine.state.game_state import COPIES_PER_STAR
 
 
 @dataclass(frozen=True)
@@ -29,7 +28,7 @@ class Comp:
         """(unit_id, cost, copies still needed) for units not yet complete."""
         out = []
         for u in self.units:
-            missing = _STAR_COPIES[u.star] - state.copies_owned(u.unit_id)
+            missing = COPIES_PER_STAR[u.star] - state.copies_owned(u.unit_id)
             if missing > 0:
                 out.append((u.unit_id, u.cost, missing))
         return out

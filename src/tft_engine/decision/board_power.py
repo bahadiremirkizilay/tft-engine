@@ -23,7 +23,6 @@ from tft_engine.decision.item_fit import profile
 from tft_engine.rules.board_stats import BoardStats, UnitStats
 
 # Set 18 units with a mana bar of 3 count attacks, not mana (Caitlyn: every third attack)
-ATTACK_COUNT_MANA = 5
 
 
 @dataclass(frozen=True)
@@ -50,16 +49,16 @@ def unit_power(kb, s: UnitStats, a: AssumptionSet, star_ad: float = 1.0) -> Unit
     text = c["ability"].get("text") or ""
     tank = "tank" in profile(kb, s.unit).tags
     t = a["power_fight_seconds"]
-    crit_mult = (c["stats"].get("critMultiplier") or 1.4) - 1
+    crit_mult = (c["stats"].get("critMultiplier") or a["power_default_crit_mult"]) - 1
     attacks = s.ad * s.attack_speed * (1 + s.crit * crit_mult)
     if s.mana <= 0:
         casts = 0.0  # passive ability (Kayle): its value is in the attacks
-    elif s.mana <= ATTACK_COUNT_MANA:
+    elif s.mana <= a["power_attack_count_mana"]:
         # a tiny mana bar counts attacks ("every third attack", Caitlyn, Master Yi)
         casts = t * s.attack_speed / s.mana
     else:
         gained = s.initial_mana + t * (s.attack_speed * a["power_mana_per_attack"] + s.mana_regen)
-        casts = min(gained / s.mana, t / 1.5)  # at most one cast every 1.5 s
+        casts = min(gained / s.mana, t / a["power_min_cast_seconds"])
     base = a["power_ability_base"][c["cost"]] * a["power_ability_star"][s.star]
     if "scaleAD" in text:
         base_ad = (c["stats"].get("damage") or 0) * star_ad
@@ -69,7 +68,11 @@ def unit_power(kb, s: UnitStats, a: AssumptionSet, star_ad: float = 1.0) -> Unit
     ability = base * scale * casts
     amp = 1 + s.damage_amp
     resist = (s.armor + s.mr) / 2
-    ehp = s.hp * (1 + a["power_resist_weight"] * resist / 100) / max(1 - s.durability, 0.1)
+    ehp = (
+        s.hp
+        * (1 + a["power_resist_weight"] * resist / 100)
+        / max(1 - s.durability, a["power_min_damage_taken"])
+    )
     if tank:
         ehp += a["power_tank_ability_share"] * ability
         dps = attacks * amp

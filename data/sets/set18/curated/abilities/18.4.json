@@ -21,7 +21,11 @@
      5233
     ]
    },
-   "text": "Passive: upon falling below 40% max Health the first time each combat, gain 100 mana. Active: wind up a big punch, rapidly healing for 225/275/2000 before dealing 222/355/5233 physical damage in a large cone."
+   "text": "Passive: upon falling below 40% max Health the first time each combat, gain 100 mana. Active: wind up a big punch, rapidly healing for 225/275/2000 before dealing 222/355/5233 physical damage in a large cone.",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   },
   {
    "id": "DA_18_Morgana",
@@ -46,7 +50,11 @@
      240
     ]
    },
-   "text": "Passive: gain 25% Omnivamp. Active: fire a dark blast at 3 nearby enemies, dealing 60/90/500 magic damage and cursing them for 4 seconds; spawn a Hex withering zone for the same duration dealing 33/50/500 magic damage per second. Cursed enemies take 22/33/240 more damage per curse."
+   "text": "Passive: gain 25% Omnivamp. Active: fire a dark blast at 3 nearby enemies, dealing 60/90/500 magic damage and cursing them for 4 seconds; spawn a Hex withering zone for the same duration dealing 33/50/500 magic damage per second. Cursed enemies take 22/33/240 more damage per curse.",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   },
   {
    "id": "DA_18_Kennen",
@@ -71,7 +79,11 @@
     ],
     "firestorm_seconds": 2
    },
-   "text": "Charge up, gaining 15% Ability Power per Burning enemy. Then gain 250/350/3000 Shield for 2.5 seconds and rush through a nearby group of enemies, dealing 80/120/1500 magic damage to each. After rushing, unleash a 2 Hex firestorm that deals a total of 475/715/5000 magic damage split among all enemies hit over 2 seconds."
+   "text": "Charge up, gaining 15% Ability Power per Burning enemy. Then gain 250/350/3000 Shield for 2.5 seconds and rush through a nearby group of enemies, dealing 80/120/1500 magic damage to each. After rushing, unleash a 2 Hex firestorm that deals a total of 475/715/5000 magic damage split among all enemies hit over 2 seconds.",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   },
   {
    "id": "DA_Gromp18_AP",
@@ -105,6 +117,10 @@
      ],
      "note": "18.4 mid-patch update line; its old values (160/240/375) also differ from the 18.3 notes' new values"
     }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
    ]
   },
   {
@@ -125,7 +141,11 @@
     "isolated_mana": 10
    },
    "text": "Leap to the farthest enemy within 3 Hexes, dealing 265/370/535 magic damage. If they have no adjacent allies, deal 285/410/605 magic damage instead and gain 10 mana.",
-   "note": "Matches the 18.3 B-patch (Kha'Zix 265/370/535 and 285/410/605)."
+   "note": "Matches the 18.3 B-patch (Kha'Zix 265/370/535 and 285/410/605).",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   },
   {
    "id": "DA_18_ElderDragon",
@@ -164,7 +184,11 @@
     "flame_breath_falloff_pct": 20,
     "execute_below_health_pct": 12
    },
-   "text": "Passive: attacks deal 75/75/100% damage to enemies adjacent to the target. Active: become invulnerable and fly up; on return stun all enemies for 1.25/1.25/99 s, gain 15/15/100% Omnivamp and Ignite them for 3/3/99 s (2/2/20% max Health physical damage per second). Then cast Flame Breath: 305/465/7200 physical damage in a line, 20% less per enemy passed (minimum 20%), Ignite. Elder Dragon Buff: damaging an enemy below 12% Health executes it."
+   "text": "Passive: attacks deal 75/75/100% damage to enemies adjacent to the target. Active: become invulnerable and fly up; on return stun all enemies for 1.25/1.25/99 s, gain 15/15/100% Omnivamp and Ignite them for 3/3/99 s (2/2/20% max Health physical damage per second). Then cast Flame Breath: 305/465/7200 physical damage in a line, 20% less per enemy passed (minimum 20%), Ignite. Elder Dragon Buff: damaging an enemy below 12% Health executes it.",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   },
   {
    "id": "DA_Vi18",
@@ -188,7 +212,11 @@
     "durability_pct": 15,
     "unstoppable_seconds": 3
    },
-   "text": "Passive: on attack, restore 22/40/71 Health. Active: restore 200/265/360 Health, then gain 85/100/125% Attack Speed, 15% Durability and Unstoppable for 3 seconds."
+   "text": "Passive: on attack, restore 22/40/71 Health. Active: restore 200/265/360 Health, then gain 85/100/125% Attack Speed, 15% Durability and Unstoppable for 3 seconds.",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   },
   {
    "id": "DA_Brambleback18",
@@ -234,6 +262,10 @@
      ],
      "note": "18.4 notes (3-star values not given)"
     }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
    ]
   },
   {
@@ -265,6 +297,10 @@
      ],
      "note": "18.4 notes"
     }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
    ]
   },
   {
@@ -288,7 +324,11 @@
     ],
     "shield_max_health_pct": 8
    },
-   "text": "Passive: on death split into two Kruglettes (182/338/608 Health) that taunt. Active: gain 175/225/325 max Health, then roll into the target for 223/358/620 damage. Slate Buff: on death, Krug and Kruglettes shield allies for 8% max Health."
+   "text": "Passive: on death split into two Kruglettes (182/338/608 Health) that taunt. Active: gain 175/225/325 max Health, then roll into the target for 223/358/620 damage. Slate Buff: on death, Krug and Kruglettes shield allies for 8% max Health.",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   },
   {
    "id": "DA_Scuttlecrab18",
@@ -308,7 +348,11 @@
     ],
     "ally_heal_max_health_pct": 15
    },
-   "text": "Passive: attacks are replaced by a dance dealing 50/75/113 physical damage to all adjacent enemies. Active: burrow, 15% Durability for 3 s and heal 325/400/675 over the duration. Green Buff: allies below 50% Health restore 15% max Health."
+   "text": "Passive: attacks are replaced by a dance dealing 50/75/113 physical damage to all adjacent enemies. Active: burrow, 15% Durability for 3 s and heal 325/400/675 over the duration. Green Buff: allies below 50% Health restore 15% max Health.",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   },
   {
    "id": "DA_18_Ivern",
@@ -338,7 +382,11 @@
     "casts_for_attack_speed": 6,
     "attack_speed_pct": 100
    },
-   "text": "Passive: shields can crit with Precision. Active: give 2/2/10 allies 185/350/3000 Shield and 10/15/100% Damage Amp for 6 s, then deal 155/235/2000 magic damage to enemies adjacent to them. After 6 casts, also grant 100% stacking Attack Speed."
+   "text": "Passive: shields can crit with Precision. Active: give 2/2/10 allies 185/350/3000 Shield and 10/15/100% Damage Amp for 6 s, then deal 155/235/2000 magic damage to enemies adjacent to them. After 6 casts, also grant 100% stacking Attack Speed.",
+   "status": "third_party_unverified",
+   "source_ids": [
+    "owner-ability-pastes-2026-10-21"
+   ]
   }
  ]
 }

@@ -24,8 +24,6 @@ from tft_engine.rules.board_stats import BoardStats
 from tft_engine.rules.items import emblem_trait
 from tft_engine.rules.traits import active_traits, trait_counts
 
-STAR_POWER = {1: 1.0, 2: 1.8, 3: 3.24}  # Health per star in Set 18 (1 / 1.8 / 3.24)
-
 
 @dataclass
 class BuiltBoard:
@@ -47,6 +45,8 @@ class BoardBuilder:
         self.same = emblem_same_trait
         self.data = data or load_gamedata(kb.set_id, kb.patch)
         self.stats = BoardStats(kb, self.data)
+        # unit weight per star: the set's Health multipliers (star_multipliers.hp)
+        self.star_power = dict(enumerate(self.data.get("star_multipliers")["hp"], start=1))
         self.unique = {
             t["id"]
             for t in kb.traits.values()
@@ -200,7 +200,9 @@ class BoardBuilder:
         and every unit holds at most 3 items (emblems included).
         """
         counts, _ = trait_counts(self.kb, units, None, self.same)
-        power = sum(self.kb.champions[u]["cost"] * STAR_POWER[self.star(u, level)] for u in units)
+        power = sum(
+            self.kb.champions[u]["cost"] * self.star_power[self.star(u, level)] for u in units
+        )
         steps = sum(self._step_of(t, n) for t, n in counts.items())
         slots = 3 * len(units)
         used: dict[str, int] = {}
@@ -229,7 +231,9 @@ class BoardBuilder:
 
     def place_emblems(self, units: list[str], level: int, chosen: list[str]):
         """Holders for chosen emblems: units without the trait, cheapest first, max 3 each."""
-        weight = {u: self.kb.champions[u]["cost"] * STAR_POWER[self.star(u, level)] for u in units}
+        weight = {
+            u: self.kb.champions[u]["cost"] * self.star_power[self.star(u, level)] for u in units
+        }
         holders: dict[str, list[str]] = {}
         dropped = []
         for e in chosen:
@@ -292,7 +296,9 @@ class BoardBuilder:
 
     def assign_items(self, board: list[str], level: int, holders: dict[str, list[str]]):
         slots = self.a["build_item_slots"]
-        weight = {u: self.kb.champions[u]["cost"] * STAR_POWER[self.star(u, level)] for u in board}
+        weight = {
+            u: self.kb.champions[u]["cost"] * self.star_power[self.star(u, level)] for u in board
+        }
         carries = sorted(
             (u for u in board if "tank" not in profile(self.kb, u).tags),
             key=lambda u: (-weight[u], u),

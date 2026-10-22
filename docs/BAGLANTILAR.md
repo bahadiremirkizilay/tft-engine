@@ -26,7 +26,7 @@ Bir şeyi değiştirmeden önce buraya bak: o parametreyi, dosyayı ya da modül
 | `shop_holds_copies` | — | owner's shop rule (07f551d); needs an opponent-shop belief layer |
 | `shop_odds` | decision/evaluate.py, prob/shop_model.py, sim/game.py |  |
 | `shop_slots` | prob/shop_model.py, sim/game.py |  |
-| `star_multipliers` | rules/board_stats.py |  |
+| `star_multipliers` | decision/board_builder.py, rules/board_stats.py, sim/game.py |  |
 | `streak_gold` | rules/economy.py |  |
 | `wisp_slot` | prob/shop_model.py, sim/game.py |  |
 | `xp_purchase` | rules/economy.py |  |
@@ -36,7 +36,7 @@ Bir şeyi değiştirmeden önce buraya bak: o parametreyi, dosyayı ya da modül
 
 | Klasör / dosya | Yükleyen | Not |
 |---|---|---|
-| `abilities` | — | owner's ability values for 12 champions; board_power should use them |
+| `abilities` | — | owner's ability values for 12 champions (sourced); board_power should use them |
 | `augment_tiers` | gamedata/curated.py, tools/curate_augment_tiers.py |  |
 | `cdragon_rules` | tools/import_cdragon.py |  |
 | `champion_roles` | gamedata/curated.py |  |
@@ -101,7 +101,7 @@ Bir şeyi değiştirmeden önce buraya bak: o parametreyi, dosyayı ya da modül
 | `sim` | cli |
 | `sim.game` | sim |
 | `state` | cli, decision.effects, decision.evaluate, decision.horizon, decision.scenario, decision.strength, prob.exact, prob.sampler, rules.economy, sim.game |
-| `state.game_state` | state |
+| `state.game_state` | decision.scenario, sim.game, state |
 | `state.pool` | state |
 
 Kabul edilen istisnalar ve bilinen borçlar: [audit.toml](../audit.toml).

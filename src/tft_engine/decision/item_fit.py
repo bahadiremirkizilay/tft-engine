@@ -20,10 +20,8 @@ import re
 import statistics
 from dataclasses import dataclass
 
-from tft_engine.decision.assumptions import AssumptionSet
+from tft_engine.decision.assumptions import DEFAULTS, AssumptionSet
 
-FRONTLINE_MAX_RANGE = 2
-SCALE_MIN, SCALE_MAX = 0.5, 2.0
 _MANA_EFFECT = re.compile(r"\bmana\b", re.IGNORECASE)
 
 
@@ -90,7 +88,7 @@ def profile(kb, champion_id: str) -> Profile:
         tags.append("marksman")
         reasons.append(f"role {role}: damage from attacks")
     rng = c["stats"].get("range") or 0
-    if rng <= FRONTLINE_MAX_RANGE:
+    if rng <= DEFAULTS["item_fit_weights"].default["frontline_max_range"]:
         tags.append("frontline")
         reasons.append(f"range {rng:g}: frontline")
     else:
@@ -115,7 +113,7 @@ def item_fit(kb, champion_id: str, item_id: str, a: AssumptionSet) -> Fit:
             if not w:
                 continue
             ref = typical.get(stat) or abs(value) or 1.0
-            scale = min(SCALE_MAX, max(SCALE_MIN, abs(value) / ref))
+            scale = min(weights["scale_max"], max(weights["scale_min"], abs(value) / ref))
             if fighter and stat in damage_stats and w > 0:
                 scale *= weights.get("fighter_damage_scale", 1.0)
             score += w * scale

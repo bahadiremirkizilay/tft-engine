@@ -93,6 +93,30 @@ def test_inline_decimals_are_reported_but_tolerances_are_not(tmp_path):
     assert "p.py:close()" not in found
 
 
+def test_tuple_assignment_is_scanned(tmp_path):
+    root = make_repo(tmp_path, {"t.py": "LOW, HIGH = 0.5, 2.0\n"})
+    found = keys(run_audit(root, only=["constants"], config=AuditConfig()))
+    assert {"t.py:LOW", "t.py:HIGH"} <= found
+
+
+def test_rule_tables_inside_functions_are_found_but_counters_are_not(tmp_path):
+    src = """
+    COPIES = {1: 1, 2: 3, 3: 9}
+
+    def give_back(star):
+        return {1: 1, 2: 3, 3: 9}[star]
+
+    def count():
+        order = {"a": 0, "b": 1, "c": 2}
+        return [0, 0, 0], order
+    """
+    root = make_repo(tmp_path, {"g.py": src})
+    found = run_audit(root, only=["constants"], config=AuditConfig())
+    f = next(f for f in found if f.key == "g.py:give_back():table")
+    assert "g.py:COPIES" in f.message
+    assert "g.py:count():table" not in keys(found)
+
+
 def test_strings_and_paths_are_not_numbers(tmp_path):
     root = make_repo(tmp_path, {"q.py": "NAMES = ('a', 'b')\nROOT = Path(__file__).parents[3]\n"})
     found = keys(run_audit(root, only=["constants"], config=AuditConfig()))

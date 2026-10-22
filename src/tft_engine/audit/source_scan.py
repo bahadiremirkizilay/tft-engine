@@ -72,11 +72,17 @@ def module_constants(tree: ast.Module) -> Iterator[tuple[str, int, list[float]]]
             target, value = node.target, node.value
         else:
             continue
-        if not isinstance(target, ast.Name) or target.id == "__all__":
-            continue
-        nums = _literal_numbers(value)
-        if nums:
-            yield target.id, node.lineno, nums
+        # A, B = 1, 2 assigns each name its own value
+        if isinstance(target, ast.Tuple) and isinstance(value, ast.Tuple):
+            pairs = list(zip(target.elts, value.elts, strict=False))
+        else:
+            pairs = [(target, value)]
+        for name, val in pairs:
+            if not isinstance(name, ast.Name) or name.id == "__all__":
+                continue
+            nums = _literal_numbers(val)
+            if nums:
+                yield name.id, node.lineno, nums
 
 
 def inline_decimals(tree: ast.Module) -> Iterator[tuple[str, int, list[float]]]:
@@ -91,6 +97,41 @@ def inline_decimals(tree: ast.Module) -> Iterator[tuple[str, int, list[float]]]:
             and n.value not in (0.0, 1.0)
             and abs(n.value) >= TOLERANCE
         ]
+        if found:
+            yield fn.name, fn.lineno, found
+
+
+def _flat_values(node: ast.AST) -> tuple[float, ...] | None:
+    """Values of a one-level numeric table literal ({1: 1, 2: 3} or (1, 3, 9)), else None."""
+    if isinstance(node, ast.Dict):
+        nums = [_literal_numbers(v) for v in node.values]
+    elif isinstance(node, ast.List | ast.Tuple):
+        nums = [_literal_numbers(v) for v in node.elts]
+    else:
+        return None
+    if nums and all(n is not None and len(n) == 1 for n in nums):
+        return tuple(float(n[0]) for n in nums)
+    return None
+
+
+def _plain_counter(values: tuple[float, ...]) -> bool:
+    """Zero-filled counters and 0, 1, 2 ... orderings are not rule tables."""
+    if all(v == 0 for v in values):
+        return True
+    start = values[0]
+    return start in (0, 1) and values == tuple(start + i for i in range(len(values)))
+
+
+def inline_tables(tree: ast.Module) -> Iterator[tuple[str, int, list[tuple[float, ...]]]]:
+    """Numeric tables written inside functions (a rule table hidden in the code)."""
+    for fn in ast.walk(tree):
+        if not isinstance(fn, ast.FunctionDef | ast.AsyncFunctionDef):
+            continue
+        found = []
+        for n in ast.walk(fn):
+            values = _flat_values(n)
+            if values and len(values) >= MIN_TABLE and not _plain_counter(values):
+                found.append(values)
         if found:
             yield fn.name, fn.lineno, found
 
@@ -156,6 +197,16 @@ def check_constants(root: Path, config: AuditConfig) -> Iterator[Finding]:
                 f"line {line}: number(s) {_short(values)} in code; move to the data or "
                 "assumptions.py, or accept it in audit.toml with a reason",
             )
+        for fn, line, found in inline_tables(tree):
+            known = [defined.get(v) or tables.get(v) for v in found]
+            same = "; ".join(f"same numbers as {k}" for k in known if k)
+            yield Finding(
+                "constants",
+                f"{rel}:{fn}():table",
+                f"line {line}: number table(s) {', '.join(_short(v) for v in found)} inside "
+                f"the function{'; ' + same if same else ''}; move to the data or "
+                "assumptions.py, or accept it in audit.toml with a reason",
+            )
         for fn, line, nums in inline_decimals(tree):
             yield Finding(
                 "constants",
@@ -171,16 +222,7 @@ def _table_values(tree: ast.Module, name: str) -> tuple[float, ...] | None:
         if isinstance(node, ast.AnnAssign):
             targets = [node.target]
         if any(isinstance(t, ast.Name) and t.id == name for t in targets):
-            value = node.value
-            if isinstance(value, ast.Dict):
-                nums = [_literal_numbers(v) for v in value.values]
-            elif isinstance(value, ast.List | ast.Tuple):
-                nums = [_literal_numbers(v) for v in value.elts]
-            else:
-                return None
-            if all(n is not None and len(n) == 1 for n in nums):
-                return tuple(float(n[0]) for n in nums)
-            return None
+            return _flat_values(node.value)
     return None
 
 

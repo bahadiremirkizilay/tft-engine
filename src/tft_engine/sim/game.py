@@ -36,11 +36,11 @@ from tft_engine.rules.board_stats import BoardStats
 from tft_engine.rules.items import RecipeBook
 from tft_engine.rules.traits import active_traits, trait_counts
 from tft_engine.state import GameState, UnitInstance
+from tft_engine.state.game_state import COPIES_PER_STAR
 
 BENCH = 9
 START_HP = 100
 PVE_ROUND = 7  # x-7 drops a component
-STAR_POWER = {1: 1.0, 2: 1.8, 3: 3.24}  # same shape as Health per star (1/1.8/3.24)
 
 
 @dataclass
@@ -61,6 +61,8 @@ class GameSim:
         self.data = load_gamedata(set_id, patch)
         self.kb = load_knowledge(set_id, patch)
         self.rules = Rules(self.data)
+        # unit weight per star: the set's Health multipliers (star_multipliers.hp)
+        self.star_power = dict(enumerate(self.data.get("star_multipliers")["hp"], start=1))
         self.book = RecipeBook(self.kb)
         self.a = a or AssumptionSet()
         self.seed = seed
@@ -122,7 +124,7 @@ class GameSim:
         return uid
 
     def _give_back(self, uid: str, star: int) -> None:
-        self.pool[self._base(uid)] += {1: 1, 2: 3, 3: 9}[star]
+        self.pool[self._base(uid)] += COPIES_PER_STAR[star]
 
     # --- board evaluation -----------------------------------------------------
 
@@ -131,15 +133,6 @@ class GameSim:
         if key not in self._fit:
             self._fit[key] = item_fit(self.kb, unit_id, item_id, self.a).score
         return self._fit[key]
-
-    def unit_power(self, u: UnitInstance, items: list[str]) -> float:
-        """Cost and stars; each item adds up to sim_item_bonus, scaled by how well it fits."""
-        good = self.a["sim_item_good_fit"]
-        bonus = sum(
-            self.a["sim_item_bonus"] * min(1.0, max(0.2, self.fit(u.unit_id, i) / good))
-            for i in items
-        )
-        return u.cost * STAR_POWER[u.star] * (1 + bonus)
 
     def board_power(self, p: Player, board: list[str]) -> tuple[float, list]:
         key = (
@@ -184,7 +177,7 @@ class GameSim:
                 total += w if i else weight
             if nxt and n >= 2 and n == nxt[0] - 1:  # a lone unit is not "one away"
                 w = self.a["sim_shop_trait_weight"] if shop_bp and nxt[0] >= shop_bp else weight
-                total += 0.5 * w
+                total += self.a["sim_one_short_step"] * w
         return total
 
     def _owned_counts(self, units: list[str]) -> dict[str, int]:
@@ -231,7 +224,10 @@ class GameSim:
             self._owned_counts(owned)
         )
         trait_value = (
-            self.a["sim_trait_progress"] * self.a["sim_trait_bonus"] * max(before, 3.0) * progress
+            self.a["sim_trait_progress"]
+            * self.a["sim_trait_bonus"]
+            * max(before, self.a["sim_trait_value_floor"])
+            * progress
         )
         carry_note = ""
         if after > before + 1e-9 and not self._items_suit(p, uid):
@@ -246,7 +242,9 @@ class GameSim:
                 parts.append(f"trait progress +{progress:g}")
             return max(after - before, 0.0) + trait_value, "; ".join(parts) + carry_note
         if copies and copies % 3:
-            return 0.3 * self.cost[uid], f"pair toward a star-up ({copies} copies)"
+            return self.a["sim_pair_value"] * self.cost[
+                uid
+            ], f"pair toward a star-up ({copies} copies)"
         return 0.0, ""
 
     def _items_suit(self, p: Player, uid: str) -> bool:
@@ -343,10 +341,12 @@ class GameSim:
                 left.append(uid)
                 continue
             if star_up:
-                value = max(value, 0.5 * self.cost[uid])
-            # breaking an interest step needs a star-up or a large gain (>= 15% of board power)
+                value = max(value, self.a["sim_star_up_value"] * self.cost[uid])
+            # breaking an interest step needs a star-up or a large gain (share of board power)
             keep = reserve
-            if not star_up and value < 0.15 * max(self.board_power(p, p.board)[0], 1.0):
+            if not star_up and value < self.a["sim_interest_break_gain"] * max(
+                self.board_power(p, p.board)[0], 1.0
+            ):
                 keep = max(reserve, self._econ_reserve(p))
             if value <= 0 or p.state.gold - self.cost[uid] < keep:
                 left.append(uid)
@@ -384,7 +384,7 @@ class GameSim:
         if not self._reached(p.state.stage, self.a["sim_no_items_before"]):
             return
         weight = {
-            u: max(x.cost * STAR_POWER[x.star] for x in p.state.units if x.unit_id == u)
+            u: max(x.cost * self.star_power[x.star] for x in p.state.units if x.unit_id == u)
             for u in p.board
         }
         counts = self._owned_counts(p.board)
@@ -415,7 +415,7 @@ class GameSim:
             ]
             pairs = [
                 (
-                    self.fit(u, o.item) * factor[u] + 0.1 * weight[u],
+                    self.fit(u, o.item) * factor[u] + self.a["sim_item_holder_weight"] * weight[u],
                     self.fit(u, o.item) * factor[u],
                     o,
                     u,
@@ -550,7 +550,10 @@ class GameSim:
         winner, loser = (a, b) if self.rng.random() < p_a else (b, a)
         pw, pl = (pa, pb) if winner is a else (pb, pa)
         gap = max(0.0, (pw - pl) / max(pw, 1e-6))
-        survivors = max(1, min(len(winner.board), round(len(winner.board) * (0.3 + gap))))
+        survivors = max(
+            1,
+            min(len(winner.board), round(len(winner.board) * (self.a["sim_survivor_share"] + gap))),
+        )
         dmg = self.rules.player_damage(min(major, 8), survivors)
         return winner, dmg, p_a
 
