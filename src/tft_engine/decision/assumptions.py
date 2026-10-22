@@ -19,6 +19,11 @@ class Assumption:
     low: Any = None
     high: Any = None
     description: str = ""
+    # where the value comes from (owner, observation, a source id, "guess"); required for
+    # new assumptions (the audit checks it), shown in docs/VARSAYIMLAR.md
+    basis: str = ""
+    # how it could be checked or replaced (an in-game count, a stats site, a later milestone)
+    validate_by: str = ""
 
     @property
     def varied(self) -> bool:
@@ -117,7 +122,13 @@ DEFAULTS: dict[str, Assumption] = {
         {"2-1": 4, "2-5": 5, "3-2": 6, "3-5": 7, "4-2": 8, "5-2": 9},
         description="stage at which the simulated player levels to at least this level",
     ),
-    "sim_slow_roll_floor": Assumption(50, 30, 50, "slow roll stays above this gold"),
+    "sim_slow_roll_floor": Assumption(
+        50,
+        30,
+        50,
+        "slow roll stays above this gold",
+        basis="owner's habit: slow roll above 50, may drop to 30",
+    ),
     "sim_low_hp": Assumption(40, 25, 55, "below this HP the simulated player rolls deep"),
     "sim_deep_roll_floor": Assumption(10, 0, 20, "gold kept when rolling deep"),
     "sim_item_good_fit": Assumption(
@@ -127,7 +138,9 @@ DEFAULTS: dict[str, Assumption] = {
         2.0, 1.0, 3.0, "below this fit no holder suits the item: keep the components"
     ),
     "sim_no_items_before": Assumption(
-        "2-1", description="no items are crafted before this round (owner: stage 1 is won anyway)"
+        "2-1",
+        description="no items are crafted before this round (owner: stage 1 is won anyway)",
+        basis="owner's review of a simulated game",
     ),
     "sim_lose_streak_hp": Assumption(
         60, 50, 75, "early loss streak (or Coven) keeps saving gold while HP is at least this"
@@ -141,7 +154,12 @@ DEFAULTS: dict[str, Assumption] = {
         2.0, 1.0, 3.0, "extra weight of breakpoints that change the shop (5 Riftbeast, 5 Blossom)"
     ),
     "sim_components_per_monster_round": Assumption(
-        2, 1, 3, "components dropped by each x-7 monster round (owner: many items drop)"
+        2,
+        1,
+        3,
+        "components dropped by each x-7 monster round (owner: many items drop)",
+        basis="owner's review of a simulated game",
+        validate_by="count drops in a few real games (templates/oyun_ici_kontrol.md)",
     ),
     "sim_carousel_round": Assumption(
         4, description="round x-4 is a carousel giving one component (no champion modelled)"
@@ -187,7 +205,12 @@ DEFAULTS: dict[str, Assumption] = {
     ),
     # --- Set 18 shop (owner, 18.4b): a Wisp shows in the rightmost slot ------
     "wisp_shop_prob": Assumption(
-        None, 0.25, 1.0, "chance a shop shows a Wisp (None = set data: every other shop)"
+        None,
+        0.25,
+        1.0,
+        "chance a shop shows a Wisp (None = set data: every other shop)",
+        basis="set data shop rule wisp_slot; owner's observation 18.4b",
+        validate_by="count Wisp shops over many rolls in game",
     ),
     "wisp_price": Assumption(1, 0, 3, "gold paid for the cheapest Wisp when buying one to roll"),
 }

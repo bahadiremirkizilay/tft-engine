@@ -13,6 +13,57 @@
 # item_fit derives "mana_effect" from an item's effect text; items have no such stat
 fit_only_keys = ["mana_effect"]
 
+[assumptions]
+# written before the basis field existed; give each a basis over time (new ones need one)
+legacy_without_basis = [
+    "horizon_rounds",
+    "roll_floor",
+    "unit_power_cost_exp",
+    "star_mult_2",
+    "star_mult_3",
+    "comp_complete_bonus",
+    "win_prob_slope",
+    "opp_strength_scale",
+    "damage_scale",
+    "pool_depletion_scale",
+    "elim_penalty_hp",
+    "gold_value_hp",
+    "excess_gold_value_hp",
+    "level_value_hp",
+    "future_rounds",
+    "surviving_units_on_loss_by_stage",
+    "opp_level_by_stage",
+    "opp_unit_power_by_stage",
+    "tier_taken_frac_by_stage",
+    "item_fit_weights",
+    "comp_match_weights",
+    "sim_trait_bonus",
+    "sim_item_bonus",
+    "sim_level_curve",
+    "sim_low_hp",
+    "sim_deep_roll_floor",
+    "sim_item_good_fit",
+    "sim_item_min_fit",
+    "sim_lose_streak_hp",
+    "sim_rolldown_floor",
+    "sim_excess_gold",
+    "sim_trait_progress",
+    "sim_shop_trait_weight",
+    "sim_carousel_round",
+    "sim_carry_needs_items_value",
+    "sim_idle_holder_factor",
+    "power_fight_seconds",
+    "power_mana_per_attack",
+    "power_ability_base",
+    "power_ability_star",
+    "power_tank_ability_share",
+    "power_resist_weight",
+    "build_cost_caps",
+    "build_stars",
+    "build_item_slots",
+    "wisp_price",
+]
+
 # --- settings and technical constants ------------------------------------------------
 
 [[accept]]

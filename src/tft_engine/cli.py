@@ -297,6 +297,13 @@ def _cmd_sim(args: argparse.Namespace) -> int:
 
 def _cmd_audit(args: argparse.Namespace) -> int:
     """Project audit: data of every patch, numbers in code, wiring, layers, docs."""
+    if args.write_docs:
+        from tft_engine.audit import load_config
+        from tft_engine.audit.core import REPO_ROOT
+        from tft_engine.audit.registry import write_docs
+
+        for rel in write_docs(REPO_ROOT, load_config()):
+            print(f"wrote {rel}")
     findings = run_audit(only=args.only or None)
     if args.json:
         rows = [f.__dict__ for f in findings if args.all or f.level != "accepted"]
@@ -431,6 +438,11 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_audit.add_argument("--all", action="store_true", help="also list accepted findings")
     p_audit.add_argument("--json", action="store_true")
+    p_audit.add_argument(
+        "--write-docs",
+        action="store_true",
+        help="regenerate docs/VARSAYIMLAR.md and docs/BAGLANTILAR.md first",
+    )
     p_audit.set_defaults(func=_cmd_audit)
 
     p_data = sub.add_parser("data", help="knowledge base: check or compare patches")

@@ -178,3 +178,16 @@ def test_connections_map_lists_readers():
         "cli" in m for m in conn["modules"]["tft_engine.audit"]
     )
     assert conn["assumptions"]["horizon_rounds"]
+
+
+def test_new_assumptions_need_a_basis():
+    strict = AuditConfig(accept={}, extra={"assumptions": {"legacy_without_basis": []}})
+    found = keys(run_audit(only=["wiring"], config=strict))
+    assert "assumption:horizon_rounds:basis" in found  # legacy, no basis yet
+    assert "assumption:wisp_shop_prob:basis" not in found  # has one
+
+
+def test_generated_docs_are_current():
+    found = keys(run_audit(only=["docs"]))
+    assert "docs/VARSAYIMLAR.md:generated" not in found
+    assert "docs/BAGLANTILAR.md:generated" not in found

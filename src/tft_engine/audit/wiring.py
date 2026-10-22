@@ -164,17 +164,33 @@ def check(root: Path, config: AuditConfig) -> Iterator[Finding]:
             f"module:{mod}",
             "not reachable from the CLI or a tool (only tests use it, or nothing)",
         )
-    yield from _check_assumptions(root)
+    yield from _check_assumptions(root, config)
     yield from _check_stats(config)
 
 
-def _check_assumptions(root: Path) -> Iterator[Finding]:
+def _check_assumptions(root: Path, config: AuditConfig) -> Iterator[Finding]:
     from tft_engine.decision.assumptions import DEFAULTS
 
     texts = _texts(root, skip=("decision/assumptions.py",))
     for key in DEFAULTS:
         if not _readers(texts, _quoted(key)):
             yield Finding("wiring", f"assumption:{key}", "assumption defined but never used")
+    # assumptions written before the basis field may lack one; new ones may not
+    legacy = set(config.extra.get("assumptions", {}).get("legacy_without_basis", []))
+    for key, a in DEFAULTS.items():
+        if not a.basis and key not in legacy:
+            yield Finding(
+                "wiring",
+                f"assumption:{key}:basis",
+                "new assumption without a basis (where does the value come from?)",
+            )
+        elif a.basis and key in legacy:
+            yield Finding(
+                "wiring",
+                f"assumption:{key}:basis",
+                "has a basis now; remove it from audit.toml legacy_without_basis",
+                "warning",
+            )
 
 
 def _check_stats(config: AuditConfig) -> Iterator[Finding]:

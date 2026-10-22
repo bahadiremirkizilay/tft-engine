@@ -10,7 +10,7 @@ Motorun sonuçlarını değiştiren her karar burada bir satır. Amaç: bir vars
 
 **Satır biçimi:** tarih · ne değişti · neden (kaynak ya da gözlem) · onay (sahip / Claude, plan adımı) · etkilenen kayıtlar (`tests/golden/...`) ve sonuçta ne oynadı.
 
-Ayrıntılı tarihçe: git geçmişi ve [DURUM.md](DURUM.md).
+Ayrıntılı tarihçe: git geçmişi ve [DURUM.md](DURUM.md). Varsayımların tam listesi ve P1'de kararı çevirenler: [VARSAYIMLAR.md](VARSAYIMLAR.md). Kim neyi kullanıyor: [BAGLANTILAR.md](BAGLANTILAR.md).
 
 ## Kayıtlar
 

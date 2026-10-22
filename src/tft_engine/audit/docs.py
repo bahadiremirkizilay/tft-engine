@@ -48,6 +48,20 @@ def check(root: Path, config: AuditConfig) -> Iterator[Finding]:
             if not (root / path).exists():
                 yield Finding("docs", f"{rel}->{path}", "path in the text does not exist")
     yield from _status_freshness(root)
+    yield from _generated(root, config)
+
+
+def _generated(root: Path, config: AuditConfig) -> Iterator[Finding]:
+    from tft_engine.audit.registry import generated_docs
+
+    for rel, text in generated_docs(root, config).items():
+        path = root / rel
+        if not path.exists() or path.read_text(encoding="utf-8") != text:
+            yield Finding(
+                "docs",
+                f"{rel}:generated",
+                "out of date with the code; run tft-engine audit --write-docs",
+            )
 
 
 def last_change(root: Path, *paths: str) -> date | None:
