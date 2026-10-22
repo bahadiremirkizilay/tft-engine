@@ -1,7 +1,7 @@
 # TFT Engine: Karar Motoru Odaklı Yol Haritası (v0.4.2)
 
 Tarih: 2026-10-18 · Durum: **Onaylandı** (v0.4). M0, M1a ve P1'in ilk sürümü tamamlandı. v0.4.1: yayın ve VOD notları eklendi (bölüm 6.5). v0.4.2: her analiz yama bazlı (bölüm 8.6)
-Önceki sürümler: [PLAN_v0.3.md](PLAN_v0.3.md), [PLAN_v0.2.md](PLAN_v0.2.md), [PLAN_v0.1.md](PLAN_v0.1.md) (değiştirilmeden saklandı)
+Önceki sürümler (v0.1–v0.3) bu depoya eklenmedi; git geçmişinde de yoklar.
 İlgili rapor: [ACIK_KAYNAK_INCELEME.md](ACIK_KAYNAK_INCELEME.md)
 
 **v0.4'te ne değişti:**

@@ -7,6 +7,7 @@ Examples:
     tft-engine odds --set set18 --patch 18.4 --level 8 --gold 50 --target Ahri:4:2 --taken Ahri:3
     tft-engine data check --set set18 --patch 18.4
     tft-engine data diff --set set18 18.4 18.5
+    tft-engine audit
 """
 
 from __future__ import annotations
@@ -16,6 +17,8 @@ import json
 import sys
 from pathlib import Path
 
+from tft_engine.audit import run_audit
+from tft_engine.audit.data import check_patch
 from tft_engine.decision import Evaluator, load_scenario
 from tft_engine.decision.assumptions import AssumptionSet
 from tft_engine.decision.comp_match import best_trio, match_comps
@@ -23,11 +26,9 @@ from tft_engine.decision.item_fit import best_items, profile
 from tft_engine.decision.report import render
 from tft_engine.experiments import load_records, replay, run_experiment
 from tft_engine.gamedata import load_gamedata
-from tft_engine.gamedata.entities import check_all, diff_knowledge, load_knowledge
-from tft_engine.gamedata.sources import load_sources
+from tft_engine.gamedata.entities import diff_knowledge, load_knowledge
 from tft_engine.prob import IndependentShopModel, RollQuery, Target, roll_down_exact
-from tft_engine.rules.board_stats import check_trait_models, load_trait_models
-from tft_engine.rules.comps import check_comps, load_comps
+from tft_engine.rules.comps import load_comps
 from tft_engine.rules.items import RecipeBook
 from tft_engine.rules.traits import active_traits, trait_counts
 from tft_engine.state import PoolBelief, PoolState
@@ -107,9 +108,7 @@ def _cmd_decide(args: argparse.Namespace) -> int:
 
 
 def _cmd_data_check(args: argparse.Namespace) -> int:
-    kb, rep = check_all(args.set, args.patch)
-    rep.errors += check_comps(kb, load_comps(args.set, args.patch), load_sources())
-    rep.errors += check_trait_models(kb, load_trait_models(args.set))
+    kb, rep = check_patch(args.set, args.patch)
     print(f"{args.set} {args.patch}: " + ", ".join(f"{k} {len(v)}" for k, v in kb.records.items()))
     for w in rep.warnings[: args.max]:
         print(f"WARNING: {w}")
@@ -296,6 +295,27 @@ def _cmd_sim(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_audit(args: argparse.Namespace) -> int:
+    """Project audit: data of every patch, numbers in code, wiring, layers, docs."""
+    findings = run_audit(only=args.only or None)
+    if args.json:
+        rows = [f.__dict__ for f in findings if args.all or f.level != "accepted"]
+        print(json.dumps(rows, ensure_ascii=False, indent=1))
+    else:
+        order = {"error": 0, "warning": 1, "debt": 2, "accepted": 3}
+        for f in sorted(findings, key=lambda f: (order[f.level], f.check, f.key)):
+            if f.level != "accepted" or args.all:
+                print(f.line())
+    counts = {lvl: sum(f.level == lvl for f in findings) for lvl in ("error", "warning", "debt")}
+    accepted = sum(f.level == "accepted" for f in findings)
+    print(
+        f"audit: {counts['error']} errors, {counts['warning']} warnings, {counts['debt']} known "
+        f"debt, {accepted} accepted (audit.toml)",
+        file=sys.stderr if args.json else sys.stdout,
+    )
+    return 1 if counts["error"] else 0
+
+
 def _cmd_data_diff(args: argparse.Namespace) -> int:
     old = load_knowledge(args.set, args.old)
     new = load_knowledge(args.set, args.new)
@@ -404,6 +424,14 @@ def main(argv: list[str] | None = None) -> int:
     p_sim.add_argument("--seed", type=int, default=0)
     p_sim.add_argument("--out", help="write the round-by-round log as JSON")
     p_sim.set_defaults(func=_cmd_sim)
+
+    p_audit = sub.add_parser("audit", help="check that code, data, assumptions and docs agree")
+    p_audit.add_argument(
+        "--only", action="append", choices=["data", "constants", "layers", "wiring", "docs"]
+    )
+    p_audit.add_argument("--all", action="store_true", help="also list accepted findings")
+    p_audit.add_argument("--json", action="store_true")
+    p_audit.set_defaults(func=_cmd_audit)
 
     p_data = sub.add_parser("data", help="knowledge base: check or compare patches")
     data_sub = p_data.add_subparsers(dest="data_cmd", required=True)

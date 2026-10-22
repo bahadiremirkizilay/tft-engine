@@ -1,0 +1,180 @@
+# Accept list for `tft-engine audit`.
+#
+# Every entry needs a key (as the audit prints it), a kind and a reason.
+#   debt          a known problem: stays in the report as DEBT until it is fixed
+#   setting       a solver or run setting, not a game value or a model number
+#   technical     part of an algorithm (hash constants, ordering, loop guards)
+#   not_modelled  data recorded on purpose that no code uses yet
+#   experimental  code kept outside the CLI on purpose
+#   tool_only     used only by tools/
+# An entry that no longer matches a finding is reported, so this list cannot go stale.
+
+[stats]
+# item_fit derives "mana_effect" from an item's effect text; items have no such stat
+fit_only_keys = ["mana_effect"]
+
+# --- settings and technical constants ------------------------------------------------
+
+[[accept]]
+key = "decision/evaluate.py:MAX_BELIEF_STATES"
+kind = "setting"
+reason = "solver size limit; above it the evaluator samples instead of enumerating"
+
+[[accept]]
+key = "decision/evaluate.py:MC_SAMPLES"
+kind = "setting"
+reason = "Monte Carlo sample count (accuracy setting)"
+
+[[accept]]
+key = "gamedata/hashes.py:_FNV_OFFSET"
+kind = "technical"
+reason = "FNV-1a hash constant used by the game files"
+
+[[accept]]
+key = "gamedata/hashes.py:_FNV_PRIME"
+kind = "technical"
+reason = "FNV-1a hash constant used by the game files"
+
+[[accept]]
+key = "prob/sampler.py:wilson_ci()"
+kind = "technical"
+reason = "z value of a 95% confidence interval"
+
+[[accept]]
+key = "experiments/examples.py:toy_dice_mean()"
+kind = "technical"
+reason = "toy experiment that tests the run log; no TFT mechanics"
+
+[[accept]]
+key = "rules/economy.py:_MAX_EVENT_DEPTH"
+kind = "technical"
+reason = "guard against events that trigger each other forever"
+
+[[accept]]
+key = "rules/modifiers.py:_OP_ORDER"
+kind = "technical"
+reason = "fixed order of modifier operations (set, add, mul, min/max)"
+
+[[accept]]
+key = "state/game_state.py:_OPTIONAL_DEFAULTS"
+kind = "technical"
+reason = "empty defaults of optional state fields"
+
+[[accept]]
+key = "prob/shop_model.py:from_gamedata()"
+kind = "technical"
+reason = "0.5 is the data rule every_other_shop written as a probability"
+
+# --- data recorded on purpose, not used by code yet ----------------------------------
+
+[[accept]]
+key = "param:inferno_upgrade"
+kind = "not_modelled"
+reason = "the roll solver already counts the shown shop; open questions in the param note"
+
+[[accept]]
+key = "param:shop_holds_copies"
+kind = "not_modelled"
+reason = "owner's shop rule (07f551d); needs an opponent-shop belief layer"
+
+[[accept]]
+key = "param:bad_luck_protection"
+kind = "not_modelled"
+reason = "value is false: no such field in the Set 18 game file"
+
+# --- known debt (fix in the clean-up step; each fix gets a KARARLAR line) ------------
+
+[[accept]]
+key = "decision/board_builder.py:STAR_POWER"
+kind = "debt"
+reason = "copy of star_multipliers.hp; read it from the data"
+
+[[accept]]
+key = "sim/game.py:STAR_POWER"
+kind = "debt"
+reason = "copy of star_multipliers.hp; read it from the data"
+
+[[accept]]
+key = "decision/scenario.py:_STAR_COPIES"
+kind = "debt"
+reason = "3 copies per star is a game rule; one data param, read in one place"
+
+[[accept]]
+key = "state/game_state.py:_COPIES_PER_STAR"
+kind = "debt"
+reason = "3 copies per star is a game rule; one data param, read in one place"
+
+[[accept]]
+key = "sim/game.py:BENCH"
+kind = "debt"
+reason = "bench size is a game rule; move to base.json with a source"
+
+[[accept]]
+key = "sim/game.py:START_HP"
+kind = "debt"
+reason = "starting HP is a game rule; move to base.json with a source"
+
+[[accept]]
+key = "sim/game.py:PVE_ROUND"
+kind = "debt"
+reason = "PvE round is a game rule; move to base.json with a source"
+
+[[accept]]
+key = "sim/game.py:_buy_from()"
+kind = "debt"
+reason = "simulation policy numbers; move to sim_* assumptions"
+
+[[accept]]
+key = "sim/game.py:_combat()"
+kind = "debt"
+reason = "simulation combat numbers; move to sim_* assumptions"
+
+[[accept]]
+key = "sim/game.py:_items()"
+kind = "debt"
+reason = "simulation item numbers; move to sim_* assumptions"
+
+[[accept]]
+key = "sim/game.py:_potential()"
+kind = "debt"
+reason = "simulation policy numbers; move to sim_* assumptions"
+
+[[accept]]
+key = "sim/game.py:_value_of_buy()"
+kind = "debt"
+reason = "simulation policy numbers; move to sim_* assumptions"
+
+[[accept]]
+key = "sim/game.py:unit_power()"
+kind = "debt"
+reason = "simulation item-fit floor; move to sim_* assumptions"
+
+[[accept]]
+key = "decision/board_power.py:ATTACK_COUNT_MANA"
+kind = "debt"
+reason = "model number; move to power_* assumptions"
+
+[[accept]]
+key = "decision/board_power.py:unit_power()"
+kind = "debt"
+reason = "crit fallback 1.4, durability floor 0.1, cast cap 1.5 s; data or power_* assumptions"
+
+[[accept]]
+key = "decision/item_fit.py:FRONTLINE_MAX_RANGE"
+kind = "debt"
+reason = "model number; move to the item_fit assumptions"
+
+[[accept]]
+key = "rules/board_stats.py:compute()"
+kind = "debt"
+reason = "durability cap 0.9 has no source; data (unknown until checked) or an assumption"
+
+[[accept]]
+key = "curated:abilities"
+kind = "debt"
+reason = "owner's ability values for 12 champions; board_power should use them"
+
+[[accept]]
+key = "module:tft_engine.decision.board_builder"
+kind = "debt"
+reason = "board builder has no CLI command; add one or mark it experimental"
