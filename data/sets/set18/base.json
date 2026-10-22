@@ -181,6 +181,13 @@
       "source_ids": ["cdragon-16.20", "owner-ingame-2026-10-20"],
       "note": "Unknown: whether rerolls of that shop also show only Riftbeasts (rerolls = null), whether they are drawn from the shared pool, whether a Wisp can appear. Other levels: (3) Alpha Mark gives one Riftbeast its unique buff and can be moved at any time (owner), (7) Riftbeasts grow every 5 s, (10) +2 team size."
     },
+    "shop_holds_copies": {
+      "value": true,
+      "status": "unverified",
+      "source": "owner (2026-10-22): a champion shown in any player's shop is out of the pool until that shop is refreshed (rerolled or the next round's shop); with 8 of 9 copies owned and the 9th in an opponent's shop, rolling cannot find it",
+      "source_ids": ["owner-ingame-2026-10-20"],
+      "note": "Not modelled yet: the roll solvers draw from the pool without the copies sitting in opponents' shops. A belief layer can estimate it (35 opponent slots, each showing the unit with the tier odds of the opponents' level times copies left / tier copies left)."
+    },
     "bad_luck_protection": {
       "value": false,
       "status": "unverified",
