@@ -1,0 +1,57 @@
+{
+ "ranking": [
+  "B",
+  "C"
+ ],
+ "candidates": {
+  "A": {
+   "unavailable": "nothing left to buy for this comp"
+  },
+  "B": {
+   "score": 50.7286,
+   "metrics": {
+    "gold_after_action": 60,
+    "strength_now": 47.61,
+    "p_win_next": 0.8086,
+    "exp_hp_lost": 5.7411,
+    "p_elim": 0.0,
+    "exp_gold_end": 93.8069,
+    "exp_level_end": 8.0,
+    "future_hp_loss_per_round": 1.9137,
+    "levels_gained": 1
+   }
+  },
+  "C": {
+   "score": 49.9731,
+   "metrics": {
+    "gold_after_action": 64,
+    "strength_now": 43.47,
+    "p_win_next": 0.7247,
+    "exp_hp_lost": 7.4193,
+    "p_elim": 0.0,
+    "exp_gold_end": 97.4978,
+    "exp_level_end": 8.0,
+    "future_hp_loss_per_round": 1.9137
+   }
+  }
+ },
+ "flips": {
+  "unit_power_cost_exp": [
+   "B",
+   "C"
+  ],
+  "excess_gold_value_hp": [
+   "B",
+   "C"
+  ],
+  "opp_strength_scale": [
+   "C",
+   "B"
+  ],
+  "star_mult_2": [
+   "B",
+   "C"
+  ]
+ },
+ "augments": {}
+}

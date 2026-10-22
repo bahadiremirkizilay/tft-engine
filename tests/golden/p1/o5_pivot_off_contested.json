@@ -1,0 +1,62 @@
+{
+ "ranking": [
+  "D:november_carry",
+  "C",
+  "A"
+ ],
+ "candidates": {
+  "A": {
+   "score": -1.1195,
+   "metrics": {
+    "gold_after_action": 1.0,
+    "strength_now": 28.6,
+    "p_win_next": 0.6142,
+    "exp_hp_lost": 11.5736,
+    "p_elim": 0.0574,
+    "exp_gold_end": 20.0275,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 3.6363,
+    "p_hit": 0,
+    "exp_rolls": 19.0
+   }
+  },
+  "B": {
+   "unavailable": "not enough gold to level"
+  },
+  "C": {
+   "score": 19.3162,
+   "metrics": {
+    "gold_after_action": 40,
+    "strength_now": 28.6,
+    "p_win_next": 0.6142,
+    "exp_hp_lost": 11.5736,
+    "p_elim": 0.0574,
+    "exp_gold_end": 71.7979,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 3.6363
+   }
+  },
+  "D:november_carry": {
+   "score": 25.6788,
+   "metrics": {
+    "gold_after_action": 25.6034,
+    "strength_now": 35.3568,
+    "p_win_next": 0.7203,
+    "exp_hp_lost": 8.3913,
+    "p_elim": 0.0223,
+    "exp_gold_end": 53.1078,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 2.733,
+    "p_hit": 0.9584,
+    "exp_rolls": 5.2607
+   }
+  }
+ },
+ "flips": {
+  "comp_complete_bonus": [
+   "C",
+   "D:november_carry"
+  ]
+ },
+ "augments": {}
+}

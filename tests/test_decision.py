@@ -11,6 +11,8 @@ from tft_engine.decision.effects import combine
 from tft_engine.decision.horizon import next_stage
 from tft_engine.state import UnitInstance
 
+from .golden_check import assert_golden
+
 SCEN_DIR = Path(__file__).resolve().parents[1] / "scenarios" / "p1"
 PATHS = sorted(SCEN_DIR.glob("*.json"))
 TRUST = {"exact", "data_estimated", "assumption"}
@@ -23,13 +25,13 @@ def test_at_least_ten_scenarios_and_five_obvious():
 
 
 @pytest.mark.parametrize("path", PATHS, ids=lambda p: p.stem)
-def test_every_scenario_runs_with_trust_labels_in_time(path):
+def test_every_scenario_runs_with_trust_labels_in_time(path, update_golden):
     sc = load_scenario(path)
     t0 = time.perf_counter()
     ev = Evaluator(sc)
     result = ev.evaluate()
-    ev.sensitivity(result)
-    ev.augments()
+    sens = ev.sensitivity(result)
+    augs = ev.augments()
     assert time.perf_counter() - t0 < 10.0  # plan target: <= 10 s per scenario
     assert result.ranked, "at least one candidate must be available"
     for c in result.candidates:
@@ -42,6 +44,24 @@ def test_every_scenario_runs_with_trust_labels_in_time(path):
             assert c.metrics["p_hit"].trust == "exact"
             assert 0.0 <= c.metrics["p_hit"].value <= 1.0
         assert 0.0 <= c.metrics["p_elim"].value <= 1.0
+    assert_golden(f"p1/{path.stem}", p1_summary(result, sens, augs), update_golden)
+
+
+def p1_summary(result, sens, augs) -> dict:
+    """What P1 decides for a scenario: ranking, scores, metrics, what flips it."""
+    return {
+        "ranking": [c.key for c in result.ranked],
+        "candidates": {
+            c.key: (
+                {"score": c.score, "metrics": {k: m.value for k, m in c.metrics.items()}}
+                if c.available
+                else {"unavailable": c.reason}
+            )
+            for c in result.candidates
+        },
+        "flips": {r.name: [r.best_low, r.best_high] for r in sens if r.flips},
+        "augments": {a.offer_id: [a.best_candidate, a.score] for a in augs if a.evaluated},
+    }
 
 
 OBVIOUS = [p for p in PATHS if load_scenario(p).expected]

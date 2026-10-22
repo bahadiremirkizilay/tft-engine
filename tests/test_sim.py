@@ -2,9 +2,33 @@
 
 from tft_engine.sim import GameSim, simulate_game
 
+from .golden_check import assert_golden
 
-def test_same_seed_same_game():
-    assert simulate_game(3) == simulate_game(3)
+
+def test_same_seed_same_game(update_golden):
+    game = simulate_game(3)
+    assert game == simulate_game(3)
+    assert_golden("sim_seed3", sim_summary(game), update_golden)
+
+
+def sim_summary(game: dict) -> dict:
+    """Placements and each player's last board: what the simulated policy ends up with."""
+    last: dict = {}
+    for rec in game["rounds"]:
+        last.update(rec["players"])
+    return {
+        "rounds": len(game["rounds"]),
+        "placements": game["placements"],
+        "players": {
+            pid: {
+                "level": info["level"],
+                "hp": info["hp"],
+                "board": sorted(f"{u['name']} {u['star']}*" for u in info["board"]),
+                "traits": info["traits"],
+            }
+            for pid, info in sorted(last.items(), key=lambda kv: str(kv[0]))
+        },
+    }
 
 
 def test_game_ends_with_eight_distinct_placements_and_a_conserved_pool():

@@ -1,0 +1,78 @@
+{
+ "ranking": [
+  "C",
+  "A",
+  "B"
+ ],
+ "candidates": {
+  "A": {
+   "score": 1.4575,
+   "metrics": {
+    "gold_after_action": 6.5213,
+    "strength_now": 37.4788,
+    "p_win_next": 0.5556,
+    "exp_hp_lost": 13.3313,
+    "p_elim": 0.0,
+    "exp_gold_end": 27.2027,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 4.4438,
+    "p_hit": 0.4401,
+    "exp_rolls": 18.0281
+   }
+  },
+  "B": {
+   "score": -0.7401,
+   "metrics": {
+    "gold_after_action": 22,
+    "strength_now": 30.6,
+    "p_win_next": 0.3769,
+    "exp_hp_lost": 18.6939,
+    "p_elim": 0.0,
+    "exp_gold_end": 46.7102,
+    "exp_level_end": 8.0,
+    "future_hp_loss_per_round": 6.2313,
+    "levels_gained": 1
+   }
+  },
+  "C": {
+   "score": 4.9661,
+   "metrics": {
+    "gold_after_action": 50,
+    "strength_now": 30.6,
+    "p_win_next": 0.3769,
+    "exp_hp_lost": 18.6939,
+    "p_elim": 0.0,
+    "exp_gold_end": 82.1913,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 6.2313
+   }
+  }
+ },
+ "flips": {
+  "future_rounds": [
+   "C",
+   "A"
+  ],
+  "damage_scale": [
+   "C",
+   "A"
+  ],
+  "win_prob_slope": [
+   "C",
+   "A"
+  ],
+  "gold_value_hp": [
+   "A",
+   "C"
+  ],
+  "excess_gold_value_hp": [
+   "A",
+   "C"
+  ],
+  "comp_complete_bonus": [
+   "C",
+   "A"
+  ]
+ },
+ "augments": {}
+}

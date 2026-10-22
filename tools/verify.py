@@ -25,6 +25,21 @@ STEPS = [
 ]
 
 
+def golden_logged() -> tuple[bool, str]:
+    """A staged change to tests/golden/ needs a staged line in docs/KARARLAR.md."""
+    proc = subprocess.run(
+        ["git", "diff", "--cached", "--name-only"], cwd=ROOT, capture_output=True, text=True
+    )
+    staged = proc.stdout.split()
+    golden = [f for f in staged if f.startswith("tests/golden/")]
+    if golden and "docs/KARARLAR.md" not in staged:
+        return False, (
+            f"{len(golden)} golden output file(s) changed ({golden[0]} ...) but "
+            "docs/KARARLAR.md is not in the commit; add a line: what moved and why"
+        )
+    return True, ""
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--quick", action="store_true", help="skip pytest")
@@ -49,6 +64,10 @@ def main(argv: list[str] | None = None) -> int:
         elif not ok:
             print(f"--- {name} ---")
             print("\n".join(out[-40:]))
+    ok, message = golden_logged()
+    results.append(("golden log", ok, 0.0))
+    if not ok:
+        print(f"--- golden log ---\n{message}")
     print("\n=== verify ===")
     for name, ok, took in results:
         mark = "atlandı" if ok is None else ("OK" if ok else "HATA")

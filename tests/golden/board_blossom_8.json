@@ -1,0 +1,46 @@
+{
+ "units": [
+  "DA_18_Akali_AD 2*",
+  "DA_18_Alune 1*",
+  "DA_18_Diana 2*",
+  "DA_18_KhaZix 2*",
+  "DA_18_MasterYi_AD 2*",
+  "DA_Fiddlesticks18 2*",
+  "DA_KogMaw18_AD 2*",
+  "DA_Sentinel18 1*"
+ ],
+ "emblems": {
+  "DA_Sentinel18": [
+   "DA_18_EmblemBlossom"
+  ]
+ },
+ "items": {
+  "DA_18_Diana": [
+   "DA_IonicSpark",
+   "DA_SpiritVisage",
+   "DA_RabadonsDeathcap"
+  ],
+  "DA_Fiddlesticks18": [
+   "DA_SpiritVisage",
+   "DA_IonicSpark",
+   "DA_GargoyleStoneplate"
+  ],
+  "DA_18_KhaZix": [
+   "DA_RabadonsDeathcap",
+   "DA_IonicSpark"
+  ]
+ },
+ "value": 8692.8,
+ "traits": [
+  "Adaptor 3",
+  "Attuned 1",
+  "Caustic 1",
+  "Flora Fatalis 1",
+  "Invoker 2",
+  "Lunar 2",
+  "Ravager 2",
+  "Rival 1",
+  "Spellweaver 2",
+  "Vanguard 2"
+ ]
+}

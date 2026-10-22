@@ -1,0 +1,41 @@
+{
+ "ranking": [
+  "C",
+  "A"
+ ],
+ "candidates": {
+  "A": {
+   "score": 3.945,
+   "metrics": {
+    "gold_after_action": 1.0,
+    "strength_now": 29.2,
+    "p_win_next": 0.622,
+    "exp_hp_lost": 11.3393,
+    "p_elim": 0.0,
+    "exp_gold_end": 19.9256,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 3.7798,
+    "p_hit": 0,
+    "exp_rolls": 22.0
+   }
+  },
+  "B": {
+   "unavailable": "not enough gold to level"
+  },
+  "C": {
+   "score": 25.9636,
+   "metrics": {
+    "gold_after_action": 46,
+    "strength_now": 29.2,
+    "p_win_next": 0.622,
+    "exp_hp_lost": 11.3393,
+    "p_elim": 0.0,
+    "exp_gold_end": 77.9256,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 3.7798
+   }
+  }
+ },
+ "flips": {},
+ "augments": {}
+}

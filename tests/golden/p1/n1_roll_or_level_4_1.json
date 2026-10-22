@@ -1,0 +1,53 @@
+{
+ "ranking": [
+  "C",
+  "A",
+  "B"
+ ],
+ "candidates": {
+  "A": {
+   "score": -10.8736,
+   "metrics": {
+    "gold_after_action": 11.8549,
+    "strength_now": 30.8732,
+    "p_win_next": 0.3891,
+    "exp_hp_lost": 18.3262,
+    "p_elim": 0.0,
+    "exp_gold_end": 34.1192,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 6.1087,
+    "p_hit": 0.4459,
+    "exp_rolls": 17.6808
+   }
+  },
+  "B": {
+   "score": -12.9775,
+   "metrics": {
+    "gold_after_action": 14,
+    "strength_now": 27.4,
+    "p_win_next": 0.2956,
+    "exp_hp_lost": 21.1335,
+    "p_elim": 0.0,
+    "exp_gold_end": 36.8457,
+    "exp_level_end": 8.0,
+    "future_hp_loss_per_round": 7.0445,
+    "levels_gained": 1
+   }
+  },
+  "C": {
+   "score": -2.2108,
+   "metrics": {
+    "gold_after_action": 50,
+    "strength_now": 27.4,
+    "p_win_next": 0.2956,
+    "exp_hp_lost": 21.1335,
+    "p_elim": 0.0,
+    "exp_gold_end": 82.7583,
+    "exp_level_end": 7.0,
+    "future_hp_loss_per_round": 7.0445
+   }
+  }
+ },
+ "flips": {},
+ "augments": {}
+}

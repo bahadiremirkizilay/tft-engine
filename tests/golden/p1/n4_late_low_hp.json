@@ -1,0 +1,86 @@
+{
+ "ranking": [
+  "C",
+  "D:hotel_carry",
+  "A"
+ ],
+ "candidates": {
+  "A": {
+   "score": -76.2842,
+   "metrics": {
+    "gold_after_action": 5.1701,
+    "strength_now": 32.6351,
+    "p_win_next": 0.1881,
+    "exp_hp_lost": 19.2137,
+    "p_elim": 0.9029,
+    "exp_gold_end": 14.462,
+    "exp_level_end": 8.0,
+    "future_hp_loss_per_round": 0.9919,
+    "p_hit": 0.2214,
+    "exp_rolls": 18.3613
+   }
+  },
+  "B": {
+   "unavailable": "not enough gold to level"
+  },
+  "C": {
+   "score": -58.0525,
+   "metrics": {
+    "gold_after_action": 44,
+    "strength_now": 30.6,
+    "p_win_next": 0.1616,
+    "exp_hp_lost": 19.4556,
+    "p_elim": 0.9301,
+    "exp_gold_end": 57.9325,
+    "exp_level_end": 8.0,
+    "future_hp_loss_per_round": 0.7621
+   }
+  },
+  "D:hotel_carry": {
+   "score": -61.8273,
+   "metrics": {
+    "gold_after_action": 23.4416,
+    "strength_now": 37.8664,
+    "p_win_next": 0.2542,
+    "exp_hp_lost": 18.6355,
+    "p_elim": 0.8371,
+    "exp_gold_end": 36.6608,
+    "exp_level_end": 8.0,
+    "future_hp_loss_per_round": 1.5642,
+    "p_hit": 0.8786,
+    "exp_rolls": 8.0219
+   }
+  }
+ },
+ "flips": {
+  "unit_power_cost_exp": [
+   "C",
+   "D:hotel_carry"
+  ],
+  "opp_strength_scale": [
+   "D:hotel_carry",
+   "C"
+  ],
+  "elim_penalty_hp": [
+   "C",
+   "D:hotel_carry"
+  ],
+  "damage_scale": [
+   "D:hotel_carry",
+   "C"
+  ],
+  "star_mult_2": [
+   "C",
+   "D:hotel_carry"
+  ],
+  "comp_complete_bonus": [
+   "C",
+   "D:hotel_carry"
+  ],
+  "horizon_rounds": [
+   "D:hotel_carry",
+   "C"
+  ]
+ },
+ "augments": {}
+}
