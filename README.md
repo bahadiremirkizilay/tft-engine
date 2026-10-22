@@ -23,10 +23,15 @@ macOS / Linux için aynı adımlar: `python3 -m venv .venv`, `source .venv/bin/a
 
 ## Doğrulama
 
+Her şey tek komutta (testler, ruff, proje denetimi):
+
 ```powershell
-python -m pytest
-ruff check .
+python tools/verify.py          # hepsi (~1,5 dk)
+python tools/verify.py --quick  # testler hariç
+tft-engine audit                # sadece denetim; bilinen borçları da listeler
 ```
+
+Klonladıktan sonra bir kez: `git config core.hooksPath .githooks`. Bundan sonra her commit'ten önce `tools/verify.py` otomatik çalışır ve bir şey bozuksa commit'i durdurur. Denetimin kabul listesi ve bilinen borçlar: `audit.toml`.
 
 ## Deney kaydı
 
