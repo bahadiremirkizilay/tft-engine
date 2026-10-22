@@ -16,19 +16,22 @@
 - Code: `src/tft_engine/` with
   - `gamedata`: schema and patch loader
   - `state`: game state and pool belief
-  - `rules`: economy
+  - `rules`: economy, modifiers, items, traits, comps, board stats
   - `prob`: shop model, exact solver and Monte Carlo sampler
-  - `decision`: the P1 prototype
+  - `decision`: P1 (evaluate, horizon, strength), item fit, comp match, board power, board builder; every model number in `assumptions.py`
+  - `sim`: simple 8-player game simulation (`tft-engine sim`)
+  - `audit`: project audit (`tft-engine audit`)
   - `repro`: seeds
   - `experiments`: run log and replay
 - Scenarios: `scenarios/p1/*.json`. Templates for the owner: `templates/`.
+- Quality system: `tools/verify.py` (tests, ruff, audit; the git pre-commit hook in `.githooks/` runs it), `audit.toml` (accepted exceptions and known debt, each with a reason), `tests/golden/` (saved results of P1, the sim and the board builder), `docs/KARARLAR.md` (decision and learning log), generated `docs/VARSAYIMLAR.md` and `docs/BAGLANTILAR.md` (`tft-engine audit --write-docs`), `.claude/agents/` (veri-denetci, tutarlilik-denetci, varsayim-denetci) and the `/denetim` skill.
 
 ## Non-negotiable rules
 
 1. Do not invent game mechanics or values. Unknown values stay `"status": "unknown"` with `null` and raise `UnknownMechanicError` when used. New values need a source; third-party values are `third_party_unverified` until checked in-game.
 2. Everything is per patch. Buffs and nerfs go in `patches/<patch>.json` as change records with `kind` and `source`. Never edit `base.json` to reflect a later patch.
 3. Separate verified facts, assumptions and unknowns in every output (trust classes: exact, data_estimated, assumption).
-4. Every important component gets tests. Run `python -m pytest` and `ruff check .` and `ruff format --check .` before each commit.
+4. Every important component gets tests. `tools/verify.py` (pytest, ruff check, ruff format --check, `tft-engine audit`) must pass before each commit; the pre-commit hook runs it, never bypass it. When `tests/golden/` changes, add a line to `docs/KARARLAR.md` (what moved, why, who approved); the hook refuses the commit otherwise. After changing assumptions, data params or modules, run `tft-engine audit --write-docs`. Fix audit findings or accept them in `audit.toml` with a reason; never accept a new finding just to get past the check. Run `/denetim` at the end of each plan step.
 5. Reproducibility: seeds through `tft_engine.repro.derive_seed`; no unseeded randomness.
 6. Decision assumptions live in `src/tft_engine/decision/assumptions.py` with a default and a low/high range; never hard-code them elsewhere.
 7. Keep core layers (gamedata, state, rules, prob, decision) free of network calls. Network access lives only in `tools/` importers.
@@ -37,6 +40,8 @@
 10. Meta statistics stay separate from game rules and from comp templates; every stat records site, rank filter, patch and definition.
 
 ## Next work (see docs/DURUM.md and PLAN v0.5 section 8)
+
+- Audit system done (2026-10-22): first full `/denetim` report given to the owner; findings that change results (P1 eliminated-branch scoring, `p_hit` trust label, slow-roll candidates, strength vs board_power) wait for the owner's decision. Known debt: `tft-engine audit`.
 
 - B1 done for 18.4 (`tools/cdragon_fetch.py`, `tools/import_cdragon.py`, `gamedata/{cdragon,entities,sources,hashes}.py`, `tft-engine data check|diff`). Repeat for 18.5 when CommunityDragon has it (add the source with its sha256 and a `cdragon_versions` entry first).
 - B2 done: patches 18.2/18.2b/18.3/18.4 reviewed; odds and pool sizes from map22.bin.json; params carry `source_ids` and `conflicts`; `sell_value`, `player_damage`; `tools/ddragon_check.py`; `templates/oyun_ici_kontrol.md`. The owner's review notes live in the "Set 18 Veri İncelemesi" artifact (https://claude.ai/artifact/3aDCUtrQ8fAFh6aYP5DWFg, db collection `corrections`); read them with ArtifactData and turn accepted ones into sourced curated corrections.
