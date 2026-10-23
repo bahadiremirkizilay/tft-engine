@@ -305,10 +305,12 @@ DEFAULTS: dict[str, Assumption] = {
     "build_stars": Assumption(
         {
             7: {1: 2, 2: 2, 3: 2, 4: 1, 5: 1},
-            8: {1: 2, 2: 2, 3: 2, 4: 1, 5: 1},
+            8: {1: 2, 2: 2, 3: 2, 4: 2, 5: 1},
             9: {1: 2, 2: 2, 3: 2, 4: 2, 5: 1},
         },
-        description="star level assumed per unit cost at a level",
+        description="star level per unit cost on a finished board at a level",
+        basis="owner 2026-10-22: a finished level 8 comp aims for 2-star 4-costs "
+        "(luck and economy move it game to game)",
     ),
     "build_item_slots": Assumption(
         (3, 3, 2), description="items for the main carry, the main tank and a second carry"

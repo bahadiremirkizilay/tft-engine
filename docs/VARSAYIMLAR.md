@@ -4,7 +4,7 @@
 
 Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assumption`: ölçülmedi, motorun tahmini. Aralıklı olanlar P1'in hassasiyet raporunda iki ucuyla yeniden hesaplanır.
 
-- **64 varsayım**, 47 tanesinin aralığı var, 20 tanesinin gerekçesi yazılı.
+- **64 varsayım**, 47 tanesinin aralığı var, 21 tanesinin gerekçesi yazılı.
 - P1'de en az bir senaryonun kararını çeviren: **12** varsayım.
 
 ## Kararı en çok çevirenler (P1 senaryoları)
@@ -88,7 +88,7 @@ Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assump
 | `power_sustain_weight` | 0.7 | 0.5 – 1.0 | share of ability shields and heals counted as effective Health (overheal, expiry) | guess (2026-10-22) | — | decision/board_power.py |
 | `power_adaptor_form` | {"DA_Nidalee18_AP": "ad", "DA_Gromp18_AP": "ap"} | — | Adaptor form per champion; champions not listed take the stronger form | owner 2026-10-21/22: Nidalee is played AD, Gromp AP | — | decision/board_power.py |
 | `build_cost_caps` | {"7": {"4": 2, "5": 0}, "8": {"4": 4, "5": 1}, … | — | most 4- and 5-cost units a board can hold at a level (from shop odds) | yazılmadı | — | decision/board_builder.py |
-| `build_stars` | {"7": {"1": 2, "2": 2, "3": 2, "4": 1, "5": 1},… | — | star level assumed per unit cost at a level | yazılmadı | — | decision/board_builder.py |
+| `build_stars` | {"7": {"1": 2, "2": 2, "3": 2, "4": 1, "5": 1},… | — | star level per unit cost on a finished board at a level | owner 2026-10-22: a finished level 8 comp aims for 2-star 4… | — | decision/board_builder.py |
 | `build_item_slots` | [3, 3, 2] | — | items for the main carry, the main tank and a second carry | yazılmadı | — | decision/board_builder.py |
 | `wisp_shop_prob` | null | 0.25 – 1.0 | chance a shop shows a Wisp (None = set data: every other shop) | set data shop rule wisp_slot; owner's observation 18.4b | count Wisp shops over many rolls in game | decision/evaluate.py |
 | `wisp_price` | 1 | 0 – 3 | gold paid for the cheapest Wisp when buying one to roll | yazılmadı | — | decision/evaluate.py |
