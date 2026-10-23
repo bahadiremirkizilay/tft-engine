@@ -163,3 +163,13 @@ reason = "durability cap 0.9 has no source; data (unknown until checked) or an a
 key = "module:tft_engine.decision.board_builder"
 kind = "experimental"
 reason = "no CLI command yet; used by tests and the Amblem Komplari page scripts"
+
+[[accept]]
+key = "decision/item_effects.py:STACK_SAMPLES"
+kind = "technical"
+reason = "time steps used to average a stack over the fight (resolution, not a game value)"
+
+[[accept]]
+key = "decision/item_effects.py:_average_stacks()"
+kind = "technical"
+reason = "0.5 puts each time step at its midpoint"

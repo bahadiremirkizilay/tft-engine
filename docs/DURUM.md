@@ -15,7 +15,7 @@ Son güncelleme: 2026-10-23. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 | **B3: modifier ve olay sistemi** | **Bitti (2026-10-21).** Ayrıntı aşağıda |
 | **B4: item ve trait yapısı** | **Bitti (2026-10-21).** Ayrıntı aşağıda; roller senden bekleniyor |
 | **B5: komp şablonları ve meta** | **Altyapı bitti (2026-10-21)**, 18.4 test verisiyle. 18.5 kompları ve istatistikleri veri oturunca (2–3 gün) girilecek |
-| **B6: tahta gücü ve savaş** | **İlk adım bitti (2026-10-21):** trait ve item'larla birim istatistikleri, istatistikten tahta gücü. **Yetenek değerleri bağlandı (2026-10-22, 18.5).** Sıradaki: item uyumu, modellenmemiş trait'ler, dizilim |
+| **B6: tahta gücü ve savaş** | **İlk adım bitti (2026-10-21):** trait ve item'larla birim istatistikleri, istatistikten tahta gücü. **Yetenek değerleri bağlandı (2026-10-22, 18.5); item özel etkileri ve güce göre item seçimi (2026-10-23).** Sıradaki: modellenmemiş trait'ler, dizilim |
 | B7: yama döngüsü + Set 19 provası | Başlamadı |
 | **Denetim sistemi** | **Kuruldu (2026-10-22).** Ayrıntı aşağıda |
 | Ertelenenler: G0/M2 (Riot API), M4+ (ML), maç kayıtları, canlı kullanım | PLAN bölüm 9 |
@@ -103,6 +103,14 @@ Son güncelleme: 2026-10-23. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Ölçekleme (2026-10-23):** Blitz ekran görüntüleriyle Aphelios (her %20 bonus saldırı hızına +1 vuruş), Maokai (% can), Rammus (zırh + BD), Malphite (AP + zırh + BD) formülleri; Ivern kalkanı AP × saldırı hızı (sahip). Kayıtlarda `terms`, `scales`, `times_per_bonus_as`.
 - **Açık kalanlar:** Murkwolf'un gösterilen hasarı formülüyle çelişiyor (değer bilinmiyor, yetenek kısmen sayılıyor); Taric manası Blitz 65, oyun dosyası 70.
 - **Görülen:** 18.5 level 8 "en güçlü 10 tahta" denemesinde Diana, Alune ve Cassiopeia çok öne çıkıyor; item dağıtımı hâlâ kaba (Diana'ya Ionic Spark + Spirit Visage). Sıradaki iş item uyumu.
+
+## Item etkileri (2026-10-23, 18.5)
+
+- **Veri:** `curated/item_effects/18.5.json`, 36 item. Değerler item metinlerinden (tactics.tools, MetaTFT, sahibin görüntüleri); biriken item sınırları sahipten (Titan 25, Kraken 15, Guinsoo ve Quicksilver sınırsız).
+- **Hesap** (`decision/item_effects.py`, `board_power`): biriken statlar savaş boyunca saniye saniye birikiyor ve ortalaması alınıyor; İsabetlilik (IE, Jeweled Gauntlet, Executioner) yetenek hasarını kritik yaptırıyor; mana item'ları daha çok yetenek; kalkan, iyileştirme, can yenileme dayanıklılığa; Shred/Sunder rakibin büyü direncini ve zırhını düşürüyor; bir Burn rakibin canının yüzdesi kadar.
+- **Rakip:** Fiziksel ve büyü hasarı varsayılan rakip zırhı ve büyü direnciyle (60/60) düşüyor; gerçek hasar düşmüyor.
+- **Tahta kurucu:** Item'lar ana carry, ana tank ve ikinci carry'ye tahta gücüne katkılarıyla, tek tek seçiliyor; aynı item'dan en fazla 1; Thief's Gloves seçilmiyor.
+- **Görülen (18.5, level 8):** Carry'ler AD/saldırı hızı item'ları (Guinsoo, IE, Hand of Justice, Last Whisper), tanklar Evenshroud/Ionic/Bramble/Warmog alıyor; sahibin Aphelios-Kog'Maw-Nidalee kompu ile ilk sıra arasındaki fark %18'den %7'ye indi. Hand of Justice neredeyse her carry'de: değeri fazla olabilir (yarı savaş yarı can üstü varsayımı).
 
 ## Simülasyon ve tahta kurucu (2026-10-21, plan dışı deneme)
 

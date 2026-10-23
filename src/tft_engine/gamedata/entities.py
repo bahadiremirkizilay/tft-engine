@@ -20,6 +20,7 @@ from tft_engine.gamedata.curated import (
     effect_refs,
     read_abilities,
     read_augment_models,
+    read_item_effects,
 )
 from tft_engine.gamedata.loader import GameData, load_gamedata
 from tft_engine.gamedata.schema import STATUSES, SchemaError
@@ -42,6 +43,7 @@ class KnowledgeBase:
     curated_notes: list[str] = field(default_factory=list)
     augment_models: dict[str, dict[str, Any]] = field(default_factory=dict)
     abilities: dict[str, dict[str, Any]] = field(default_factory=dict)  # champion id -> record
+    item_effects: dict[str, dict[str, Any]] = field(default_factory=dict)  # item id -> record
 
     def __getattr__(self, kind: str) -> dict[str, dict[str, Any]]:
         if kind in KINDS:
@@ -106,6 +108,7 @@ def load_knowledge(
         kb.curated_notes = apply_curated(records, folder.parent.parent / "curated", patch)
         kb.augment_models = read_augment_models(folder.parent.parent / "curated")
         kb.abilities = read_abilities(folder.parent.parent / "curated", patch)
+        kb.item_effects = read_item_effects(folder.parent.parent / "curated", patch)
     return kb
 
 
@@ -184,6 +187,15 @@ def check_knowledge(
             ]:
                 if sid not in sources:
                     rep.errors.append(f"{where}: unknown source {sid!r}")
+
+    # item effect records: a real item, known sources
+    for iid, r in kb.item_effects.items():
+        if iid not in items:
+            rep.errors.append(f"item effects {iid}: no such item")
+        if sources is not None:
+            for sid in r["source_ids"]:
+                if sid not in sources:
+                    rep.errors.append(f"item effects {iid}: unknown source {sid!r}")
 
     # champions <-> traits
     for cid, c in champs.items():

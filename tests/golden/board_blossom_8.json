@@ -15,21 +15,22 @@
   ]
  },
  "items": {
-  "DA_18_Aphelios": [
-   "DA_InfinityEdge",
-   "DA_LastWhisper",
-   "DA_GiantSlayer"
+  "DA_18_MasterYi_AD": [
+   "DA_Bloodthirster",
+   "DA_Deathblade",
+   "DA_RedBuff"
   ],
-  "DA_18_Sett": [
+  "DA_Sentinel18": [
    "DA_SpiritVisage",
    "DA_IonicSpark",
    "DA_GargoyleStoneplate"
   ],
-  "DA_Brambleback18": [
-   "DA_SteraksGage"
+  "DA_18_Diana": [
+   "DA_BlueBuff",
+   "DA_RabadonsDeathcap"
   ]
  },
- "value": 9321.8,
+ "value": 8559.6,
  "traits": [
   "Adaptor 2",
   "Attuned 1",

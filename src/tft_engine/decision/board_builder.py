@@ -7,7 +7,8 @@ No comp templates and no site data: the search only knows
   * emblems: the holder must not have the trait (game rule checked by the owner).
 Search: greedy fill from several seeds, then swaps of board units with any
 other unit while the value rises. Items go to the main carry, main tank and a
-second carry by the rule-based item fit. Everything here is an assumption-class
+second carry, each picked by the board power it adds (item special effects in
+decision/item_effects.py). Everything here is an assumption-class
 result; it shows what the engine believes, not what is optimal in the game.
 """
 
@@ -18,7 +19,7 @@ from typing import Any
 
 from tft_engine.decision.assumptions import AssumptionSet
 from tft_engine.decision.board_power import board_power
-from tft_engine.decision.item_fit import item_fit, profile
+from tft_engine.decision.item_fit import profile
 from tft_engine.gamedata import load_gamedata
 from tft_engine.rules.board_stats import BoardStats
 from tft_engine.rules.items import emblem_trait
@@ -59,14 +60,8 @@ class BoardBuilder:
         self.completed = [
             i["id"] for i in kb.items.values() if i["kind"] == "completed" and i["family"] == "DA"
         ]
-        self._fit: dict[tuple[str, str], float] = {}
 
     # --- evaluation ------------------------------------------------------------
-
-    def fit(self, unit: str, item: str) -> float:
-        if (unit, item) not in self._fit:
-            self._fit[(unit, item)] = item_fit(self.kb, unit, item, self.a).score
-        return self._fit[(unit, item)]
 
     def star(self, unit: str, level: int) -> int:
         return self.a["build_stars"][level][self.kb.champions[unit]["cost"]]
@@ -295,35 +290,50 @@ class BoardBuilder:
     # --- items ------------------------------------------------------------------------
 
     def assign_items(self, board: list[str], level: int, holders: dict[str, list[str]]):
+        """Items for the main carry, main tank and second carry, chosen by board power.
+
+        Each role goes to the unit whose board power rises most with its items; items
+        are picked one at a time by their gain. An emblem takes an item slot; one item
+        appears at most ``build_item_copies`` times on the board.
+        """
         slots = self.a["build_item_slots"]
-        weight = {
-            u: self.kb.champions[u]["cost"] * self.star_power[self.star(u, level)] for u in board
-        }
-        carries = sorted(
-            (u for u in board if "tank" not in profile(self.kb, u).tags),
-            key=lambda u: (-weight[u], u),
-        )
-        tanks = sorted(
-            (u for u in board if "tank" in profile(self.kb, u).tags), key=lambda u: (-weight[u], u)
-        )
-        plan = []
-        if carries:
-            plan.append((carries[0], slots[0], "main carry"))
-        if tanks:
-            plan.append((tanks[0], slots[1], "main tank"))
-        if len(carries) > 1:
-            plan.append((carries[1], slots[2], "second carry"))
+        copies = self.a["build_item_copies"]
+        excluded = set(self.a["build_excluded_items"])
+        pool = [i for i in self.completed if i not in excluded and self.kb.items[i].get("stats")]
+        units = [(u, self.star(u, level)) for u in board]
+
+        def power(items):
+            return board_power(self.stats, units, items, holders or None, self.a).power
+
+        bare = board_power(self.stats, units, None, holders or None, self.a)
+        own = {p.unit: p.dps * p.ehp for p in bare.units}
+        tank = {u: "tank" in profile(self.kb, u).tags for u in board}
+        top = self.a["build_item_candidates"]
+        carries = sorted((u for u in board if not tank[u]), key=lambda u: (-own[u], u))[:top]
+        tanks = sorted((u for u in board if tank[u]), key=lambda u: (-own[u], u))[:top]
         items: dict[str, list[str]] = {}
         notes = []
-        for unit, n, role in plan:
-            room = n - len(holders.get(unit, []))  # an emblem takes an item slot
-            ranked = sorted(self.completed, key=lambda i: (-self.fit(unit, i), i))
-            chosen: list[str] = []
-            for i in ranked:
-                if len(chosen) >= room:
-                    break
-                if chosen.count(i) == 0 or (chosen.count(i) == 1 and self.fit(unit, i) >= 6):
-                    chosen.append(i)
-            items[unit] = chosen
-            notes.append(f"{role}: {self.kb.champions[unit]['name']}")
+        for role, group, n in (
+            ("main carry", carries, slots[0]),
+            ("main tank", tanks, slots[1]),
+            ("second carry", carries, slots[2]),
+        ):
+            best = None
+            for u in group:
+                if u in items:
+                    continue
+                chosen: list[str] = []
+                for _ in range(n - len(holders.get(u, []))):
+                    used = [i for v in items.values() for i in v] + chosen
+                    options = [i for i in pool if used.count(i) < copies]
+                    if not options:
+                        break
+                    pick = max(options, key=lambda i: (power({**items, u: chosen + [i]}), i))
+                    chosen.append(pick)
+                value = power({**items, u: chosen})
+                if best is None or value > best[0]:
+                    best = (value, u, chosen)
+            if best:
+                items[best[1]] = best[2]
+                notes.append(f"{role}: {self.kb.champions[best[1]]['name']}")
         return items, notes

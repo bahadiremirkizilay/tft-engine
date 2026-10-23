@@ -297,6 +297,76 @@ DEFAULTS: dict[str, Assumption] = {
         description="Adaptor form per champion; champions not listed take the stronger form",
         basis="owner 2026-10-21/22: Nidalee is played AD, Gromp AP",
     ),
+    "power_enemy_armor": Assumption(
+        60,
+        30,
+        100,
+        "average Armor of the enemy units your damage hits (physical damage x 100/(100+Armor))",
+        basis="guess (2026-10-23): unit base Armor 20-70 plus trait and item Armor",
+        validate_by="enemy unit panels in the owner's screenshots",
+    ),
+    "power_enemy_mr": Assumption(
+        60,
+        30,
+        100,
+        "average Magic Resist of the enemy units your damage hits",
+        basis="guess (2026-10-23), as power_enemy_armor",
+        validate_by="enemy unit panels in the owner's screenshots",
+    ),
+    "power_enemy_unit_health": Assumption(
+        2000,
+        1200,
+        3500,
+        "max Health of the enemy a Burn sits on (Burn deals % of max Health)",
+        basis="guess (2026-10-23): 2-star 3- and 4-cost units in the late game",
+    ),
+    "power_enemy_tank_share": Assumption(
+        0.4,
+        0.25,
+        0.6,
+        "share of your damage that goes into enemy Tanks (Giant Slayer)",
+        basis="guess (2026-10-23)",
+    ),
+    "power_enemy_attack_damage_share": Assumption(
+        0.6,
+        0.4,
+        0.8,
+        "share of the damage a unit takes that comes from attacks (Bramble Vest)",
+        basis="guess (2026-10-23)",
+    ),
+    "power_upper_health_share": Assumption(
+        0.5,
+        0.3,
+        0.7,
+        "share of a fight a unit spends above half Health (Hand of Justice, Steadfast Heart)",
+        basis="guess (2026-10-23)",
+    ),
+    "power_missing_health_share": Assumption(
+        0.4,
+        0.25,
+        0.6,
+        "average share of max Health a unit is missing during a fight (missing-Health regen)",
+        basis="guess (2026-10-23)",
+    ),
+    "power_hits_taken_per_second": Assumption(
+        1.0,
+        0.5,
+        2.0,
+        "times a unit is hit per second (Titan's Resolve stacks on attacks and hits taken)",
+        basis="guess (2026-10-23)",
+    ),
+    "power_targeting_enemies": Assumption(
+        2,
+        1,
+        3,
+        "enemies targeting the holder at once (Gargoyle Stoneplate)",
+        basis="guess (2026-10-23); the Monolith trait model uses the same idea",
+    ),
+    "power_extra_precision_crit": Assumption(
+        0.10,
+        description="crit damage each extra Precision source adds",
+        basis="item text: extra Precision grants 10% Critical Strike Damage",
+    ),
     # --- board builder (best board for a level, from the engine's own rules) ---
     "build_cost_caps": Assumption(
         {7: {4: 2, 5: 0}, 8: {4: 4, 5: 1}, 9: {4: 5, 5: 3}},
@@ -311,6 +381,23 @@ DEFAULTS: dict[str, Assumption] = {
         description="star level per unit cost on a finished board at a level",
         basis="owner 2026-10-22: a finished level 8 comp aims for 2-star 4-costs "
         "(luck and economy move it game to game)",
+    ),
+    "build_item_copies": Assumption(
+        1,
+        1,
+        2,
+        "most copies of one completed item on a built board",
+        basis="owner 2026-10-22: a board rarely has the same item twice",
+    ),
+    "build_excluded_items": Assumption(
+        ("DA_ThiefsGloves",),
+        description="items the board builder never picks (their value is random)",
+        basis="Thief's Gloves equips random items each round",
+    ),
+    "build_item_candidates": Assumption(
+        4,
+        description="strongest carries and tanks tried as item holders (search width)",
+        basis="setting: keeps the item search fast",
     ),
     "build_item_slots": Assumption(
         (3, 3, 2), description="items for the main carry, the main tank and a second carry"

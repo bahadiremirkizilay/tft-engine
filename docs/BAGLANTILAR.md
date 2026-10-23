@@ -41,7 +41,8 @@ Bir şeyi değiştirmeden önce buraya bak: o parametreyi, dosyayı ya da modül
 | `cdragon_rules` | tools/import_cdragon.py |  |
 | `champion_roles` | gamedata/curated.py |  |
 | `comps` | cli.py, decision/scenario.py, rules/comps.py |  |
-| `effects` | decision/effects.py, gamedata/cdragon.py, gamedata/curated.py, gamedata/entities.py, rules/board_stats.py, tools/curate_item_stats.py |  |
+| `effects` | decision/effects.py, decision/item_effects.py, gamedata/cdragon.py, gamedata/curated.py, gamedata/entities.py, rules/board_stats.py, tools/curate_item_stats.py |  |
+| `item_effects` | decision/item_effects.py, gamedata/curated.py |  |
 | `item_stats` | gamedata/curated.py, tools/curate_item_stats.py |  |
 | `meta` | rules/comps.py |  |
 | `overrides` | gamedata/curated.py, gamedata/entities.py |  |
@@ -61,14 +62,15 @@ Bir şeyi değiştirmeden önce buraya bak: o parametreyi, dosyayı ya da modül
 | `audit.wiring` | audit.core, audit.registry |
 | `cli` | __main__ |
 | `decision` | cli |
-| `decision.assumptions` | audit.registry, audit.wiring, cli, decision, decision.board_builder, decision.board_power, decision.comp_match, decision.evaluate, decision.horizon, decision.item_fit, decision.strength, sim.game |
+| `decision.assumptions` | audit.registry, audit.wiring, cli, decision, decision.board_builder, decision.board_power, decision.comp_match, decision.evaluate, decision.horizon, decision.item_effects, decision.item_fit, decision.strength, sim.game |
 | `decision.board_builder` | — |
 | `decision.board_power` | decision.board_builder, sim.game |
 | `decision.comp_match` | cli |
 | `decision.effects` | decision, decision.evaluate, decision.scenario |
 | `decision.evaluate` | decision, decision.report |
 | `decision.horizon` | decision.evaluate |
-| `decision.item_fit` | cli, decision.board_builder, decision.board_power, decision.comp_match, sim.game |
+| `decision.item_effects` | decision.board_power |
+| `decision.item_fit` | cli, decision.board_builder, decision.board_power, decision.comp_match, decision.item_effects, sim.game |
 | `decision.report` | cli |
 | `decision.scenario` | decision, decision.evaluate, decision.report |
 | `decision.strength` | decision.evaluate, decision.horizon, sim.game |

@@ -23,6 +23,7 @@ STATS = (
     "durability", "damage_amp", "omnivamp",
 )  # fmt: skip
 TARGETS = ("trait", "team", "others", "rider")
+TRAIT_FLAGS = ("precision",)  # effects that switch a rule on rather than add a stat
 EFFECT_STATS = (
     "hp_flat", "hp_pct", "ad_pct", "ap", "as_pct", "armor", "mr", "durability",
     "damage_amp", "omnivamp", "crit", "mana_regen", "adaptive",
@@ -46,6 +47,10 @@ def load_trait_models(set_id: str, root: Path | None = None) -> dict[str, dict[s
     out = {}
     for r in json.loads(path.read_text(encoding="utf-8"))["records"]:
         for e in r["effects"]:
+            if "flag" in e:
+                if e["to"] not in TARGETS or e["flag"] not in TRAIT_FLAGS:
+                    raise SchemaError(f"traits.json {r['id']}: bad target or flag in {e}")
+                continue
             if e["to"] not in TARGETS or e["stat"] not in EFFECT_STATS:
                 raise SchemaError(f"traits.json {r['id']}: bad target or stat in {e}")
         out[r["id"]] = r
@@ -60,6 +65,8 @@ def check_trait_models(kb, models: dict[str, dict[str, Any]]) -> list[str]:
             continue
         names = {k for b in kb.traits[tid]["breakpoints"] for k in b["values"]}
         for e in m["effects"]:
+            if "flag" in e:
+                continue
             if e["value"] not in names:
                 errors.append(f"trait model {tid}: value {e['value']!r} is not in the trait record")
     return errors
@@ -85,6 +92,7 @@ class UnitStats:
     range: float
     sources: list[str] = field(default_factory=list)  # what changed the stats, readable
     form: str | None = None  # Adaptor form used ("ad" / "ap"), None for other units
+    flags: tuple[str, ...] = ()  # rules switched on by traits (precision)
 
 
 class BoardStats:
@@ -121,8 +129,11 @@ class BoardStats:
         items: dict[str, list[str]] | None = None,
         emblems: dict[str, list[str]] | None = None,
         forms: dict[str, str] | None = None,
+        extra: dict[str, dict[str, float]] | None = None,
     ) -> tuple[list[UnitStats], list]:
-        """forms: Adaptor form ("ad" or "ap") per unit; others follow their ability text."""
+        """forms: Adaptor form ("ad" or "ap") per unit; others follow their ability text.
+        extra: more effect stats per unit (item special effects worked out by the caller).
+        """
         items = items or {}
         forms = forms or {}
         ids = [u for u, _ in units]
@@ -145,6 +156,9 @@ class BoardStats:
                     key = ITEM_TO_EFFECT.get(k)
                     if key:
                         bonus[u][key] += v / 100 if k in PCT_ITEM_KEYS else v
+            for k, v in (extra or {}).get(u, {}).items():
+                bonus[u][k] += v
+        flags: dict[str, set[str]] = {u: set() for u in ids}
         for t in traits:
             model = self.models.get(t.trait_id)
             if not model:
@@ -156,6 +170,10 @@ class BoardStats:
                 default=None,
             )
             for e in model["effects"]:
+                if "flag" in e:
+                    for u in members if e["to"] == "trait" else ids:
+                        flags[u].add(e["flag"])
+                    continue
                 v = t.values.get(e["value"])
                 if v is None:
                     continue
@@ -208,6 +226,7 @@ class BoardStats:
                     range=c.get("range") or 1,
                     sources=notes[u],
                     form=form,
+                    flags=tuple(sorted(flags[u])),
                 )
             )
         return out, traits

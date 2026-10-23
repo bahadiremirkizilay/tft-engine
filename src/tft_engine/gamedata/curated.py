@@ -18,6 +18,7 @@ numbers of its own, only references to augment effect values:
 Ability values per patch (none in the Set 18 export):
 
     curated/abilities/<patch>.json      damage, shields and heals per star, by champion
+    curated/item_effects/<patch>.json   item special effects as countable values
 
 An override states the value it replaces (``old``). If the generated data does
 not hold that value, loading fails: either the notes were already applied by a
@@ -298,6 +299,41 @@ def read_abilities(curated_folder: Path, patch: str) -> dict[str, dict[str, Any]
             for k in form.get("stats", {}):
                 if k not in ABILITY_STAT_KEYS:
                     raise SchemaError(f"{where}: form stat {k!r} is not one of {ABILITY_STAT_KEYS}")
+        out[r["id"]] = r
+    return out
+
+
+ITEM_EFFECT_KINDS = (
+    "stat", "stack", "shield", "heal_once", "regen", "mana", "precision", "reduce", "burn",
+    "damage_when_hit", "heal_damage", "crit_stack",
+)  # fmt: skip
+ITEM_STACK_PER = ("second", "attack", "attack_or_hit", "interval")
+
+
+def read_item_effects(curated_folder: Path, patch: str) -> dict[str, dict[str, Any]]:
+    """Item special effects of one patch by item id (empty when the patch has none)."""
+    doc = _read(curated_folder / "item_effects" / f"{patch}.json")
+    if not doc:
+        return {}
+    if doc.get("kind") != "item_effects" or doc.get("patch") != patch:
+        raise SchemaError(f"item_effects/{patch}.json: wrong kind or patch in the header")
+    out: dict[str, dict[str, Any]] = {}
+    for r in doc["records"]:
+        where = f"item_effects/{patch}.json {r.get('id')}"
+        _check_record(r, where)
+        if r["id"] in out:
+            raise SchemaError(f"{where}: duplicate id")
+        if r.get("model_status") not in MODEL_STATUSES:
+            raise SchemaError(f"{where}: model_status must be one of {MODEL_STATUSES}")
+        if r["model_status"] != "modelled" and not r.get("note"):
+            raise SchemaError(f"{where}: a {r['model_status']} record must say what is missing")
+        for e in r["effects"]:
+            if e.get("kind") not in ITEM_EFFECT_KINDS:
+                raise SchemaError(f"{where}: effect kind must be one of {ITEM_EFFECT_KINDS}")
+            if e["kind"] == "stack" and e.get("per") not in ITEM_STACK_PER:
+                raise SchemaError(f"{where}: stack per must be one of {ITEM_STACK_PER}")
+            if e["kind"] == "reduce" and e.get("what") not in ("armor", "mr"):
+                raise SchemaError(f"{where}: reduce what must be armor or mr")
         out[r["id"]] = r
     return out
 

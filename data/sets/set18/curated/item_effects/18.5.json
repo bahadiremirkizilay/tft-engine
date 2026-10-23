@@ -1,0 +1,743 @@
+{
+ "set": "set18",
+ "patch": "18.5",
+ "kind": "item_effects",
+ "note": "Special effects of Set 18 completed items as values the engine can count (B6 item step, 2026-10-23). Numbers come from the effect texts in curated/item_stats/18.5.json and carry the same sources; stacking caps from the owner. kinds: stat (extra stat; share/invert name an assumption for the time it holds, after/until in seconds, times names an assumption count, roles/not_roles by role tag), stack (per second, attack, attack_or_hit or interval; cap in stacks; full = bonus at the cap; also = a second stat on the same stacks), shield and heal_once (share of Health, once a fight), regen (share of max or missing Health every n s), mana (per_attack, per_crit, start, once, gain_pct), precision (abilities can crit), reduce (Shred/Sunder: armor or mr on enemies, does not stack), burn (% enemy max Health per second, does not stack), damage_when_hit, heal_damage, crit_stack. text_only: nothing counted beyond stats.",
+ "records": [
+  {
+   "id": "DA_AdaptiveHelm",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "mana",
+     "gain_pct": 0.15
+    },
+    {
+     "kind": "stat",
+     "stat": "armor",
+     "value": 30,
+     "roles": [
+      "tank",
+      "fighter"
+     ]
+    },
+    {
+     "kind": "stat",
+     "stat": "mr",
+     "value": 30,
+     "roles": [
+      "tank",
+      "fighter"
+     ]
+    },
+    {
+     "kind": "stat",
+     "stat": "ad_pct",
+     "value": 0.1,
+     "not_roles": [
+      "tank",
+      "fighter"
+     ]
+    },
+    {
+     "kind": "stat",
+     "stat": "ap",
+     "value": 10,
+     "not_roles": [
+      "tank",
+      "fighter"
+     ]
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_ArchangelsStaff",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stack",
+     "stat": "ap",
+     "value": 20,
+     "per": "interval",
+     "interval": 5,
+     "at_start": true
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_Bloodthirster",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "shield",
+     "of": "max_hp",
+     "value": 0.3
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "Shield once at 50% Health."
+  },
+  {
+   "id": "DA_BlueBuff",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "ad_pct",
+     "value": 0.1
+    },
+    {
+     "kind": "stat",
+     "stat": "ap",
+     "value": 10
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ],
+   "note": "+10% AD and AP from all sources, counted as a flat 10%."
+  },
+  {
+   "id": "DA_BrambleVest",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "hp_pct",
+     "value": 0.06
+    },
+    {
+     "kind": "stat",
+     "stat": "durability",
+     "value": 0.05,
+     "share": "power_enemy_attack_damage_share"
+    },
+    {
+     "kind": "damage_when_hit",
+     "type": "magic",
+     "value": 100,
+     "every": 2,
+     "hits": "aoe"
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "5% less damage from attacks only (share of enemy damage from attacks)."
+  },
+  {
+   "id": "DA_Crownguard",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "shield",
+     "of": "max_hp",
+     "value": 0.25
+    },
+    {
+     "kind": "stat",
+     "stat": "ap",
+     "value": 20,
+     "after": 8
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20",
+    "owner-screenshots-2026-10-20",
+    "riot-notes-18.4"
+   ],
+   "note": "+20 AP when the 8 s shield expires."
+  },
+  {
+   "id": "DA_Deathblade",
+   "model_status": "text_only",
+   "effects": [],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "Stats only; the stacking bonus with more copies is not known."
+  },
+  {
+   "id": "DA_DragonsClaw",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "hp_pct",
+     "value": 0.06
+    },
+    {
+     "kind": "regen",
+     "of": "max_hp",
+     "value": 0.025,
+     "every": 2
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_EdgeOfNight",
+   "model_status": "partial",
+   "effects": [
+    {
+     "kind": "heal_once",
+     "of": "missing_hp",
+     "value": 0.15,
+     "at_health": 0.4
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ],
+   "note": "Not counted: untargetable, cleanse."
+  },
+  {
+   "id": "DA_Evenshroud",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "reduce",
+     "what": "armor",
+     "value": 0.3
+    },
+    {
+     "kind": "stat",
+     "stat": "armor",
+     "value": 15,
+     "until": 15
+    },
+    {
+     "kind": "stat",
+     "stat": "mr",
+     "value": 15,
+     "until": 15
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_GargoyleStoneplate",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "armor",
+     "value": 10,
+     "times": "power_targeting_enemies"
+    },
+    {
+     "kind": "stat",
+     "stat": "mr",
+     "value": 10,
+     "times": "power_targeting_enemies"
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_GiantSlayer",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "damage_amp",
+     "value": 0.15,
+     "share": "power_enemy_tank_share"
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_GuinsoosRageblade",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stack",
+     "stat": "as_pct",
+     "value": 0.07,
+     "per": "second"
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20",
+    "owner-notes-2026-10-23"
+   ]
+  },
+  {
+   "id": "DA_HandOfJustice",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "ad_pct",
+     "value": 0.18
+    },
+    {
+     "kind": "stat",
+     "stat": "ap",
+     "value": 18
+    },
+    {
+     "kind": "stat",
+     "stat": "omnivamp",
+     "value": 0.15
+    },
+    {
+     "kind": "stat",
+     "stat": "ad_pct",
+     "value": 0.18,
+     "share": "power_upper_health_share"
+    },
+    {
+     "kind": "stat",
+     "stat": "ap",
+     "value": 18,
+     "share": "power_upper_health_share"
+    },
+    {
+     "kind": "stat",
+     "stat": "omnivamp",
+     "value": 0.15,
+     "share": "power_upper_health_share",
+     "invert": true
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "AD/AP doubled above 50% Health, Omnivamp doubled below."
+  },
+  {
+   "id": "DA_HextechGunblade",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "heal_damage",
+     "value": 0.2
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "Heals the lowest-Health ally for 20% of damage dealt."
+  },
+  {
+   "id": "DA_InfinityEdge",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "precision"
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_IonicSpark",
+   "model_status": "partial",
+   "effects": [
+    {
+     "kind": "reduce",
+     "what": "mr",
+     "value": 0.3
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ],
+   "note": "Not counted: magic damage to casting enemies (150% of their mana)."
+  },
+  {
+   "id": "DA_JeweledGauntlet",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "precision"
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_KrakensFury",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stack",
+     "stat": "ad_pct",
+     "value": 0.035,
+     "per": "attack",
+     "cap": 15,
+     "full": [
+      {
+       "stat": "as_pct",
+       "value": 0.15
+      }
+     ]
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20",
+    "owner-notes-2026-10-23"
+   ]
+  },
+  {
+   "id": "DA_LastWhisper",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "reduce",
+     "what": "armor",
+     "value": 0.3
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_Morellonomicon",
+   "model_status": "partial",
+   "effects": [
+    {
+     "kind": "burn",
+     "value": 0.01
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "Not counted: 33% Wound."
+  },
+  {
+   "id": "DA_NashorsTooth",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "mana",
+     "per_attack": 2,
+     "per_crit": 2
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_ProtectorsVow",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "mana",
+     "start": 20,
+     "once": 15
+    },
+    {
+     "kind": "shield",
+     "of": "max_hp",
+     "value": 0.2
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_Quicksilver",
+   "model_status": "partial",
+   "effects": [
+    {
+     "kind": "stack",
+     "stat": "as_pct",
+     "value": 0.03,
+     "per": "second"
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20",
+    "owner-notes-2026-10-23"
+   ],
+   "note": "Not counted: unstoppable for 18 s."
+  },
+  {
+   "id": "DA_RabadonsDeathcap",
+   "model_status": "text_only",
+   "effects": [],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "Stats only; the stacking bonus with more copies is not known."
+  },
+  {
+   "id": "DA_RedBuff",
+   "model_status": "partial",
+   "effects": [
+    {
+     "kind": "burn",
+     "value": 0.01
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "Not counted: 33% Wound."
+  },
+  {
+   "id": "DA_SpearOfShojin",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "mana",
+     "per_attack": 5
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_SpiritVisage",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "regen",
+     "of": "missing_hp",
+     "value": 0.02,
+     "every": 1
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20",
+    "riot-notes-18.4"
+   ]
+  },
+  {
+   "id": "DA_SteadfastHeart",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "durability",
+     "value": 0.05
+    },
+    {
+     "kind": "stat",
+     "stat": "durability",
+     "value": 0.1,
+     "share": "power_upper_health_share"
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "5% Durability, 15% above 50% Health."
+  },
+  {
+   "id": "DA_SteraksGage",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "shield",
+     "of": "max_hp",
+     "value": 0.4
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "Shield at 60% Health, decaying over 4 s."
+  },
+  {
+   "id": "DA_StrikersFlail",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "crit_stack",
+     "stat": "damage_amp",
+     "value": 0.05,
+     "duration": 5,
+     "cap": 4
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_SunfireCape",
+   "model_status": "partial",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "hp_pct",
+     "value": 0.08
+    },
+    {
+     "kind": "burn",
+     "value": 0.01
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "metatft-items-2026-10-20"
+   ],
+   "note": "Not counted: 33% Wound."
+  },
+  {
+   "id": "DA_ThiefsGloves",
+   "model_status": "text_only",
+   "effects": [],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ],
+   "note": "Random items each round; not modelled."
+  },
+  {
+   "id": "DA_TitansResolve",
+   "model_status": "partial",
+   "effects": [
+    {
+     "kind": "stack",
+     "stat": "ad_pct",
+     "value": 0.02,
+     "per": "attack_or_hit",
+     "cap": 25,
+     "also": [
+      {
+       "stat": "ap",
+       "value": 2
+      }
+     ],
+     "full": [
+      {
+       "stat": "damage_amp",
+       "value": 0.1
+      }
+     ]
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20",
+    "owner-notes-2026-10-23"
+   ],
+   "note": "Not counted: unstoppable at full stacks."
+  },
+  {
+   "id": "DA_VoidStaff",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "reduce",
+     "what": "mr",
+     "value": 0.3
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  },
+  {
+   "id": "DA_WarmogsArmor",
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "stat",
+     "stat": "hp_pct",
+     "value": 0.18
+    }
+   ],
+   "status": "third_party_unverified",
+   "source_ids": [
+    "tactics-tools-items-2026-10-20",
+    "owner-screenshots-2026-10-20"
+   ]
+  }
+ ]
+}

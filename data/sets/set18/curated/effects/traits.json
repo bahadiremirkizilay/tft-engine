@@ -1,7 +1,7 @@
 {
   "set": "set18",
   "kind": "trait_models",
-  "note": "How each Set 18 trait's breakpoint values turn into unit stats (B6). Numbers are never written here: 'value' names a breakpoint value of the trait record (with patch overrides) and 'scale' converts its unit (AP is stored in points, so a 0.12 ADAP becomes 12 AP). 'to': trait = units with the trait, team = every unit on the board, others = units without the trait, rider = the one strongest unit with the trait. 'factor' is an assumption for effects that depend on time or state in combat (ramping stacks, conditions); it is listed in 'assumption'. Stats: hp_flat, hp_pct, ad_pct, ap, as_pct, armor, mr, durability, damage_amp, omnivamp, crit, mana_regen, adaptive (AD % or AP points, whichever the unit uses). model_status: modelled / partial (the note says what is missing) / not_modelled (no stat effect the engine can count). Source: CommunityDragon trait texts and values.",
+  "note": "How each Set 18 trait's breakpoint values turn into unit stats (B6). Numbers are never written here: 'value' names a breakpoint value of the trait record (with patch overrides) and 'scale' converts its unit (AP is stored in points, so a 0.12 ADAP becomes 12 AP). 'to': trait = units with the trait, team = every unit on the board, others = units without the trait, rider = the one strongest unit with the trait. 'factor' is an assumption for effects that depend on time or state in combat (ramping stacks, conditions); it is listed in 'assumption'. 'flag' switches a rule on instead (precision: abilities can crit). Stats: hp_flat, hp_pct, ad_pct, ap, as_pct, armor, mr, durability, damage_amp, omnivamp, crit, mana_regen, adaptive (AD % or AP points, whichever the unit uses). model_status: modelled / partial (the note says what is missing) / not_modelled (no stat effect the engine can count). Source: CommunityDragon trait texts and values.",
   "records": [
     {"id": "DA_18_Adaptor", "model_status": "modelled", "effects": [
       {"to": "trait", "stat": "adaptive", "value": "ADAPGain"}]},
@@ -34,6 +34,7 @@
     {"id": "DA_18_Elderwood", "model_status": "not_modelled", "effects": [],
       "note": "Plants (Stonebark Tree, Lifebloom, Deepwood Protector): their stats are not in the game files."},
     {"id": "DA_18_Executioner", "model_status": "modelled", "effects": [
+      {"to": "trait", "flag": "precision"},
       {"to": "trait", "stat": "crit", "value": "CritChance"},
       {"to": "trait", "stat": "damage_amp", "value": "BonusBleedPercent"}],
       "assumption": "the bonus bleed is counted as damage amp on the Executioners' damage"},

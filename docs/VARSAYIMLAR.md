@@ -4,7 +4,7 @@
 
 Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assumption`: ölçülmedi, motorun tahmini. Aralıklı olanlar P1'in hassasiyet raporunda iki ucuyla yeniden hesaplanır.
 
-- **64 varsayım**, 47 tanesinin aralığı var, 21 tanesinin gerekçesi yazılı.
+- **77 varsayım**, 57 tanesinin aralığı var, 34 tanesinin gerekçesi yazılı.
 - P1'de en az bir senaryonun kararını çeviren: **12** varsayım.
 
 ## Kararı en çok çevirenler (P1 senaryoları)
@@ -72,7 +72,7 @@ Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assump
 | `sim_item_holder_weight` | 0.1 | 0.0 – 0.3 | weight of a holder's unit value next to item fit when crafting | guess (simulation policy, 2026-10-21) | — | sim/game.py |
 | `sim_survivor_share` | 0.3 | 0.2 – 0.5 | share of the winner's board alive after an even fight (simulation) | guess (simulation combat, 2026-10-21) | — | sim/game.py |
 | `sim_idle_holder_factor` | 0.6 | 0.4 – 1.0 | item fit multiplier for a holder that adds to no active trait | yazılmadı | — | sim/game.py |
-| `power_fight_seconds` | 20 | 15 – 30 | length of a typical player combat | yazılmadı | — | decision/board_power.py |
+| `power_fight_seconds` | 20 | 15 – 30 | length of a typical player combat | yazılmadı | — | decision/board_power.py, decision/item_effects.py |
 | `power_mana_per_attack` | 10 | 5 – 10 | mana gained per attack (not in the game data) | yazılmadı | — | decision/board_power.py |
 | `power_ability_base` | {"1": 250, "2": 330, "3": 420, "4": 550, "5": 7… | — | ability damage per cast of a 1-star carry at base AD/AP, by cost (stand-in until ability … | yazılmadı | — | decision/board_power.py |
 | `power_ability_star` | {"1": 1.0, "2": 1.5, "3": 2.5} | — | ability value per star relative to 1-star | yazılmadı | — | decision/board_power.py |
@@ -82,13 +82,26 @@ Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assump
 | `power_min_cast_seconds` | 1.5 | 1.0 – 2.5 | at most one cast every this many seconds (cast time, mana lock) | guess (2026-10-21) | — | decision/board_power.py |
 | `power_default_crit_mult` | 1.4 | — | crit damage multiplier when a champion record has none | guess; CommunityDragon records usually carry critMultiplier | — | decision/board_power.py |
 | `power_min_damage_taken` | 0.1 | — | durability never reduces damage taken below this share (guard) | guess; keeps effective Health finite | — | decision/board_power.py |
-| `power_aoe_targets` | 2.0 | 1.5 – 3.0 | enemies an area ability (radius, cone, adjacent) hits on average | guess (2026-10-22); ability records say only the shape | damage charts after fights, per ability | decision/board_power.py |
+| `power_aoe_targets` | 2.0 | 1.5 – 3.0 | enemies an area ability (radius, cone, adjacent) hits on average | guess (2026-10-22); ability records say only the shape | damage charts after fights, per ability | decision/board_power.py, decision/item_effects.py |
 | `power_line_targets` | 1.5 | 1.0 – 2.5 | enemies a line or piercing ability hits on average, after its falloff | guess (2026-10-22); most lines lose 20-80% per enemy passed | damage charts after fights, per ability | decision/board_power.py |
 | `power_conditional_share` | 0.5 | 0.25 – 0.75 | share of casts where an ability's stated condition holds (Soraka's extra stars) | guess (2026-10-22) | — | decision/board_power.py |
 | `power_sustain_weight` | 0.7 | 0.5 – 1.0 | share of ability shields and heals counted as effective Health (overheal, expiry) | guess (2026-10-22) | — | decision/board_power.py |
 | `power_adaptor_form` | {"DA_Nidalee18_AP": "ad", "DA_Gromp18_AP": "ap"} | — | Adaptor form per champion; champions not listed take the stronger form | owner 2026-10-21/22: Nidalee is played AD, Gromp AP | — | decision/board_power.py |
+| `power_enemy_armor` | 60 | 30 – 100 | average Armor of the enemy units your damage hits (physical damage x 100/(100+Armor)) | guess (2026-10-23): unit base Armor 20-70 plus trait and it… | enemy unit panels in the owner's screenshots | decision/board_power.py |
+| `power_enemy_mr` | 60 | 30 – 100 | average Magic Resist of the enemy units your damage hits | guess (2026-10-23), as power_enemy_armor | enemy unit panels in the owner's screenshots | decision/board_power.py |
+| `power_enemy_unit_health` | 2000 | 1200 – 3500 | max Health of the enemy a Burn sits on (Burn deals % of max Health) | guess (2026-10-23): 2-star 3- and 4-cost units in the late … | — | decision/board_power.py |
+| `power_enemy_tank_share` | 0.4 | 0.25 – 0.6 | share of your damage that goes into enemy Tanks (Giant Slayer) | guess (2026-10-23) | — | decision/item_effects.py |
+| `power_enemy_attack_damage_share` | 0.6 | 0.4 – 0.8 | share of the damage a unit takes that comes from attacks (Bramble Vest) | guess (2026-10-23) | — | decision/item_effects.py |
+| `power_upper_health_share` | 0.5 | 0.3 – 0.7 | share of a fight a unit spends above half Health (Hand of Justice, Steadfast Heart) | guess (2026-10-23) | — | decision/item_effects.py |
+| `power_missing_health_share` | 0.4 | 0.25 – 0.6 | average share of max Health a unit is missing during a fight (missing-Health regen) | guess (2026-10-23) | — | decision/item_effects.py |
+| `power_hits_taken_per_second` | 1.0 | 0.5 – 2.0 | times a unit is hit per second (Titan's Resolve stacks on attacks and hits taken) | guess (2026-10-23) | — | decision/item_effects.py |
+| `power_targeting_enemies` | 2 | 1 – 3 | enemies targeting the holder at once (Gargoyle Stoneplate) | guess (2026-10-23); the Monolith trait model uses the same … | — | decision/item_effects.py |
+| `power_extra_precision_crit` | 0.1 | — | crit damage each extra Precision source adds | item text: extra Precision grants 10% Critical Strike Damage | — | decision/board_power.py |
 | `build_cost_caps` | {"7": {"4": 2, "5": 0}, "8": {"4": 4, "5": 1}, … | — | most 4- and 5-cost units a board can hold at a level (from shop odds) | yazılmadı | — | decision/board_builder.py |
 | `build_stars` | {"7": {"1": 2, "2": 2, "3": 2, "4": 1, "5": 1},… | — | star level per unit cost on a finished board at a level | owner 2026-10-22: a finished level 8 comp aims for 2-star 4… | — | decision/board_builder.py |
+| `build_item_copies` | 1 | 1 – 2 | most copies of one completed item on a built board | owner 2026-10-22: a board rarely has the same item twice | — | decision/board_builder.py |
+| `build_excluded_items` | ["DA_ThiefsGloves"] | — | items the board builder never picks (their value is random) | Thief's Gloves equips random items each round | — | decision/board_builder.py |
+| `build_item_candidates` | 4 | — | strongest carries and tanks tried as item holders (search width) | setting: keeps the item search fast | — | decision/board_builder.py |
 | `build_item_slots` | [3, 3, 2] | — | items for the main carry, the main tank and a second carry | yazılmadı | — | decision/board_builder.py |
 | `wisp_shop_prob` | null | 0.25 – 1.0 | chance a shop shows a Wisp (None = set data: every other shop) | set data shop rule wisp_slot; owner's observation 18.4b | count Wisp shops over many rolls in game | decision/evaluate.py |
 | `wisp_price` | 1 | 0 – 3 | gold paid for the cheapest Wisp when buying one to roll | yazılmadı | — | decision/evaluate.py |
