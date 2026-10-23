@@ -1,37 +1,37 @@
 {
- "rounds": 35,
+ "rounds": 37,
  "placements": {
-  "0": 3,
-  "1": 8,
+  "0": 4,
+  "1": 6,
   "2": 5,
-  "3": 7,
-  "4": 6,
+  "3": 8,
+  "4": 7,
   "5": 2,
   "6": 1,
-  "7": 4
+  "7": 3
  },
  "players": {
   "0": {
    "level": 9,
    "hp": 0,
    "board": [
-    "Akali 1*",
+    "Alune 1*",
+    "Brambleback 1*",
     "Camille 2*",
     "Diana 1*",
     "Kobuko 2*",
     "Kog'Maw 1*",
-    "Nidalee 1*",
+    "Morgana 1*",
     "Rek'Sai 1*",
-    "Sentinel 1*",
     "Warwick 1*"
    ],
    "traits": [
     "Ravager 4",
-    "Adaptor 3",
     "Blackthorn 2",
     "Brawler 2",
     "Invoker 2",
-    "Vanguard 2",
+    "Lunar 2",
+    "Attuned 1",
     "Caustic 1"
    ]
   },
@@ -43,38 +43,39 @@
     "Caitlyn 2*",
     "Kha'Zix 1*",
     "Malphite 1*",
+    "Mama Beak 2*",
     "Master Yi 1*",
-    "Nidalee 1*",
-    "Warwick 2*",
-    "Zyra 1*"
+    "Sivir 1*",
+    "Warwick 1*"
    ],
    "traits": [
-    "Adaptor 3",
+    "Adaptor 2",
     "Blackthorn 2",
+    "Hunter 2",
     "Ravager 2",
     "Monolith 1",
-    "Rival 1",
-    "Thornmaiden 1"
+    "Rival 1"
    ]
   },
   "2": {
-   "level": 8,
+   "level": 9,
    "hp": 0,
    "board": [
     "Azir 2*",
-    "Brambleback 1*",
     "Ezreal 1*",
     "Kha'Zix 1*",
+    "Kobuko 2*",
     "Ornn 2*",
     "Rammus 1*",
+    "Veigar 2*",
     "Warwick 1*",
     "Yunara 1*"
    ],
    "traits": [
     "Executioner 3",
-    "Blackthorn 2",
+    "Sprykin 3",
+    "Blackthorn 3",
     "Defender 2",
-    "Ravager 2",
     "Rival 1"
    ]
   },
@@ -83,38 +84,37 @@
    "hp": 0,
    "board": [
     "Akali 1*",
-    "Amumu 1*",
+    "Brambleback 1*",
     "Camille 2*",
     "Diana 1*",
     "Kog'Maw 1*",
+    "Malphite 1*",
     "Murkwolf 1*",
-    "Sentinel 1*",
-    "Vi 1*"
+    "Warwick 2*"
    ],
    "traits": [
-    "Ravager 4",
+    "Ravager 6",
     "Adaptor 2",
-    "Inferno 2",
-    "Invoker 2",
-    "Juggernaut 2",
-    "Vanguard 2",
-    "Caustic 1"
+    "Blackthorn 2",
+    "Caustic 1",
+    "Monolith 1"
    ]
   },
   "4": {
    "level": 8,
    "hp": 0,
    "board": [
-    "Brambleback 1*",
-    "Camille 2*",
-    "Kennen 1*",
-    "Kha'Zix 1*",
+    "Akali 2*",
+    "Camille 1*",
+    "Kha'Zix 2*",
+    "Master Yi 1*",
     "Rengar 2*",
     "Sejuani 2*",
     "Vi 1*",
     "Zyra 1*"
    ],
    "traits": [
+    "Adaptor 2",
     "Juggernaut 2",
     "Ravager 2",
     "Rival 2",
@@ -125,73 +125,78 @@
    "level": 9,
    "hp": 0,
    "board": [
-    "Akali 1*",
+    "Alune 1*",
     "Brambleback 1*",
     "Camille 2*",
+    "Diana 1*",
     "Fiddlesticks 2*",
-    "Kennen 1*",
     "Kog'Maw 1*",
-    "Morgana 1*",
     "Murkwolf 2*",
-    "Rammus 2*"
+    "Rammus 2*",
+    "Sentinel 1*"
    ],
    "traits": [
     "Ravager 4",
-    "Adaptor 2",
+    "Riftbeast 3",
     "Defender 2",
-    "Inferno 2",
     "Invoker 2",
+    "Lunar 2",
+    "Spellweaver 2",
+    "Vanguard 2",
+    "Attuned 1",
     "Caustic 1",
     "Flora Fatalis 1"
    ]
   },
   "6": {
    "level": 9,
-   "hp": 20,
+   "hp": 4,
    "board": [
-    "Akali 2*",
+    "Akali 1*",
+    "Amumu 1*",
+    "Brambleback 1*",
     "Elder Dragon 1*",
-    "Kennen 1*",
-    "Kog'Maw 2*",
-    "Malphite 1*",
+    "Kha'Zix 2*",
+    "Kog'Maw 1*",
+    "Maokai 1*",
     "Master Yi 1*",
-    "Morgana 2*",
-    "Nidalee 1*",
-    "Warwick 2*"
+    "Morgana 1*"
    ],
    "traits": [
-    "Adaptor 4",
-    "Blackthorn 2",
+    "Adaptor 3",
     "Inferno 2",
     "Invoker 2",
+    "Juggernaut 2",
     "Ravager 2",
     "Apex Predator 1",
     "Caustic 1",
-    "Monolith 1"
+    "Old Growth 1",
+    "Rival 1"
    ]
   },
   "7": {
-   "level": 8,
+   "level": 9,
    "hp": 0,
    "board": [
     "Akali 1*",
-    "Alistar 1*",
-    "Alune 1*",
-    "Amumu 1*",
-    "Diana 1*",
+    "Gnar 1*",
+    "Kha'Zix 1*",
+    "Kog'Maw 1*",
+    "Malphite 1*",
     "Master Yi 1*",
+    "Pebbles 2*",
     "Sett 1*",
-    "Yorick 2*"
+    "Warwick 1*"
    ],
    "traits": [
-    "Blossom 3",
-    "Adaptor 2",
+    "Adaptor 3",
+    "Blackthorn 2",
     "Brawler 2",
-    "Inferno 2",
-    "Juggernaut 2",
-    "Lunar 2",
+    "Invoker 2",
     "Ravager 2",
-    "Attuned 1"
+    "Caustic 1",
+    "Monolith 1",
+    "Rival 1"
    ]
   }
  }

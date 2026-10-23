@@ -21,6 +21,7 @@ from tft_engine.decision.assumptions import AssumptionSet
 from tft_engine.decision.board_power import board_power
 from tft_engine.decision.item_fit import profile
 from tft_engine.gamedata import load_gamedata
+from tft_engine.repro import make_rng
 from tft_engine.rules.board_stats import BoardStats
 from tft_engine.rules.items import emblem_trait
 from tft_engine.rules.traits import active_traits, trait_counts
@@ -289,21 +290,50 @@ class BoardBuilder:
 
     # --- items ------------------------------------------------------------------------
 
+    def _random_pairs(self, pool: list[str], unit: str, count: int) -> list[list[str]]:
+        """Fixed sample of random item sets for an item that equips random items."""
+        rng = make_rng(0, "random_items", unit)
+        n = self.a["build_random_item_samples"]
+        return [
+            [pool[int(i)] for i in rng.choice(len(pool), count, replace=False)] for _ in range(n)
+        ]
+
     def assign_items(self, board: list[str], level: int, holders: dict[str, list[str]]):
         """Items for the main carry, main tank and second carry, chosen by board power.
 
         Each role goes to the unit whose board power rises most with its items; items
         are picked one at a time by their gain. An emblem takes an item slot; one item
-        appears at most ``build_item_copies`` times on the board.
+        appears at most ``build_item_copies`` times on the board. An item that equips
+        random items (Thief's Gloves) fills the holder and is valued as the average of
+        a fixed sample of random item sets.
         """
         slots = self.a["build_item_slots"]
         copies = self.a["build_item_copies"]
-        excluded = set(self.a["build_excluded_items"])
-        pool = [i for i in self.completed if i not in excluded and self.kb.items[i].get("stats")]
+        randoms = {
+            iid: e["count"]
+            for iid, r in self.kb.item_effects.items()
+            for e in r["effects"]
+            if e["kind"] == "random_items"
+        }
+        pool = [i for i in self.completed if self.kb.items[i].get("stats")]
+        plain = [i for i in pool if i not in randoms]
         units = [(u, self.star(u, level)) for u in board]
+        samples: dict[str, list[list[str]]] = {}
 
         def power(items):
-            return board_power(self.stats, units, items, holders or None, self.a).power
+            rand = [u for u, v in items.items() if any(i in randoms for i in v)]
+            if not rand:
+                return board_power(self.stats, units, items, holders or None, self.a).power
+            for u in rand:
+                if u not in samples:
+                    count = next(randoms[i] for i in items[u] if i in randoms)
+                    samples[u] = self._random_pairs(plain, u, count)
+            n = self.a["build_random_item_samples"]
+            total = 0.0
+            for k in range(n):
+                trial = {u: samples[u][k] if u in rand else v for u, v in items.items()}
+                total += board_power(self.stats, units, trial, holders or None, self.a).power
+            return total / n
 
         bare = board_power(self.stats, units, None, holders or None, self.a)
         own = {p.unit: p.dps * p.ehp for p in bare.units}
@@ -323,14 +353,24 @@ class BoardBuilder:
                 if u in items:
                     continue
                 chosen: list[str] = []
-                for _ in range(n - len(holders.get(u, []))):
+                room = n - len(holders.get(u, []))
+                for _ in range(room):
                     used = [i for v in items.values() for i in v] + chosen
-                    options = [i for i in pool if used.count(i) < copies]
+                    options = [i for i in plain if used.count(i) < copies]
                     if not options:
                         break
                     pick = max(options, key=lambda i: (power({**items, u: chosen + [i]}), i))
                     chosen.append(pick)
                 value = power({**items, u: chosen})
+                # an item that equips random items needs all the slots: compare it with the
+                # whole chosen set, not with one item
+                if room == max(slots) and not holders.get(u):
+                    used = [i for v in items.values() for i in v]
+                    for r in sorted(randoms):
+                        if used.count(r) < copies:
+                            v = power({**items, u: [r]})
+                            if v > value:
+                                value, chosen = v, [r]
                 if best is None or value > best[0]:
                     best = (value, u, chosen)
             if best:

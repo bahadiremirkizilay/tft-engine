@@ -149,9 +149,9 @@ Alıntılar:
 - `cdragon/tft/en_us.json` (16.20): 74 şampiyon kaydının 72'sinde `ability.variables` boş (sadece Alune ve Kobuko'da var).
 - `game/data/characters/da_18_<ad>/` klasörlerinde (ör. `da_18_ahri/`) sadece `animations/` ve `skins/` var; şampiyonun ana `.bin.json` veri dosyası yok.
 - `map22.bin.json` içinde Set 18 için sadece shop kayıtları var (`Sets/TFTSet18/Shop/DA_18_Ahri`); yetenek (spell) verisi yok.
-- Sonuç: Yetenek hasarı, kalkan ve iyileştirme değerleri `unknown` kalıyor. Sadece savaş hesabında gerekli (B6 ve sonrası). Gerekirse ana carry'ler için MetaTFT'den veya oyundan elle alınır.
+- Sonuç: Yetenek hasarı, kalkan ve iyileştirme değerleri oyun dosyalarında yok. **Güncelleme (2026-10-22/23):** 18.5 değerleri sahibin Blitz yapıştırmalarından ve ekran görüntülerinden `curated/abilities/18.5.json` içinde (kaynak `blitz-2026-10-22`, durum `third_party_unverified`); 18.5 notlarındaki 16 değişiklikle tutuyor.
 - Hasar türü (AD/AP) yetenek açıklamasındaki ikonlardan okunuyor (`%i:scaleAD%`, `%i:scaleAP%`). 65 şampiyonun hepsinde açıklama var.
-- Roller (Tank, Fighter ...) dışa aktarımda sadece 2 şampiyonda var (Alune `APCaster`, Kobuko `APTank`). Diğerleri `curated/champion_roles.json` ile elle girilecek.
+- Roller (Tank, Fighter ...) dışa aktarımda sadece 2 şampiyonda var (Alune `APCaster`, Kobuko `APTank`). Diğerleri `curated/champion_roles.json` içinde; 2026-10-22'den beri Blitz birim sayfalarındaki rollerle (Ivern sahibin rolünde, Blitz'inki çelişki kaydında).
 
 ## 3. Mekanik değerleri: repo ile karşılaştırma
 

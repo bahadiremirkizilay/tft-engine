@@ -241,6 +241,10 @@ def _check_part(p: dict[str, Any], where: str) -> None:
             raise SchemaError(f"{where}: {kind} needs a number value")
         return
     vals = p.get("values")
+    if p.get("status") == "unknown":  # a part the source shows but whose value is not known
+        if vals is not None:
+            raise SchemaError(f"{where}: an unknown part has values null")
+        return
     if not (isinstance(vals, list) and len(vals) == 3):
         raise SchemaError(f"{where}: values must list 1/2/3-star numbers")
     if kind == "damage" and p.get("type") not in DAMAGE_TYPES:
@@ -305,7 +309,7 @@ def read_abilities(curated_folder: Path, patch: str) -> dict[str, dict[str, Any]
 
 ITEM_EFFECT_KINDS = (
     "stat", "stack", "shield", "heal_once", "regen", "mana", "precision", "reduce", "burn",
-    "damage_when_hit", "heal_damage", "crit_stack",
+    "damage_when_hit", "heal_damage", "crit_stack", "random_items",
 )  # fmt: skip
 ITEM_STACK_PER = ("second", "attack", "attack_or_hit", "interval")
 

@@ -96,7 +96,7 @@ tft-engine data diff --set set18 18.4 18.5           # iki yama arasındaki fark
 ```
 
 - `generated/<yama>/`: Sadece importer yazar, elle düzenlenmez. Aynı girdiden her zaman aynı bayt üretilir.
-- `curated/`: Elle hazırlanan kurallar ve düzeltmeler. İlk dosya `cdragon_rules.json`: hangi kayıtların oynanabilir şampiyon olduğu ve item türlerinin nasıl ayrıldığı, kanıtlarıyla.
+- `curated/`: Elle hazırlanan kurallar ve düzeltmeler (yama başına item statları, augment tier'ları, resmi not düzeltmeleri, yetenek değerleri `abilities/`, item etkileri `item_effects/`; set geneli roller, trait ve augment modelleri). İlk dosya `cdragon_rules.json`: hangi kayıtların oynanabilir şampiyon olduğu ve item türlerinin nasıl ayrıldığı, kanıtlarıyla.
 - `data/sources.json`: Her kaynağın adresi, alınma tarihi ve (dosyalar için) sha256'sı. Importer, dosya kayıttaki hash'ten farklıysa çalışmaz.
 - `data/sets/<set>/calendar.json`: Yama notlarının tarihleri ve CommunityDragon sürümü ↔ yama eşlemesi. Başka bir yamanın döneminde alınmış veri o yamaya atanırsa kontrol uyarı verir.
 

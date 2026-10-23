@@ -91,7 +91,7 @@ Son güncelleme: 2026-10-23. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **18.5:** CommunityDragon 16.21 içeri alındı (shop olasılıkları ve havuz 16.20 ile aynı). Dosya 18.4 notlarına yetişmiş; 18.5'ten eksik 22 değer `curated/overrides/18.5.json` içinde (Vadi Canavarı 7 %5, Taric zırh 70, Investment Strategy, Challenger's Grace …). Omega Riftbeast notla dosya arasında çelişkili (bekleyenler listesinde). Item istatistikleri (Radiant Blue Buff, Radiant Adaptive Helm) ve augment tier'ları 18.5 için üretildi.
 - **Birim istatistikleri** (`rules/board_stats.py`): temel istatistik × yıldız (`star_multipliers`, can ×1.8/3.24, AD ×1.5/2.25) + item'lar + trait değerleri. Trait'lerin istatistiğe eşlenmesi `curated/effects/traits.json` içinde (36 trait: modellenen, kısmen, modellenmeyen; zamana bağlı etkiler için ortalama varsayımı yazılı).
 - **Tahta gücü** (`decision/board_power.py`, varsayım): hasar/sn (saldırı + yetenek) ve dayanıklılık; güç = √(hasar × dayanıklılık). Yetenek hasarı yetenek değerleri gelene kadar maliyete göre tahmin. Tahta kurucu ve simülasyon bunu kullanıyor; karar motoru (P1) henüz eski sezgisel hesabı kullanıyor.
-- **Yetenek değerleri:** oyun dosyalarında yok (16.21 dahil). tactics.tools'un birim sayfası 18.1 değerlerinde kalmış; sahibin gönderdiği 12 şampiyonun değerleri `curated/abilities/18.4.json` içinde.
+- **Yetenek değerleri:** oyun dosyalarında yok (16.21 dahil). tactics.tools'un birim sayfası 18.1 değerlerinde kalmış. (Sonradan: 18.5 değerleri Blitz'ten, aşağıda. `curated/abilities/18.4.json` tarihî kayıt, motor okumuyor.)
 - **Görülen:** amblem komplarında yüksek yüzde veren trait'ler (Adaptör, Tahripkâr) ve ucuz 2★ birimler öne çıkıyor; Cadılar Meclisi, Kadim Orman, İlkel, Zıpırgil gibi modellenmemiş trait'lerin amblemleri tahtaya bir şey katmıyor.
 
 ## Yetenek değerleri (2026-10-22, 18.5)
@@ -110,6 +110,8 @@ Son güncelleme: 2026-10-23. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Hesap** (`decision/item_effects.py`, `board_power`): biriken statlar savaş boyunca saniye saniye birikiyor ve ortalaması alınıyor; İsabetlilik (IE, Jeweled Gauntlet, Executioner) yetenek hasarını kritik yaptırıyor; mana item'ları daha çok yetenek; kalkan, iyileştirme, can yenileme dayanıklılığa; Shred/Sunder rakibin büyü direncini ve zırhını düşürüyor; bir Burn rakibin canının yüzdesi kadar.
 - **Rakip:** Fiziksel ve büyü hasarı varsayılan rakip zırhı ve büyü direnciyle (60/60) düşüyor; gerçek hasar düşmüyor.
 - **Tahta kurucu:** Item'lar ana carry, ana tank ve ikinci carry'ye tahta gücüne katkılarıyla, tek tek seçiliyor; aynı item'dan en fazla 1; Thief's Gloves seçilmiyor.
+- **Sahibin kuralları (2026-10-23):** aynı item'dan 2 tane yapılabiliyor (`build_item_copies` 2); Thief's Gloves rastgele 2 item veriyor ve 3 slotu dolduruyor, motor ona sabit tohumlu 12 rastgele çiftin ortalama değerini biçiyor.
+- **Bilinen eğilimler:** biriken item'lar (Guinsoo, Titan, Kraken) hafif düşük değerleniyor (yığın hızı tek geçişte, AD ve saldırı hızı ayrı ortalanıyor); simülasyon item'ları hâlâ eski uyum puanıyla dağıtıyor (sahibin kararı bekliyor).
 - **Görülen (18.5, level 8):** Carry'ler AD/saldırı hızı item'ları (Guinsoo, IE, Hand of Justice, Last Whisper), tanklar Evenshroud/Ionic/Bramble/Warmog alıyor; sahibin Aphelios-Kog'Maw-Nidalee kompu ile ilk sıra arasındaki fark %18'den %7'ye indi. Hand of Justice neredeyse her carry'de: değeri fazla olabilir (yarı savaş yarı can üstü varsayımı).
 
 ## Simülasyon ve tahta kurucu (2026-10-21, plan dışı deneme)

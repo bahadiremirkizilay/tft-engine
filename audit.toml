@@ -173,3 +173,8 @@ reason = "time steps used to average a stack over the fight (resolution, not a g
 key = "decision/item_effects.py:_average_stacks()"
 kind = "technical"
 reason = "0.5 puts each time step at its midpoint"
+
+[[accept]]
+key = "curated:coven_cashouts"
+kind = "not_modelled"
+reason = "MetaTFT Coven cashout table (owner paste 2026-10-22), kept for the Coven trait model in the next step"

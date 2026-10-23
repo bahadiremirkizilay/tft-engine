@@ -9,6 +9,10 @@ share of the fight above half Health, how often a unit is hit, ...).
   * per-unit extras that are not stats: mana, Precision, shields, heals, regen,
     damage when hit;
   * team effects: Shred and Sunder on the enemies (do not stack) and one Burn.
+
+Known biases (low for stacking items): stack rates use the unit's attack speed
+before its own stacks (one pass), and AD and attack speed stacks are averaged
+separately although damage grows with their product.
 """
 
 from __future__ import annotations

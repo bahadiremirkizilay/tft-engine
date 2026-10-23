@@ -628,7 +628,8 @@
    "name": "Javelin Toss",
    "status": "third_party_unverified",
    "source_ids": [
-    "blitz-2026-10-22"
+    "blitz-2026-10-22",
+    "owner-notes-2026-10-23"
    ],
    "forms": {
     "ap": {
@@ -1513,6 +1514,13 @@
     "blitz-2026-10-22"
    ],
    "parts": [
+    {
+     "kind": "damage",
+     "type": "physical",
+     "values": null,
+     "status": "unknown",
+     "hits": "single"
+    },
     {
      "kind": "damage",
      "type": "physical",

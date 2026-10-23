@@ -4,7 +4,7 @@
 
 Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assumption`: ölçülmedi, motorun tahmini. Aralıklı olanlar P1'in hassasiyet raporunda iki ucuyla yeniden hesaplanır.
 
-- **77 varsayım**, 57 tanesinin aralığı var, 34 tanesinin gerekçesi yazılı.
+- **78 varsayım**, 58 tanesinin aralığı var, 35 tanesinin gerekçesi yazılı.
 - P1'de en az bir senaryonun kararını çeviren: **12** varsayım.
 
 ## Kararı en çok çevirenler (P1 senaryoları)
@@ -85,6 +85,7 @@ Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assump
 | `power_aoe_targets` | 2.0 | 1.5 – 3.0 | enemies an area ability (radius, cone, adjacent) hits on average | guess (2026-10-22); ability records say only the shape | damage charts after fights, per ability | decision/board_power.py, decision/item_effects.py |
 | `power_line_targets` | 1.5 | 1.0 – 2.5 | enemies a line or piercing ability hits on average, after its falloff | guess (2026-10-22); most lines lose 20-80% per enemy passed | damage charts after fights, per ability | decision/board_power.py |
 | `power_conditional_share` | 0.5 | 0.25 – 0.75 | share of casts where an ability's stated condition holds (Soraka's extra stars) | guess (2026-10-22) | — | decision/board_power.py |
+| `power_dot_landed_share` | 0.5 | 0.3 – 0.7 | share of the fight left, on average, for a damage-over-time cast to land | casts and attacks spread evenly over the fight (2026-10-23) | — | decision/board_power.py |
 | `power_sustain_weight` | 0.7 | 0.5 – 1.0 | share of ability shields and heals counted as effective Health (overheal, expiry) | guess (2026-10-22) | — | decision/board_power.py |
 | `power_adaptor_form` | {"DA_Nidalee18_AP": "ad", "DA_Gromp18_AP": "ap"} | — | Adaptor form per champion; champions not listed take the stronger form | owner 2026-10-21/22: Nidalee is played AD, Gromp AP | — | decision/board_power.py |
 | `power_enemy_armor` | 60 | 30 – 100 | average Armor of the enemy units your damage hits (physical damage x 100/(100+Armor)) | guess (2026-10-23): unit base Armor 20-70 plus trait and it… | enemy unit panels in the owner's screenshots | decision/board_power.py |
@@ -99,8 +100,8 @@ Oyun verisi olmayan her model sayısı burada. Hepsinin güven sınıfı `assump
 | `power_extra_precision_crit` | 0.1 | — | crit damage each extra Precision source adds | item text: extra Precision grants 10% Critical Strike Damage | — | decision/board_power.py |
 | `build_cost_caps` | {"7": {"4": 2, "5": 0}, "8": {"4": 4, "5": 1}, … | — | most 4- and 5-cost units a board can hold at a level (from shop odds) | yazılmadı | — | decision/board_builder.py |
 | `build_stars` | {"7": {"1": 2, "2": 2, "3": 2, "4": 1, "5": 1},… | — | star level per unit cost on a finished board at a level | owner 2026-10-22: a finished level 8 comp aims for 2-star 4… | — | decision/board_builder.py |
-| `build_item_copies` | 1 | 1 – 2 | most copies of one completed item on a built board | owner 2026-10-22: a board rarely has the same item twice | — | decision/board_builder.py |
-| `build_excluded_items` | ["DA_ThiefsGloves"] | — | items the board builder never picks (their value is random) | Thief's Gloves equips random items each round | — | decision/board_builder.py |
+| `build_item_copies` | 2 | 1 – 3 | most copies of one completed item on a built board | owner 2026-10-23: the same item is built twice | — | decision/board_builder.py |
+| `build_random_item_samples` | 12 | — | random item pairs averaged to value Thief's Gloves | setting: enough pairs for a stable average, few enough to s… | — | decision/board_builder.py |
 | `build_item_candidates` | 4 | — | strongest carries and tanks tried as item holders (search width) | setting: keeps the item search fast | — | decision/board_builder.py |
 | `build_item_slots` | [3, 3, 2] | — | items for the main carry, the main tank and a second carry | yazılmadı | — | decision/board_builder.py |
 | `wisp_shop_prob` | null | 0.25 – 1.0 | chance a shop shows a Wisp (None = set data: every other shop) | set data shop rule wisp_slot; owner's observation 18.4b | count Wisp shops over many rolls in game | decision/evaluate.py |

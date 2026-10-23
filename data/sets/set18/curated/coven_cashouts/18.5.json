@@ -1,0 +1,783 @@
+{
+ "set": "set18",
+ "patch": "18.5",
+ "kind": "coven_cashouts",
+ "status": "third_party_unverified",
+ "source_ids": [
+  "metatft-coven-2026-10-22"
+ ],
+ "note": "Coven cashout levels from MetaTFT (pasted by the owner 2026-10-22). Its Essence per kill and per loss match the 18.4/18.5 game file exactly. Each level offers one of its options; all options equally likely (the site says no weights). site_gold_value is the site's own estimate, not a game value. Generic kinds (component, completed_item, radiant_item, artifact, emblem, random_champion, random_5_cost) are random draws the site does not detail.",
+ "levels": [
+  {
+   "level": 1,
+   "essence": 40,
+   "site_gold_value": 4,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "random_champion",
+       "count": 2,
+       "cost": {
+        "status": "unknown",
+        "note": "owner: probably 1 or 2 cost, maybe rarely 3; not sure"
+       }
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "champion",
+       "id": "DA_18_Cassiopeia",
+       "star": 1,
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Camille",
+       "star": 1,
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "level": 2,
+   "essence": 85,
+   "site_gold_value": 10,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 2
+      },
+      {
+       "kind": "component",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 10
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "champion",
+       "id": "DA_18_Elise",
+       "star": 1,
+       "count": 1
+      },
+      {
+       "kind": "component",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "level": 3,
+   "essence": 130,
+   "site_gold_value": 16,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "component",
+       "count": 1
+      },
+      {
+       "kind": "gold",
+       "count": 6
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "champion",
+       "id": "DA_18_Elise",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "component",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 3
+      },
+      {
+       "kind": "component",
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Camille",
+       "star": 2,
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "component",
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Caitlyn",
+       "star": 2,
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "level": 4,
+   "essence": 185,
+   "site_gold_value": 24,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "completed_item",
+       "count": 1
+      },
+      {
+       "kind": "component",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 10
+      },
+      {
+       "kind": "completed_item",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 10
+      },
+      {
+       "kind": "reforger",
+       "count": 1
+      },
+      {
+       "kind": "component",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "completed_item",
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Caitlyn",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Camille",
+       "star": 2,
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "level": 5,
+   "essence": 250,
+   "site_gold_value": 40,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "completed_item",
+       "count": 2
+      },
+      {
+       "kind": "gold",
+       "count": 20
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_LuckyItemChest",
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Morgana",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "gold",
+       "count": 5
+      },
+      {
+       "kind": "completed_item",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_LuckyItemChest",
+       "count": 2
+      },
+      {
+       "kind": "gold",
+       "count": 18
+      },
+      {
+       "kind": "reforger",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "champion",
+       "id": "DA_Lux18_Base",
+       "star": 1,
+       "count": 1
+      },
+      {
+       "kind": "component",
+       "count": 2
+      },
+      {
+       "kind": "item",
+       "id": "DA_LuckyItemChest",
+       "count": 1
+      },
+      {
+       "kind": "gold",
+       "count": 18
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 18
+      },
+      {
+       "kind": "artifact",
+       "count": 1
+      },
+      {
+       "kind": "completed_item",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "level": 6,
+   "essence": 365,
+   "site_gold_value": 76,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 27
+      },
+      {
+       "kind": "radiant_item",
+       "count": 2
+      },
+      {
+       "kind": "remover",
+       "count": 2
+      },
+      {
+       "kind": "reforger",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Morgana",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "item",
+       "id": "DA_ThiefsGloves",
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_Sentinel18",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "gold",
+       "count": 22
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 1
+      },
+      {
+       "kind": "emblem",
+       "count": 1
+      },
+      {
+       "kind": "gold",
+       "count": 22
+      },
+      {
+       "kind": "completed_item",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 15
+      },
+      {
+       "kind": "item",
+       "id": "DA_ThiefsGlovesRadiant",
+       "count": 2
+      },
+      {
+       "kind": "remover",
+       "count": 3
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Kennen",
+       "star": 2,
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "champion",
+       "id": "DA_18_Morgana",
+       "star": 1,
+       "count": 1
+      },
+      {
+       "kind": "gold",
+       "count": 22
+      },
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 1
+      },
+      {
+       "kind": "item",
+       "id": "DA_18_EmblemInvoker",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 1
+      },
+      {
+       "kind": "item",
+       "id": "DA_TacticiansCrown",
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_Draven18",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "golden_remover",
+       "count": 1
+      },
+      {
+       "kind": "gold",
+       "count": 12
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "level": 7,
+   "essence": 500,
+   "site_gold_value": 100,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "remover",
+       "count": 3
+      },
+      {
+       "kind": "reforger",
+       "count": 3
+      },
+      {
+       "kind": "radiant_item",
+       "count": 3
+      },
+      {
+       "kind": "completed_item",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "random_5_cost",
+       "count": 6
+      },
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 2
+      },
+      {
+       "kind": "remover",
+       "count": 3
+      },
+      {
+       "kind": "completed_item",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 2
+      },
+      {
+       "kind": "gold",
+       "count": 20
+      },
+      {
+       "kind": "artifact",
+       "count": 2
+      },
+      {
+       "kind": "remover",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 2
+      },
+      {
+       "kind": "gold",
+       "count": 10
+      },
+      {
+       "kind": "emblem",
+       "count": 4
+      },
+      {
+       "kind": "golden_remover",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 2
+      },
+      {
+       "kind": "item",
+       "id": "DA_TacticiansShield",
+       "count": 4
+      },
+      {
+       "kind": "champion",
+       "id": "DA_Lux18_Base",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Kennen",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "gold",
+       "count": 15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "level": 8,
+   "essence": 650,
+   "site_gold_value": 200,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "random_5_cost",
+       "count": 9
+      },
+      {
+       "kind": "radiant_item",
+       "count": 3
+      },
+      {
+       "kind": "gold",
+       "count": 30
+      },
+      {
+       "kind": "item",
+       "id": "DA_TacticiansShield",
+       "count": 1
+      },
+      {
+       "kind": "golden_remover",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "item",
+       "id": "DA_RadiantLuckyItemChest",
+       "count": 3
+      },
+      {
+       "kind": "gold",
+       "count": 10
+      },
+      {
+       "kind": "champion",
+       "id": "DA_18_Morgana",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "champion",
+       "id": "DA_Lux18_Base",
+       "star": 2,
+       "count": 1
+      },
+      {
+       "kind": "golden_remover",
+       "count": 1
+      },
+      {
+       "kind": "item",
+       "id": "DA_TacticiansCape",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "radiant_item",
+       "count": 3
+      },
+      {
+       "kind": "gold",
+       "count": 40
+      },
+      {
+       "kind": "item",
+       "id": "DA_TacticiansCrown",
+       "count": 1
+      },
+      {
+       "kind": "golden_remover",
+       "count": 1
+      },
+      {
+       "kind": "champion_duplicator",
+       "count": 3
+      },
+      {
+       "kind": "reforger",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "level": 9,
+   "essence": 800,
+   "site_gold_value": 500,
+   "options": [
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 100
+      },
+      {
+       "kind": "radiant_item",
+       "count": 6
+      },
+      {
+       "kind": "item",
+       "id": "DA_TacticiansCape",
+       "count": 3
+      },
+      {
+       "kind": "golden_remover",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "weight": 1,
+     "rewards": [
+      {
+       "kind": "gold",
+       "count": 100
+      },
+      {
+       "kind": "radiant_item",
+       "count": 6
+      },
+      {
+       "kind": "champion_duplicator",
+       "count": 6
+      },
+      {
+       "kind": "item",
+       "id": "DA_TacticiansShield",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "rules": {
+  "status": "unverified",
+  "source": "owner (2026-10-22)",
+  "text": "When Essence reaches a level's threshold the game asks: cash out or continue. Cashing out gives that level's reward and Essence starts again from 0. Continuing keeps the Essence for the next threshold. After a cashout the thresholds start again from level 1 (40 Essence): reaching a higher level means continuing past the lower thresholds without cashing out."
+ }
+}

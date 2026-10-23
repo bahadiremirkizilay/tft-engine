@@ -2,7 +2,7 @@
  "set": "set18",
  "patch": "18.5",
  "kind": "item_effects",
- "note": "Special effects of Set 18 completed items as values the engine can count (B6 item step, 2026-10-23). Numbers come from the effect texts in curated/item_stats/18.5.json and carry the same sources; stacking caps from the owner. kinds: stat (extra stat; share/invert name an assumption for the time it holds, after/until in seconds, times names an assumption count, roles/not_roles by role tag), stack (per second, attack, attack_or_hit or interval; cap in stacks; full = bonus at the cap; also = a second stat on the same stacks), shield and heal_once (share of Health, once a fight), regen (share of max or missing Health every n s), mana (per_attack, per_crit, start, once, gain_pct), precision (abilities can crit), reduce (Shred/Sunder: armor or mr on enemies, does not stack), burn (% enemy max Health per second, does not stack), damage_when_hit, heal_damage, crit_stack. text_only: nothing counted beyond stats.",
+ "note": "Special effects of Set 18 completed items as values the engine can count (B6 item step, 2026-10-23). Numbers come from the effect texts in curated/item_stats/18.5.json and carry the same sources; stacking caps from the owner. kinds: stat (extra stat; share/invert name an assumption for the time it holds, after/until in seconds, times names an assumption count, roles/not_roles by role tag), stack (per second, attack, attack_or_hit or interval; cap in stacks; full = bonus at the cap; also = a second stat on the same stacks), shield and heal_once (share of Health, once a fight), regen (share of max or missing Health every n s), mana (per_attack, per_crit, start, once, gain_pct), precision (abilities can crit), reduce (Shred/Sunder: armor or mr on enemies, does not stack), burn (% enemy max Health per second, does not stack), damage_when_hit, heal_damage, crit_stack, random_items (count random completed items; the holder takes no other item). text_only: nothing counted beyond stats.",
  "records": [
   {
    "id": "DA_AdaptiveHelm",
@@ -666,14 +666,20 @@
   },
   {
    "id": "DA_ThiefsGloves",
-   "model_status": "text_only",
-   "effects": [],
+   "model_status": "modelled",
+   "effects": [
+    {
+     "kind": "random_items",
+     "count": 2
+    }
+   ],
    "status": "third_party_unverified",
    "source_ids": [
     "tactics-tools-items-2026-10-20",
-    "owner-screenshots-2026-10-20"
+    "owner-screenshots-2026-10-20",
+    "owner-notes-2026-10-23"
    ],
-   "note": "Random items each round; not modelled."
+   "note": "Each round equips 2 random completed items and uses all 3 slots (owner, 2026-10-23); valued as the average of random pairs."
   },
   {
    "id": "DA_TitansResolve",

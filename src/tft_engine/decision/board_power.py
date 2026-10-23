@@ -36,7 +36,7 @@ from tft_engine.rules.board_stats import BoardStats, UnitStats
 @dataclass(frozen=True)
 class UnitPower:
     unit: str
-    dps: float  # after enemy Armor and MR on the board, before: raw total
+    dps: float  # in a BoardPower: after enemy Armor/MR; from unit_power alone: raw total
     ehp: float
     casts: float
     source: str = "stand-in"  # "record" when ability values come from the patch data
@@ -140,6 +140,8 @@ def unit_power(
     sustain = attack_bonus = speed_bonus = 0.0
     for p in parts:
         kind = p["kind"]
+        if p.get("status") == "unknown":
+            continue  # value not known: not counted (the record is partial and says so)
         if kind in ("attack_bonus", "attack_speed"):
             d = p.get("duration")
             uptime = min(1.0, d * casts / t) if d else 1.0
@@ -176,9 +178,10 @@ def unit_power(
             scale = {"physical": ad_ratio, "magic": ap_ratio, "true": 1.0}[p["type"]]
             if not scale_by_type:
                 scale = 1.0
-            # damage over time: casts and attacks are spread over the fight, so on average
-            # half the fight is left for it to land
-            landed = min(1.0, t / 2 / p["over"]) if p.get("over") else 1.0
+            # damage over time: casts and attacks are spread over the fight, so only part
+            # of the fight is left for it to land
+            share = a["power_dot_landed_share"]
+            landed = min(1.0, t * share / p["over"]) if p.get("over") else 1.0
             hits = _targets(p.get("hits", "single"), a)
             by_type[p["type"]] += amount * hits * scale * landed * ability_crit / t
         elif kind == "health":
@@ -192,7 +195,7 @@ def unit_power(
     by_type["magic"] += ex.when_hit_damage
     phys, magic, true = (by_type[k] * amp for k in ("physical", "magic", "true"))
     dps = phys + magic + true
-    ehp += sustain + s.omnivamp * dps * t
+    ehp += sustain  # omnivamp is added in board_power, from damage after enemy resists
     return UnitPower(s.unit, dps, ehp, casts, "record", phys, magic, true)
 
 
@@ -217,7 +220,6 @@ def _stand_in(kb, s, a, star_ad, t, attacks, casts, amp, ehp, ex) -> UnitPower:
     else:
         magic += ability / t * amp
     dps = phys + magic
-    ehp += s.omnivamp * dps * t
     return UnitPower(s.unit, dps, ehp, casts, "stand-in", phys, magic, 0.0)
 
 
@@ -285,14 +287,14 @@ def board_power(
     burn = team.burn * a["power_enemy_unit_health"]
     parts = []
     ehp_bonus = 0.0
-    for p in powers:
+    for p, st in zip(powers, unit_stats, strict=True):
         dps = p.physical * 100 / (100 + armor) + p.magic * 100 / (100 + mr) + p.true
         if p.unit == team.burn_holder:
             dps += burn
         ex = extras.get(p.unit)
         if ex and ex.heal_damage:  # heals allies for a share of the holder's damage
             ehp_bonus += ex.heal_damage * dps * t * a["power_sustain_weight"]
-        parts.append(replace(p, dps=dps))
+        parts.append(replace(p, dps=dps, ehp=p.ehp + st.omnivamp * dps * t))
     dps = sum(p.dps for p in parts)
     ehp = sum(p.ehp for p in parts) + ehp_bonus
     return BoardPower(math.sqrt(max(dps, 0) * max(ehp, 0)), dps, ehp, tuple(parts),

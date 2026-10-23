@@ -85,11 +85,23 @@ def test_adaptive_helm_depends_on_role():
     assert st[1].ap - base[1].ap == pytest.approx(10)
 
 
-def test_builder_picks_items_by_power_without_copies():
+def test_builder_picks_items_by_power_with_at_most_two_copies():
     b = BoardBuilder(KB)
     board = [cid(n) for n in ("Aphelios", "Sentinel", "Diana", "Kog'Maw", "Mama Beak")]
     items, notes = b.assign_items(board, 8, {})
     picked = [i for v in items.values() for i in v]
-    assert len(picked) == len(set(picked)) == 8
-    assert item("Thief's Gloves") not in picked
+    assert max(picked.count(i) for i in picked) <= A["build_item_copies"]
+    for v in items.values():  # Thief's Gloves is alone on its holder
+        assert item("Thief's Gloves") not in v or v == [item("Thief's Gloves")]
     assert notes[0].startswith("main carry")
+
+
+def test_thiefs_gloves_is_valued_as_random_items():
+    b = BoardBuilder(KB)
+    aph = cid("Aphelios")
+    pairs = b._random_pairs([i for i in b.completed if KB.items[i].get("stats")], aph, 2)
+    assert len(pairs) == A["build_random_item_samples"]
+    assert all(len(p) == 2 and len(set(p)) == 2 for p in pairs)
+    assert pairs == b._random_pairs(  # same seed, same sample
+        [i for i in b.completed if KB.items[i].get("stats")], aph, 2
+    )

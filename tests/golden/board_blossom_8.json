@@ -1,12 +1,12 @@
 {
  "units": [
   "DA_18_Alune 1*",
-  "DA_18_Aphelios 2*",
   "DA_18_Diana 2*",
   "DA_18_MasterYi_AD 2*",
   "DA_18_Sett 2*",
   "DA_Brambleback18 2*",
   "DA_KogMaw18_AD 2*",
+  "DA_Krug18 2*",
   "DA_Sentinel18 2*"
  ],
  "emblems": {
@@ -15,30 +15,32 @@
   ]
  },
  "items": {
+  "DA_18_Alune": [
+   "DA_BlueBuff",
+   "DA_RabadonsDeathcap",
+   "DA_RabadonsDeathcap"
+  ],
+  "DA_18_Sett": [
+   "DA_SteraksGage",
+   "DA_SpiritVisage",
+   "DA_SpiritVisage"
+  ],
   "DA_18_MasterYi_AD": [
-   "DA_Bloodthirster",
    "DA_Deathblade",
    "DA_RedBuff"
-  ],
-  "DA_Sentinel18": [
-   "DA_SpiritVisage",
-   "DA_IonicSpark",
-   "DA_GargoyleStoneplate"
-  ],
-  "DA_18_Diana": [
-   "DA_BlueBuff",
-   "DA_RabadonsDeathcap"
   ]
  },
- "value": 8559.6,
+ "value": 8529.1,
  "traits": [
   "Adaptor 2",
   "Attuned 1",
   "Blossom 3",
+  "Brawler 2",
   "Caustic 1",
   "Invoker 2",
-  "Lunar 3",
+  "Lunar 2",
   "Ravager 2",
+  "Riftbeast 3",
   "Vanguard 2"
  ]
 }

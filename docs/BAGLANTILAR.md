@@ -41,7 +41,8 @@ Bir şeyi değiştirmeden önce buraya bak: o parametreyi, dosyayı ya da modül
 | `cdragon_rules` | tools/import_cdragon.py |  |
 | `champion_roles` | gamedata/curated.py |  |
 | `comps` | cli.py, decision/scenario.py, rules/comps.py |  |
-| `effects` | decision/effects.py, decision/item_effects.py, gamedata/cdragon.py, gamedata/curated.py, gamedata/entities.py, rules/board_stats.py, tools/curate_item_stats.py |  |
+| `coven_cashouts` | — | MetaTFT Coven cashout table (owner paste 2026-10-22), kept for the Coven trait model in the next step |
+| `effects` | decision/board_builder.py, decision/effects.py, decision/item_effects.py, gamedata/cdragon.py, gamedata/curated.py, gamedata/entities.py, rules/board_stats.py, tools/curate_item_stats.py |  |
 | `item_effects` | decision/item_effects.py, gamedata/curated.py |  |
 | `item_stats` | gamedata/curated.py, tools/curate_item_stats.py |  |
 | `meta` | rules/comps.py |  |
@@ -91,7 +92,7 @@ Bir şeyi değiştirmeden önce buraya bak: o parametreyi, dosyayı ya da modül
 | `prob.query` | prob, prob.exact, prob.sampler |
 | `prob.sampler` | prob |
 | `prob.shop_model` | prob, prob.exact, prob.sampler |
-| `repro` | decision.evaluate, experiments.examples, prob.sampler, sim.game |
+| `repro` | decision.board_builder, decision.evaluate, experiments.examples, prob.sampler, sim.game |
 | `repro.seeds` | repro |
 | `rules` | decision.evaluate, decision.horizon, sim.game |
 | `rules.board_stats` | audit.data, audit.wiring, decision.board_builder, decision.board_power, sim.game |

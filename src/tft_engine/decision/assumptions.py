@@ -285,6 +285,13 @@ DEFAULTS: dict[str, Assumption] = {
         "share of casts where an ability's stated condition holds (Soraka's extra stars)",
         basis="guess (2026-10-22)",
     ),
+    "power_dot_landed_share": Assumption(
+        0.5,
+        0.3,
+        0.7,
+        "share of the fight left, on average, for a damage-over-time cast to land",
+        basis="casts and attacks spread evenly over the fight (2026-10-23)",
+    ),
     "power_sustain_weight": Assumption(
         0.7,
         0.5,
@@ -383,16 +390,16 @@ DEFAULTS: dict[str, Assumption] = {
         "(luck and economy move it game to game)",
     ),
     "build_item_copies": Assumption(
-        1,
-        1,
         2,
+        1,
+        3,
         "most copies of one completed item on a built board",
-        basis="owner 2026-10-22: a board rarely has the same item twice",
+        basis="owner 2026-10-23: the same item is built twice",
     ),
-    "build_excluded_items": Assumption(
-        ("DA_ThiefsGloves",),
-        description="items the board builder never picks (their value is random)",
-        basis="Thief's Gloves equips random items each round",
+    "build_random_item_samples": Assumption(
+        12,
+        description="random item pairs averaged to value Thief's Gloves",
+        basis="setting: enough pairs for a stable average, few enough to stay fast",
     ),
     "build_item_candidates": Assumption(
         4,

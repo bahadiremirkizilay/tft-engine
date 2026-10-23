@@ -2,7 +2,7 @@
  "set": "set18",
  "patch": "18.4",
  "kind": "ability_values",
- "note": "Ability values per star level (1/2/3) for champions whose values are missing in the CommunityDragon export. Transcribed from text and a screenshot the owner pasted from a stats site (site not named) on 2026-10-21. Not used by the engine yet (combat is B6); kept so the values are not lost. Values are third-party until checked in game.",
+ "note": "HISTORICAL (2026-10-23): pasted 18.4 notes for 12 champions in an older layout. The engine does not read this file (only kind 'abilities' is loaded); 18.4 board power uses the cost-based stand-in, and 18.5 values live in abilities/18.5.json. Ability values per star level (1/2/3) for champions whose values are missing in the CommunityDragon export. Transcribed from text and a screenshot the owner pasted from a stats site (site not named) on 2026-10-21. Not used by the engine yet (combat is B6); kept so the values are not lost. Values are third-party until checked in game.",
  "records": [
   {
    "id": "DA_18_Sett",
