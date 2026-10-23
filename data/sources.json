@@ -307,7 +307,7 @@
       "collected_by": "manual",
       "site_patch": "18.5",
       "filters": {"page": "tft champions (ability text, unit stats) and trait roster"},
-      "note": "Owner pasted text from Blitz (Blitz blocks automated reads, so nothing was fetched). Unit list: 65 champions plus 9 Lux forms with role, mana, ability text and values per star; the 16 ability changes in the 18.5 notes all match. Stat icons in formula lines were lost in the copy. Mana differs from the game file only for Taric (0/65 vs 0/70). Adaptor AD forms pasted separately (Nidalee AD stats 1100 HP, 65/65, AD 60, AS 0.85, range 1; Kog'Maw, Akali, Master Yi match the game file). Trait roster (headed 18.4, values equal the 18.5 game file except Hunter 4 at 45%, the game file value the 18.3 notes changed to 40%). Murkwolf's shown damage 500/1050/2250 disagrees with its own formula."
+      "note": "Owner pasted text from Blitz (Blitz blocks automated reads, so nothing was fetched). Unit list: 65 champions plus 9 Lux forms with role, mana, ability text and values per star; the 16 ability changes in the 18.5 notes all match. Stat icons in formula lines were lost in the copy. Mana differs from the game file only for Taric (0/65 vs 0/70). Adaptor AD forms pasted separately (Nidalee AD stats 1100 HP, 65/65, AD 60, AS 0.85, range 1; Kog'Maw, Akali, Master Yi match the game file). Trait roster (headed 18.4, values equal the 18.5 game file except Hunter 4 at 45%, the game file value the 18.3 notes changed to 40%). Murkwolf's shown damage 500/1050/2250 disagrees with its own formula. 2026-10-23: screenshots of the ability boxes of Aphelios, Maokai, Rammus, Malphite and Rakan show the scaling icons (Aphelios swipes +1 per 20% bonus Attack Speed; Maokai damage in % max Health; Rammus Armor + MR; Malphite AP + Armor + MR)."
     },
     {
       "id": "metatft-coven-2026-10-22",
@@ -319,6 +319,15 @@
       "site_patch": "18.5",
       "filters": {"page": "Coven trait cashouts"},
       "note": "Every Coven cashout level: Essence needed, the site's gold-value estimate, and the reward options (equally likely). Essence per kill and per loss match the 18.4/18.5 game file."
+    },
+    {
+      "id": "owner-notes-2026-10-23",
+      "type": "player_report",
+      "title": "Owner's notes on ability scaling and Elderwood plants (2026-10-23)",
+      "url": "https://github.com/bahadiremirkizilay/tft-engine",
+      "retrieved_at": "2026-10-23",
+      "collected_by": "manual",
+      "note": "Ivern's ability shield scales with AP and Attack Speed. Elderwood plants seen in game (1-star, probably 3 Elderwood): Lifebloom 320 Health, 20/20, AD 0%, AP 40%, passive +10% AD and AP to Elderwood allies after 4 s then +3% every 4 s; Stonebark Tree 810 Health, 40/40, AD 13%, AP 53%, stuns the 2 nearest enemies for 1.5 s on death."
     }
   ]
 }

@@ -1,6 +1,6 @@
 # Proje durumu
 
-Son güncelleme: 2026-10-22. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; kararlar en üstte). Kaynaklar: [KAYNAKLAR.md](KAYNAKLAR.md). Veri erişim ve izin raporu: [VERI_KAYNAKLARI.md](VERI_KAYNAKLARI.md). Önceki plan: [PLAN_v0.4.md](PLAN_v0.4.md).
+Son güncelleme: 2026-10-23. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; kararlar en üstte). Kaynaklar: [KAYNAKLAR.md](KAYNAKLAR.md). Veri erişim ve izin raporu: [VERI_KAYNAKLARI.md](VERI_KAYNAKLARI.md). Önceki plan: [PLAN_v0.4.md](PLAN_v0.4.md).
 
 ## Neredeyiz
 
@@ -100,7 +100,8 @@ Son güncelleme: 2026-10-22. Plan: [PLAN.md](PLAN.md) (v0.5, bilgi altyapısı; 
 - **Tahta gücü** (`decision/board_power.py`) yetenek hasarını bu kayıtlardan alıyor: fiziksel AD artışıyla, büyü AP ile ölçekleniyor; kalkan ve iyileştirme dayanıklılığa ekleniyor. 18.4'te kayıt yok, eski maliyet tahmini sürüyor.
 - **Adaptor:** Nidalee AD (cougar statları Blitz'ten, oyun dosyasında yok), Gromp AP (sahip); Kog'Maw, Akali, Master Yi item'lara göre güçlü formu alıyor.
 - **Roller:** Blitz her şampiyonun rolünü gösteriyor; 16 tahmin düzeltildi, Ivern sahibin rolünde (Blitz'in "Caster" değeri çelişki kaydında).
-- **Açık kalanlar:** 6 yetenekte ölçekleme ikonu kayıp (Malphite, Rammus, Maokai, Ivern, Aphelios, Rakan); Murkwolf'un gösterilen hasarı formülüyle çelişiyor (değer bilinmiyor, yetenek kısmen sayılıyor); Taric manası Blitz 65, oyun dosyası 70.
+- **Ölçekleme (2026-10-23):** Blitz ekran görüntüleriyle Aphelios (her %20 bonus saldırı hızına +1 vuruş), Maokai (% can), Rammus (zırh + BD), Malphite (AP + zırh + BD) formülleri; Ivern kalkanı AP × saldırı hızı (sahip). Kayıtlarda `terms`, `scales`, `times_per_bonus_as`.
+- **Açık kalanlar:** Murkwolf'un gösterilen hasarı formülüyle çelişiyor (değer bilinmiyor, yetenek kısmen sayılıyor); Taric manası Blitz 65, oyun dosyası 70.
 - **Görülen:** 18.5 level 8 "en güçlü 10 tahta" denemesinde Diana, Alune ve Cassiopeia çok öne çıkıyor; item dağıtımı hâlâ kaba (Diana'ya Ionic Spark + Spirit Visage). Sıradaki iş item uyumu.
 
 ## Simülasyon ve tahta kurucu (2026-10-21, plan dışı deneme)

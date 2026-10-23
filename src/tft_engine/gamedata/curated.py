@@ -226,6 +226,8 @@ ABILITY_PART_KINDS = ("damage", "shield", "heal", "health", "attack_bonus", "att
 DAMAGE_TYPES = ("magic", "physical", "true")
 ABILITY_HITS = ("single", "aoe", "line", "split")
 ABILITY_PER = ("cast", "second", "attack", "fight")
+ABILITY_TERM_STATS = ("hp", "armor", "mr", "ap")
+ABILITY_RATIOS = ("ap", "ad", "as")
 ABILITY_STAT_KEYS = ("hp", "armor", "magicResist", "damage", "attackSpeed", "range")
 
 
@@ -247,6 +249,15 @@ def _check_part(p: dict[str, Any], where: str) -> None:
         raise SchemaError(f"{where}: hits must be one of {ABILITY_HITS} or a count")
     if p.get("per", "cast") not in ABILITY_PER:
         raise SchemaError(f"{where}: per must be one of {ABILITY_PER}")
+    for term in p.get("terms", []):
+        if term.get("stat") not in ABILITY_TERM_STATS or len(term.get("values", [])) != 3:
+            raise SchemaError(f"{where}: a term needs a stat in {ABILITY_TERM_STATS} and 3 values")
+    for r in p.get("scales", []):
+        if r not in ABILITY_RATIOS:
+            raise SchemaError(f"{where}: scales must be among {ABILITY_RATIOS}")
+    tpb = p.get("times_per_bonus_as")
+    if tpb is not None and not (isinstance(tpb, int | float) and tpb > 0):
+        raise SchemaError(f"{where}: times_per_bonus_as is a positive share of Attack Speed")
     over = p.get("over")
     if over is not None and not (isinstance(over, int | float) and over > 0):
         raise SchemaError(f"{where}: over is the seconds a damage-over-time part takes")

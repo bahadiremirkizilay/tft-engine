@@ -100,6 +100,12 @@ def unit_power(kb, s: UnitStats, a: AssumptionSet, star_ad: float = 1.0) -> Unit
             base_ad = form_ad * star_ad
     ad_ratio = s.ad / base_ad if base_ad else 1.0
     ap_ratio = s.ap / 100
+    base_as = c["stats"].get("attackSpeed") or 0
+    if s.form:
+        base_as = kb.ability(s.unit)["forms"][s.form].get("stats", {}).get("attackSpeed") or base_as
+    as_ratio = s.attack_speed / base_as if base_as else 1.0
+    ratios = {"ap": ap_ratio, "ad": ad_ratio, "as": as_ratio}
+    term_stat = {"hp": s.hp, "armor": s.armor, "mr": s.mr, "ap": ap_ratio}
     damage = sustain = attack_bonus = speed_bonus = 0.0
     for p in parts:
         kind = p["kind"]
@@ -125,17 +131,31 @@ def unit_power(kb, s: UnitStats, a: AssumptionSet, star_ad: float = 1.0) -> Unit
             if chance not in CHANCE_ASSUMPTIONS:
                 raise KeyError(f"ability {s.unit}: chance {chance!r} is not a known assumption")
             chance = a[chance]
-        amount = p["values"][s.star - 1] * p.get("times", 1) * chance * count
+        times = p.get("times", 1)
+        if p.get("times_per_bonus_as"):  # Aphelios: one more swipe per 20% bonus Attack Speed
+            times += max(0.0, as_ratio - 1) / p["times_per_bonus_as"]
+        if p.get("terms"):  # the formula by stat replaces the tooltip total
+            value = sum(x["values"][s.star - 1] * term_stat[x["stat"]] for x in p["terms"])
+            scale_by_type = False
+        else:
+            value = p["values"][s.star - 1]
+            scale_by_type = True
+        amount = value * times * chance * count
         if kind == "damage":
             scale = {"physical": ad_ratio, "magic": ap_ratio, "true": 1.0}[p["type"]]
+            if not scale_by_type:
+                scale = 1.0
             # damage over time: casts and attacks are spread over the fight, so on average
             # half the fight is left for it to land
             landed = min(1.0, t / 2 / p["over"]) if p.get("over") else 1.0
             damage += amount * _targets(p.get("hits", "single"), a) * scale * landed
         elif kind == "health":
             sustain += amount
-        else:  # shield, heal
-            sustain += amount * ap_ratio * a["power_sustain_weight"]
+        else:  # shield, heal: AP unless the record names its ratios
+            scale = 1.0
+            for r in p.get("scales", ["ap"]) if scale_by_type else []:
+                scale *= ratios[r]
+            sustain += amount * scale * a["power_sustain_weight"]
     dps = (attacks * (1 + attack_bonus) * (1 + speed_bonus) + damage / t) * amp
     ehp += sustain + s.omnivamp * dps * t
     return UnitPower(s.unit, dps, ehp, casts, "record")

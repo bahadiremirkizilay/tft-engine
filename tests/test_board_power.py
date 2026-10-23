@@ -139,3 +139,18 @@ def test_adaptor_forms():
     with_ad = board_power(BS, [(kog, 2)], {kog: [BOOK.item_id("Infinity Edge")] * 2})
     assert with_ap.stats[0].form == "ap"
     assert with_ad.stats[0].form == "ad"
+
+
+def test_formula_terms_and_bonus_attack_speed_swipes():
+    a = AssumptionSet()
+    malph = cid("Malphite")
+    plain, _ = BS.compute([(malph, 1)])
+    armored, _ = BS.compute([(malph, 1)], {malph: [BOOK.item_id("Bramble Vest")]})
+    # the wave is 40 AP + 30% Armor + 30% MR: more Armor, more damage
+    assert unit_power(KB, armored[0], a).dps > unit_power(KB, plain[0], a).dps
+    aph = cid("Aphelios")
+    rec = KB.ability(aph)["parts"][0]
+    assert rec["times_per_bonus_as"] == 0.2
+    fast, _ = BS.compute([(aph, 1)], {aph: [BOOK.item_id("Red Buff")]})
+    slow, _ = BS.compute([(aph, 1)])
+    assert unit_power(KB, fast[0], a).dps > unit_power(KB, slow[0], a).dps

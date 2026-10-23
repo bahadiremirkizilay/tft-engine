@@ -2,7 +2,7 @@
  "set": "set18",
  "patch": "18.5",
  "kind": "abilities",
- "note": "Ability values per star (1/2/3) for Set 18 patch 18.5, from Blitz unit pages the owner pasted on 2026-10-22 (the CommunityDragon export has no Set 18 ability numbers). Values are tooltip numbers at 100% AD and 100% AP. The 16 ability changes in the official 18.5 notes all match. parts: kind damage/shield/heal/health/attack_bonus/attack_speed; hits single/aoe/line/split or a number of targets; times per cast; per cast (default), second (with duration: after each cast; without: all fight), attack (with duration: attacks during it after each cast), fight (once); chance names an assumption or gives a number; over: seconds a damage-over-time part takes to land (only the part that lands within the fight counts). forms: Adaptor AP and AD forms (stats replace base stats for that form). model_status partial: the note lists what is not counted.",
+ "note": "Ability values per star (1/2/3) for Set 18 patch 18.5, from Blitz unit pages the owner pasted on 2026-10-22 (the CommunityDragon export has no Set 18 ability numbers). Values are tooltip numbers at 100% AD and 100% AP. The 16 ability changes in the official 18.5 notes all match. parts: kind damage/shield/heal/health/attack_bonus/attack_speed; hits single/aoe/line/split or a number of targets; times per cast; per cast (default), second (with duration: after each cast; without: all fight), attack (with duration: attacks during it after each cast), fight (once); chance names an assumption or gives a number; terms: the formula by stat (hp/armor/mr as fractions, ap as points at 100% AP) replacing values; scales: ratios a shield or heal is multiplied by (ap, as); times_per_bonus_as: one more hit per this much bonus Attack Speed; over: seconds a damage-over-time part takes to land (only the part that lands within the fight counts). forms: Adaptor AP and AD forms (stats replace base stats for that form). model_status partial: the note lists what is not counted.",
  "records": [
   {
    "id": "DA_18_Alune",
@@ -175,7 +175,8 @@
    "name": "Triggerseed",
    "status": "third_party_unverified",
    "source_ids": [
-    "blitz-2026-10-22"
+    "blitz-2026-10-22",
+    "owner-notes-2026-10-23"
    ],
    "parts": [
     {
@@ -185,7 +186,11 @@
       350,
       3000
      ],
-     "times": 2
+     "times": 2,
+     "scales": [
+      "ap",
+      "as"
+     ]
     },
     {
      "kind": "damage",
@@ -200,7 +205,7 @@
     }
    ],
    "model_status": "partial",
-   "note": "Shields 2 allies (counted as team effective Health). Not counted: 10% Damage Amp to them, shield crits, stacking Attack Speed after 6 casts."
+   "note": "Shields 2 allies (counted as team effective Health); the shield scales with AP and Attack Speed (owner, 2026-10-23). Not counted: 10% Damage Amp to them, shield crits, stacking Attack Speed after 6 casts."
   },
   {
    "id": "DA_18_Kennen",
@@ -280,7 +285,17 @@
       69,
       1150
      ],
-     "hits": "single"
+     "hits": "single",
+     "terms": [
+      {
+       "stat": "hp",
+       "values": [
+        0.06,
+        0.06,
+        1.0
+       ]
+      }
+     ]
     },
     {
      "kind": "heal",
@@ -292,7 +307,7 @@
     }
    ],
    "model_status": "partial",
-   "note": "Not counted: +10% missing Health heal, saplings (80.5/80.5/862.5 per 650 damage blocked; scaling icon lost in the paste)."
+   "note": "Active damage is 6/6/100% max Health. Not counted: +10% missing Health heal, saplings (7/7/75% max Health, one per 650 damage blocked, 3 on death)."
   },
   {
    "id": "DA_Taric18",
@@ -416,7 +431,8 @@
       850
      ],
      "hits": "single",
-     "times": 5
+     "times": 5,
+     "times_per_bonus_as": 0.2
     },
     {
      "kind": "damage",
@@ -429,8 +445,8 @@
      "hits": "split"
     }
    ],
-   "model_status": "partial",
-   "note": "Not counted: +1 swipe per 20% bonus Attack Speed."
+   "model_status": "modelled",
+   "note": "5 swipes, +1 per 20% bonus Attack Speed (Blitz screenshot)."
   },
   {
    "id": "DA_Brambleback18",
@@ -541,11 +557,37 @@
       123,
       3398.6
      ],
-     "hits": "aoe"
+     "hits": "aoe",
+     "terms": [
+      {
+       "stat": "ap",
+       "values": [
+        40,
+        60,
+        2000
+       ]
+      },
+      {
+       "stat": "armor",
+       "values": [
+        0.3,
+        0.45,
+        9.99
+       ]
+      },
+      {
+       "stat": "mr",
+       "values": [
+        0.3,
+        0.45,
+        9.99
+       ]
+      }
+     ]
     }
    ],
    "model_status": "partial",
-   "note": "Wave value at base Armor and MR (scales with AP, Armor and MR; icons lost in the paste)."
+   "note": "Wave: 40/60/2000 AP + 30/45/999% Armor + 30/45/999% MR (Blitz screenshot; 82 at base). Not counted: petrify."
   },
   {
    "id": "DA_18_Morgana",
@@ -1141,11 +1183,29 @@
       75,
       120
      ],
-     "hits": "aoe"
+     "hits": "aoe",
+     "terms": [
+      {
+       "stat": "armor",
+       "values": [
+        0.5,
+        0.75,
+        1.2
+       ]
+      },
+      {
+       "stat": "mr",
+       "values": [
+        0.5,
+        0.75,
+        1.2
+       ]
+      }
+     ]
     }
    ],
    "model_status": "partial",
-   "note": "Not counted: taunt, +60 Armor and MR for 4 s; break damage scales with Armor and MR (icons lost in the paste)."
+   "note": "Break damage: 50/75/120% Armor + 50/75/120% MR (Blitz screenshot). Not counted: taunt, +60 Armor and MR for 4 s."
   },
   {
    "id": "DA_18_Rengar",
@@ -1912,7 +1972,7 @@
     }
    ],
    "model_status": "partial",
-   "note": "Not counted: 90/100/130% decaying Attack Speed to the top-damage ally."
+   "note": "Not counted: 90/100/130% decaying Attack Speed (scales with AP) to the top-damage ally."
   },
   {
    "id": "DA_18_RekSai",
